@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Job;
+use App\User;
+use Auth;
 
 class JobsController extends Controller
 {
@@ -17,6 +19,8 @@ class JobsController extends Controller
         // $joblist = Job::all();
 
        $joblist = Job::with('location','company')->get();
+
+       
        
         //also works 
         // return view('job-listings')->with('joblist', $joblist);
@@ -29,7 +33,16 @@ class JobsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        $user = User::where('id', auth()->user()->id)->with('type')->first();
+        if ($user->type->user_type_name != "employer"){
+
+            session()->flash('message', 'You must login with an employer account to post a job');
+            Auth::logout();
+            return redirect('login');
+        }
+
+        // dd($user->type->user_type_name);
         return view('post-job');
     }
 
@@ -41,7 +54,7 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +70,9 @@ class JobsController extends Controller
         ->with(['location', 'company', 'type'])
         ->first();
 
-        // dd($Job);
+        // $users = User::where('id', auth()->user()->id)->with('type')->first();
+
+        // dd($users->type->user_type_name);
         return view('job', compact('Job'));
 
     }

@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -41,5 +43,9 @@ class User extends Authenticatable
 
     public function job(){
         return $this->hasMany(\App\Job::class);
+    }
+
+    public function type(){
+        return $this-> belongsTo(\App\UserType::class, 'user_type_id');
     }
 }

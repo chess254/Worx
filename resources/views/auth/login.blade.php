@@ -1,10 +1,30 @@
 @extends('layouts.app')
 
+@include('partials.navbar')
+
+<section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1 class="text-white font-weight-bold">Login</h1>
+          <div class="custom-breadcrumbs">
+            <a href="#">Home</a> <span class="mx-2 slash">/</span>
+            <span class="text-white"><strong>Login</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 @section('content')
-<div class="container">
+<div class="container" style="padding:20px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                @if (session()->has('message'))
+                  <div class="alert alert-info">
+                      {{ session('message') }}
+                  </div>
+              @endif
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">

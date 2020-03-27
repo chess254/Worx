@@ -28,4 +28,4 @@ Route::get('/jobs', 'JobsController@index')->name('jobs');
 
 Route::get('/job/{job}', 'JobsController@show');
 
-Route::get('/post','JobsController@create')->name('create-job');
+Route::get('/post','JobsController@create')->name('create-job')->middleware('auth');;
