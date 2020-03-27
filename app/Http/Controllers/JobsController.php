@@ -35,7 +35,7 @@ class JobsController extends Controller
     public function create()
     {   
         $user = User::where('id', auth()->user()->id)->with('type')->first();
-        if ($user->type->user_type_name != "employer"){
+        if ($user->type->name != "employer"){
 
             session()->flash('message', 'You must login with an employer account to post a job');
             Auth::logout();

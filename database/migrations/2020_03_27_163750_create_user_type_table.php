@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterJobTable extends Migration
+class CreateUserTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AlterJobTable extends Migration
      */
     public function up()
     {
-        Schema::table('job_post', function (Blueprint $table) {
-            $table->increments('id')->change();
+        Schema::create('user_type', function (Blueprint $table) {
+            $table->unsignedInteger('id')->unsigned()->autoIncrement();
+            $table->string('name', 20);
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AlterJobTable extends Migration
      */
     public function down()
     {
-        Schema::table('job_post', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('user_type');
     }
 }
