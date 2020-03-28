@@ -18,7 +18,7 @@ class JobsController extends Controller
     {
         // $joblist = Job::all();
 
-       $joblist = Job::with('location','company')->get();
+       $joblist = Job::with('location','company')->orderBy('created_date', 'desc')->get();
 
        
     //    dd($joblist);
@@ -35,7 +35,9 @@ class JobsController extends Controller
     public function create()
     {   
         $user = User::where('id', auth()->user()->id)->with('type')->first();
-        if ($user->type->name != "employer"){
+
+        // dd($user->type['name']);
+        if ($user->type['name'] != "Employer"){
 
             session()->flash('message', 'You must login with an employer account to post a job');
             Auth::logout();

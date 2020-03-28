@@ -83,21 +83,21 @@
                     <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
                         <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
                             <h2>{{$job->title}}</h2><br>
-                        
-                        <strong>{{$job->company->company_name}}</strong>
+                            <strong>{{$job->company['name']}}</strong>
                         </div>
                         <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                        <span class="icon-room"></span> {{$job->location['city']}}, {{$job->location['country']}} 
+                          <span class="icon-room"></span> {{$job->location['city']}}, {{$job->location['country']}} 
                         </div>
                         <div class="job-listing-meta">
-                          @if ( $job->job_type_id == 1 )
-                          <span class="badge badge-danger">Part Time</span>
-                          @elseif( $job->job_type_id == 2 )
-                               <span class="badge badge-success">Full Time</span>
+                          @if ( $job->type['job_type'] == "Part Time" )
+                            <span class="badge badge-danger">Part Time</span>
+                          @elseif( $job->type['job_type'] == "Full Time" )
+                            <span class="badge badge-success">Full Time</span>
                           @else
-                              <span class="badge badge-warning">Remote</span>
+                            <span class="badge badge-warning">Remote</span>
                           @endif
-                           
+                          <br>
+                          <small >{{ $job->created_date }}</small>
                         </div>
                     </div>
                 
