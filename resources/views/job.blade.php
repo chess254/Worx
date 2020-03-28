@@ -8,11 +8,11 @@
             <div class="container">
               <div class="row">
                 <div class="col-md-7">
-                  <h1 class="text-white font-weight-bold">{{$Job->job_title}}</h1>
+                  <h1 class="text-white font-weight-bold">{{$Job->title}}</h1>
                   <div class="custom-breadcrumbs">
                     <a href="#">Home</a> <span class="mx-2 slash">/</span>
                     <a href="{{ route('jobs') }}">Jobs</a> <span class="mx-2 slash">/</span>
-                    <span class="text-white"><strong>{{$Job->job_title}}</strong></span>
+                    <span class="text-white"><strong>{{$Job->title}}</strong></span>
                   </div>
                 </div>
               </div>
@@ -29,11 +29,11 @@
                       <img src="images/job_logo_1.jpg" alt="Image">
                     </div>
                     <div>
-                      <h2>{{$Job->job_title}}</h2>
+                      <h2>{{$Job->title}}</h2>
                       <div>
-                        <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>{{$Job->company->company_name}}</span>
-                        <span class="m-2"><span class="icon-room mr-2"></span>{{$Job->location->city}},  {{$Job->location->country}} </span>
-                      <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary">{{$Job->type->job_type}}</span></span>
+                        <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>{{$Job->company['name']}}</span>
+                        <span class="m-2"><span class="icon-room mr-2"></span>{{$Job->location['city']}},  {{$Job->location['country']}} </span>
+                      <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary">{{$Job->type['job_type']}}</span></span>
                       </div>
                     </div>
                   </div>
@@ -54,7 +54,7 @@
                   <div class="mb-5">
                     <figure class="mb-5"><img src="images/job_single_img_1.jpg" alt="Image" class="img-fluid rounded"></figure>
                     <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-align-left mr-3"></span>Job Description</h3>
-                  <p>{{$Job->job_description}}</p>
+                  <p>{{$Job->description}}</p>
                     
                   </div>
                   <div class="mb-5">
@@ -102,11 +102,11 @@
                     <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
                     <ul class="list-unstyled pl-3 mb-0">
                       <li class="mb-2"><strong class="text-black">Published on:</strong> {{ $Job->created_date }}</li>
-                      <li class="mb-2"><strong class="text-black">Positions:</strong> {{ $Job->number_of_positions }}</li>
-                      <li class="mb-2"><strong class="text-black">Employment Status:</strong> {{ $Job->type->job_type }}</li>
+                      <li class="mb-2"><strong class="text-black">Positions:</strong> {{ $Job->no_of_positions }}</li>
+                      <li class="mb-2"><strong class="text-black">Employment Status:</strong> {{ $Job->type['job_type']}}</li>
                       {{-- <li class="mb-2"><strong class="text-black">Experience:</strong> 2 to 3 year(s)</li> --}}
-                      <li class="mb-2"><strong class="text-black">Job Location:</strong> {{ $Job->location->city }}</li>
-                      <li class="mb-2"><strong class="text-black">Salary (kShs):</strong> {{ $Job->salary }}</li>
+                    <li class="mb-2"><strong class="text-black">Job Location:</strong> {{ $Job->location['city']}}, {{ $Job->location['country'] }}</li>
+                      <li class="mb-2"><strong class="text-black">Salary (kShs):</strong> {{ $Job->salary_range }}</li>
                       {{-- <li class="mb-2"><strong class="text-black">Gender:</strong> Any</li> --}}
                       <li class="mb-2"><strong class="text-black">Application Deadline:</strong> {{ $Job->deadline }}</li>
                     </ul>

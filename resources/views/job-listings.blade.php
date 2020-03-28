@@ -82,7 +82,7 @@
     
                     <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
                         <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
-                            <h2>{{$job->job_title}}</h2><br>
+                            <h2>{{$job->title}}</h2><br>
                         
                         <strong>{{$job->company->company_name}}</strong>
                         </div>

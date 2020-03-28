@@ -21,7 +21,7 @@ class JobsController extends Controller
        $joblist = Job::with('location','company')->get();
 
        
-       
+    //    dd($joblist);
         //also works 
         // return view('job-listings')->with('joblist', $joblist);
         return view('job-listings', compact('joblist'));
