@@ -254,7 +254,8 @@ jQuery(function($) {
 			    toolbar: toolbarOptions,
 			  },
 			  placeholder: 'Compose an epic...',
-			  theme: 'snow'  // or 'bubble'
+			  theme: 'snow'  
+			  // or 'bubble'
 			});
 		}
 

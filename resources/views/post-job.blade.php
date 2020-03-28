@@ -59,27 +59,65 @@
               <input type="text" class="form-control" name="email" id="email" placeholder="you@yourdomain.com">
             </div>
             <div class="form-group">
-              <label for="job-title">Job Title</label>
-              <input type="text" class="form-control" name="job-title" id="job-title" placeholder="Product Designer">
+              <label for="title">Job Title</label>
+              <input type="text" class="form-control" name="title" id="job-title" placeholder="Product Designer">
             </div>
             <div class="form-group">
-              <label for="job-location">Location</label>
-              <input type="text" class="form-control" name="job-location" id="job-location" placeholder="e.g. New York">
+              <label for="job-location">Town / City</label>
+              <input type="text" class="form-control" name="job-location" id="job-location" placeholder="e.g. Nakuru">
             </div>
 
             <div class="form-group">
-              <label for="job-region">Job Region</label>
-              <select class="selectpicker border rounded" id="job-region" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
-                    <option>Anywhere</option>
-                    <option>San Francisco</option>
-                    <option>Palo Alto</option>
-                    <option>New York</option>
-                    <option>Manhattan</option>
-                    <option>Ontario</option>
-                    <option>Toronto</option>
-                    <option>Kansas</option>
-                    <option>Mountain View</option>
-                  </select>
+              <label for="job-region">County</label>
+              <select class="selectpicker border rounded" name="county" id="county" data-style="btn-black" data-width="100%" data-live-search="true" title="Select County">
+                <option name="1">MOMBASA</option>
+                <option name="2">KWALE</option>
+                <option name="3">KILIFI</option>
+                <option name="4">TANA RIVER</option>
+                <option name="5">LAMU</option>
+                <option name="6">TAITA TAVETA</option>
+                <option name="7">GARISSA</option>
+                <option name="8">WAJIR</option>
+                <option name="9">MANDERA</option>
+                <option name="10">MARSABIT</option>
+                <option name="11">ISIOLO</option>
+                <option name="12">MERU</option>
+                <option name="13">THARAKA-NITHI</option>
+                <option name="14">EMBU</option>
+                <option name="15">KITUI</option>
+                <option name="16">MACHAKOS</option>
+                <option name="17">MAKUENI</option>
+                <option name="18">NYANDARUA</option>
+                <option name="19">NYERI</option>
+                <option name="20">KIRINYAGA</option>
+                <option name="21">MURANG'A</option>
+                <option name="22">KIAMBU</option>
+                <option name="23">TURKANA</option>
+                <option name="24">WEST POKOT</option>
+                <option name="25">SAMBURU</option>
+                <option name="26">TRANS NZOIA</option>
+                <option name="27">UASIN GISHU</option>
+                <option name="28">ELGEYO/MARAKWET</option>
+                <option name="29">NANDI</option>
+                <option name="30">BARINGO</option>
+                <option name="31">LAIKIPIA</option>
+                <option name="32">NAKURU</option>
+                <option name="33">NAROK</option>
+                <option name="34">KAJIADO</option>
+                <option name="35">KERICHO</option>
+                <option name="36">BOMET</option>
+                <option name="37">KAKAMEGA</option>
+                <option name="38">VIHIGA</option>
+                <option name="39">BUNGOMA</option>
+                <option name="40">BUSIA</option>
+                <option name="41">SIAYA</option>
+                <option name="42">KISUMU</option>
+                <option name="43">HOMA BAY</option>
+                <option name="44">MIGORI</option>
+                <option name="45">KISII</option>
+                <option name="46">NYAMIRA</option>
+                <option name="47">NAIROBI</option>
+              </select>
             </div>
 
             <div class="form-group">
@@ -87,6 +125,7 @@
               <select class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type">
                 <option>Part Time</option>
                 <option>Full Time</option>
+                <option>Remote</option>
               </select>
             </div>
 
@@ -98,16 +137,36 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label for="company-website-tw">Number of available positions.</label>
+              <input type="text" class="form-control" id="company-website-tw" placeholder="e.g. 3">
+            </div>
+
+            <div class="form-group">
+              <label for="company-tagline">Salary Range</label> 
+              <select class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="">
+                <option> 10,000   and   below</option>
+                <option> 10,000   -     25,000</option>
+                <option> 25,000   -     50,000</option>
+                <option> 50,000   -     100,000</option>
+                <option>100,000   -     200,000</option>
+                <option>200,000   -     350,000</option>
+                <option>350,000   -     500,000</option>
+                <option>500,000   and   above</option>
+                <option>undisclosed</option>
+              </select>
+            </div>
+
 
             <h3 class="text-black my-5 border-bottom pb-2">Company Details</h3>
             <div class="form-group">
               <label for="company-name">Company Name</label>
-              <input type="text" class="form-control" id="company-name" placeholder="e.g. New York">
+              <input type="text" class="form-control" id="company-name" placeholder="">
             </div>
 
             <div class="form-group">
               <label for="company-tagline">Tagline (Optional)</label>
-              <input type="text" class="form-control" id="company-tagline" placeholder="e.g. New York">
+              <input type="text" class="form-control" id="company-tagline" placeholder=" ">
             </div>
 
             <div class="form-group">
