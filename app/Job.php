@@ -8,23 +8,26 @@ class Job extends Model
 {
     protected $table = 'jobs';
 
-    protected $fillable = [
-        'title',
-        'posted_by_id',
-        'type_id',
-        'company_id',
-        'company_name_hidden',
-        'no_of_positions',
-        'created_date',
-        'description',
-        'location_id',
-        'is_active',
-        'salary_range',
-        'deadline',
-        'responsibilities',
-        'education',
-        'image'
-    ];
+    // protected $fillable = [
+    //     'title',
+    //     'posted_by_id',
+    //     'type_id',
+    //     'company_id',
+    //     'company_name_hidden',
+    //     'no_of_positions',
+    //     'created_date',
+    //     'description',
+    //     'location_id',
+    //     'is_active',
+    //     'salary_range',
+    //     'deadline',
+    //     'responsibilities',
+    //     'requirements',
+    //     'education',
+    //     'image'
+    // ];
+
+    protected $guarded = [];
 
     //job belongs to one user, foreign key 'posted_by_id' points to id on users table
     public function user()

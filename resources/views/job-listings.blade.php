@@ -90,11 +90,11 @@
                         </div>
                         <div class="job-listing-meta">
                           @if ( $job->type['job_type'] == "Part Time" )
-                            <span class="badge badge-danger">Part Time</span>
+                            <span class="badge badge-secondary">Part Time</span>
                           @elseif( $job->type['job_type'] == "Full Time" )
                             <span class="badge badge-success">Full Time</span>
                           @else
-                            <span class="badge badge-warning">Remote</span>
+                            <span class="badge badge-info">Remote</span>
                           @endif
                           <br>
                           <small >{{ $job->created_date }}</small>

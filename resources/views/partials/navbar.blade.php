@@ -44,11 +44,10 @@
                     <a href="{{ route('register') }}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Register</a>
                 @endif
             @else
+                <a href="#" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-check"></span> Welcome {{ Auth::user()->name }}!! </a>
 
-            <a href="#" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-check"></span> Welcome {{ Auth::user()->name }}!! </a>
-
-            <a href="{{ route('logout') }}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block" onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();"><span class="mr-2 icon-lock_outline"></span>{{ __('Logout') }} </a>
+                <a href="{{ route('logout') }}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block" onclick="event.preventDefault();
+                     document.getElementById('logout-form').submit();"><span class="mr-2 icon-lock_outline"></span>{{ __('Logout') }} </a>
 
         
 
@@ -56,13 +55,13 @@
                     @csrf
                 </form>
             
-
+            @endguest
 
         </div>
         <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
 
         
-        @endguest
+       
 
         
 

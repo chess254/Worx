@@ -43,7 +43,8 @@
       </div>
       <div class="row mb-5">
         <div class="col-lg-12">
-          <form class="p-4 p-md-5 border rounded" method="post">
+          <form class="p-4 p-md-5 border rounded" action="/post" method="post">
+            @csrf
             <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
             
             <div class="form-group">
@@ -55,15 +56,15 @@
 
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="text" class="form-control" id="email" placeholder="you@yourdomain.com">
+              <input type="text" class="form-control" name="email" id="email" placeholder="you@yourdomain.com">
             </div>
             <div class="form-group">
               <label for="job-title">Job Title</label>
-              <input type="text" class="form-control" id="job-title" placeholder="Product Designer">
+              <input type="text" class="form-control" name="job-title" id="job-title" placeholder="Product Designer">
             </div>
             <div class="form-group">
               <label for="job-location">Location</label>
-              <input type="text" class="form-control" id="job-location" placeholder="e.g. New York">
+              <input type="text" class="form-control" name="job-location" id="job-location" placeholder="e.g. New York">
             </div>
 
             <div class="form-group">
@@ -141,7 +142,7 @@
                 Browse File<input type="file" hidden>
               </label>
             </div>
-
+              <button type="submit" class="btn bnt-primary">check</button>
           </form>
         </div>
 

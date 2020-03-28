@@ -29,10 +29,11 @@
     <script src="{{ asset('js/bootstrap-select.min.js') }}" ></script>
 
     <script src="{{ asset('js/custom.js') }}" ></script> --}}
-
+    {{-- <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script> --}}
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -44,11 +45,14 @@
     <link href="{{ asset('fonts/line-icons/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="css/quill.snow.css"> 
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet"> 
+
+   
 
 </head>
-<body>
-    <div id="top">
+<body id="top">
+    {{-- <div id="top"> --}}
     <div id="overlayer"></div>
     <div class="loader">
         <div class="spinner-border text-primary" role="status">
@@ -248,7 +252,7 @@
     </div>
 
     {{-- scripts --}}
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
     <script src="{{ asset('js/jquery.min.js') }}" ></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}" ></script>
     <script src="{{ asset('js/isotope.pkgd.min.js') }}" ></script>
@@ -259,10 +263,12 @@
     <script src="{{ asset('js/jquery.waypoints.min.js') }}" ></script>
     <script src="{{ asset('js/jquery.animateNumber.min.js') }}" ></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}" ></script>
+    <script src="{{ asset('js/quill.min.js') }}" ></script>
 
     <script src="{{ asset('js/bootstrap-select.min.js') }}" ></script>
-
     <script src="{{ asset('js/custom.js') }}" ></script>
+
+    
     
 
     
