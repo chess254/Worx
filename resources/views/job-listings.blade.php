@@ -107,7 +107,7 @@
  
             
           </ul>
-  
+          {{ $joblist->links() }}
           <div class="row pagination-wrap">
             <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
               <span>Showing 1-7 Of 43,167 Jobs</span>

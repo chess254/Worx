@@ -18,7 +18,7 @@ class JobsController extends Controller
     {
         // $joblist = Job::all();
 
-       $joblist = Job::with('location','company')->orderBy('created_date', 'desc')->get();
+       $joblist = Job::with('location','company')->orderBy('created_date', 'desc')->paginate(20);
 
        
     //    dd($joblist);
