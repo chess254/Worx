@@ -11,13 +11,19 @@ class Job extends Model
     protected $fillable = [
         'title',
         'posted_by_id',
-        'job_type_id',
+        'type_id',
         'company_id',
-        'is_company_name_hidden',
+        'company_name_hidden',
+        'no_of_positions',
         'created_date',
-        'job_description',
-        'job_location_id',
+        'description',
+        'location_id',
         'is_active',
+        'salary_range',
+        'deadline',
+        'responsibilities',
+        'education',
+        'image'
     ];
 
     //job belongs to one user, foreign key 'posted_by_id' points to id on users table
