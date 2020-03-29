@@ -11,6 +11,11 @@ class JobTypeSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\JobType', 3)->create();
+        // factory('App\JobType', 3)->create();
+        DB::table('job_type')->insert(array(
+            array('job_type'=>'Part Time'),
+            array('job_type'=>'Full Time'),
+            array('job_type'=>'Remote'),
+        ));
     }
 }

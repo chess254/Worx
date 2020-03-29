@@ -11,6 +11,10 @@ class UserTypeSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\UserType', 2)->create();
+        // factory('App\UserType', 2)->create();
+        DB::table('user_type')->insert(array(
+            array('name'=>'Seeker'),
+            array('name'=>'Employer')
+        ));
     }
 }

@@ -1,9 +1,12 @@
 @extends('layouts.app')
 
+@section('navbar')
 @include('partials.navbar')
+@endsection
 
+@section('content')
 <!-- HOME -->
-<section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
+  <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
     <div class="container">
       <div class="row">
         <div class="col-md-7">
@@ -63,88 +66,121 @@
               <input type="text" class="form-control" name="title" id="job-title" placeholder="Product Designer">
             </div>
             <div class="form-group">
-              <label for="job-location">Town / City</label>
-              <input type="text" class="form-control" name="job-location" id="job-location" placeholder="e.g. Nakuru">
+              <label for="town">Town / City</label>
+              <input type="text" class="form-control" name="town" id="job-location" placeholder="e.g. Nakuru">
             </div>
 
             <div class="form-group">
-              <label for="job-region">County</label>
+              <label for="county">County</label>
               <select class="selectpicker border rounded" name="county" id="county" data-style="btn-black" data-width="100%" data-live-search="true" title="Select County">
-                <option name="1">MOMBASA</option>
-                <option name="2">KWALE</option>
-                <option name="3">KILIFI</option>
-                <option name="4">TANA RIVER</option>
-                <option name="5">LAMU</option>
-                <option name="6">TAITA TAVETA</option>
-                <option name="7">GARISSA</option>
-                <option name="8">WAJIR</option>
-                <option name="9">MANDERA</option>
-                <option name="10">MARSABIT</option>
-                <option name="11">ISIOLO</option>
-                <option name="12">MERU</option>
-                <option name="13">THARAKA-NITHI</option>
-                <option name="14">EMBU</option>
-                <option name="15">KITUI</option>
-                <option name="16">MACHAKOS</option>
-                <option name="17">MAKUENI</option>
-                <option name="18">NYANDARUA</option>
-                <option name="19">NYERI</option>
-                <option name="20">KIRINYAGA</option>
-                <option name="21">MURANG'A</option>
-                <option name="22">KIAMBU</option>
-                <option name="23">TURKANA</option>
-                <option name="24">WEST POKOT</option>
-                <option name="25">SAMBURU</option>
-                <option name="26">TRANS NZOIA</option>
-                <option name="27">UASIN GISHU</option>
-                <option name="28">ELGEYO/MARAKWET</option>
-                <option name="29">NANDI</option>
-                <option name="30">BARINGO</option>
-                <option name="31">LAIKIPIA</option>
-                <option name="32">NAKURU</option>
-                <option name="33">NAROK</option>
-                <option name="34">KAJIADO</option>
-                <option name="35">KERICHO</option>
-                <option name="36">BOMET</option>
-                <option name="37">KAKAMEGA</option>
-                <option name="38">VIHIGA</option>
-                <option name="39">BUNGOMA</option>
-                <option name="40">BUSIA</option>
-                <option name="41">SIAYA</option>
-                <option name="42">KISUMU</option>
-                <option name="43">HOMA BAY</option>
-                <option name="44">MIGORI</option>
-                <option name="45">KISII</option>
-                <option name="46">NYAMIRA</option>
-                <option name="47">NAIROBI</option>
+                <option value="1">MOMBASA</option>
+                <option value="2">KWALE</option>
+                <option value="3">KILIFI</option>
+                <option value="4">TANA RIVER</option>
+                <option value="5">LAMU</option>
+                <option value="6">TAITA TAVETA</option>
+                <option value="7">GARISSA</option>
+                <option value="8">WAJIR</option>
+                <option value="9">MANDERA</option>
+                <option value="10">MARSABIT</option>
+                <option value="11">ISIOLO</option>
+                <option value="12">MERU</option>
+                <option value="13">THARAKA-NITHI</option>
+                <option value="14">EMBU</option>
+                <option value="15">KITUI</option>
+                <option value="16">MACHAKOS</option>
+                <option value="17">MAKUENI</option>
+                <option value="18">NYANDARUA</option>
+                <option value="19">NYERI</option>
+                <option value="20">KIRINYAGA</option>
+                <option value="21">MURANG'A</option>
+                <option value="22">KIAMBU</option>
+                <option value="23">TURKANA</option>
+                <option value="24">WEST POKOT</option>
+                <option value="25">SAMBURU</option>
+                <option value="26">TRANS NZOIA</option>
+                <option value="27">UASIN GISHU</option>
+                <option value="28">ELGEYO/MARAKWET</option>
+                <option value="29">NANDI</option>
+                <option value="30">BARINGO</option>
+                <option value="31">LAIKIPIA</option>
+                <option value="32">NAKURU</option>
+                <option value="33">NAROK</option>
+                <option value="34">KAJIADO</option>
+                <option value="35">KERICHO</option>
+                <option value="36">BOMET</option>
+                <option value="37">KAKAMEGA</option>
+                <option value="38">VIHIGA</option>
+                <option value="39">BUNGOMA</option>
+                <option value="40">BUSIA</option>
+                <option value="41">SIAYA</option>
+                <option value="42">KISUMU</option>
+                <option value="43">HOMA BAY</option>
+                <option value="44">MIGORI</option>
+                <option value="45">KISII</option>
+                <option value="46">NYAMIRA</option>
+                <option value="47">NAIROBI</option>
+
+
               </select>
             </div>
 
             <div class="form-group">
               <label for="job-type">Job Type</label>
-              <select class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type">
-                <option>Part Time</option>
-                <option>Full Time</option>
-                <option>Remote</option>
+              <select class="selectpicker border rounded" id="type_id" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type" name="type_id">
+                <option value="1">Part Time</option>
+                <option value="2">Full Time</option>
+                <option value="3">Remote</option>
               </select>
             </div>
 
 
             <div class="form-group">
-              <label for="job-description">Job Description</label>
-              <div class="editor" id="editor-1">
+              <label for="description">Job Description</label>
+              <div class="editor" id="editor-1" name="">
+                <p>Write Job Description!</p>
+                
+              </div>
+              <textarea name="description"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="job-description">Job Requirements</label>
+              <div class="editor" id="editor-3" name="requirements">
+                <p name = "requirements">Write Job Description!</p>
+                
+              </div>
+              <textarea name="requirements"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="job-description">Job Responsibilities</label>
+              <div class="editor" id="editor-4" name="responsibilities">
                 <p>Write Job Description!</p>
               </div>
+              <textarea name="responsibilities"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="job-type">Education level</label>
+              <select class="selectpicker border rounded" id="type_id" data-style="btn-black" data-width="100%" data-live-search="true" title="Pick One" name="education">
+                <option ="1">High School</option>
+                <option ="2">Certificate</option>
+                <option ="3">Diploma</option>
+                <option ="1">Degree</option>
+                <option ="2">Post-graduate Degree</option>
+                <option ="3">Doctorate</option>
+              </select>
             </div>
 
             <div class="form-group">
               <label for="company-website-tw">Number of available positions.</label>
-              <input type="text" class="form-control" id="company-website-tw" placeholder="e.g. 3">
+              <input type="text" class="form-control" id="company-website-tw" placeholder="e.g. 3" name="no_of_positions">
             </div>
 
             <div class="form-group">
               <label for="company-tagline">Salary Range</label> 
-              <select class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="">
+              <select class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="" name="salary_range">
                 <option> 10,000   and   below</option>
                 <option> 10,000   -     25,000</option>
                 <option> 25,000   -     50,000</option>
@@ -161,39 +197,39 @@
             <h3 class="text-black my-5 border-bottom pb-2">Company Details</h3>
             <div class="form-group">
               <label for="company-name">Company Name</label>
-              <input type="text" class="form-control" id="company-name" placeholder="">
+              <input type="text" class="form-control" id="company-name" placeholder="" name="company_name">
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label for="company-tagline">Tagline (Optional)</label>
               <input type="text" class="form-control" id="company-tagline" placeholder=" ">
-            </div>
+            </div> --}}
 
             <div class="form-group">
               <label for="job-description">Company Description (Optional)</label>
-              <div class="editor" id="editor-2">
+              <div class="editor" id="editor-2" name="company_description">
                 <p>Description</p>
               </div>
             </div>
             
             <div class="form-group">
               <label for="company-website">Website (Optional)</label>
-              <input type="text" class="form-control" id="company-website" placeholder="https://">
+              <input type="text" class="form-control" id="company-website" placeholder="https://" name="company_website">
             </div>
 
             <div class="form-group">
               <label for="company-website-fb">Facebook Username (Optional)</label>
-              <input type="text" class="form-control" id="company-website-fb" placeholder="companyname">
+              <input type="text" class="form-control" id="company-website-fb" placeholder="" name="company_fb">
             </div>
 
             <div class="form-group">
               <label for="company-website-tw">Twitter Username (Optional)</label>
-              <input type="text" class="form-control" id="company-website-tw" placeholder="@companyname">
+              <input type="text" class="form-control" id="company-website-tw" placeholder="@companyname" name="company_twitter">
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label for="company-website-tw">Linkedin Username (Optional)</label>
               <input type="text" class="form-control" id="company-website-tw" placeholder="companyname">
-            </div>
+            </div> --}}
 
             <div class="form-group">
               <label for="company-website-tw d-block">Upload Logo</label> <br>
@@ -201,7 +237,7 @@
                 Browse File<input type="file" hidden>
               </label>
             </div>
-              <button type="submit" class="btn bnt-primary">check</button>
+              <button type="submit" class="btn btn-primary">check</button>
           </form>
         </div>
 
@@ -215,10 +251,13 @@
               <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
             </div>
             <div class="col-6">
-              <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
+              <a href="#" class="btn btn-block btn-info btn-md">Save Job</a>
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </section>
+
+@endsection

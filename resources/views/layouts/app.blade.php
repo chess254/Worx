@@ -61,133 +61,19 @@
     </div>
     <div class="site-wrap">
 
-<!-- NAVBAR -->
-
-    <!-- HOME -->
-        {{-- <section class="home-section section-hero overlay bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
-
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-md-12">
-                        <div class="mb-5 text-center">
-                            <h1 class="text-white font-weight-bold">The Easiest Way To Get Your Dream Job</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate est, consequuntur perferendis.</p>
-                        </div>
-                        <form method="post" class="search-jobs-form">
-                            <div class="row mb-5">
-                                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                    <input type="text" class="form-control form-control-lg" placeholder="Job title, Company...">
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                    <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Region">
-                                    <option>Anywhere</option>
-                                    <option>San Francisco</option>
-                                    <option>Palo Alto</option>
-                                    <option>New York</option>
-                                    <option>Manhattan</option>
-                                    <option>Ontario</option>
-                                    <option>Toronto</option>
-                                    <option>Kansas</option>
-                                    <option>Mountain View</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                    <select class="selectpicker" data-style="btn-white btn-lg" data-width="100%" data-live-search="true" title="Select Job Type">
-                                    <option>Part Time</option>
-                                    <option>Full Time</option>
-                                    </select>
-                                </div>
-                                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block text-white btn-search"><span class="icon-search icon mr-2"></span>Search Job</button>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 popular-keywords">
-                                    <h3>Trending Keywords:</h3>
-                                    <ul class="keywords list-unstyled m-0 p-0">
-                                        <li><a href="#" class="">UI Designer</a></li>
-                                        <li><a href="#" class="">Python</a></li>
-                                        <li><a href="#" class="">Developer</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <a href="#next" class="scroll-button smoothscroll">
-            <span class=" icon-keyboard_arrow_down"></span>
-            </a>
-
-        </section> --}}
 
 
-
-
-
-
-
-
-
-
-
-        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav> --}}
+    
 
         {{-- <main class="py-4"> --}}
-        <main>
-          
-            @yield('content')
-        </main>
+    <main>
+           
+        @yield('navbar')
+            
+        
+        @yield('content')
+        
+    </main>
 
         {{-- <div class="py-4"></div> --}}
     <footer class="site-footer">
@@ -267,6 +153,32 @@
 
     <script src="{{ asset('js/bootstrap-select.min.js') }}" ></script>
     <script src="{{ asset('js/custom.js') }}" ></script>
+
+
+
+    {{-- <script>
+
+        // var form = document.querySelector('form');
+        // form.onsubmit = function() {
+        //   // Populate hidden form on submit
+        //   console.log("submitting form");
+        //   var desc = document.querySelector('input[name=description]');
+        //   desc.value = JSON.stringify(description.getContents());
+          
+        //   console.log("Submitted", $(form).serialize(), $(form).serializeArray());
+          
+        //   // No back end to actually submit to!
+        //   alert('Open the console to see the submit data!')
+        //   return false;
+        // };
+
+        function testing(){
+           
+        alert("what the f is happening");
+        
+        }
+        
+            </script> --}}
 
     
     

@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@include('partials.navbar')
+@section('navbar')
+  @include('partials.navbar')
+@endsection
+
+@section('content')
 
 <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
     <div class="container">
@@ -15,7 +19,7 @@
       </div>
     </div>
   </section>
-@section('content')
+
 <div class="container" style="padding:20px;">
     <div class="row justify-content-center">
         <div class="col-md-8">

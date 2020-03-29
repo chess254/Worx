@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@include('partials.navbar')
+
+@section('navbar')
+  @include('partials.navbar')
+@endsection
+@section('content')
 
     <!-- HOME -->
     <section class="section-hero home-section overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
@@ -120,6 +124,7 @@
                 <a href="#">2</a>
                 <a href="#">3</a>
                 <a href="#">4</a>
+                {{ $joblist->links() }}
                 </div>
                 <a href="#" class="next">Next</a>
               </div>
@@ -142,3 +147,4 @@
           </div>
         </div>
       </section>
+@endsection

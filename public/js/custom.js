@@ -242,7 +242,7 @@ jQuery(function($) {
 		];
 
 		if ( $('.editor').length > 0 ) {
-			var quill = new Quill('#editor-1', {
+			var description = new Quill('#editor-1', {
 			  modules: {
 			    toolbar: toolbarOptions,
 			  },
@@ -257,9 +257,30 @@ jQuery(function($) {
 			  theme: 'snow'  
 			  // or 'bubble'
 			});
+			var quill = new Quill('#editor-3', {
+				modules: {
+				  toolbar: toolbarOptions,
+				},
+				placeholder: 'Compose an epic...',
+				theme: 'snow'  // or 'bubble'
+			  });
+			  var quill = new Quill('#editor-4', {
+				modules: {
+				  toolbar: toolbarOptions,
+				},
+				placeholder: 'Compose an epic...',
+				theme: 'snow'  // or 'bubble'
+			  });
 		}
 
 	}
 	quillInit();
+
+	
   
-});
+}
+
+
+
+);
+

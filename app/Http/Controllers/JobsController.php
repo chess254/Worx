@@ -18,6 +18,7 @@ class JobsController extends Controller
     {
         // $joblist = Job::all();
 
+
        $joblist = Job::with('location','company')->orderBy('created_date', 'desc')->paginate(20);
 
        
@@ -54,45 +55,60 @@ class JobsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
-    {
-        // $data = [
-        //     'title' => 'sample title',
+    public function store(Request $request)
+    { 
+        // if($request->county ){$request->county = convert($request->county);}
+        // if($request->type_id){$request->type_id = convert($request->type_id);}
+
+        
+        $data = [
+            'title' => $request->title,
+            'email'=> $request->email,
+            'town' => $request->town,
+'user_id' => $user = Auth::user()->id,
+            'type_id' => intval($request->type_id),
+            'county_id'=>intval($request->county),
+            'company_id' => 1,
+            'company_name_hidden' => 1,
+            'no_of_positions' => $request->no_of_positions,
+            'description' => $request->description, 
+            'location_id' => 1,           
+            'is_active' => 1,
+            'salary_range' => $request->salary_range,
+            'responsibilities' => $request->responsibilities,
+           'requirements' =>$request->requirements,             
+            'education' => $request->education,
+
+
+            
+
+
+
+        ];
+
+       
+        
+        // dd($request);
+        // dd($data);
+
+        // $data = request([
+        //     'title',
         //     // 'posted_by_id' => 1,
-        //     'type_id' => 1,
-        //     'company_id' => 1,
-        //     'company_name_hidden' => 1,
-        //     'no_of_positions' => 10,
-        //     'description' => 'lorem',
-        //     'location_id' => 1,
-        //     'is_active' => 1,
-        //     'salary_range' => 'lorem',
-        //     'responsibilities' => 'lorem',
-        //    'requirements' => 'lorem',             
-        //     'education' => 'lorem',
+        //     'type_id', 
+        //     'company_id', 
+        //     'company_name_hidden', 
+        //     'no_of_positions',
+        //     'description', 
+        //     'location_id', 
+        //     'is_active', 
+        //     'salary_range', 
+        //     'responsibilities', 
+        //    'requirements',              
+        //     'education', 
 
 
 
-        // ];
-
-        $data = request()->validate([
-            'title' => 'required',
-            // 'posted_by_id' => 1,
-            'type_id' => 'required', 
-            'company_id' => 'required', 
-            'company_name_hidden' => 'required', 
-            'no_of_positions' => 'required',
-            'description' => 'required', 
-            'location_id' => 'required', 
-            'is_active' => 'required', 
-            'salary_range' => 'required', 
-            'responsibilities' => 'required', 
-           'requirements' => 'required',              
-            'education' => 'required', 
-
-
-
-        ]);
+        // ]);
 
         // dd($data);
         $job = auth()->user()->job()->create($data);
@@ -154,4 +170,167 @@ class JobsController extends Controller
     {
         //
     }
+    
+    
+ 
 }
+
+ function convert(String $county){
+
+    switch ($county) {
+        case "MOMBASA":
+            return 1;    
+            break;
+        case "KWALE":
+            return 2;    
+            break;
+        case "KILIFI":
+            return 3;    
+            break;
+        case "TANA RIVER":
+            return 4;    
+            break;
+        case "LAMU":
+            return 5;    
+            break;
+        case "TAITA TAVETA":
+            return 5;    
+            break;
+        case "GARISSA":
+            return 7;    
+            break;
+        case "WAJIR":
+            return 8;    
+            break;
+        case "MANDERA":
+            return 9;    
+            break;
+        case "MARSABIT":
+            return 10;    
+            break;
+        case "ISIOLO":
+            return 11;    
+            break;
+        case "MERU":
+            return 12;    
+            break;
+        case "THARAKA-NITHI":
+            return 13;    
+            break;
+        case "EMBU":
+            return 14;    
+            break;
+        case "KITUI":
+            return 15;    
+            break;
+        case "MACHAKOS":
+            return 16;    
+            break;
+        case "MAKUENI":
+            return 17;    
+            break;
+        case "NYANDARUA":
+            return 18;    
+            break;
+        case "NYERI":
+            return 19;    
+            break;
+        case "KIRINYAGA":
+            return 20;    
+            break;
+        case "MURANG'A":
+            return 21;    
+            break;
+        case "KIAMBU":
+            return 22;    
+            break;
+        case "TURKANA":
+            return 23;    
+            break;
+        case "WEST POKOT":
+            return 24;    
+            break;
+        case "SAMBURU":
+            return 25;    
+            break;
+        case "TRANS NZOIA":
+            return 26;    
+            break;
+        case "UASIN GISHU":
+            return 27;    
+            break;
+        case "ELGEYO/MARAKWET":
+            return 28;    
+            break;
+        case "NANDI":
+            return 29;    
+            break;
+        case "BARINGO":
+            return 30;    
+            break;
+        case "LAIKIPIA":
+            return 31;    
+            break;
+        case "NAKURU":
+            return 32;    
+            break;
+        case "NAROK":
+            return 33;    
+            break;
+        case "KAJIADO":
+            return 34;    
+            break;
+        case "KERICHO":
+            return 35;    
+            break;
+        case "BOMET":
+            return 36;    
+            break;
+        case "KAKAMEGA":
+            return 37;    
+            break;
+        case "VIHIGA":
+            return 38;    
+            break;
+        case "BUNGOMA":
+            return 39;    
+            break;
+        case "BUSIA":
+            return 40;    
+            break;
+        case "SIAYA":
+            return 41;    
+            break;
+        case "KISUMU":
+            return 42;    
+            break;
+        case "HOMA BAY":
+            return 43;    
+            break;
+        case "MIGORI":
+            return 44;    
+            break;
+        case "KISII":
+            return 45;    
+            break;
+        case "NYAMIRA":
+            return 46;    
+            break;
+        case "NAIROBI":
+            return 47;    
+            break;
+        case "Part Time":
+            return 1;
+        break;
+          case  "Full Time":
+          return 2;
+          break;
+            case "Remote":
+                return 3;
+            break;
+    } 
+    
+
+}
+
+

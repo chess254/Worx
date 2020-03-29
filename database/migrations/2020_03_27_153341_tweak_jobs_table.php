@@ -16,8 +16,9 @@ class TweakJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->unsignedInteger('id')->unsigned()->autoIncrement();
             $table->string('title', 100);
-            $table->unsignedInteger('posted_by_id');
+            $table->unsignedInteger('user_id');
             $table->unsignedInteger('type_id');
+            $table->unsignedInteger('county_id');
             $table->unsignedInteger('company_id')->nullable();
             $table->unsignedInteger('company_name_hidden')->default(0);
             $table->integer('no_of_positions')->default('1');
