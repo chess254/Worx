@@ -6,7 +6,6 @@
 @endsection
 @section('content')
 
-    <!-- HOME -->
     <section class="section-hero home-section overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
 
         <div class="container">
@@ -70,7 +69,7 @@
   
           <div class="row mb-5 justify-content-center">
             <div class="col-md-7 text-center">
-              <h2 class="section-title mb-2">{{$joblist->count()}} Jobs Listed</h2>
+              <h2 class="section-title mb-2">{{$totalJobs}} Jobs Listed</h2>
             </div>
           </div>
           
@@ -124,7 +123,6 @@
                 <a href="#">2</a>
                 <a href="#">3</a>
                 <a href="#">4</a>
-                {{ $joblist->links() }}
                 </div>
                 <a href="#" class="next">Next</a>
               </div>

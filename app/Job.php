@@ -53,8 +53,5 @@ class Job extends Model
         return $this->belongsTo(\App\County::class);
     }
 
-    // public function company()
-    // {
-    //     return $this->belongsTo(Company::class, 'company_id');
-    // }
+
 }

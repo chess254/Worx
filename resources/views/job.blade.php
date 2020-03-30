@@ -4,7 +4,7 @@
   @include('partials.navbar')
 @endsection
 @section('content')
-        <!-- HOME -->
+
         <section class="section-hero overlay inner-page bg-image" style="background-image: url('../images/hero_1.jpg');" id="home-section">
             <div class="container">
               <div class="row">
@@ -74,7 +74,9 @@
                       <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span></li>
                       <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores blanditiis nihil quia officiis dolor</span></li>
                     </ul> --}}
-                    {{ $Job->education }}
+                    <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>{{ $Job->education }}</span></li>
+
+                    
                   </div>
       
                   <div class="mb-5">

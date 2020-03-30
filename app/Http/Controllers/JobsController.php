@@ -16,16 +16,9 @@ class JobsController extends Controller
      */
     public function index()
     {
-        // $joblist = Job::all();
-
-
-       $joblist = Job::with('location','company','county')->orderBy('created_date', 'desc')->paginate(20);
-
-       
-    //    dd($joblist);
-        //also works 
-        // return view('job-listings')->with('joblist', $joblist);
-        return view('job-listings', compact('joblist'));
+        $totalJobs = Job::all()->count();
+        $joblist = Job::with('location','company','county')->orderBy('created_date', 'desc')->paginate(20);
+        return view('job-listings', compact(['joblist', 'totalJobs']));
     }
 
     /**
@@ -36,16 +29,12 @@ class JobsController extends Controller
     public function create()
     {   
         $user = User::where('id', auth()->user()->id)->with('type')->first();
-
-        // dd($user->type['name']);
         if ($user->type['name'] != "Employer"){
 
             session()->flash('message', 'You must login with an employer account to post a job');
             Auth::logout();
             return redirect('login');
         }
-
-        // dd($user->type->user_type_name);
         return view('post-job');
     }
 
@@ -57,22 +46,14 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     { 
-        // if($request->county ){$request->county = convert($request->county);}
-        // if($request->type_id){$request->type_id = convert($request->type_id);}
-
-        // $company = new \App\Company;
         $company = \App\Company::firstOrNew([
             'name' => $request->company_name,
         'description' => $request->company_description,
         'website' => $request->company_website,
         ]);
 
-        // $company->name = $request->company_name;
-        // $company->description = $request->company_description;
-        // $company->website = $request->company_website;
         $company->save();
 
-        
         $data = [
             'title' => $request->title,
             'email'=> $request->email,
@@ -80,7 +61,6 @@ class JobsController extends Controller
             'user_id' => $user = Auth::user()->id,
             'type_id' => intval($request->type_id),
             'county_id'=>intval($request->county),
-            // 'company_id' => $company->id,
             'company_name_hidden' => 1,
             'no_of_positions' => $request->no_of_positions,
             'description' => $request->description, 
@@ -92,23 +72,9 @@ class JobsController extends Controller
             'education' => $request->education,
         ];
 
-       
-        
-        
-
-        
-        $job = auth()->user()->job()->create($data); //create job with current user as user_id
-
+        job = auth()->user()->job()->create($data); //create job with current user as user_id
         $job->company()->associate($company);       //add the company_id to the created job
-
         $job->save();
-
-        // $user = auth()->user()->id;
-
-        
-        
-
-       
         return redirect('/job/'.$job->id);
     }
 
@@ -124,12 +90,7 @@ class JobsController extends Controller
         $Job = Job::where('id', $job)
         ->with(['location', 'company', 'type'])
         ->first();
-
-        // $users = User::where('id', auth()->user()->id)->with('type')->first();
-
-        // dd($users->type->user_type_name);
         return view('job', compact('Job'));
-
     }
 
     /**
