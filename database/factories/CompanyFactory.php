@@ -9,7 +9,7 @@ $factory->define(Company::class, function (Faker $faker) {
     return [
         'name'=>$faker->unique()->company,
         'description'=>$faker->paragraph($nbSentences = 6, $variableNbSentences = true),
-        'business_stream_id'=>$faker->numberBetween(1,10),
+        'business_stream_id'=>$faker->numberBetween(1,47),
         'website'=>$faker->url,
     ];
 });

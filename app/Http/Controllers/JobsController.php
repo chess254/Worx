@@ -60,15 +60,27 @@ class JobsController extends Controller
         // if($request->county ){$request->county = convert($request->county);}
         // if($request->type_id){$request->type_id = convert($request->type_id);}
 
+        // $company = new \App\Company;
+        $company = \App\Company::firstOrNew([
+            'name' => $request->company_name,
+        'description' => $request->company_description,
+        'website' => $request->company_website,
+        ]);
+
+        // $company->name = $request->company_name;
+        // $company->description = $request->company_description;
+        // $company->website = $request->company_website;
+        $company->save();
+
         
         $data = [
             'title' => $request->title,
             'email'=> $request->email,
             'town' => $request->town,
-'user_id' => $user = Auth::user()->id,
+            'user_id' => $user = Auth::user()->id,
             'type_id' => intval($request->type_id),
             'county_id'=>intval($request->county),
-            'company_id' => 1,
+            // 'company_id' => $company->id,
             'company_name_hidden' => 1,
             'no_of_positions' => $request->no_of_positions,
             'description' => $request->description, 
@@ -78,40 +90,23 @@ class JobsController extends Controller
             'responsibilities' => $request->responsibilities,
            'requirements' =>$request->requirements,             
             'education' => $request->education,
-
-
-            
-
-
-
         ];
 
        
         
-        // dd($request);
-        // dd($data);
+        
 
-        // $data = request([
-        //     'title',
-        //     // 'posted_by_id' => 1,
-        //     'type_id', 
-        //     'company_id', 
-        //     'company_name_hidden', 
-        //     'no_of_positions',
-        //     'description', 
-        //     'location_id', 
-        //     'is_active', 
-        //     'salary_range', 
-        //     'responsibilities', 
-        //    'requirements',              
-        //     'education', 
+        
+        $job = auth()->user()->job()->create($data); //create job with current user as user_id
 
+        $job->company()->associate($company);       //add the company_id to the created job
 
+        $job->save();
 
-        // ]);
+        // $user = auth()->user()->id;
 
-        // dd($data);
-        $job = auth()->user()->job()->create($data);
+        
+        
 
        
         return redirect('/job/'.$job->id);

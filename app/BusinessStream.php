@@ -9,4 +9,8 @@ class BusinessStream extends Model
     protected $table = 'business_stream';
 
     protected $guarded = [];
+
+    public function companies(){
+        return $this->hasMany(\App\Company::class);
+    }
 }

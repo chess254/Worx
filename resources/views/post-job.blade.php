@@ -207,9 +207,10 @@
 
             <div class="form-group">
               <label for="job-description">Company Description (Optional)</label>
-              <div class="editor" id="editor-2" name="company_description">
+              <div class="editor" id="editor-2" name="">
                 <p>Description</p>
               </div>
+              <textarea name="company_description"></textarea>
             </div>
             
             <div class="form-group">

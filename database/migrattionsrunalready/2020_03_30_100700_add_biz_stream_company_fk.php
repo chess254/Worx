@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCountiesTable extends Migration
+class AddBizStreamCompanyFk extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateCountiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('counties', function (Blueprint $table) {
-            $table->unsignedInteger('id')->unsigned()->autoIncrement();
-            $table->string('county_name', 100);
-            $table->timestamps();
+        Schema::table('company', function (Blueprint $table) {
+            $table->foreign('business_stream_id')
+            ->references('id')->on('business_stream')
+            ->onDelete('cascade')->change();
         });
     }
 
@@ -27,6 +27,8 @@ class CreateCountiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('counties');
+        Schema::table('company', function (Blueprint $table) {
+            //
+        });
     }
 }
