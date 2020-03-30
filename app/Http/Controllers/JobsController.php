@@ -72,7 +72,7 @@ class JobsController extends Controller
             'education' => $request->education,
         ];
 
-        job = auth()->user()->job()->create($data); //create job with current user as user_id
+        $job = auth()->user()->job()->create($data); //create job with current user as user_id
         $job->company()->associate($company);       //add the company_id to the created job
         $job->save();
         return redirect('/job/'.$job->id);
