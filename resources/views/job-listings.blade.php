@@ -90,7 +90,7 @@
                             <strong>{{$job->company['name']}}</strong>
                         </div>
                         <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
-                          <span class="icon-room"></span> {{$job->location['city']}}, {{$job->location['country']}} 
+                          <span class="icon-room"></span> {{$job->town}}, <br>{{$job->county['county_name']}}, {{$job->location['country']}} 
                         </div>
                         <div class="job-listing-meta">
                           @if ( $job->type['job_type'] == "Part Time" )

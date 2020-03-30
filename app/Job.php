@@ -46,7 +46,11 @@ class Job extends Model
     }
 
     public function type(){
-        return $this->belongsTo(\App\JobType::class,);
+        return $this->belongsTo(\App\JobType::class);
+    }
+
+    public function county(){
+        return $this->belongsTo(\App\County::class);
     }
 
     // public function company()

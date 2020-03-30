@@ -5,7 +5,7 @@
 @endsection
 @section('content')
         <!-- HOME -->
-        <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
+        <section class="section-hero overlay inner-page bg-image" style="background-image: url('../images/hero_1.jpg');" id="home-section">
             <div class="container">
               <div class="row">
                 <div class="col-md-7">
@@ -106,7 +106,7 @@
                       <li class="mb-2"><strong class="text-black">Positions:</strong> {{ $Job->no_of_positions }}</li>
                       <li class="mb-2"><strong class="text-black">Employment Status:</strong> {{ $Job->type['job_type']}}</li>
                       {{-- <li class="mb-2"><strong class="text-black">Experience:</strong> 2 to 3 year(s)</li> --}}
-                    <li class="mb-2"><strong class="text-black">Job Location:</strong> {{ $Job->location['city']}}, {{ $Job->location['country'] }}</li>
+                    <li class="mb-2"><strong class="text-black">Job Location:</strong> {{ $Job->town}}, {{ $Job->location['country'] }}</li>
                       <li class="mb-2"><strong class="text-black">Salary (kShs):</strong> {{ $Job->salary_range }}</li>
                       {{-- <li class="mb-2"><strong class="text-black">Gender:</strong> Any</li> --}}
                       <li class="mb-2"><strong class="text-black">Application Deadline:</strong> {{ $Job->deadline }}</li>
