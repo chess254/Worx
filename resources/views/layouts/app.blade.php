@@ -11,26 +11,26 @@
      <!-- CSRF Token -->
      <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" type="text/css">
 
     <!--Material Icon -->
-    <link rel="stylesheet" type="text/css" href="css/materialdesignicons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/materialdesignicons.min.css') }}"/>
 
-    <link rel="stylesheet" type="text/css" href="css/fontawesome.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.css') }}"/>
 
     <!-- selectize css -->
-    <link rel="stylesheet" type="text/css" href="css/selectize.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/selectize.css') }}"/>
 
     <!--Slider-->
-    <link rel="stylesheet" href="css/owl.carousel.css"/>
-    <link rel="stylesheet" href="css/owl.theme.css"/>
-    <link rel="stylesheet" href="css/owl.transitions.css"/>
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/owl.transitions.css') }}"/>
 
     <!-- Custom  Css -->
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"/>
 
 </head>
 
@@ -64,7 +64,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-12 mb-0 pb-0 pb-md-2">
-                <a href="javascript:void(0)"><img src="images/logo-light.png" height="70" alt=""></a>
+                <a href="javascript:void(0)"><img src="{{asset('images/logo-light.png')}}" height="70" alt=""></a>
                 <p class="mt-4">At vero eos et accusamus et iusto odio dignissim os ducimus qui blanditiis
                     praesentium</p>
                 <ul class="social-icon social list-inline mb-0">
@@ -132,20 +132,20 @@
 <!-- Back to top -->
 
 <!-- javascript -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/jquery.easing.min.js"></script>
-<script src="js/plugins.js"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+<script src="{{ asset('js/plugins.js') }}"></script>
 
 <!-- selectize js -->
-<script src="js/selectize.min.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
+<script src="{{ asset('js/selectize.min.js') }}"></script>
+<script src="{{ asset('js/jquery.nice-select.min.js') }}"></script>
 
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/counter.int.js"></script>
+<script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('js/counter.int.js') }}"></script>
 
-<script src="js/app.js"></script>
-<script src="js/home.js"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/home.js') }}"></script>
 
 </body>
 </html>

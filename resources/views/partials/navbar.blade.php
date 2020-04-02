@@ -5,8 +5,8 @@
         <!-- Logo container-->
         <div>
             <a href="{{route('home')}}" class="logo">
-                <img src="images/logo-light.png" alt="" class="logo-light" height="30"/>
-                <img src="images/logo-dark.png" alt="" class="logo-dark" height="30"/>
+                <img src="{{ asset('images/logo-light.png') }}" alt="" class="logo-light" height="30"/>
+                <img src="{{ asset('images/logo-dark.png') }}" alt="" class="logo-dark" height="30"/>
             </a>
         </div>
 
@@ -57,14 +57,14 @@
         <div id="navigation">
             <!-- Navigation Menu-->
             <ul class="navigation-menu">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="{{route('home')}}">Home</a></li>
                 <li class="has-submenu">
                     <a href="javascript:void(0)">Jobs</a><span class="menu-arrow"></span>
                     <ul class="submenu">
-                        <li><a href="job-list.html">Job List</a></li>
-                        <li><a href="job-grid.html">Job Grid</a></li>
-                        <li><a href="job-details.html">Job Details</a></li>
-                        <li><a href="job-details-2.html">Job Details-2</a></li>
+                        <li><a href="{{route('jobs')}}">Job List</a></li>
+                        {{-- <li><a href="job-grid.html">Job Grid</a></li> --}}
+                        {{-- <li><a href="{{route('/job')}}">Job Details</a></li> --}}
+                        {{-- <li><a href="job-details-2.html">Job Details-2</a></li> --}}
                     </ul>
                 </li>
 
