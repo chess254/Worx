@@ -19,7 +19,7 @@ class CreateCompanyTable extends Migration
             $table->string('name', 100);
             $table->string('description',500);
             $table->unsignedInteger('business_stream_id')->nullable();
-            $table->string('website',100)->nullable();
+            $table->string('website',200)->nullable();
         });
     }
 

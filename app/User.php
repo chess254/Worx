@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function type(){
         return $this-> belongsTo(\App\UserType::class, 'user_type_id');
     }
+
+    public function seekerProfile(){
+        return $this->hasOne(\App\SeekerProfile::class);
+    }
 }
