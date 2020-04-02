@@ -1,72 +1,121 @@
-        <!-- NAVBAR -->
-        <header class="site-navbar mt-3">
-            <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="site-logo col-6"><a href="#">{{ config('app.name', 'Worx') }}</a></div>
+<!-- Navigation Bar-->
+<header id="topnav" class="defaultscroll scroll-active">
+    <!-- Menu Start -->
+    <div class="container">
+        <!-- Logo container-->
+        <div>
+            <a href="{{route('home')}}" class="logo">
+                <img src="images/logo-light.png" alt="" class="logo-light" height="30"/>
+                <img src="images/logo-dark.png" alt="" class="logo-dark" height="30"/>
+            </a>
+        </div>
 
-                <nav class="mx-auto site-navigation">
-                <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
-                    <li><a href="{{ route('home') }}" class="nav-link active">Home</a></li>
-                    <li><a href="{{ route('about') }}">About</a></li>
-                    <li class="has-children">
-                    <a href="{{ route('jobs') }}">Job Listings</a>
-                    <ul class="dropdown">
-                        {{-- <li><a href="{{ route('job') }}">Job Single</a></li> --}}
-                        <li><a href="{{ route('create-job') }}">Post a Job</a></li>
+        @guest
+            <div class="buy-button">
+                <a href="{{ route('login') }}" class="btn btn-secondary"><i class="mdi mdi-account-key"></i>
+                    <span>Job Seeker</span></a>
+            </div><!--end job seeker button-->
+
+            @if (Route::has('register'))
+            <div class="buy-button">
+                <a href="{{ route('register') }}" class="btn btn-secondary"><i class="mdi mdi-account-key"></i>
+                    <span>Register</span></a>
+            </div><!--end job seeker button-->
+            @endif
+            @else
+            <div class="buy-button">
+                <a href="#" class="btn btn-secondary"><i class="mdi mdi-account-key"></i>
+                    <span>Welcome {{ Auth::user()->name }}!! </span></a>
+            </div>
+            <div class="buy-button">
+                <a href="{{ route('logout') }}" class="btn btn-secondary" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"><i class="mdi mdi-account-key"></i><span class="mr-2 icon-lock_outline"></span>{{ __('Logout') }} </a>
+            </div>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        @endguest
+        <div class="buy-button">
+            <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-briefcase-upload"></i>
+                <span>Employer</span></a>
+        </div><!--end employer button-->
+        <!-- End Logo container-->
+        <div class="menu-extras">
+            <div class="menu-item">
+                <!-- Mobile menu toggle-->
+                <a class="navbar-toggle">
+                    <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+                <!-- End mobile menu toggle-->
+            </div>
+        </div>
+
+        <div id="navigation">
+            <!-- Navigation Menu-->
+            <ul class="navigation-menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="has-submenu">
+                    <a href="javascript:void(0)">Jobs</a><span class="menu-arrow"></span>
+                    <ul class="submenu">
+                        <li><a href="job-list.html">Job List</a></li>
+                        <li><a href="job-grid.html">Job Grid</a></li>
+                        <li><a href="job-details.html">Job Details</a></li>
+                        <li><a href="job-details-2.html">Job Details-2</a></li>
                     </ul>
-                    </li>
-                    <li class="has-children">
-                    <a href="services.html">Pages</a>
-                    <ul class="dropdown">
+                </li>
+
+                <li class="has-submenu">
+                    <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
+                    <ul class="submenu">
+                        <li><a href="about.html">About us</a></li>
                         <li><a href="services.html">Services</a></li>
-                        <li><a href="service-single.html">Service Single</a></li>
-                        <li><a href="blog-single.html">Blog Single</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
-                        <li><a href="portfolio-single.html">Portfolio Single</a></li>
-                        <li><a href="testimonials.html">Testimonials</a></li>
-                        <li><a href="faq.html">Frequently Ask Questions</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="faq.html">Faqs</a></li>
+                        <li><a href="pricing.html">Pricing plans</a></li>
+                        <li class="has-submenu"><a href="javascript:void(0)"> Candidates</a><span
+                                class="submenu-arrow"></span>
+                            <ul class="submenu">
+                                <li><a href="candidates-listing.html">Candidates Listing</a></li>
+                                <li><a href="candidates-profile.html">Candidates Profile</a></li>
+                                <li><a href="create-resume.html">Create Resume</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu"><a href="javascript:void(0)"> Blog</a><span
+                                class="submenu-arrow"></span>
+                            <ul class="submenu">
+                                <li><a href="blog-grid.html">Blogs</a></li>
+                                <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
+                                <li><a href="blog-details.html">Blog Details</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu"><a href="javascript:void(0)"> Employers</a><span
+                                class="submenu-arrow"></span>
+                            <ul class="submenu">
+                                <li><a href="employers-list.html">Employers List</a></li>
+                                <li><a href="company-detail.html">Company Detail</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu"><a href="javascript:void(0)"> User Pages</a><span
+                                class="submenu-arrow"></span>
+                            <ul class="submenu">
+                                <li><a href="login.html">Login</a></li>
+                                <li><a href="signup.html">Signup</a></li>
+                                <li><a href="recovery_passward.html">Forgot Password</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="components.html"> Components</a></li>
                     </ul>
-                    </li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li class="d-lg-none"><a href="post-job.html"><span class="mr-2">+</span> Post a Job</a></li>
-                    <li class="d-lg-none"><a href="login.html">Log In</a></li>
-                </ul>
-                </nav>
-                
-                <div class="right-cta-menu text-right d-flex aligin-items-center col-6">
-                <div class="ml-auto">
-                    {{-- <a href="post-job.html" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>Post a Job</a> --}}
-                    @guest
-                        <a href="{{ route('login') }}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-add"></span>login</a>
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-lock_outline"></span>Register</a>
-                        @endif
-                    @else
-                        <a href="#" class="btn btn-primary border-width-2 d-none d-lg-inline-block"><span class="mr-2 icon-check"></span> Welcome {{ Auth::user()->name }}!! </a>
-
-                        <a href="{{ route('logout') }}" class="btn btn-outline-white border-width-2 d-none d-lg-inline-block" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"><span class="mr-2 icon-lock_outline"></span>{{ __('Logout') }} </a>
-
-                
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    
-                    @endguest
-
-                </div>
-                <a href="#" class="site-menu-toggle js-menu-toggle d-inline-block d-xl-none mt-lg-2 ml-3"><span class="icon-menu h3 m-0 p-0 mt-2"></span></a>
-
-                
-            
-
-                
-
-                </div>
-
-            </div>
-            </div>
-        </header>
+                </li>
+                <li>
+                    <a href="contact.html">contact</a>
+                </li>
+            </ul><!--end navigation menu-->
+        </div><!--end navigation-->
+    </div><!--end container-->
+    <!--end end-->
+</header><!--end header-->
+<!-- Navbar End -->
