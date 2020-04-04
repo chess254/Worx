@@ -153,6 +153,7 @@
             @endforeach
         </div>
 
+        
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
                 <h4 class="text-dark">Experience :</h4>
@@ -160,32 +161,36 @@
         </div>
 
         <div class="row">
+
+            @foreach($profile->experienceDetails as $experience)
             <div class="col-md-6 mt-3 mt-md-0 pt-3">
                 <div class="border rounded job-list-box p-4">
                     <div class="row">
-                        <div class="col-lg-3">
+                        {{-- <div class="col-lg-3">
                             <div class="company-brand-logo text-center mb-4">
                                 <img src="images/featured-job/img-2.png" alt="" class="img-fluid mx-auto d-block">
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="col-lg-9">
+                        <div class="col-lg-12">
                             <div class="job-list-desc candidates-profile-exp-desc">
-                                <h5 class="f-19 mb-2"><a href="#" class="text-dark">MAIDA Themes Pvt.Ltd</a></h5>
-                                <p class="text-muted mb-0 f-16">PHP Developer</p>
-                                <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>
-                                <p class="text-muted mb-0 f-16">Salary : $950</p>
-                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i>www.blog.helpyea.com
+                                <h5 class="f-19 mb-2"><a href="#" class="text-dark">{{$experience->company_name}}</a></h5>
+                                <p class="text-muted mb-0 f-16">{{$experience->job_title}}</p>
+                                <p class="text-muted mb-0 f-16">{{$experience->start_date}} - {{$experience->end_date}}</p>
+                                <br>
+                                {{-- <p class="text-muted mb-0 f-16">Salary : $950</p> --}}
+                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i>{{$experience->website}}
                                 </p>
-                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i>1919 Ward Road
-                                    West Nyack, NY 10994</p>
+                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i>{{$experience->job_location_city}}, {{$experience->job_location_county}}, {{$experience->job_location_country}}
+                            </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
 
-            <div class="col-md-6 mt-3 mt-md-0 pt-3">
+            {{-- <div class="col-md-6 mt-3 mt-md-0 pt-3">
                 <div class="border rounded job-list-box p-4">
                     <div class="row">
                         <div class="col-lg-3">
@@ -207,10 +212,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-md-6 mt-3 mt-md-0 pt-3">
                 <div class="border rounded job-list-box p-4">
                     <div class="row">
@@ -258,7 +263,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
@@ -276,7 +281,7 @@
                             <div class="job-list-desc candidates-profile-exp-desc">
 
                                 {{-- @foreach($profile->skills as $skill) --}}
-                                <h5 class="f-19 mb-2">@foreach($profile->skills as $skill)<span class="badge badge-dark" style="padding: 10px; margin: 5px;">{{ $skill }}</span>@endforeach</h5>
+                                <h6 class="f-19 mb-2">@foreach($profile->skills as $skill)<span class="badge badge-dark" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>
                                 {{-- @endforeach --}}
                                 {{-- <p class="text-muted mb-0 f-16">PHP Developer</p>
                                 <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>
@@ -340,7 +345,7 @@
                     <i class="mdi mdi-bell-outline text-primary"></i>
                     <span class="badge badge-pill badge-danger">1</span>
                 </div>
-                <h5 class="mt-2 mb-0">Subscribe To Job Notification</h5>
+                <h6 class="mt-2 mb-0">Subscribe To Job Notification</h5>
             </div>
             <div class="col-lg-8 col-md-7 mt-4 mt-sm-0">
                 <form>

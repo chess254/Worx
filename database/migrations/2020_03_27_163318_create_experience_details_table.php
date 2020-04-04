@@ -25,6 +25,7 @@ class CreateExperienceDetailsTable extends Migration
             $table->string('job_location_county', 50)->nullable();
             $table->string('job_location_country', 50)->default('Kenya');
             $table->string('description', 500)->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }
