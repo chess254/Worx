@@ -8,6 +8,7 @@ class SeekerProfile extends Model
 {
     protected $table = 'seeker_profile';
     protected $guarded = [];
+    protected $casts = ['skills' => 'array'];
 
     public function user(){
         return $this->belongsTo(\App\User::class);

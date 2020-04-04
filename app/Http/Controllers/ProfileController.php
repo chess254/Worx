@@ -15,7 +15,10 @@ class ProfileController extends Controller
     public function show($user_id){
 
         // $id = auth()->
-        $profile = SeekerProfile::where('user_id', $user_id)->get();
-        dd($profile);
+        $profile = SeekerProfile::where('user_id', $user_id)->first();
+
+        // dd($profile->user_id);
+
+        return view('profile.show', compact('profile'));
     }
 }

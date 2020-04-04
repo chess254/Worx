@@ -15,7 +15,11 @@ class CreateSeekerProfileTable extends Migration
     {
         Schema::create('seeker_profile', function (Blueprint $table) {
             $table->unsignedInteger('id')->unsigned()->autoIncrement();
-            $table->unsignedInteger('user_id'); 	
+            $table->unsignedInteger('user_id');
+            $table->string('image',200)->nullable();
+            $table->string('title', 500)->nullable();
+            $table->json('skills')->nullable();
+            $table->text('bio')->nullable(); 	
             $table->string('first_name', 100)->nullable();  	
             $table->string('last_name', 100)->nullable(); 	
             $table->integer('current_salary')->nullable(); 	
