@@ -21,6 +21,24 @@
                             <span class="text-uppercase text-white font-weight-bold">Candidates Profile</span>
                         </li>
                     </ul>
+                    <div class="row">
+                        <div class="col-lg-12">
+                          
+                            <div class="job-list-desc candidates-profile-exp-desc">
+
+                                {{-- @foreach($profile->skills as $skill) --}}
+                                <h6 class="f-19 mb-2">@foreach($profile->skills as $skill)<span class="badge badge-dark" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>
+                                {{-- @endforeach --}}
+                                {{-- <p class="text-muted mb-0 f-16">PHP Developer</p>
+                                <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>
+                                <p class="text-muted mb-0 f-16">Salary : $950</p>
+                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i>www.blog.helpyea.com
+                                </p>
+                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i>1919 Ward Road
+                                    West Nyack, NY 10994</p> --}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,17 +58,36 @@
                     {{-- <p class="text-dark h6 mb-2"><i class="mdi mdi-bank mr-2"></i>Maida Themes Pvt LTD</p> --}}
                     <p class="text-dark h6 mb-2">{{$profile->title}}</p>
                     <ul class="candidates-profile-icons list-inline mb-3">
-                        <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a>
+                        <li class="list-inline-item"><a href="#" class="text-dark"><i class="mdi mdi-star"></i></a>
                         </li>
-                        <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a>
+                        <li class="list-inline-item"><a href="#" class="text-dark"><i class="mdi mdi-star"></i></a>
                         </li>
-                        <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a>
+                        <li class="list-inline-item"><a href="#" class="text-dark"><i class="mdi mdi-star"></i></a>
                         </li>
-                        <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a>
+                        <li class="list-inline-item"><a href="#" class="text-dark"><i class="mdi mdi-star"></i></a>
                         </li>
-                        <li class="list-inline-item"><a href="#" class="text-warning"><i class="mdi mdi-star"></i></a>
+                        <li class="list-inline-item"><a href="#" class="text-dark"><i class="mdi mdi-star"></i></a>
                         </li>
                     </ul>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                          
+                            <div class="job-list-desc candidates-profile-exp-desc">
+
+                                {{-- @foreach($profile->skills as $skill) --}}
+                                <h6 class="f-19 mb-2">@foreach($profile->skills as $skill)<span class="badge badge-dark" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>
+                                {{-- @endforeach --}}
+                                {{-- <p class="text-muted mb-0 f-16">PHP Developer</p>
+                                <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>
+                                <p class="text-muted mb-0 f-16">Salary : $950</p>
+                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i>www.blog.helpyea.com
+                                </p>
+                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i>1919 Ward Road
+                                    West Nyack, NY 10994</p> --}}
+                            </div>
+                        </div>
+                    </div>
 
                     <ul class="list-unstyled social-icon social mb-0">
                         <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-facebook"></i></a>
@@ -124,6 +161,24 @@
                     <div class="job-detail-desc">
                         <p class="text-muted f-14 mb-3">{{$profile->bio}}</p>
                     </div>
+                    <ul class="list-inline pt-3 border-top mb-0">
+                        <li class="list-inline-item mr-3">
+                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>3659 Peter
+                                king Manhattan, NY 10016</a>
+                        </li>
+
+                        <li class="list-inline-item mr-3">
+                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-web mr-2"></i>www.blog.helpyea.com</a>
+                        </li>
+
+                        <li class="list-inline-item mr-3">
+                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-email mr-2"></i>{{$profile->user->email}}</a>
+                        </li>
+
+                        <li class="list-inline-item mr-3">
+                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-cellphone-iphone mr-2"></i>{{$profile->user->contact_number}}</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
