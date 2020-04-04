@@ -27,11 +27,10 @@ class AddFkCompanyTable extends Migration
         ->onDelete('cascade')->change();
         });
 
-        Schema::table('experience_details', function (Blueprint $table) {
-            // $table->unsignedInteger('company_id');
-            $table->foreign('user_id')
-        ->references('id')->on('users')
-        ->onDelete('cascade')->change();
+        Schema::table('experience_details', function (Blueprint $table){
+            $table->foreign('seeker_profile_id')
+            ->references('id')->on('seeker_profile')
+            ->onDelete('cascade')->change();
         });
 
         Schema::table('job_activity', function (Blueprint $table) {
@@ -46,6 +45,19 @@ class AddFkCompanyTable extends Migration
         ->onDelete('cascade')->change();
         });
 
+        Schema::table('seeker_profile', function (Blueprint $table) {
+            $table->foreign('user_id')
+        ->references('id')->on('users')
+        ->onDelete('cascade')->change();
+        });
+
+        Schema::table('education_details', function (Blueprint $table){
+            $table->foreign('seeker_profile_id')
+            ->references('id')->on('seeker_profile')
+            ->onDelete('cascade')->change();
+        });
+
+        
         
 
         

@@ -14,17 +14,18 @@ class CreateExperienceDetailsTable extends Migration
     public function up()
     {
         Schema::create('experience_details', function (Blueprint $table) {
-            // $table->unsignedInteger('id')->unsigned()->autoIncrement();
-            $table->unsignedInteger('user_id')->primary();
+            $table->unsignedInteger('id')->unsigned()->autoIncrement();
+            $table->unsignedInteger('seeker_profile_id');
             $table->unsignedInteger('is_current_job')->nullable();
-            $table->date('start_date');
+            $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->string('job_title', 100);
-            $table->string('company_name', 100); 
-            $table->string('job_location_city', 100);
-            $table->string('job_location_county', 50);
+            $table->string('job_title', 100)->nullable();
+            $table->string('company_name', 100)->nullable(); 
+            $table->string('job_location_city', 100)->nullable();
+            $table->string('job_location_county', 50)->nullable();
             $table->string('job_location_country', 50)->default('Kenya');
-            $table->string('description', 500);
+            $table->string('description', 500)->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }

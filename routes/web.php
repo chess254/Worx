@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +32,7 @@ Route::get('/job/{job}', 'JobsController@show');
 Route::get('/post','JobsController@create')->name('create-job')->middleware('auth');
 
 Route::post('/post','JobsController@store');
+
+Route::get('/profile', 'ProfileController@index');
+Route::get('/profile/{user_id}', 'ProfileController@show');
+

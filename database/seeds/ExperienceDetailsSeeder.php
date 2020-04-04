@@ -11,6 +11,6 @@ class ExperienceDetailsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory('App\ExperienceDetails', 100)->create();
     }
 }

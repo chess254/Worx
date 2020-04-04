@@ -14,8 +14,9 @@ class CreateEducationDetailsTable extends Migration
     public function up()
     {
         Schema::create('education_details', function (Blueprint $table) {
-            // $table->unsignedInteger('id')->unsigned()->autoIncrement();
-            $table->integer('user_id')->primary();
+            $table->unsignedInteger('id')->unsigned()->autoIncrement();
+            $table->unsignedInteger('seeker_profile_id');
+
             $table->string('certificate', 100)->nullable();
             $table->string('institute', 150)->nullable();
             $table->date('starting_date')->nullable();

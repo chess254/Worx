@@ -11,6 +11,6 @@ class EducationDetailsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory('App\EducationDetails', 700)->create();
     }
 }
