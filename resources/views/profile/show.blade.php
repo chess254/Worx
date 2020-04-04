@@ -27,7 +27,7 @@
                             <div class="job-list-desc candidates-profile-exp-desc">
 
                                 {{-- @foreach($profile->skills as $skill) --}}
-                                <h6 class="f-19 mb-2">@foreach($profile->skills as $skill)<span class="badge badge-dark" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>
+                                <h6 class="f-19 mb-2">@foreach($profile->skills as $skill)<span class="badge badge-success" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>
                                 {{-- @endforeach --}}
                                 {{-- <p class="text-muted mb-0 f-16">PHP Developer</p>
                                 <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>
@@ -76,7 +76,7 @@
                             <div class="job-list-desc candidates-profile-exp-desc">
 
                                 {{-- @foreach($profile->skills as $skill) --}}
-                                <h6 class="f-19 mb-2">@foreach($profile->skills as $skill)<span class="badge badge-dark" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>
+                                <h6 class="f-19 mb-2">@foreach($profile->skills as $skill)<span class="badge badge-success" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>
                                 {{-- @endforeach --}}
                                 {{-- <p class="text-muted mb-0 f-16">PHP Developer</p>
                                 <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>
@@ -336,7 +336,7 @@
                             <div class="job-list-desc candidates-profile-exp-desc">
 
                                 {{-- @foreach($profile->skills as $skill) --}}
-                                <h6 class="f-19 mb-2">@foreach($profile->skills as $skill)<span class="badge badge-dark" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>
+                                <div class="f-19 mb-2">@foreach($profile->skills as $skill)<button class="btn btn-primary-outline rounded-pill btn-sm" style="margin:3px;">{{$skill}}</button>@endforeach</div>
                                 {{-- @endforeach --}}
                                 {{-- <p class="text-muted mb-0 f-16">PHP Developer</p>
                                 <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>

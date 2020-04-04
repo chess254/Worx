@@ -9,7 +9,7 @@
 @section('content')
 
 <!-- Start Home -->
-<section class="bg-home" style="background: url('images/bg-home.jpg') center center;">
+<section class="bg-home" style="background: url('images/bg1-home.jpg') no-repeat center/109% ;">
   <div class="bg-overlay"></div>
   <div class="home-center">
       <div class="home-desc-center">
@@ -17,7 +17,7 @@
               <div class="row justify-content-center">
                   <div class="col-lg-12">
                       <div class="title-heading text-center text-white">
-                          <h1 class="heading font-weight-bold mb-4">The Easiest Way to Get Your New Job</h1>
+                          <h1 class="heading font-weight-light mb-4" style="color: orange;">Pata Janta Faster</h1>
                       </div>
                   </div>
               </div>
@@ -29,7 +29,7 @@
                                   <div class="row">
                                       <div class="col-lg-3 col-md-6">
                                           <div class="registration-form-box">
-                                              <i class="fa fa-briefcase"></i>
+                                              <i class="fa fa-briefcase" style="color: orange;" ></i>
                                               <input type="text" id="exampleInputName1"
                                                      class="form-control rounded registration-input-box"
                                                      placeholder="Job keybords...">
@@ -37,7 +37,7 @@
                                       </div>
                                       <div class="col-lg-3 col-md-6">
                                           <div class="registration-form-box">
-                                              <i class="fa fa-list-alt"></i>
+                                              <i class="fa fa-list-alt" style="color: orange;"></i>
                                               <select id="select-category" class="demo-default">
                                                   <option value="">Categories...</option>
                                                   <option value="4">Accounting</option>
@@ -49,8 +49,8 @@
                                       </div>
                                       <div class="col-lg-3 col-md-6">
                                           <div class="registration-form-box">
-                                              <i class="mdi mdi-map-marker"></i>
-                                              <select id="select-country" class="demo-default">
+                                              <i class="mdi mdi-map-marker"style="color: orange;"></i>
+                                              <select id="select-country" class="demo-default" style="color: orange;">
                                                   <option value="">Location</option>
                                                   <option value="AF">Afghanistan</option>
                                                   <option value="AX">&Aring;land Islands</option>
@@ -307,7 +307,7 @@
                                       <div class="col-lg-3 col-md-6">
                                           <div class="registration-form-box">
                                               <input type="submit" id="submit" name="send"
-                                                     class="submitBnt btn btn-primary btn-block" value="Submit">
+                                                     class="submitBtn btn btn-warning btn-block" value="Submit">
                                           </div>
                                       </div>
                                   </div>
