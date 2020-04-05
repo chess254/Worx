@@ -13,4 +13,8 @@ class BusinessStream extends Model
     public function companies(){
         return $this->hasMany(\App\Company::class);
     }
+
+    public function jobs(){
+        return $this->hasmany(Job::class);
+    }
 }

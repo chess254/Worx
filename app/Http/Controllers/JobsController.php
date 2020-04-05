@@ -17,7 +17,7 @@ class JobsController extends Controller
     public function index()
     {
         $totalJobs = Job::all()->count();
-        $joblist = Job::with('location','company','county')->orderBy('created_date', 'desc')->paginate(20);
+        $joblist = Job::with('location','company','county','businessStream')->orderBy('created_date', 'desc')->paginate(20);
         return view('job-listings', compact(['joblist', 'totalJobs']));
     }
 

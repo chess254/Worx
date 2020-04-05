@@ -19,7 +19,9 @@ class AddFkToJobsTable extends Migration
         $table->foreign('user_id')
         ->references('id')->on('users')
         ->onDelete('cascade')->change();
-
+        
+        $table->foreign('business_stream_id')
+        ->references('id')->on('business_stream');
         
 
         $table->foreign('type_id')

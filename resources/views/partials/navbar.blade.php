@@ -25,7 +25,7 @@
             @else
             <div class="buy-button">
                 <a href="#" class="btn btn-warning btn-sm"><i class="mdi mdi-account-key"></i>
-                    <span>Welcome {{ Auth::user()->name }}!! </span></a>
+                    <span>Hi, {{ Auth::user()->name }} </span></a>
             </div>
             <div class="buy-button">
                 <a href="{{ route('logout') }}" class="btn btn-light-outline btn-sm" onclick="event.preventDefault();

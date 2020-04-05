@@ -1156,9 +1156,11 @@ p {
 #topnav .navigation-menu > li > a {
   display: block;
   color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255);
+
   font-size: 13px;
   background-color: transparent !important;
-  font-weight: 400;
+  font-weight: 300;
   letter-spacing: 1px;
   line-height: 24px;
   text-transform: uppercase;

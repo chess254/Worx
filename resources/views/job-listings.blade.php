@@ -542,7 +542,7 @@
                                         <div class="col-lg-2">
                                             <div class="company-logo-img">
                                                 <img src="images/featured-job/img-1.png" alt=""
-                                                    class="img-fluid mx-auto d-block">
+                                                    class="img-fluid avatar avatar-small mr-3 rounded">
                                             </div>
                                         </div>
                                         <div class="col-lg-7 col-md-9">

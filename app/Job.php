@@ -53,5 +53,9 @@ class Job extends Model
         return $this->belongsTo(\App\County::class);
     }
 
+    public function businessStream(){
+        return $this->belongsTo(\App\BusinessStream::class);
+    }
+
 
 }

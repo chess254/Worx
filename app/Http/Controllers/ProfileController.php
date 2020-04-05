@@ -9,7 +9,11 @@ use App\SeekerProfile;
 class ProfileController extends Controller
 {
     public function index(){
-        return view('profile.index', ['profile']);
+
+        $profiles = SeekerProfile::all();
+
+        dd($profiles);
+        return view('profile.index', ['profiles']);
     }
 
     public function show($user_id){
