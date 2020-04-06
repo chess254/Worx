@@ -1,20 +1,17 @@
 @extends('layouts.app')
-
-
 @section('navbar')
-  @include('partials.navbar')
+    @include('partials.navbar')
 @endsection
 
 @section('content')
 
-<!-- Start home -->
 <section class="bg-half page-next-level">
     <div class="bg-overlay"></div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="text-center text-white">
-                    <h4 class="text-uppercase title mb-4">Job List view</h4>
+                <h4 class="text-uppercase title mb-4">You have {{$query->count()}} search results!</h4>
                     <ul class="page-next d-inline-block mb-0">
                         <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
                         <li><a href="#" class="text-uppercase font-weight-bold">Jobs</a></li>
@@ -275,7 +272,7 @@
                     <div class="col-lg-12">
                         <div class="show-results">
                             <div class="float-left">
-                                <h5 class="text-dark mb-0 pt-2 f-18">{{$totalJobs}} Jobs Listed</h5>
+                                <h5 class="text-dark mb-0 pt-2 f-18">{{$query->count()}} results</h5>
                             </div>
                             <div class="sort-button float-right">
                                 <select class="nice-select rounded">
@@ -291,7 +288,7 @@
 
                 <div class="row list-image-adjust">
 
-                    @foreach ($joblist as $job)
+                    @foreach ($query as $job)
                         <div class="col-lg-12 mt-4 pt-2">
                             <div class="job-list-box border rounded">
                                 <div class="p-3">
@@ -328,9 +325,9 @@
                                                 <span class="badge badge-warning">Remote</span>
                                                 @endif
 
-                                                {{-- <div class="mt-3">
-                                                    <a href="/job/{{$job->id}}" class="btn btn-sm btn-primary">Apply</a>
-                                                </div> --}}
+                                                <div class="mt-3">
+                                                    <a href="/job/{{$job->id}}" class="badge badge-dark">Apply</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -339,258 +336,6 @@
                         </div>
                     @endforeach
 
-                    
-                        <div class="col-lg-12 mt-4 pt-2">
-                            <div class="job-list-box border rounded">
-                                <div class="p-3">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-2">
-                                            <div class="company-logo-img">
-                                                <img src="images/featured-job/img-2.png" alt=""
-                                                    class="img-fluid mx-auto d-block">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-7 col-md-9">
-                                            <div class="job-list-desc">
-                                                <h6 class="mb-2"><a href="#" class="text-dark">PHP Developer, Team of PHP &
-                                                    IT Co</a></h6>
-                                                <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>Maidathemes Pvt lTd</p>
-                                                <ul class="list-inline mb-0">
-                                                    <li class="list-inline-item mr-3">
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>Rogers
-                                                            Street Cincinnati, OH 45202</p>
-                                                    </li>
-
-                                                    <li class="list-inline-item">
-                                                        <p class="text-muted mb-0"><i
-                                                                class="mdi mdi-clock-outline mr-2"></i>3 Minute ago</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-3">
-                                            <div class="job-list-button-sm text-right">
-                                                <span class="badge badge-success">Part-Time</span>
-
-                                                <div class="mt-3">
-                                                    <a href="#" class="btn btn-sm btn-primary">Apply</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 mt-4 pt-2">
-                            <div class="job-list-box border rounded">
-                                <div class="p-3">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-2">
-                                            <div class="company-logo-img">
-                                                <img src="images/featured-job/img-3.png" alt=""
-                                                    class="img-fluid mx-auto d-block">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-7 col-md-9">
-                                            <div class="job-list-desc">
-                                                <h6 class="mb-2"><a href="#" class="text-dark">Website Developer & Software
-                                                    Developer</a></h6>
-                                                <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>Maidathemes Pvt lTd</p>
-                                                <ul class="list-inline mb-0">
-                                                    <li class="list-inline-item mr-3">
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>Carolina
-                                                            Avenue Encinal, TX 78019</p>
-                                                    </li>
-
-                                                    <li class="list-inline-item">
-                                                        <p class="text-muted mb-0"><i
-                                                                class="mdi mdi-clock-outline mr-2"></i>5 Minute ago</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-3">
-                                            <div class="job-list-button-sm text-right">
-                                                <span class="badge badge-success">Full-Time</span>
-
-                                                <div class="mt-3">
-                                                    <a href="#" class="btn btn-sm btn-primary">Apply</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 mt-4 pt-2">
-                            <div class="job-list-box border rounded">
-                                <div class="p-3">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-2">
-                                            <div class="company-logo-img">
-                                                <img src="images/featured-job/img-4.png" alt=""
-                                                    class="img-fluid mx-auto d-block">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-7 col-md-9">
-                                            <div class="job-list-desc">
-                                                <h6 class="mb-2"><a href="#" class="text-dark">Head of Developers & MySQL
-                                                    Developers</a></h6>
-                                                <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>Maidathemes Pvt lTd</p>
-                                                <ul class="list-inline mb-0">
-                                                    <li class="list-inline-item mr-3">
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>Holt
-                                                            Street West Palm Beach, FL 33401</p>
-                                                    </li>
-
-                                                    <li class="list-inline-item">
-                                                        <p class="text-muted mb-0"><i
-                                                                class="mdi mdi-clock-outline mr-2"></i>7 Minute ago</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-3">
-                                            <div class="job-list-button-sm text-right">
-                                                <span class="badge badge-success">Full-Time</span>
-
-                                                <div class="mt-3">
-                                                    <a href="#" class="btn btn-sm btn-primary">Apply</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12 mt-4 pt-2">
-                            <div class="job-list-box border rounded">
-                                <div class="p-3">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-2">
-                                            <div class="company-logo-img">
-                                                <img src="images/featured-job/img-5.png" alt=""
-                                                    class="img-fluid mx-auto d-block">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-7 col-md-9">
-                                            <div class="job-list-desc">
-                                                <h6 class="mb-2"><a href="#" class="text-dark">Application Developer & Web
-                                                    Designer</a></h6>
-                                                <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>Maidathemes Pvt lTd</p>
-                                                <ul class="list-inline mb-0">
-                                                    <li class="list-inline-item mr-3">
-                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>Stark
-                                                            Hollow Road Hillrose, CO 80733</p>
-                                                    </li>
-
-                                                    <li class="list-inline-item">
-                                                        <p class="text-muted mb-0"><i
-                                                                class="mdi mdi-clock-outline mr-2"></i>8 Minute ago</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3 col-md-3">
-                                            <div class="job-list-button-sm text-right">
-                                                <span class="badge badge-success">Part-Time</span>
-
-                                                <div class="mt-3">
-                                                    <a href="#" class="btn btn-sm btn-primary">Apply</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    <div class="col-lg-12 mt-4 pt-2">
-                        <div class="job-list-box border rounded">
-                            <div class="p-3">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-2">
-                                        <div class="company-logo-img">
-                                            <img src="images/featured-job/img-6.png" alt=""
-                                                 class="img-fluid mx-auto d-block">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-7 col-md-9">
-                                        <div class="job-list-desc">
-                                            <h6 class="mb-2"><a href="#" class="text-dark">IT Department Manager &
-                                                Blogger-Entrepenour</a></h6>
-                                            <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>Maidathemes Pvt lTd</p>
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item mr-3">
-                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>Riverside
-                                                        Drive Athens, GA 30606</p>
-                                                </li>
-
-                                                <li class="list-inline-item">
-                                                    <p class="text-muted mb-0"><i
-                                                            class="mdi mdi-clock-outline mr-2"></i>10 Minute ago</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3">
-                                        <div class="job-list-button-sm text-right">
-                                            <span class="badge badge-success">Full-Time</span>
-
-                                            <div class="mt-3">
-                                                <a href="#" class="btn btn-sm btn-primary">Apply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12 mt-4 pt-2">
-                        <div class="job-list-box border rounded">
-                            <div class="p-3">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-2">
-                                        <div class="company-logo-img">
-                                            <img src="images/featured-job/img-7.png" alt=""
-                                                 class="img-fluid mx-auto d-block">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-7 col-md-9">
-                                        <div class="job-list-desc">
-                                            <h6 class="mb-2"><a href="#" class="text-dark">Frontend/Backendd
-                                                Developer</a></h6>
-                                            <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>Maidathemes Pvt lTd</p>
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item mr-3">
-                                                    <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>Rosemont
-                                                        Avenue Orlando, FL 32811</p>
-                                                </li>
-
-                                                <li class="list-inline-item">
-                                                    <p class="text-muted mb-0"><i
-                                                            class="mdi mdi-clock-outline mr-2"></i>11 Minute ago</p>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3">
-                                        <div class="job-list-button-sm text-right">
-                                            <span class="badge badge-success">Full-Time</span>
-
-                                            <div class="mt-3">
-                                                <a href="#" class="btn btn-sm btn-primary">Apply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="col-lg-12 mt-4 pt-2">
                         <nav aria-label="Page navigation example">
@@ -651,5 +396,3 @@
 <!-- subscribe end -->
 
 @endsection
-
-

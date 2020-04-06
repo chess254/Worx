@@ -25,14 +25,15 @@
                   <div class="row">
                       <div class="col-lg-12">
                           <div class="home-registration-form p-4 mb-3">
-                              <form class="registration-form">
+                          <form class="registration-form" action="{{ url('search')}}" method="POST">
+                            @csrf
                                   <div class="row">
                                       <div class="col-lg-3 col-md-6">
                                           <div class="registration-form-box">
-                                              <i class="fa fa-briefcase" style="color: orange;" ></i>
-                                              <input type="text" id="exampleInputName1"
-                                                     class="form-control rounded registration-input-box"
-                                                     placeholder="Job keybords...">
+                                              <i class="fa fa-briefcase" style="color: orange;"  ></i>
+                                              <input type="text" id="job-title" name="job_title"
+                                                     class="typeahead form-control rounded registration-input-box"
+                                                     placeholder="Job keywords..." type="text">
                                           </div>
                                       </div>
 
@@ -40,25 +41,18 @@
                                       <div class="col-lg-3 col-md-6">
                                           <div class="registration-form-box">
                                               <i class="fa fa-list-alt" style="color: orange;"></i>
-                                              <select id="select-category" class="demo-default">
+                                              <select id="select-category" class="demo-default" name="category">
                                                 <option value="">Categories...</option>
                                                 @foreach ($categories as $category)
-                                              <option value="{{$category['id']}}">{{$category['name']}}</option>
-                                            @endforeach
-                                            
-
-                                                
-                                                  <option value="4">Accounting</option>
-                                                  <option value="1">IT & Software</option>
-                                                  <option value="3">Marketing</option>
-                                                  <option value="5">Banking</option>
+                                                    <option value="{{$category['id']}}">{{$category['name']}}</option>
+                                                @endforeach
                                               </select>
                                           </div>
                                       </div>
                                       <div class="col-lg-3 col-md-6">
                                           <div class="registration-form-box">
                                               <i class="mdi mdi-map-marker"style="color: orange;"></i>
-                                              <select id="select-country" class="demo-default" style="color: orange;">
+                                              <select id="select-country" class="demo-default" style="color: orange;" name="county">
                                                   <option value="">Location</option>
                                                   @foreach ($counties as $county)
                                               <option value="{{$county['id']}}">{{$county['county_name']}}</option>
@@ -68,8 +62,8 @@
                                       </div>
                                       <div class="col-lg-3 col-md-6">
                                           <div class="registration-form-box">
-                                              <input type="submit" id="submit" name="send"
-                                                     class="submitBtn btn btn-warning btn-block" value="Submit">
+                                              <button type="submit" id="submit" 
+                                                     class="submitBtn btn btn-warning btn-block" value="Submit">Submit</button>
                                           </div>
                                       </div>
                                   </div>
