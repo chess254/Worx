@@ -304,7 +304,7 @@
                                         </div>
                                         <div class="col-lg-7 col-md-9">
                                             <div class="job-list-desc">
-                                                <h6 class="mb-2"><a href="/job/{{$job->id}}" class="text-dark">{{$job->title}}</a></h6>
+                                                <h6 class="mb-2"><a href="/job/{{$job->id}}" class="text-dark" style="font-size: 20px;">{{$job->title}}</a></h6>
                                                 <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>{{$job->company['name']}}</p>
                                                 <ul class="list-inline mb-0">
                                                     <li class="list-inline-item mr-3">
