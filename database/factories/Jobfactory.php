@@ -30,6 +30,7 @@ $factory->define(Job::class, function (Faker $faker) {
         ]),
         'user_id' => $faker->numberBetween(1,10),
         'type_id' =>$faker->numberBetween(1,3),
+        'business_stream_id' =>$faker->numberBetween(1,30),
         'county_id' =>$faker->numberBetween(1, 47),
         'company_id'=>$faker->numberBetween(1,20),
         'company_name_hidden' =>$faker->numberBetween(1,2),

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 <!-- Loader -->
-
+@section('content')
 <div class="back-to-home rounded d-none d-sm-block">
-    <a href="index.html" class="text-white rounded d-inline-block text-center"><i class="mdi mdi-home"></i></a>
+    <a href="{{route('home')}}" class="text-white rounded d-inline-block text-center"><i class="mdi mdi-home"></i></a>
 </div>
 
 <!-- Hero Start -->
@@ -90,9 +90,9 @@
     </div>
 </section><!--end section-->
 <!-- Hero End -->
-
+@endsection
 <!-- javascript -->
-<script src="js/jquery.min.js"></script>
+{{-- <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery.easing.min.js"></script>
 <script src="js/plugins.js"></script>
@@ -104,4 +104,4 @@
 
 <script src="js/app.js"></script>
 </body>
-</html>
+</html> --}}

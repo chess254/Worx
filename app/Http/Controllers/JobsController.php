@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Job;
 use App\User;
+Use App\County;
+use App\BusinessStream;
 use Auth;
 
 class JobsController extends Controller
@@ -16,9 +18,12 @@ class JobsController extends Controller
      */
     public function index()
     {
+
+        $counties = County::all();
+        $categories = BusinessStream::all()->toArray();  
         $totalJobs = Job::all()->count();
-        $joblist = Job::with('location','company','county')->orderBy('created_date', 'desc')->paginate(20);
-        return view('job-listings', compact(['joblist', 'totalJobs']));
+        $joblist = Job::with('location','company','county','businessStream')->orderBy('created_date', 'desc')->paginate(20);
+        return view('job-listings', compact(['joblist', 'totalJobs','categories','counties']));
     }
 
     /**

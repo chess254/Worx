@@ -14,11 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
 Auth::routes();
+
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('search', 'JobsController@index')->name('search');
+Route::post('search', 'HomeController@search')->name('search');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -35,4 +41,5 @@ Route::post('/post','JobsController@store');
 
 Route::get('/profile', 'ProfileController@index');
 Route::get('/profile/{user_id}', 'ProfileController@show');
+Route::post('/profile/{user_id}/update', 'ProfileController@update');
 

@@ -9,7 +9,11 @@ use App\SeekerProfile;
 class ProfileController extends Controller
 {
     public function index(){
-        return view('profile.index', ['profile']);
+
+        $profiles = SeekerProfile::all();
+
+        dd($profiles);
+        return view('profile.index', ['profiles']);
     }
 
     public function show($user_id){
@@ -20,5 +24,18 @@ class ProfileController extends Controller
         // dd($profile->experienceDetails);
 
         return view('profile.show', compact('profile'));
+    }
+
+    public function update(Request $request, $user_id){
+        $profile = SeekerProfile::where('user_id', $user_id)->first();
+
+        if($request->edit_bio){
+            $profile->bio = $request->edit_bio;
+        }
+        $profile->save();
+        
+        // dd($request->all());
+
+        return redirect('/profile/'.$user_id);
     }
 }

@@ -12,33 +12,41 @@
 
         @guest
             <div class="buy-button">
-                <a href="{{ route('login') }}" class="btn btn-secondary"><i class="mdi mdi-account-key"></i>
-                    <span>Job Seeker</span></a>
+                <a href="{{ route('login') }}" class="btn btn-warning-outline btn-sm"><i class="mdi mdi-account-key"></i>
+                    <span>Login</span></a>
             </div><!--end job seeker button-->
 
             @if (Route::has('register'))
             <div class="buy-button">
-                <a href="{{ route('register') }}" class="btn btn-secondary"><i class="mdi mdi-account-key"></i>
+                <a href="{{ route('register') }}" class="btn btn-warning-outline btn-sm"><i class="mdi mdi-account-key"></i>
                     <span>Register</span></a>
             </div><!--end job seeker button-->
             @endif
             @else
             <div class="buy-button">
-                <a href="#" class="btn btn-secondary"><i class="mdi mdi-account-key"></i>
-                    <span>Welcome {{ Auth::user()->name }}!! </span></a>
+                <a href="#" class="btn btn-warning btn-sm"><i class="mdi mdi-account-key"></i>
+                    <span>Hi, {{ Auth::user()->name }} </span></a>
             </div>
             <div class="buy-button">
-                <a href="{{ route('logout') }}" class="btn btn-secondary" onclick="event.preventDefault();
+                <a href="{{ route('logout') }}" class="btn btn-light-outline btn-sm" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();"><i class="mdi mdi-account-key"></i><span class="mr-2 icon-lock_outline"></span>{{ __('Logout') }} </a>
             </div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
         @endguest
-        <div class="buy-button">
-            <a href="post-a-job.html" class="btn btn-primary"><i class="mdi mdi-briefcase-upload"></i>
-                <span>Employer</span></a>
-        </div><!--end employer button-->
+
+        @if(Auth::user() && Auth::user()->user_type_id == 1)
+            <div class="buy-button">
+                <a href="{{route('create-job')}}" class="btn btn-warning-outline btn-sm"><i class="mdi mdi-briefcase-upload"></i>
+                    <span>Employer</span></a>
+            </div><!--end employer button-->
+        @elseif(Auth::user() && Auth::user()->user_type_id == 2)
+            <div class="buy-button">
+                <a href="{{route('create-job')}}" class="btn btn-warning-outline btn-sm"><i class="mdi mdi-briefcase-upload"></i>
+                    <span>Post Job</span></a>
+            </div>
+        @endif
         <!-- End Logo container-->
         <div class="menu-extras">
             <div class="menu-item">

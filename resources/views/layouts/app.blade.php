@@ -32,6 +32,8 @@
     <!-- Custom  Css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"/>
 
+
+
 </head>
 
 <body>
@@ -146,6 +148,8 @@
 
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/home.js') }}"></script>
+
+
 
 </body>
 </html>
