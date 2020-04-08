@@ -49,4 +49,46 @@
         return false;
     });
 
+    
 })(jQuery)
+
+// Clicking the save button on the open modal for both CREATE and UPDATE
+// $("#update_bio").click(function (e) {
+//     // $.ajaxSetup({
+//     //     headers: {
+//     //         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+//     //     }
+//     // });
+//     e.preventDefault();
+//     var formData = {
+//         url: '/update',
+//         bio: jQuery('#edit_bio').val(),
+//     };
+//     // var state = jQuery('#btn-save').val();
+//     var type = "POST";
+//     var link_id = jQuery('#link_id').val();
+//     var ajaxurl = 'links';
+//     // if (state == "update") {
+//     //     type = "PUT";
+//     //     ajaxurl = 'links/' + link_id;
+//     // }
+//     $.ajax({
+//         type: type,
+//         url: '/update',
+//         data: formData,
+//         dataType: 'json',
+//         success: function (data) {
+//             $('#bio').val() = bio;
+//             // if (state == "add") {
+//             //     jQuery('#links-list').append(link);
+//             // } else {
+//             //     $("#link" + link_id).replaceWith(link);
+//             // }
+//             jQuery('#modalFormData').trigger("reset");
+//             jQuery('#linkEditorModal').modal('hide')
+//         },
+//         error: function (data) {
+//             console.log('Error:', data);
+//         }
+//     });
+// });

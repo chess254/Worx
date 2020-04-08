@@ -25,4 +25,17 @@ class ProfileController extends Controller
 
         return view('profile.show', compact('profile'));
     }
+
+    public function update(Request $request, $user_id){
+        $profile = SeekerProfile::where('user_id', $user_id)->first();
+
+        if($request->edit_bio){
+            $profile->bio = $request->edit_bio;
+        }
+        $profile->save();
+        
+        // dd($request->all());
+
+        return redirect('/profile/'.$user_id);
+    }
 }

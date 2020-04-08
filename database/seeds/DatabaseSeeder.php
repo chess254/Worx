@@ -24,10 +24,10 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersSeeder::class);
         // $this->call(CompanySeeder::class);
         // $this->call(LocationSeeder::class);
-        $this->call(JobsSeeder::class);
+        // $this->call(JobsSeeder::class);
         // $this->call(SeekerProfileSeeder::class);
-        // $this->call(EducationDetailsSeeder::class);
-        // $this->call(ExperienceDetailsSeeder::class);
+        $this->call(EducationDetailsSeeder::class);
+        $this->call(ExperienceDetailsSeeder::class);
        
         // Re enable all mass assignment restrictions
         // Model::reguard();
