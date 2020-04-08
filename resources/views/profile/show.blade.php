@@ -249,7 +249,7 @@
 
                     @if($profile->user_id == auth()->user()->id) 
                         <div class="pt-2 border-top">
-                        <button class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal" name="id" value="{{$education->id}}"> <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
+                        <button class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal" name="id" data-institute="{{$education->institute}}" data-course="{{$education->course}}" data-fromdate="{{$education->starting_date}}" data-todate="{{$education->completion_date}}"  data-certificate="{{$education->certificate}}" data-educid="{{$education->id}}" > <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
                             
                             
                                 <button class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal">  <i class="mdi mdi-delete" style="color: red;"></i></button>
@@ -279,7 +279,7 @@
                             <div class="modal-body">
                                 <div class="pb-2"> 
                                     <label for="edit_certificate">Certificate</label><br />
-                                <input type="text" name="edit_certificate" id="edit_certificate" name="edit_certificate" value="{{auth()->user()->SeekerProfile->educationDetails->find(16)->certificate}}">
+                                <input type="text" name="edit_certificate" id="edit_certificate" name="edit_certificate">
                                 </div>
                                <div class="pb-2">   
                                     <label for="edit_institute">Institute</label><br />
@@ -305,7 +305,7 @@
 
                             </div>
                             <div class="modal-footer d-flex justify-content-center">
-                                <button class="btn btn-success-outline btn-sm" type="submit" id="update_bio ">Update</button>
+                                <button class="btn btn-success-outline btn-sm" type="submit" id="update_bio" data-target="" >Update</button>
                             </div>
                         </form>
                     </div>
