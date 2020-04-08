@@ -53,7 +53,25 @@
 })(jQuery)
 
 // Clicking the save button on the open modal for both CREATE and UPDATE
-// $("#update_bio").click(function (e) {
+$("#eduModal").on('show.bs.modal', function (e) {
+    console.log('edu modal opened');
+    var button = $(e.relatedTarget);
+    var institute,certificate,course,fromdate,todate, educid;
+    institute = button.data('institute');
+    certificate = button.data('certificate');
+    course = button.data('course');
+    fromdate = button.data('fromdate');
+    todate = button.data('todate');
+    educid = button.data('educid');
+     
+    var modal = $(this);
+    modal.find('.modal-body #edit_certificate').val(certificate);
+    modal.find('.modal-body #edit_institute').val(institute);
+    modal.find('.modal-body #edit_course').val(course);
+    modal.find('.modal-body #edit_from_date').val(fromdate);
+    modal.find('.modal-body #edit_to_date').val(todate);
+
+});
 //     // $.ajaxSetup({
 //     //     headers: {
 //     //         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
