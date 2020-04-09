@@ -70,6 +70,8 @@ $("#eduModal").on('show.bs.modal', function (e) {
     modal.find('.modal-body #edit_course').val(course);
     modal.find('.modal-body #edit_from_date').val(fromdate);
     modal.find('.modal-body #edit_to_date').val(todate);
+    modal.find('.modal-body #educationDetails_id').val(educid);
+    console.log(educid);
 
 });
 
