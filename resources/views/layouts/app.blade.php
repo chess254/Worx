@@ -117,8 +117,9 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="">
-                    <p class="mb-0 text-white">© 2020 Joba. Design with <i class="mdi mdi-heart text-danger"></i> by
-                        Maidathemes
+                    <p class="mb-0 text-white">©Worx 2020.</p>
+                    <small>With <i class="mdi mdi-heart text-warning"></i> from
+                        60fOUR</small>  
                     </p>
                 </div>
             </div>
