@@ -41,5 +41,5 @@ Route::post('/post','JobsController@store');
 
 Route::get('/profile', 'ProfileController@index');
 Route::get('/profile/{user_id}', 'ProfileController@show');
-Route::post('/profile/{user_id}/update', 'ProfileController@update');
+Route::post('/profile/{user_id}', 'ProfileController@update');
 

@@ -199,7 +199,7 @@
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        <form action="{{auth()->user()->id}}/update" method="post">
+                        <form action="{{auth()->user()->id}}" method="post">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="md-form">
@@ -270,7 +270,7 @@
                         </div>
 
                         @if(auth()->check())
-                    <form action="{{auth()->user()->id}}/update" method="post">
+                    <form action="{{auth()->user()->id}}" method="post">
                             @csrf
                             <div class="modal-body">
                                 <div class="pb-2"> 
@@ -375,7 +375,7 @@
                         </div>
 
                         @if(auth()->check())
-                    <form action="{{auth()->user()->id}}/update" method="post">
+                    <form action="{{auth()->user()->id}}" method="post">
                             @csrf
                             <div class="modal-body">
                                 <div class="pb-2"> 
