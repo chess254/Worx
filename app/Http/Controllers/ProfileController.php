@@ -38,6 +38,25 @@ class ProfileController extends Controller
                 $educationDetails->save();
             }
         }
+
+        if($request->experienceDetails_id){
+
+
+            if(auth()->user()->id == $profile->user_id){
+                $experienceDetails = $profile->experienceDetails->find($request->experienceDetails_id);
+                $experienceDetails->job_title = $request->edit_job_title;
+                $experienceDetails->company_name = $request->edit_company_name;
+                $experienceDetails->website = $request->edit_website;
+                $experienceDetails->start_date = $request->edit_start_date;
+                $experienceDetails->end_date = $request->edit_end_date;
+                $experienceDetails->job_location_city = $request->edit_job_city;
+                $experienceDetails->job_location_county = $request->edit_job_county;
+                $experienceDetails->job_location_country = $request->edit_job_country;
+                // dd($experienceDetails);
+                $experienceDetails->save();
+            }
+        }
+
         return redirect()->back();    
     }
 }

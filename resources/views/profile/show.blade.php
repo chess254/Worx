@@ -342,13 +342,90 @@
                                 <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i>{{$experience->website}}
                                 </p>
                                 <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i>{{$experience->job_location_city}}, {{$experience->job_location_county}}, {{$experience->job_location_country}}
-                            </p>
+                            
+                                </p> 
+                                {{-- <br> {{$experience->id}} --}}
+
+                                @if( auth()->check() && ($profile->user_id == auth()->user()->id) ) 
+                                    <div class="pt-2 border-top d-flex" style="justify-content: space-around;">
+                                    <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#expModal" name="id" data-company_name="{{$experience->company_name}}" data-job_title="{{$experience->job_title}}" data-start_date="{{$experience->start_date}}" data-end_date="{{$experience->end_date}}"  data-website="{{$experience->website}}" ddata-city="{{$experience->job_location_city}}" data-county="{{$experience->job_location_county}}" data-country="{{$experience->job_location_country}}" data-expid="{{$experience->id}}" > <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
+                                        
+                                        
+                                            <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#expModal">  <i class="mdi mdi-delete" style="color: red;"></i></button>
+                                    
+                                    </div>
+                                @endif
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             @endforeach
+
+            <div class="modal fade" id="expModal" tabindex="-1" role="dialog" aria-labelledby="expModalLabel" aria-hidden="true">
+                        
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h4 class="modal-title w-100 font-weight-light">edit experience entry</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        @if(auth()->check())
+                    <form action="{{auth()->user()->id}}/update" method="post">
+                            @csrf
+                            <div class="modal-body">
+                                <div class="pb-2"> 
+                                    <label for="edit_company">Company</label><br />
+                                <input type="text" name="edit_company_name" id="edit_company_name" >
+                                </div>
+                               <div class="pb-2">   
+                                    <label for="edit_job_title">Job Title</label><br />
+                                    <input type="text" name="edit_job_title" id="edit_job_title" >
+                                </div>
+                                <div class="pb-2">
+                                    <label for="edit_job_city">Website</label><br />
+                                    <input type="text" name="edit_website" id="edit_website" >
+                                </div>
+                                <div class="pb-2">
+                                    <label for="edit_job_city">City</label><br />
+                                    <input type="text" name="edit_job_city" id="edit_job_city" >
+                                </div>
+                                <div class="pb-2">
+                                    <label for="edit_job_county">County</label><br />
+                                    <input type="text" name="edit_job_county" id="edit_job_county" >
+                                </div>
+                                <div class="pb-2">
+                                    <label for="edit_job_country">Country</label><br />
+                                    <input type="text" name="edit_job_country" id="edit_job_country" >
+                                </div>
+                                <div class="pb-2">
+                                    <label for="edit_start_date">Start Date</label><br />
+                                    <input type="date" name="edit_start_date" id="edit_start_date" >
+                                </div>
+                                <div class="pb-2"> 
+                                    <label for="edit_end_date">End Date</label><br />
+                                    <input type="date" name="edit_end_date" id="edit_end_date" >
+                                </div>
+
+                                <input type="hidden" name="experienceDetails_id" id="experienceDetails_id">
+                               
+                                
+
+                                
+
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button class="btn btn-success-outline btn-sm" type="submit" id="update_bio" data-target="" >Update</button>
+                            </div>
+                        </form>
+                        @endif
+                    </div>
+                </div>
+            </div>
 
             {{-- <div class="col-md-6 mt-3 mt-md-0 pt-3">
                 <div class="border rounded job-list-box p-4">

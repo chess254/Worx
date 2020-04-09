@@ -75,3 +75,31 @@ $("#eduModal").on('show.bs.modal', function (e) {
 
 });
 
+$("#expModal").on('show.bs.modal', function (e) {
+    console.log('exp modal opened');
+    var button = $(e.relatedTarget);
+    var company_name,job_title,start_date,end_date,website,job_location_city,job_location_county,job_location_country,expid;
+    company_name = button.data('company_name');
+    job_title = button.data('job_title');
+    website = button.data('website');
+    start_date = button.data('start_date');
+    end_date = button.data('end_date');
+    job_location_city = button.data('job_location_city');
+    job_location_county = button.data('job_location_county');
+    job_location_country = button.data('job_location_country');
+    expid = button.data('expid');
+     
+    var modal = $(this);
+    modal.find('.modal-body #edit_job_title').val(job_title);
+    modal.find('.modal-body #edit_company_name').val(company_name);
+    modal.find('.modal-body #edit_website').val(website);
+    modal.find('.modal-body #edit_start_date').val(start_date);
+    modal.find('.modal-body #edit_end_date').val(end_date);
+    modal.find('.modal-body #edit_job_city').val(job_location_city);
+    modal.find('.modal-body #edit_job_county').val(job_location_county);
+    modal.find('.modal-body #edit_job_country').val(job_location_country);
+    modal.find('.modal-body #experienceDetails_id').val(expid);
+    console.log(expid);
+
+});
+
