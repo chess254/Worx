@@ -52,11 +52,11 @@
     
 })(jQuery)
 
-// Clicking the save button on the open modal for both CREATE and UPDATE
+// to send data to modal on profile page, when user clicks edit on their education details
 $("#eduModal").on('show.bs.modal', function (e) {
     console.log('edu modal opened');
     var button = $(e.relatedTarget);
-    var institute,certificate,course,fromdate,todate, educid;
+    var institute,certificate,course,fromdate,todate,educid;
     institute = button.data('institute');
     certificate = button.data('certificate');
     course = button.data('course');
@@ -70,43 +70,8 @@ $("#eduModal").on('show.bs.modal', function (e) {
     modal.find('.modal-body #edit_course').val(course);
     modal.find('.modal-body #edit_from_date').val(fromdate);
     modal.find('.modal-body #edit_to_date').val(todate);
+    modal.find('.modal-body #educationDetails_id').val(educid);
+    console.log(educid);
 
 });
-//     // $.ajaxSetup({
-//     //     headers: {
-//     //         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-//     //     }
-//     // });
-//     e.preventDefault();
-//     var formData = {
-//         url: '/update',
-//         bio: jQuery('#edit_bio').val(),
-//     };
-//     // var state = jQuery('#btn-save').val();
-//     var type = "POST";
-//     var link_id = jQuery('#link_id').val();
-//     var ajaxurl = 'links';
-//     // if (state == "update") {
-//     //     type = "PUT";
-//     //     ajaxurl = 'links/' + link_id;
-//     // }
-//     $.ajax({
-//         type: type,
-//         url: '/update',
-//         data: formData,
-//         dataType: 'json',
-//         success: function (data) {
-//             $('#bio').val() = bio;
-//             // if (state == "add") {
-//             //     jQuery('#links-list').append(link);
-//             // } else {
-//             //     $("#link" + link_id).replaceWith(link);
-//             // }
-//             jQuery('#modalFormData').trigger("reset");
-//             jQuery('#linkEditorModal').modal('hide')
-//         },
-//         error: function (data) {
-//             console.log('Error:', data);
-//         }
-//     });
-// });
+

@@ -179,7 +179,7 @@
                             <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-cellphone-iphone mr-2"></i>{{$profile->user->contact_number}}</a>
                         </li>
                     </ul>
-                    @if($profile->user_id == auth()->user()->id) 
+                    @if(auth()->check() && $profile->user_id == auth()->user()->id)
                         <div style="padding-top: 10px; align: center;">
                             <button class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#bioModal"> <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
                         </div>
@@ -188,6 +188,7 @@
 
 
                 <!-- Modals -->
+                @if(auth()->check())
                 <div class="modal fade" id="bioModal" tabindex="-1" role="dialog" aria-labelledby="bioModalLabel" aria-hidden="true">
                         
                     <div class="modal-dialog" role="document">
@@ -214,15 +215,8 @@
                             </form>
                         </div>
                     </div>
-
-
-                    <div class="text-center">
-                    <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Launch
-                        Modal Register Form</a>
-                    </div>
                 </div>
-
-
+                @endif
             </div>
         </div>
 
@@ -242,17 +236,17 @@
                     <p class="f-14 mb-1">{{$education->starting_date}} - {{$education->completion_date}}</p>
                     <p class="pb-3 mb-0">{{$education->certificate}}</p>
                     <p class="pb-3 mb-0">{{$education->course}}</p>
-                    {{$education->id}}
+                    {{-- {{$education->id}} --}}
 
 
                     
 
-                    @if($profile->user_id == auth()->user()->id) 
-                        <div class="pt-2 border-top">
-                        <button class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal" name="id" data-institute="{{$education->institute}}" data-course="{{$education->course}}" data-fromdate="{{$education->starting_date}}" data-todate="{{$education->completion_date}}"  data-certificate="{{$education->certificate}}" data-educid="{{$education->id}}" > <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
+                    @if( auth()->check() && ($profile->user_id == auth()->user()->id) ) 
+                        <div class="pt-2 border-top d-flex" style="justify-content: space-around;">
+                        <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal" name="id" data-institute="{{$education->institute}}" data-course="{{$education->course}}" data-fromdate="{{$education->starting_date}}" data-todate="{{$education->completion_date}}"  data-certificate="{{$education->certificate}}" data-educid="{{$education->id}}" > <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
                             
                             
-                                <button class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal">  <i class="mdi mdi-delete" style="color: red;"></i></button>
+                                <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal">  <i class="mdi mdi-delete" style="color: red;"></i></button>
                         
                         </div>
                     @endif
@@ -274,30 +268,34 @@
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+
+                        @if(auth()->check())
                     <form action="{{auth()->user()->id}}/update" method="post">
                             @csrf
                             <div class="modal-body">
                                 <div class="pb-2"> 
                                     <label for="edit_certificate">Certificate</label><br />
-                                <input type="text" name="edit_certificate" id="edit_certificate" name="edit_certificate">
+                                <input type="text" name="edit_certificate" id="edit_certificate" >
                                 </div>
                                <div class="pb-2">   
                                     <label for="edit_institute">Institute</label><br />
-                                    <input type="text" name="edit_institute" id="edit_institute" name="edit_institute">
+                                    <input type="text" name="edit_institute" id="edit_institute" >
                                 </div>
                              
                                 <div class="pb-2">
                                     <label for="edit_course">Course</label><br />
-                                    <input type="text" name="edit_course" id="edit_course" name="edit_course">
+                                    <input type="text" name="edit_course" id="edit_course" >
                                 </div>
                                 <div class="pb-2">
                                     <label for="edit_from_date">From</label><br />
-                                    <input type="date" name="edit_from_date" id="edit_from_date" name="edit_from_date">
+                                    <input type="date" name="edit_from_date" id="edit_from_date" >
                                 </div>
                                 <div class="pb-2"> 
                                     <label for="edit_to_date">To:</label><br />
-                                    <input type="date" name="edit_to_date" id="edit_to_date" name="edit_to_date">
+                                    <input type="date" name="edit_to_date" id="edit_to_date" >
                                 </div>
+
+                                <input type="hidden" name="educationDetails_id" id="educationDetails_id">
                                
                                 
 
@@ -308,13 +306,8 @@
                                 <button class="btn btn-success-outline btn-sm" type="submit" id="update_bio" data-target="" >Update</button>
                             </div>
                         </form>
+                        @endif
                     </div>
-                </div>
-
-
-                <div class="text-center">
-                <a href="" class="btn btn-default btn-rounded mb-4" data-toggle="modal" data-target="#modalRegisterForm">Launch
-                    Modal Register Form</a>
                 </div>
             </div>
 
