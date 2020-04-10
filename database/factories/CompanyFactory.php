@@ -6,10 +6,14 @@ use App\Company;
 use Faker\Generator as Faker;
 
 $factory->define(Company::class, function (Faker $faker) {
+
+    $companyname = $faker->unique()->company;
     return [
-        'name'=>$faker->unique()->company,
+        'email'=>"info@".$companyname."co.ke",
+        'user_id'=>$faker->numberbetween(1,100),
+        'name'=>$companyname,
         'description'=>$faker->paragraph($nbSentences = 6, $variableNbSentences = true),
         'business_stream_id'=>$faker->numberBetween(1,30),
-        'website'=>$faker->url,
+        'website'=>"www.".$companyname."co.ke",
     ];
 });

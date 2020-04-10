@@ -18,11 +18,15 @@ class Company extends Model
 
     protected $guarded = [];
 
-    public function job(){
+    public function jobs(){
         return $this->hasMany(\App\Job::class);
     }
 
     public function businessStream(){
         return $this->belongsTo(\App\BusinessStream::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(\App\User::class);
     }
 }

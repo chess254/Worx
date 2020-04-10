@@ -40,7 +40,11 @@ class JobsController extends Controller
             Auth::logout();
             return redirect('login');
         }
-        return view('post-job');
+
+        $user_companies = $user->companies;
+        // dd($user_companies);
+
+        return view('post-job',compact('user_companies'));
     }
 
     /**
@@ -55,9 +59,14 @@ class JobsController extends Controller
             'name' => $request->company_name,
         'description' => $request->company_description,
         'website' => $request->company_website,
+        'business_stream_id'=>$request->company_business_stream_id
+
         ]);
 
-        $company->save();
+        // dd($company);
+
+        // $company->save();
+        // dd($request);
 
         $data = [
             'title' => $request->title,
@@ -66,6 +75,7 @@ class JobsController extends Controller
             'user_id' => $user = Auth::user()->id,
             'type_id' => intval($request->type_id),
             'county_id'=>intval($request->county),
+            'company_id'=>$request->company_id,
             'company_name_hidden' => 1,
             'no_of_positions' => $request->no_of_positions,
             'description' => $request->description, 
@@ -75,7 +85,10 @@ class JobsController extends Controller
             'responsibilities' => $request->responsibilities,
            'requirements' =>$request->requirements,             
             'education' => $request->education,
+            'business_stream_id'=>$request->company_business_stream_id
         ];
+
+        // dd($data);
 
         $job = auth()->user()->job()->create($data); //create job with current user as user_id
         $job->company()->associate($company);       //add the company_id to the created job
@@ -93,7 +106,7 @@ class JobsController extends Controller
     public function show($job)
     {
         $Job = Job::where('id', $job)
-        ->with(['location', 'company', 'type'])
+        ->with(['location', 'company', 'type','businessStream'])
         ->first();
         return view('job', compact('Job'));
     }

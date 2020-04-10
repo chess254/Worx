@@ -43,3 +43,6 @@ Route::get('/profile', 'ProfileController@index');
 Route::get('/profile/{user_id}', 'ProfileController@show');
 Route::post('/profile/{user_id}', 'ProfileController@update');
 
+Route::get('/company/{company}', 'CompanyController@show');
+Route::get('/company-profile/{company}', 'CompanyController@view');
+

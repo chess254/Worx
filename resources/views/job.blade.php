@@ -344,8 +344,18 @@
                             <i class="mdi mdi-email text-muted mdi-24px"></i>
                         </div>
                         <div class="overview-details">
-                            <h6 class="text-muted mb-0">Posted by Email</h6>
-                            <h6 class="text-black-50 pt-2 mb-0">{{$Job->user->email}}</h6>
+                            <h6 class="text-muted mb-0">Company email</h6>
+                            <h6 class="text-black-50 pt-2 mb-0">{{$Job->company->email}}</h6>
+                        </div>
+                    </div>
+
+                    <div class="single-post-item mb-4">
+                        <div class="float-left mr-3">
+                            <i class="mdi mdi-email text-muted mdi-24px"></i>
+                        </div>
+                        <div class="overview-details">
+                            <h6 class="text-muted mb-0">Company Address</h6>
+                            <h6 class="text-black-50 pt-2 mb-0">{{$Job->company->website}}</h6>
                         </div>
                     </div>
 

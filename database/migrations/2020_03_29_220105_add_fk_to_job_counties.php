@@ -18,6 +18,7 @@ class AddFkToJobCounties extends Migration
         ->references('id')->on('counties')
         ->onDelete('cascade')->change();
         });
+       
     }
 
     /**
