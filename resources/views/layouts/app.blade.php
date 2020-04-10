@@ -24,6 +24,9 @@
     <!-- selectize css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/selectize.css') }}"/>
 
+    {{-- only needed for create resume page --}}
+    <link rel="stylesheet" type="text/css" href="css/nice-select.css"/>
+    
     <!--Slider-->
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/owl.theme.css') }}"/>

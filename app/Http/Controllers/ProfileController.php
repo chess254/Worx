@@ -15,8 +15,15 @@ class ProfileController extends Controller
     }
 
     public function show($user_id){
+
         $profile = SeekerProfile::where('user_id', $user_id)->first();
+        // dd($profile);
+        if($profile)
+       {
         return view('profile.show', compact('profile'));
+       }else{
+           return redirect('/profile');
+       }
     }
 
     public function update(Request $request, $user_id){
@@ -58,5 +65,13 @@ class ProfileController extends Controller
         }
 
         return redirect()->back();    
+    }
+
+    public function create(){
+        return view('profile.create');
+    }
+    public function store(Request $request){
+        $profile = New SeekerProfile;
+        $user = auth()->user();
     }
 }

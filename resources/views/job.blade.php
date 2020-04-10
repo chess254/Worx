@@ -285,7 +285,7 @@
             <div class="col-lg-4 col-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0">
                 <div class="company-brand-logo text-center">
                     <img src="{{ asset('images/featured-job/img-2.png') }}" alt="" class="img-fluid mx-auto d-block mb-3">
-                    <h5 class="text-muted mb-0"><a href="#" class="text-muted"><i class="mdi mdi-bank mr-1"></i>{{$Job->company->name}}</a></h5>
+                <h5 class="text-muted mb-0"><a href="/company-profile/{{$Job->company->id}}" class="text-muted"><i class="mdi mdi-bank mr-1"></i>{{$Job->company->name}}</a></h5>
                 </div>
 
                 <div class="job-detail rounded border job-overview mt-4 mb-4">

@@ -18,7 +18,7 @@ class HomeController extends Controller
      
     public function __construct(Request $request)
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
         $this->request = $request;
     }
 
@@ -33,9 +33,9 @@ class HomeController extends Controller
         $categories = BusinessStream::all()->toArray();            
 
                 
-                $jobs = Job::with('businessStream','county')->where('title','like','%web%')->whereHas('businessStream', function($q){
-                    $q->where('name','LIKE','%%');
-                    })->whereHas('county',function($c){$c->where('county_name','like','%%');})->get();
+                // $jobs = Job::with('businessStream','county')->where('title','like','%web%')->whereHas('businessStream', function($q){
+                //     $q->where('name','LIKE','%%');
+                //     })->whereHas('county',function($c){$c->where('county_name','like','%%');})->get();
                     
 
                 // dd($jobs[0]->businessStream->name);

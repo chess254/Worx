@@ -75,52 +75,18 @@
                         {{-- <li><a href="job-details-2.html">Job Details-2</a></li> --}}
                     </ul>
                 </li>
-
                 <li class="has-submenu">
-                    <a href="javascript:void(0)">Pages</a><span class="menu-arrow"></span>
+                    <a href="javascript:void(0)">My Account</a><span class="menu-arrow"></span>
                     <ul class="submenu">
-                        <li><a href="about.html">About us</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="team.html">Team</a></li>
-                        <li><a href="faq.html">Faqs</a></li>
-                        <li><a href="pricing.html">Pricing plans</a></li>
-                        <li class="has-submenu"><a href="javascript:void(0)"> Candidates</a><span
-                                class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="candidates-listing.html">Candidates Listing</a></li>
-                                <li><a href="candidates-profile.html">Candidates Profile</a></li>
-                                <li><a href="create-resume.html">Create Resume</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-submenu"><a href="javascript:void(0)"> Blog</a><span
-                                class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="blog-grid.html">Blogs</a></li>
-                                <li><a href="blog-sidebar.html">Blog Sidebar</a></li>
-                                <li><a href="blog-details.html">Blog Details</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-submenu"><a href="javascript:void(0)"> Employers</a><span
-                                class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="employers-list.html">Employers List</a></li>
-                                <li><a href="company-detail.html">Company Detail</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-submenu"><a href="javascript:void(0)"> User Pages</a><span
-                                class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="signup.html">Signup</a></li>
-                                <li><a href="recovery_passward.html">Forgot Password</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="components.html"> Components</a></li>
+                    <li><a href="/profile/{{auth()->user()->id}}">profile</a></li>
+                        {{-- <li><a href="job-grid.html">Job Grid</a></li> --}}
+                        {{-- <li><a href="{{route('/job')}}">Job Details</a></li> --}}
+                        {{-- <li><a href="job-details-2.html">Job Details-2</a></li> --}}
                     </ul>
                 </li>
                 <li>
-                    <a href="contact.html">contact</a>
                 </li>
+               
             </ul><!--end navigation menu-->
         </div><!--end navigation-->
     </div><!--end container-->
