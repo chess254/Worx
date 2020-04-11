@@ -20,7 +20,7 @@ class TweakJobsTable extends Migration
             $table->unsignedInteger('type_id');
             $table->unsignedInteger('business_stream_id');
             $table->unsignedInteger('county_id');
-            $table->unsignedInteger('company_id')->nullable();
+            $table->unsignedInteger('company_id');
             $table->unsignedInteger('company_name_hidden')->default(0);
             $table->integer('no_of_positions')->default('1');
             $table->date('created_date')->default(today());

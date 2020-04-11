@@ -23,6 +23,7 @@ class CreateEducationDetailsTable extends Migration
             $table->date('completion_date')->nullable();
             $table->string('grade', 50)->nullable();
             $table->text('course')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

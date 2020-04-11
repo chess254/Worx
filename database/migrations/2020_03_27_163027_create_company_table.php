@@ -15,7 +15,9 @@ class CreateCompanyTable extends Migration
     {
         Schema::create('company', function (Blueprint $table) {
             $table->unsignedInteger('id')->unsigned()->autoIncrement();
+            $table->unsignedInteger('user_id');
             $table->timestamps();
+            $table->string('email');
             $table->string('name', 100);
             $table->string('description',500);
             $table->unsignedInteger('business_stream_id')->nullable();

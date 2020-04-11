@@ -18,6 +18,7 @@ class AddFkCompanyTable extends Migration
             $table->foreign('business_stream_id')
         ->references('id')->on('business_stream')
         ->onDelete('cascade')->change();
+        $table->foreign('user_id')->references('id')->on('users')->change();
         });
 
         Schema::table('company_image', function (Blueprint $table) {

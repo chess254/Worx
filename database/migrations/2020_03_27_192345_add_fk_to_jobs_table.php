@@ -35,7 +35,7 @@ class AddFkToJobsTable extends Migration
         $table->foreign('location_id')
         ->references('id')->on('job_location')
         ->onDelete('cascade')->change();
-
+        
         });
 
         

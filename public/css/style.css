@@ -1392,7 +1392,7 @@ p {
   }
   #topnav .navigation-menu > li .submenu li a {
     display: block;
-    padding: 10px 20px;
+    padding: 1px 20px;
     clear: both;
     white-space: nowrap;
     font-size: 11px;
@@ -2678,4 +2678,9 @@ hr {
   border: 0;
   border-top: 1px solid #7f838d;
 }
+
+#user_form fieldset:not(:first-of-type) {
+  display: none;
+}
+
 /*# sourceMappingURL=style.css.map */

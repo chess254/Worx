@@ -193,12 +193,26 @@
               </select>
             </div>
 
+            
 
             <h3 class="text-black my-5 border-bottom pb-2">Company Details</h3>
+
+            <p>your companies</p>
+            
+
+            <select id="company_id" name="company_id">
+              <option>Choose company</option>
+              @foreach($user_companies as $company)
+              <option value="{{$company->id}}">{{$company->name}}</option>
+              @endforeach
+          </select>
+
             <div class="form-group">
-              <label for="company-name">Company Name</label>
-              <input type="text" class="form-control" id="company-name" placeholder="" name="company_name">
+              <label for="company_name">Company Name</label>
+              <input type="text" class="form-control" id="company_name" placeholder="" name="company_name">
             </div>
+
+           
 
             {{-- <div class="form-group">
               <label for="company-tagline">Tagline (Optional)</label>
@@ -206,27 +220,29 @@
             </div> --}}
 
             <div class="form-group">
-              <label for="job-description">Company Description (Optional)</label>
+              <label for="company_description">Company Description (Optional)</label>
               <div class="editor" id="editor-2" name="">
                 <p>Description</p>
               </div>
-              <textarea name="company_description"></textarea>
+              <textarea name="company_description" id="company_description"></textarea>
             </div>
             
             <div class="form-group">
-              <label for="company-website">Website (Optional)</label>
-              <input type="text" class="form-control" id="company-website" placeholder="https://" name="company_website">
+              <label for="company_website">Website (Optional)</label>
+              <input type="text" class="form-control" id="company_website" placeholder="https://" name="company_website">
             </div>
 
             <div class="form-group">
-              <label for="company-website-fb">Facebook Username (Optional)</label>
-              <input type="text" class="form-control" id="company-website-fb" placeholder="" name="company_fb">
+              <label for="company_biz_stream">Business stream (Optional)</label>
+              <input type="text" class="form-control" id="company_biz_stream" placeholder="" name="company_biz_stream">
             </div>
 
             <div class="form-group">
               <label for="company-website-tw">Twitter Username (Optional)</label>
               <input type="text" class="form-control" id="company-website-tw" placeholder="@companyname" name="company_twitter">
             </div>
+            {{-- <input type="text" name="company_id" id="company_id"> --}}
+            <input type="text" name="company_business_stream_id" id="company_business_stream_id">
             {{-- <div class="form-group">
               <label for="company-website-tw">Linkedin Username (Optional)</label>
               <input type="text" class="form-control" id="company-website-tw" placeholder="companyname">

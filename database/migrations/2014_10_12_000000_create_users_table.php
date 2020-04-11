@@ -27,6 +27,13 @@ class CreateUsersTable extends Migration
             $table->char('gender')->default('F')->nullable();
             $table->unsignedInteger('is_active')->default(1);
             $table->string('contact_number',15)->nullable();
+            $table->text('city')->nullable();
+            $table->unsignedInteger('county_id')->nullable();
+            $table->text('country')->nullable();
+            $table->string('phone', 15)->nullable();
+            // $table->text('email')->nullable();
+            $table->text('website')->nullable();
+            $table->text('address')->nullable();
             $table->unsignedInteger('email_notification_active')->default(1)->nullable();
             $table->string('user_image',100)->default("no_image.jpg")->nullable();
             $table->timestamp('email_verified_at')->nullable();

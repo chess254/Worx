@@ -285,7 +285,7 @@
             <div class="col-lg-4 col-md-5 mt-4 mt-sm-0 pt-2 pt-sm-0">
                 <div class="company-brand-logo text-center">
                     <img src="{{ asset('images/featured-job/img-2.png') }}" alt="" class="img-fluid mx-auto d-block mb-3">
-                    <h5 class="text-muted mb-0"><a href="#" class="text-muted"><i class="mdi mdi-bank mr-1"></i>{{$Job->company->name}}</a></h5>
+                <h5 class="text-muted mb-0"><a href="/company-profile/{{$Job->company->id}}" class="text-muted"><i class="mdi mdi-bank mr-1"></i>{{$Job->company->name}}</a></h5>
                 </div>
 
                 <div class="job-detail rounded border job-overview mt-4 mb-4">
@@ -344,8 +344,18 @@
                             <i class="mdi mdi-email text-muted mdi-24px"></i>
                         </div>
                         <div class="overview-details">
-                            <h6 class="text-muted mb-0">Posted by Email</h6>
-                            <h6 class="text-black-50 pt-2 mb-0">{{$Job->user->email}}</h6>
+                            <h6 class="text-muted mb-0">Company email</h6>
+                            <h6 class="text-black-50 pt-2 mb-0">{{$Job->company->email}}</h6>
+                        </div>
+                    </div>
+
+                    <div class="single-post-item mb-4">
+                        <div class="float-left mr-3">
+                            <i class="mdi mdi-email text-muted mdi-24px"></i>
+                        </div>
+                        <div class="overview-details">
+                            <h6 class="text-muted mb-0">Company Address</h6>
+                            <h6 class="text-black-50 pt-2 mb-0">{{$Job->company->website}}</h6>
                         </div>
                     </div>
 
