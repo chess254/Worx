@@ -40,7 +40,8 @@ Route::get('/post','JobsController@create')->name('create-job')->middleware('aut
 Route::post('/post','JobsController@store');
 
 Route::get('/profiles', 'ProfileController@index');
-Route::get('/profile', 'ProfileController@create');
+Route::get('/profile', 'ProfileController@createStep1');
+Route::post('/profile', 'ProfileController@store');
 Route::get('/profile/{user_id}', 'ProfileController@show');
 Route::post('/profile/{user_id}', 'ProfileController@update');
 

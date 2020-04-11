@@ -12,7 +12,13 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="text-center text-white">
-                    <h4 class="text-uppercase title mb-4">Create Resume</h4>
+
+                    @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                    {{-- <h4 class="text-uppercase title mb-4">Create Resume</h4> --}}
                     <ul class="page-next d-inline-block mb-0">
                         <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
                         <li><a href="#" class="text-uppercase font-weight-bold">Pages</a></li>
@@ -205,34 +211,34 @@
                 <h5 class="text-dark mt-5">Education Details :</h5>
             </div>
 
-            <div class="col-12 mt-3">
-                <div class="custom-form p-4 border rounded">
-                    <form>
-                        <div class="row">
+            <div class="col-12 mt-3" >
+                <div class="custom-form p-4 border rounded"  >
+                    <form id="education-container">
+                        <div class="row" >
                             <div class="col-md-6">
                                 <div class="form-group app-label">
-                                    <label class="text-muted">Graduation</label>
-                                    <input id="graduation" type="text" class="form-control resume" placeholder="">
+                                    <label class="text-muted">Course</label>
+                                    <input name="educ[1][course]" id="course" type="text" class="form-control resume" placeholder="">
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group app-label">
-                                    <label class="text-muted">University/College</label>
-                                    <input id="university/college" type="text" class="form-control resume"
+                                    <label class="text-muted">Institute</label>
+                                    <input name="educ[1][institute]" id="institute" type="text" class="form-control resume"
                                            placeholder="">
                                 </div>
                             </div>
 
                             <div class="col-lg-6">
                                 <div class="form-group app-label">
-                                    <label class="text-muted">Degree/Certification</label>
-                                    <input id="degree/certification" type="text" class="form-control resume"
+                                    <label class="text-muted">Certificate</label>
+                                    <input name="educ[1][certificate]" id="certificate" type="text" class="form-control resume"
                                            placeholder="">
                                 </div>
                             </div>
 
-                            <div class="col-lg-6">
+                            {{-- <div class="col-lg-6">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group app-label">
@@ -252,27 +258,56 @@
                                     <div class="col-md-6">
                                         <div class="form-group app-label">
                                             <label class="text-muted">Course Title</label>
-                                            <input id="course-title" type="text" class="form-control resume"
+                                            <input name="educ[1][" id="course-title" type="text" class="form-control resume"
                                                    placeholder="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label">
+                                            <label class="text-muted">Date From</label>
+                                            <input name="educ[1][starting-date]" id="starting-date" type="date" class="form-control resume"
+                                                   placeholder="01-Jan-2018">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group app-label">
+                                            <label class="text-muted">Date To</label>
+                                            <input name="educ[1][completion-date]" id="completion-date" type="date" class="form-control resume"
+                                                   placeholder="31-March-2019">
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-12">
+                            
+                        </div>
+                        <div class="col-lg-12">
                                 <div class="form-group app-label">
                                     <label>Additional Information :</label>
-                                    <textarea id="addition-information" rows="4" class="form-control resume"
+                                    <textarea name="educ[1][addition-details]" id="addition-details" rows="4" class="form-control resume"
                                               placeholder=""></textarea>
                                 </div>
                             </div>
+
+
+                          
+                                   
+                    </form> 
+                    <input type="button" class="Bnt btn btn-primary" id="add-education-details" value="Add More">
+                               
+
                             <div class="col-lg-12">
                                 <div class="form-group app-label text-right">
-                                    <input type="button" class="submitBnt btn btn-primary" value="Add More">
+                                    <input  type="submit" class="submitBnt btn btn-primary" value="Add More">
+                                    
                                 </div>
                             </div>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -336,7 +371,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-12">
+                            <div class="col-lg-12 pb-5">
                                 <div class="form-group app-label">
                                     <label>Additional Information :</label>
                                     <textarea id="addition-information-1" rows="4" class="form-control resume"

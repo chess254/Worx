@@ -75,6 +75,7 @@
                         {{-- <li><a href="job-details-2.html">Job Details-2</a></li> --}}
                     </ul>
                 </li>
+                @auth
                 <li class="has-submenu">
                     <a href="javascript:void(0)">My Account</a><span class="menu-arrow"></span>
                     <ul class="submenu">
@@ -84,6 +85,7 @@
                         {{-- <li><a href="job-details-2.html">Job Details-2</a></li> --}}
                     </ul>
                 </li>
+                @endauth
                 <li>
                 </li>
                

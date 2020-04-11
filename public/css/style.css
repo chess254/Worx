@@ -2678,4 +2678,9 @@ hr {
   border: 0;
   border-top: 1px solid #7f838d;
 }
+
+#user_form fieldset:not(:first-of-type) {
+  display: none;
+}
+
 /*# sourceMappingURL=style.css.map */

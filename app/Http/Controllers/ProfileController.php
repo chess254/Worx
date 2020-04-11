@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\SeekerProfile;
+use App\EducationDetails;
 
 class ProfileController extends Controller
 {
@@ -22,7 +23,7 @@ class ProfileController extends Controller
        {
         return view('profile.show', compact('profile'));
        }else{
-           return redirect('/profile');
+           return redirect('/profile')->with('status', 'Create your profile');;
        }
     }
 
@@ -70,8 +71,60 @@ class ProfileController extends Controller
     public function create(){
         return view('profile.create');
     }
+
+    public function createStep1(Request $request){
+        $userprofile = $request->session()->get('userprofile');
+        return view('profile.create-step-1');
+    }
+
+    public function postCreateStep1(){
+        return view('profile.create');
+    }
+
     public function store(Request $request){
-        $profile = New SeekerProfile;
+        // dd($request->all());
+        // dd($request->educ[1]);
+        if(!auth()->check()){
+            return redirect('register');
+        }
+
+        $education = New EducationDetails($request->educ[1]);
+        $experience = New \App\ExperienceDetails($request->exp[1]);
+       
+            // dd($experience , $education);
+
+        // $profile = New SeekerProfile;
+        // $profile->title = $request->name;
+        
         $user = auth()->user();
+        // $user->name = $request->name;
+        // $user->middle_name = $request->middle_name;
+        // $user->second_name = $request->second_name;
+        // $user->city = $request->city;
+        // $user->county_id = $request->county;
+        // $user->country = $request->country;
+        // $user->phone = $request->phone;
+        // $user->website = $request->website;
+        // $user->address = $request->address;
+        // $user->save();
+
+        // dd($user);
+
+
+
+        // $job = auth()->user()->job()->create($data); //create job with current user as user_id
+        $profile = auth()->user()->seekerProfile()->create();
+        // dd($profile->user_id);
+// $education->seeker_profile_id = $profile->id;
+// $experience->seeker_profile_id = $profile->id; 
+// $education->save();
+// $experience->save();
+
+        
+        $profile->educationDetails()->create($education->toArray());
+        $profile->experienceDetails()->create($experience->toArray());  
+
+        dd($user->seekerProfile->experienceDetails);
+        $profile->save();
     }
 }
