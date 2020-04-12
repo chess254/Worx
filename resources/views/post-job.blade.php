@@ -46,7 +46,7 @@
       </div>
       <div class="row mb-5">
         <div class="col-lg-12">
-          <form class="p-4 p-md-5 border rounded" action="/post" method="post">
+          <form class="p-4 p-md-5 border rounded" action="/job" method="post">
             @csrf
             <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
             
@@ -199,11 +199,12 @@
 
             <p>your companies</p>
             
-
             <select id="company_id" name="company_id">
               <option>Choose company</option>
+              
               @foreach($user_companies as $company)
               <option value="{{$company->id}}">{{$company->name}}</option>
+              
               @endforeach
           </select>
 

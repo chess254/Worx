@@ -17,7 +17,9 @@
               <div class="row justify-content-center">
                   <div class="col-lg-12">
                       <div class="title-heading text-center text-white">
-                          <h1 class="heading font-weight-light mb-4" style="color: orange;">pata janta fasta</h1>
+                          <h1 class="display-1 font-weight-light mb-4 "
+                          {{-- class="heading font-weight-light mb-4" --}}
+                          style="color: orange;">pata janta fasta</h1>
                       </div>
                   </div>
               </div>

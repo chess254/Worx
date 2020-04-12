@@ -24,7 +24,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('company.create');
     }
 
     /**
@@ -44,21 +44,29 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($company)
+    public function show( $company)
     {
+       
+        // return view('job', compact('Job'));
+
         $Company = Company::where('id', $company)->with('businessStream')
         ->first();
-        return $Company->toArray();
-        // return view('job', compact('Job'));
+
+        // dd($Company);
+        if($Company){
+            return view('company.view', compact('Company'));
+        } else{
+            return redirect('/company');
+        }
     }
 
-    public function view($company)
+    public function view(Request $request, $company)
     {
         $Company = Company::where('id', $company)->with('businessStream')
         ->first();
 
-        // return $Company->toArray();
-        return view('company.view', compact('Company'));
+        
+        return $Company->toArray();
     }
 
     /**

@@ -1,5 +1,5 @@
-/* Theme Name: Joba - Responsive Landing Page Template
-   Author: Maidathemes
+/* Theme Name: Worx
+   Author: Chess254
    Version: 1.0.0
    File Description: Main JS file of the template
 */
@@ -12,8 +12,8 @@
     // Loader 
     $(window).on('load', function() {
         $('#status').fadeOut();
-        $('#preloader').delay(350).fadeOut('slow');
-        $('body').delay(350).css({
+        $('#preloader').delay(150).fadeOut('slow');
+        $('body').delay(200).css({
             'overflow': 'visible'
         });
     }); 
@@ -104,7 +104,7 @@ $("#expModal").on('show.bs.modal', function (e) {
 });
 
 $('#company_id').change(function() {
-    $.get('../company/'+this.value, function(data){
+    $.get('../company-profile/'+this.value, function(data){
         // Code to populate the secondary select element
 
         var company = data;

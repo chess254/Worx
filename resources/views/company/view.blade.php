@@ -109,31 +109,8 @@
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
                 <h4>Company Overview :</h4>
-                <div class="rounded border p-4 mt-3">
-                    <p class="text-muted">At vero eos accusamus iusto odio dignissimos ducimus blanditiis praesentium
-                        voluptatum deleniti that is atque corrupti dolores et quas molestias excepturi sint occaecati
-                        cupiditate non at provident similique sunt in culpa qui officia deserunt mollitia animi id est
-                        laboru at dolorum fuga Nam libero tempore cum soluta nobis est eligendi optio cumque nihil
-                        impedit quo minus quod maxime placeat facere possimus omnis voluptas assumenda est omnis dolor
-                        repellendus at enim ipsam voluptatem quia voluptas aut odit aut fugit Cum sociis natoque
-                        penatibus magnis dis parturient montes nascetur ridiculus mus donec quam felis ultricies nec
-                        pellentesque eu pretium quis sem that phasellus viverra nulla ut metus varius laoreet.</p>
-                    <p class="text-muted">Nobis est eligendi optio cumque nihil impedit quo minus quod maxime at placeat
-                        facere possimus omnis voluptas assumenda est omnis dolor repellendus at enim ipsam eligendi
-                        optio cumque nihil impedit quo minus quod maxime placeat voluptatem quia that voluptas aut odit
-                        aut fugit Cum sociis natoque penatibus magnis dis parturient montes, nascetur ridiculus mus.
-                        Donec quam felis, ultricies nec this pellentesque eu pretium quis sem hasellus viverra nulla ut
-                        metus varius laoreet uisque rutrum enean imperdie tiam ultricies nisi vel augue.</p>
-                    <p class="text-muted mb-0">Optio cumque nihil impedit quo minus quod maxime at placeate facere
-                        possimuse omnis voluptas assumenda est omnis dolor repellendus at enim ipsam voluptatem quia
-                        voluptas aut odit aut fugit um sociis natoque penatibus magnis dis parturient montes nascetur at
-                        ridiculus mus onec quam felis ultricies nec nihil impedit quo minus quod maxime at placeat
-                        facere possimuse omnis voluptas assumenda est omnis dolor repellendus at enime pellentesque eu
-                        pretium quis sem Phasellus viverra nulla ut metus varius laoreet uisque rutrum enean imperdiet
-                        tiam ultricies nisi vel augue Donec elit libero sodales nec volutpat a suscipit non turpis ullam
-                        sagittis Suspendisse pulvinar at augue ac venenatis condimentum sem libero volutpat nibh nec
-                        pellentesque velit pede quis nunc estibulum ante ipsum primis in faucibus orci luctus et
-                        ultrices as cubilia Curae usce id purus varius tincidunt libero Phasellus dolor.</p>
+                <div class="rounded border p-4 mt-3 text-muted">
+                    {{$Company->description}}
                 </div>
             </div>
         </div>
