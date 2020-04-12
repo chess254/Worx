@@ -163,6 +163,9 @@ $(document).ready(function(){
     form_count_form = $(this).parent();
     next_form = $(this).parent().next();
     next_form.show();
+    $('html, body').animate({
+        scrollTop: ($('#educ').first().offset().top)
+    },200);
     form_count_form.hide();
     setProgressBar(++form_count);
   });  
@@ -171,6 +174,9 @@ $(document).ready(function(){
     next_form = $(this).parent().prev();
     next_form.show();
     form_count_form.hide();
+    $('html, body').animate({
+        scrollTop: ($('#educ').first().offset().top)
+    },200);
     setProgressBar(--form_count);
   });
   setProgressBar(form_count);  
