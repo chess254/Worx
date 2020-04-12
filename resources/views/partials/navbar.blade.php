@@ -79,7 +79,15 @@
                 <li class="has-submenu">
                     <a href="javascript:void(0)">My Account</a><span class="menu-arrow"></span>
                     <ul class="submenu">
-                    <li><a href="/profile/{{auth()->user()->id}}">profile</a></li>
+                        @if(Auth::user() && (Auth::user()->user_type_id == 1))
+                            <li><a href="/profile/{{auth()->user()->id}}">profile</a></li>
+                        @else
+                            @foreach(auth()->user()->companies as $company)
+
+                                <li class="pb-1"><a href="/company/{{$company->id}}">{{$company->name}}</a></li>
+                            
+                            @endforeach
+                        @endif
                         {{-- <li><a href="job-grid.html">Job Grid</a></li> --}}
                         {{-- <li><a href="{{route('/job')}}">Job Details</a></li> --}}
                         {{-- <li><a href="job-details-2.html">Job Details-2</a></li> --}}

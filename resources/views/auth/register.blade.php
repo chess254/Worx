@@ -79,6 +79,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="user_type" class="col-md-4 col-form-label text-md-right">{{ __('Register as') }}</label>
+                            <div class="col-md-6">
+                                    <div class="form-button">
+                                        <select style="color: orange;" class="nice-select rounded" name="user_type" required pl>
+                                            <option value="">Choose account type</option>
+                                            <option value="1">Job Seeker</option>
+                                            <option value="2">Employer</option>
+                                        </select>
+                                    </div>
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

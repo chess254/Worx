@@ -69,24 +69,19 @@ class ProfileController extends Controller
         return redirect()->back();    
     }
 
-    public function create(){
-        return view('profile.create');
-    }
+  
 
-    public function createStep1(Request $request){
+    public function create(Request $request){
         // $userprofile = $request->session()->get('userprofile');
         if(Auth::guest()){
             return redirect('register');
         }
         if(auth()->user()->seekerProfile){
-            return redirect('/profile/'.auth()->user()->id);
+            return redirect()->route('profile.show', auth()->user()->id);
         }
-        return view('profile.create-step-1');
-    }
-
-    public function postCreateStep1(){
         return view('profile.create');
     }
+
 
     public function store(Request $request){
         // dd($request->all());

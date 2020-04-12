@@ -35,16 +35,17 @@ Route::get('/jobs', 'JobsController@index')->name('jobs');
 
 Route::get('/job/{job}', 'JobsController@show');
 
-Route::get('/post','JobsController@create')->name('create-job')->middleware('auth');
+Route::get('/job','JobsController@create')->name('create-job')->middleware('auth');
 
-Route::post('/post','JobsController@store');
+Route::post('/job','JobsController@store');
 
 Route::get('/profiles', 'ProfileController@index');
-Route::get('/profile', 'ProfileController@createStep1');
+Route::get('/profile', 'ProfileController@create');
 Route::post('/profile', 'ProfileController@store');
-Route::get('/profile/{user_id}', 'ProfileController@show');
+Route::get('/profile/{user_id}', 'ProfileController@show')->name('profile.show');
 Route::post('/profile/{user_id}', 'ProfileController@update');
 
 Route::get('/company/{company}', 'CompanyController@show');
+Route::get('/company', 'CompanyController@create');
 Route::get('/company-profile/{company}', 'CompanyController@view');
 
