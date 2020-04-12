@@ -29,7 +29,7 @@
             </div>
             <div class="buy-button">
                 <a href="{{ route('logout') }}" class="btn btn-light-outline btn-sm" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"><i class="mdi mdi-account-key"></i><span class="mr-2 icon-lock_outline">{{ __('Logout') }}</span> </a>
+                document.getElementById('logout-form').submit();"><i class="mdi mdi-door-open"></i><span class="mr-2 icon-lock_outline">{{ __('Logout') }}</span> </a>
             </div>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf

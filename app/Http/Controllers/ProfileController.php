@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\SeekerProfile;
 use App\EducationDetails;
+use Auth;
 
 class ProfileController extends Controller
 {
@@ -73,7 +74,13 @@ class ProfileController extends Controller
     }
 
     public function createStep1(Request $request){
-        $userprofile = $request->session()->get('userprofile');
+        // $userprofile = $request->session()->get('userprofile');
+        if(Auth::guest()){
+            return redirect('register');
+        }
+        if(auth()->user()->seekerProfile){
+            return redirect('/profile/'.auth()->user()->id);
+        }
         return view('profile.create-step-1');
     }
 
@@ -84,8 +91,15 @@ class ProfileController extends Controller
     public function store(Request $request){
         // dd($request->all());
         // dd($request->educ[1]);
-        if(!auth()->check()){
+        
+        // if(!auth()){
+            if(Auth::guest()){
             return redirect('register');
+        }
+
+        $user = auth()->user();
+        if(auth()->user()->seekerProfile){
+            return redirect('/profile/'.$user->id);
         }
 
         $education = New EducationDetails($request->educ[1]);
@@ -96,17 +110,16 @@ class ProfileController extends Controller
         // $profile = New SeekerProfile;
         // $profile->title = $request->name;
         
-        $user = auth()->user();
-        // $user->name = $request->name;
-        // $user->middle_name = $request->middle_name;
-        // $user->second_name = $request->second_name;
-        // $user->city = $request->city;
-        // $user->county_id = $request->county;
-        // $user->country = $request->country;
-        // $user->phone = $request->phone;
-        // $user->website = $request->website;
-        // $user->address = $request->address;
-        // $user->save();
+        $user->name = $request->name;
+        $user->middle_name = $request->middle_name;
+        $user->second_name = $request->second_name;
+        $user->city = $request->city;
+        $user->county_id = $request->county;
+        $user->country = $request->country;
+        $user->phone = $request->phone;
+        $user->website = $request->website;
+        $user->address = $request->address;
+        $user->save();
 
         // dd($user);
 
@@ -124,7 +137,9 @@ class ProfileController extends Controller
         $profile->educationDetails()->create($education->toArray());
         $profile->experienceDetails()->create($experience->toArray());  
 
-        dd($user->seekerProfile->experienceDetails);
+        // dd($user->seekerProfile->experienceDetails);
         $profile->save();
+
+        return redirect()->route('/profile/'.$user->id);
     }
 }

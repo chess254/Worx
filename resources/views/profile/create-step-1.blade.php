@@ -37,22 +37,32 @@
 <!-- end home -->
 
 <!-- CREATE RESUME START -->
-<section class="section pt-1">
+<section class="section pt-1 mt-100" id="educ">
     
         
 
 
-        <div class="container">
+        <div class="container mt-4"  >
+            {{-- <div class="progress mt-4">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div> --}}
+            {{-- <div class="alert alert-success hide"></div>    --}}
             
-            <div class="col-12 mt-1">
-                <div class="custom-form p-4 border rounded">
+            <div class="col-12 mt-4">
+                
+                <div class="custom-form p-4 border rounded" >
+                    <div class="progress mt-4">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
                     {{-- <img src="images/employers/img-1.jpg"
                          class="img-fluid avatar avatar-medium d-block mx-auto rounded-pill" alt=""> --}}
-                    <form id="user_form" novalidate action="/profile" method="post">
+                    <form id="user_form" novalidate action="/profile" method="post" >
                         @csrf
                         <fieldset>
                             
-                            <div class="col-lg-12">
+                            <div class="col-lg-12" id="top">
                                 <h5 class="text-dark">General Information :</h5>
                             </div>
                             <div class="row mt-4">
@@ -228,12 +238,12 @@
                                 </div>
                             </div>
 
-                            <input type="button" class="next btn btn-info" value="Next" href="educ" />
+                            <input type="button" class="next btn btn-info" value="Next" />
                         </fieldset>
                         <fieldset>
                             
                             
-                            <div class="col-lg-12" id="educ">
+                            <div class="col-lg-12" >
                                     <h5 class="text-dark mt-5">Education Details : <small> <small>Fill in details for one institution, you will have a chance to update more later</small> </small></h5>
                             </div>
                     
@@ -499,11 +509,7 @@
                     </form>
                 </div>
             </div> 
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
-                </div>
-            </div>
-            <div class="alert alert-success hide"></div>   
+            
         </div>
 
 </section>
