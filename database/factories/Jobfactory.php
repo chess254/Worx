@@ -28,7 +28,7 @@ $factory->define(Job::class, function (Faker $faker) {
             'Chief Technology Officer (CTO)',
             'Chief Information Officer (CIO)'
         ]),
-        'user_id' => $faker->numberBetween(1,10),
+        'user_id' => $faker->numberBetween(1,100),
         'type_id' =>$faker->numberBetween(1,3),
         'business_stream_id' =>$faker->numberBetween(1,30),
         'county_id' =>$faker->numberBetween(1, 47),

@@ -20,11 +20,15 @@ use Illuminate\Support\Str;
 $regex = ['/(\+?254|0){1}[7]{1}([0-2]{1}[0-9]{1}|[9]{1}[0-2]{1})[0-9]{6}/' => "/(\+?254|0){1}[7]{1}([0-2]{1}[0-9]{1}|[9]{1}[0-2]{1})[0-9]{6}/"];
 
 $factory->define(User::class, function (Faker $faker) {
+
+    $firstname = $faker->firstName($gender = 'male'|'female');
+    $lastname= $faker->lastName;
     return [
-        'name' => $faker->firstName($gender = 'male'|'female'),
-        'second_name' =>$faker->lastName, 
+        'name' => $firstname,
+        'second_name' =>$lastname, 
         'middle_name' =>$faker->firstName($gender ='male'|'female'),
-        'email' => $faker->unique()->safeEmail,
+        'email' => str_replace(' ','', $firstname)."@".str_replace(' ','', $lastname).".co.ke",
+        // 'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
         'role'=>$faker->randomElement(['0', '1', '2']),

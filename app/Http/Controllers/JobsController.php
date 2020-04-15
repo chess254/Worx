@@ -111,6 +111,17 @@ class JobsController extends Controller
         return view('job', compact('Job'));
     }
 
+    public function jobsPostedBy(){
+        $user_id = auth()->user()->id;
+        $JobsPostedByUser = Job::where('user_id', $user_id)->get();
+
+        return view('myjobs', compact('JobsPostedByUser'));
+
+        // dd($JobsPostedByUser);
+
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
