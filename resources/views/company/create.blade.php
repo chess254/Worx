@@ -110,7 +110,7 @@
                                 <div class="col-md-8">
                                     <div class="form-group app-label">
                                         <label class="text-muted">Services<span class="text-danger">*</span> :</label>
-                                        <input id="services" name="services[]" multiple type="text" class="form-control resume"
+                                        <input id="services" name="services" multiple type="text" class="form-control resume"
                                                placeholder="Services, comma separated :">
                                     </div>
                                 </div>
@@ -247,8 +247,8 @@
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
                                         <label class="text-muted">Landline 2</label>
-                                        <input id="website" type="url" name="website" class="form-control resume"
-                                               placeholder="www.example.com">
+                                        <input id="" type="url" name="" class="form-control resume"
+                                               placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-md-4">

@@ -36,11 +36,12 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
+        $fruits_ar = explode(', ', $request->services);
         $company = \App\Company::firstOrNew([
             'email'=>$request->email,
             'name' => $request->name,
             'description' => $request->description,
-            'services'=>$request->services,
+            'services'=>explode(',', $request->services),
             'business_stream_id'=>$request->business_stream_id,
             'website' => $request->website,
             'city'=>$request->city,
@@ -55,7 +56,12 @@ class CompanyController extends Controller
             'date_of_formation'=>$request->date_of_formation,
             
             ]);
-            dd($company);
+
+            // $company->toArray();
+
+            $company = auth()->user()->companies()->create($company->toArray());
+            return redirect('/company/'.$company->id);
+            
     }
 
     /**

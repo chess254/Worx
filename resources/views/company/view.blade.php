@@ -126,6 +126,11 @@
                         porttitor congue elit erat euismod orci ac placerat dolor lectus quis orci repellendus at enime
                         pellentesque eu pretium quis sem Phasellus viverra nulla hasellus consectetuer vestibulum
                         elit.</p>
+<ul>
+                        @foreach($Company->services as $service)
+                     <li class="text-muted">{{$service}}</li>
+                        @endforeach
+</ul>
                     <h6 class="text-dark">Details :</h6>
                     <p class="text-muted"><i class="mdi mdi-check text-success"></i> Morbi mattis ullamcorper velit
                         hasellus gravida semper nisi nullam vel sem.</p>
