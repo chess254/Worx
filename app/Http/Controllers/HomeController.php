@@ -30,8 +30,8 @@ class HomeController extends Controller
     public function index()
     {
         $counties = County::all();
-        $categories = BusinessStream::all()->toArray();            
-
+        $categories = BusinessStream::all()->toArray(); 
+       
                 
                 // $jobs = Job::with('businessStream','county')->where('title','like','%web%')->whereHas('businessStream', function($q){
                 //     $q->where('name','LIKE','%%');

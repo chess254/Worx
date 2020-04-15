@@ -69,9 +69,10 @@
                 <li class="has-submenu">
                     <a href="javascript:void(0)">Jobs</a><span class="menu-arrow"></span>
                     <ul class="submenu">
-                        <li><a href="{{route('jobs')}}">Job List</a></li>
+                        <li class="pb-1"><a href="{{route('jobs')}}">Job List</a></li>
                         @if(Auth::user() && (Auth::user()->user_type_id == 2))
-                            <li><a href="/my-jobs">Posted Jobs</a></li>
+                            <li class="pb-1"><a href="/my-jobs">Posted Jobs</a></li>
+                            <li class="pb-1"><a href="/job">Post Job</a></li>
                         @endif
                         {{-- <li><a href="job-grid.html">Job Grid</a></li> --}}
                         {{-- <li><a href="{{route('/job')}}">Job Details</a></li> --}}
