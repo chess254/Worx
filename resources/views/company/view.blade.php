@@ -118,19 +118,19 @@
             <div class="col-lg-12 mt-4 pt-2">
                 <h4>Services :</h4>
                 <div class="rounded border p-4 mt-3">
-                    <p class="text-muted">Aenean tellus metus bibendum sed posuere ac mattis non nunc estibulum
-                        fringilla pede sit amet augue n turpis Pellentesque posuere raesent turpis enean posuere tortor
+                    {{-- <p class="text-muted">Aenean tellus metus bibendum sed posuere ac mattis non nunc estibulum --}}
+                        {{-- fringilla pede sit amet augue n turpis Pellentesque posuere raesent turpis enean posuere tortor
                         sed cursus feugiat nunc augue blandit nunc sollicitudin at dolor sagittis lacus estibulum ante
                         ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Sed aliquam nisi quis
                         porttitor congue elit erat euismod orci ac placerat dolor lectus quis orci repellendus at enime
                         pellentesque eu pretium quis sem Phasellus viverra nulla hasellus consectetuer vestibulum
-                        elit.</p>
-<ul>
+                        elit.</p> --}}
+
                         @foreach($Company->services as $service)
-                     <li class="text-muted">{{$service}}</li>
+                        <p class="text-muted"><i class="mdi mdi-check text-success"></i>{{$service}}</p>
                         @endforeach
-</ul>
-                    <h6 class="text-dark">Details :</h6>
+
+                    {{-- <h6 class="text-dark">Details :</h6>
                     <p class="text-muted"><i class="mdi mdi-check text-success"></i> Morbi mattis ullamcorper velit
                         hasellus gravida semper nisi nullam vel sem.</p>
                     <p class="text-muted"><i class="mdi mdi-check text-success"></i> Phasellus viverra nulla ut metus
@@ -144,12 +144,12 @@
                     <p class="text-muted"><i class="mdi mdi-check text-success"></i> Donec elit libero, sodales nec
                         volutpat a suscipit non turpis ullam sagittis.</p>
                     <p class="text-muted mb-0"><i class="mdi mdi-check text-success"></i> Aenean tellus metus bibendum
-                        sed posuere ac mattis non nunc estibulum fringilla.</p>
+                        sed posuere ac mattis non nunc estibulum fringilla.</p> --}}
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
                 <h4>Company Review :</h4>
             </div>
@@ -266,7 +266,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </section>
 <!-- EMPLOYERS DETAILS END -->

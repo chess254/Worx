@@ -79,7 +79,7 @@ $factory->define(Company::class, function (Faker $faker) {
         'mobile'=>$faker->regexify('/(\+?254|0){1}[7]{1}([0-2]{1}[0-9]{1}|[9]{1}[0-2]{1})[0-9]{6}/'),
         'landline'=>"020-".$faker->numberbetween(11111,99999),
         'facebook'=>"facebook.com/".$cmpnyname,
-        'twitter'=>"twitter.com/".$cmpnyname,
+        'twitter'=>"@".$cmpnyname,
         'linked_in'=>"linkedIn.com/".$cmpnyname,
         'number_of_employees'=>$faker->numberbetween(1,900),
         'date_of_formation'=>$faker->date($format = 'Y-m-d', $max = '2020-01-01')

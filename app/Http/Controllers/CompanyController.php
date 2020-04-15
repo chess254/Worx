@@ -40,9 +40,9 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-    if(Auth::guest()){
-        return redirect ('/home');
-    }
+            if(Auth::guest()){
+                return redirect ('/home');
+            }
 
         $company = \App\Company::firstOrNew(
             [
