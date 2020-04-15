@@ -36,8 +36,7 @@
                     <h4 class="mt-3"><a href="#" class="text-dark">{{$Company->name}}</a></h4>
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item mr-3">
-                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>4102 Aviation Way Los
-                                Angeles, CA 90017</p>
+                            <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{$Company->city}}, {{$Company->country}}</p>
                         </li>
 
                         <li class="list-inline-item">
@@ -56,7 +55,7 @@
                         </li>
 
                         <li class="list-inline-item">
-                            <p class="text-muted"><i class="mdi mdi-cellphone-iphone mr-2"></i>123 456 7890</p>
+                            <p class="text-muted"><i class="mdi mdi-cellphone-iphone mr-2"></i>{{$Company->mobile}}</p>
                         </li>
                     </ul>
                 </div>
@@ -69,15 +68,15 @@
                     <div class="row justify-content-sm-center">
                         <div class="col-lg-2 col-md-3 col-6">
                             <div class="text-sm-center m-14">
-                                <h5 class="text-dark mb-2">Employer</h5>
-                                <p class="text-muted mb-0">2250 +</p>
+                                <h5 class="text-dark mb-2">Employs</h5>
+                                <p class="text-muted mb-0">{{$Company->number_of_employees}} +</p>
                             </div>
                         </div>
 
                         <div class="col-lg-2 col-md-3 col-6">
                             <div class="text-sm-center m-14">
                                 <h5 class="text-dark mb-2">Type</h5>
-                                <p class="text-muted mb-0">Create Website</p>
+                                <p class="text-muted mb-0">{{$Company->businessStream->name}}</p>
                             </div>
                         </div>
 
@@ -88,7 +87,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-2 col-md-3 col-6">
+                        {{-- <div class="col-lg-2 col-md-3 col-6">
                             <div class="text-sm-center m-14">
                                 <h5 class="text-dark mb-2">Revenue</h5>
                                 <p class="text-muted mb-0">$7000 - $50000 </p>
@@ -100,7 +99,7 @@
                                 <h5 class="text-dark mb-2">Followers</h5>
                                 <p class="text-muted mb-0">5584230 +</p>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -126,6 +125,11 @@
                         porttitor congue elit erat euismod orci ac placerat dolor lectus quis orci repellendus at enime
                         pellentesque eu pretium quis sem Phasellus viverra nulla hasellus consectetuer vestibulum
                         elit.</p>
+<ul>
+                        @foreach($Company->services as $service)
+                     <li class="text-muted">{{$service}}</li>
+                        @endforeach
+</ul>
                     <h6 class="text-dark">Details :</h6>
                     <p class="text-muted"><i class="mdi mdi-check text-success"></i> Morbi mattis ullamcorper velit
                         hasellus gravida semper nisi nullam vel sem.</p>

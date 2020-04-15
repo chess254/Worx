@@ -87,6 +87,8 @@
                                 <li class="pb-1"><a href="/company/{{$company->id}}">{{$company->name}}</a></li>
                             
                             @endforeach
+                            <li class="pb-1"><a href="/company">Add Company <i class="mdi mdi-add">+</i></a></li>
+
                         @endif
                         {{-- <li><a href="job-grid.html">Job Grid</a></li> --}}
                         {{-- <li><a href="{{route('/job')}}">Job Details</a></li> --}}

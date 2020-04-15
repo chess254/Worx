@@ -18,6 +18,10 @@ class AddFkToJobCounties extends Migration
         ->references('id')->on('counties')
         ->onDelete('cascade')->change();
         });
+
+        Schema::table('company', function (Blueprint $table) {
+        $table->foreign('county_id')->references('id')->on('counties')->change();
+        });
        
     }
 

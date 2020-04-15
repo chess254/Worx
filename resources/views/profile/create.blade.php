@@ -198,7 +198,7 @@
                                     <div class="form-group app-label">
                                         <label class="text-muted">Country</label>
                                         <div class="form-button">
-                                            <select class="nice-select rounded" id="country" name="country">
+                                            <select class="nice-select rounded" id="country" name="country" data-live-search="">
                                                 <option data-display="Country">Country</option>
                                                 <option value="Kenya">Kenya</option>
                                             </select>
@@ -472,7 +472,7 @@
                                             <div class="col-lg-12">
                                                 <div class="form-group app-label">
                                                     <label class="text-muted">Skills</label>
-                                                    <input id="skills" name="skills[]" type="text" class="form-control resume"
+                                                    <input id="skills" multiple name="skills[]" type="text" class="form-control resume"
                                                            placeholder="HTML, CSS, PHP, javascript, ...">
                                                 </div>
                                             </div>

@@ -24,7 +24,8 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('company.create');
+        $business_stream = \App\BusinessStream::all();
+        return view('company.create', compact('business_stream'));
     }
 
     /**
@@ -35,7 +36,32 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fruits_ar = explode(', ', $request->services);
+        $company = \App\Company::firstOrNew([
+            'email'=>$request->email,
+            'name' => $request->name,
+            'description' => $request->description,
+            'services'=>explode(',', $request->services),
+            'business_stream_id'=>$request->business_stream_id,
+            'website' => $request->website,
+            'city'=>$request->city,
+            'county_id'=>$request->county_id,
+            'country'=>$request->country,
+            'mobile'=>$request->mobile,
+            'landline'=>$request->landline,
+            'facebook'=>$request->facebook,
+            'twitter'=>$request->twitter,
+            'linked_in'=>$request->linked_in,
+            'number_of_employees'=>$request->number_of_employees,
+            'date_of_formation'=>$request->date_of_formation,
+            
+            ]);
+
+            // $company->toArray();
+
+            $company = auth()->user()->companies()->create($company->toArray());
+            return redirect('/company/'.$company->id);
+            
     }
 
     /**

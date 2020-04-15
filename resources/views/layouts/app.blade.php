@@ -206,7 +206,40 @@ $(document).ready(function(){
 	} else {
 		return true;	
 	}    
-  });  
+  }); 
+  
+  $( "#company_form" ).submit(function(event) {    
+	// var error_message = '';
+	// if(!$("#email").val()) {
+	// 	error_message+="Please Fill Email Address";
+	// }
+	// if(!$("#password").val()) {
+	// 	error_message+="<br>Please Fill Password";
+	// }
+	// if(!$("#mobile").val()) {
+	// 	error_message+="<br>Please Fill Mobile Number";
+	// }
+	// Display error if any else submit form
+	if(error_message) {
+		$('.alert-success').removeClass('hide').html(error_message);
+		return false;
+	} else {
+		return true;	
+	}    
+  }); 
+  
+});
+
+
+$('#services').selectize({
+    delimiter: ',',
+    persist: false,
+    create: function(input) {
+        return {
+            value: input,
+            text: input
+        }
+    }
 });
 </script>
 
