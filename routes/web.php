@@ -38,6 +38,7 @@ Route::get('/job/{job}', 'JobsController@show');
 Route::get('/job','JobsController@create')->name('create-job')->middleware('auth');
 
 Route::post('/job','JobsController@store');
+Route::get('/my-jobs','JobsController@jobsPostedby')->name('myjobs');
 
 Route::get('/profiles', 'ProfileController@index');
 Route::get('/profile', 'ProfileController@create');

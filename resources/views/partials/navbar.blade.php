@@ -70,6 +70,9 @@
                     <a href="javascript:void(0)">Jobs</a><span class="menu-arrow"></span>
                     <ul class="submenu">
                         <li><a href="{{route('jobs')}}">Job List</a></li>
+                        @if(Auth::user() && (Auth::user()->user_type_id == 2))
+                            <li><a href="/my-jobs">Posted Jobs</a></li>
+                        @endif
                         {{-- <li><a href="job-grid.html">Job Grid</a></li> --}}
                         {{-- <li><a href="{{route('/job')}}">Job Details</a></li> --}}
                         {{-- <li><a href="job-details-2.html">Job Details-2</a></li> --}}
