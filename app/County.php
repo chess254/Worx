@@ -12,6 +12,11 @@ class County extends Model
     public function jobs(){
         return $this->hasMany(\App\Job::class);
     }
+    
+    public function companies()
+    {
+        return $this->hasMany(\App\Company::class);
+    }
 
     
 }

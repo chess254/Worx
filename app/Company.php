@@ -17,9 +17,14 @@ class Company extends Model
     // ];
 
     protected $guarded = [];
+    protected $casts = ['services'=>'array'];
 
     public function jobs(){
         return $this->hasMany(\App\Job::class);
+    }
+
+    public function county(){
+        return $this->belongsTo(\App\County::class);
     }
 
     public function businessStream(){

@@ -47,5 +47,6 @@ Route::post('/profile/{user_id}', 'ProfileController@update');
 
 Route::get('/company/{company}', 'CompanyController@show');
 Route::get('/company', 'CompanyController@create');
+Route::post('/company', 'CompanyController@store');
 Route::get('/company-profile/{company}', 'CompanyController@view');
 
