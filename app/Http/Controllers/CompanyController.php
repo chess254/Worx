@@ -28,6 +28,9 @@ class CompanyController extends Controller
         if(Auth::guest()){
             return redirect ('/home');
         }
+        if(Auth::user()->user_type_id !== 2){
+         return redirect('/home')->with("Only Employers can create company profile");
+        }
         $business_stream = \App\BusinessStream::all();
         return view('company.create', compact('business_stream'));
     }

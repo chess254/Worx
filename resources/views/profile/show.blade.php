@@ -220,11 +220,61 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row"id="rowED">
             <div class="col-lg-12 mt-4 pt-2">
-                <h4 class="text-dark">Education :</h4>
+                <div style="display: flex; justify-content: space-between;">
+                    <h4 class="text-dark">Education :</h4>
+                    @if(auth()->check() && ($profile->user_id == auth()->user()->id))
+                        <button class="btn btn-sm btn-info"  data-toggle="modal" data-target="#addEducModal">Add entry</button>
+                    @endif
+                </div>
+                
             </div>
         </div>
+
+        {{-- add education entry modal --}}
+        <div class="modal fade" id="addEducModal" tabindex="-1" role="dialog" aria-labelledby="addEducModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Education Entry</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form>
+                    @csrf
+                  <div class="modal-body">
+                    <div class="form-group">   
+                        <label for="add_institute">Institute</label><br />
+                        <input type="text" class="form-control" name="add_institute" id="add_institute" >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="add_course">Course</label><br />
+                        <input type="text" class="form-control" name="add_course" id="add_course" >
+                       </div>
+                   <div class="form-group"> 
+                       <label for="add_certificate">Certificate</label>
+                   <input type="text" class="form-control" name="add_certificate" id="add_certificate" >
+                   </div>
+                   <div class="form-group">
+                       <label for="add_from_date">From</label><br />
+                       <input type="date" class="form-control" name="add_from_date" id="add_from_date" >
+                   </div>
+                   <div class="form-group"> 
+                       <label for="add_to_date">To:</label><br />
+                       <input type="date" class="form-control" name="add_to_date" id="add_to_date" >
+                   </div>
+                  <div class="modal-footer border-top-0 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                  </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+
         <div class="row">
             @foreach($profile->educationDetails as $education)
             <div class="col-lg-4 col-md-6 mt-4 pt-5">
@@ -260,10 +310,10 @@
 
             <div class="modal fade" id="eduModal" tabindex="-1" role="dialog" aria-labelledby="eduModalLabel" aria-hidden="true">
                         
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-dialog-centered"role="document">
                     <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-light">edit education entry</h4>
+                        <div class="modal-header border-bottom-0">
+                            <h5 class="modal-title">edit education entry</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -273,26 +323,26 @@
                     <form action="{{auth()->user()->id}}" method="post">
                             @csrf
                             <div class="modal-body">
-                                <div class="pb-2"> 
-                                    <label for="edit_certificate">Certificate</label><br />
-                                <input type="text" name="edit_certificate" id="edit_certificate" >
+                                <div class="form-group">   
+                                     <label for="edit_institute">Institute</label><br />
+                                     <input type="text" class="form-control" name="edit_institute" id="edit_institute" >
+                                 </div>
+                                 
+                                 <div class="form-group">
+                                     <label for="edit_course">Course</label><br />
+                                     <input type="text" class="form-control" name="edit_course" id="edit_course" >
+                                    </div>
+                                <div class="form-group"> 
+                                    <label for="edit_certificate">Certificate</label>
+                                <input type="text" class="form-control" name="edit_certificate" id="edit_certificate" >
                                 </div>
-                               <div class="pb-2">   
-                                    <label for="edit_institute">Institute</label><br />
-                                    <input type="text" name="edit_institute" id="edit_institute" >
-                                </div>
-                             
-                                <div class="pb-2">
-                                    <label for="edit_course">Course</label><br />
-                                    <input type="text" name="edit_course" id="edit_course" >
-                                </div>
-                                <div class="pb-2">
+                                <div class="form-group">
                                     <label for="edit_from_date">From</label><br />
-                                    <input type="date" name="edit_from_date" id="edit_from_date" >
+                                    <input type="date" class="form-control" name="edit_from_date" id="edit_from_date" >
                                 </div>
-                                <div class="pb-2"> 
+                                <div class="form-group"> 
                                     <label for="edit_to_date">To:</label><br />
-                                    <input type="date" name="edit_to_date" id="edit_to_date" >
+                                    <input type="date" class="form-control" name="edit_to_date" id="edit_to_date" >
                                 </div>
 
                                 <input type="hidden" name="educationDetails_id" id="educationDetails_id">
@@ -316,9 +366,17 @@
         
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
-                <h4 class="text-dark">Experience :</h4>
+                
+            <div style="display: flex; justify-content: space-between;">
+            <h4 class="text-dark">Experience :</h4>
+            @if(auth()->check() && ($profile->user_id == auth()->user()->id))
+                <button class="btn btn-sm btn-info">Add entry</button>
+            @endif
+        </div>
             </div>
         </div>
+
+        
 
         <div class="row">
 
@@ -504,7 +562,12 @@
 
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
-                <h4 class="text-dark">Skills :</h4>
+                <div style="display: flex; justify-content: space-between;">
+                    <h4 class="text-dark">Skills :</h4>
+                    @if(auth()->check() && ($profile->user_id == auth()->user()->id))
+                        <button class="btn btn-sm btn-info">Edit</button>
+                    @endif
+                </div>
             </div>
         </div>
 

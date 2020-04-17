@@ -231,7 +231,7 @@ $(document).ready(function(){
 });
 
 
-$('#services').selectize({
+$('#services','#skills').selectize({
     delimiter: ',',
     persist: false,
     create: function(input) {
@@ -241,6 +241,16 @@ $('#services').selectize({
         }
     }
 });
+// $('#skills').selectize({
+//     delimiter: ',',
+//     persist: false,
+//     create: function(input) {
+//         return {
+//             value: input,
+//             text: input
+//         }
+//     }
+// });
 </script>
 
 

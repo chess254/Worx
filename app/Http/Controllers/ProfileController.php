@@ -99,6 +99,7 @@ class ProfileController extends Controller
 
         $education = New EducationDetails($request->educ[1]);
         $experience = New \App\ExperienceDetails($request->exp[1]);
+        
        
             // dd($experience , $education);
 
@@ -111,9 +112,11 @@ class ProfileController extends Controller
         $user->city = $request->city;
         $user->county_id = $request->county;
         $user->country = $request->country;
+        $user->gender = $request->gender;
         $user->phone = $request->phone;
         $user->website = $request->website;
         $user->address = $request->address;
+        // dd($user->skills);
         $user->save();
 
         // dd($user);
@@ -128,13 +131,17 @@ class ProfileController extends Controller
 // $education->save();
 // $experience->save();
 
+
+        $skills =explode(',', $request->skills);
         
         $profile->educationDetails()->create($education->toArray());
         $profile->experienceDetails()->create($experience->toArray());  
+        $profile->skills = $skills;
+        // dd($profile);
 
         // dd($user->seekerProfile->experienceDetails);
         $profile->save();
 
-        return redirect()->route('/profile/'.$user->id);
+        return redirect('/profile/'.$user->id);
     }
 }
