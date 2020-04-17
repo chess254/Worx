@@ -110,7 +110,7 @@
                                 <div class="col-md-8">
                                     <div class="form-group app-label">
                                         <label class="text-muted">Services<span class="text-danger">*</span> :</label>
-                                        <input id="services" name="services" multiple type="text" class="form-control resume"
+                                        <input id="services" name="services" multiple type="text" class=" resume"
                                                placeholder="Services, comma separated :">
                                     </div>
                                 </div>

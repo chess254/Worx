@@ -37,13 +37,14 @@
                         <img src="{{ asset('images/featured-job/img-1.png') }}" alt="" class="img-fluid mx-auto d-block">
                     </div>
                     <h4 class="text-dark">{{$Job->title}}</h4>
+                    {{-- {{dd($Job->county->county_name)}} --}}
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item mr-3">
                             <p class="text-muted mb-2"><i class="mdi mdi-bank mr-1"></i>{{$Job->company['name']}}</p>
                         </li>
 
                         <li class="list-inline-item">
-                            <p class="text-muted mb-2"><i class="mdi mdi-map-marker mr-1"></i>{{$Job->location['city']}},  {{$Job->location['country']}}</p>
+                            <p class="text-muted mb-2"><i class="mdi mdi-map-marker mr-1"></i>{{$Job->town}}, {{$Job->county->county_name}}, {{$Job->location['country']}}</p>
                         </li>
 
                         <li class="list-inline-item">
@@ -54,7 +55,7 @@
                         <br /> --}}
 
                         <li class="list-inline-item">
-                            <p class="text-muted mb-2"><i class="mdi mdi-calendar-today text-muted mdi-18px"></i>Application Deadline {{ $Job->deadline }}</p>
+                            <p class="text-muted mb-2"><i class="mdi mdi-calendar-today text-muted mdi-18px"></i>Application Deadline:  {{ $Job->deadline }}</p>
                         </li>
                 </div>
 

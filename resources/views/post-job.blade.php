@@ -57,15 +57,15 @@
               </label>
             </div>
 
-            {{-- <div class="form-group">
-              <label for="email">Email</label>
-              <input type="text" class="form-control input-group" name="email" id="email" placeholder="you@yourdomain.com">
-            </div> --}}
-            <div class="row">
-              <div class="col-md-6 form-group">
+            
+            <div class="row"> <div class="col-md-12 form-group">
                 <label for="title">Job Title</label>
                 <input type="text" class="form-control" name="title" id="job-title" placeholder="Product Designer">
-              </div>
+              </div><div class="col-md-6 form-group">
+              <label for="email">Email</label>
+              <input type="text" class="form-control input-group" name="email" id="email" placeholder="you@yourdomain.com">
+            </div>
+             
               <div class="col-md -6 form-group">
                 <label for="town">Town / City</label>
                 <input type="text" class="form-control" name="town" id="job-location" placeholder="e.g. Nakuru">
@@ -231,10 +231,10 @@
 
             <div class="form-group">
               <label for="company_description">Company Description (Optional)</label>
-              <div class="editor" id="editor-2" name="">
-                <p>Description</p>
-              </div>
-              <textarea name="company_description" id="company_description"></textarea>
+              {{-- <div class="editor" id="editor-2" name=""> --}}
+                {{-- <p>Description</p>
+              </div> --}}
+              <textarea class="form-control" name="company_description" id="company_description"></textarea>
             </div>
             
             <div class="form-group">
