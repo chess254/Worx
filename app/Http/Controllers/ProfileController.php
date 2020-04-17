@@ -68,6 +68,26 @@ class ProfileController extends Controller
             }
         }
 
+        if(($request->add_company_name) && (auth()->user()->id == $profile->user_id)){
+
+            $newExperience = new \App\ExperienceDetails();
+
+            $newExperience->company_name = $request->add_company_name;
+            $newExperience->job_title = $request->add_job_title;
+            $newExperience->website = $request->add_website;
+            $newExperience->start_date = $request->add_start_date;
+            $newExperience->end_date = $request->add_end_date;
+            $newExperience->job_location_city = $request->add_job_city;
+            $newExperience->job_location_county = $request->add_job_county;
+            $newExperience->job_location_country = $request->add_job_country;
+
+            $newExperienceEntry = $profile->experienceDetails()->save($newExperience);
+            // dd($newEducEntry);
+            // Url::route('profile.show').'#rowED';
+            return redirect('profile/'.'/#rowEXP');
+
+        }
+
         if($request->experienceDetails_id){
 
 

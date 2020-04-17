@@ -2696,12 +2696,13 @@ hr {
 html { scroll-behavior: smooth; } 
 
 .detailCard #editEducCard >button{
-  display:none;
+  /* display:none; */
   opacity:0;
+  transition: .5s ease;
 }
 
 .detailCard:hover #editEducCard > button{
-  display:inline;
+  /* display:inline; */
  opacity:1;
 }
 
