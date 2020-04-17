@@ -84,9 +84,9 @@ $("#expModal").on('show.bs.modal', function (e) {
     website = button.data('website');
     start_date = button.data('start_date');
     end_date = button.data('end_date');
-    job_location_city = button.data('job_location_city');
-    job_location_county = button.data('job_location_county');
-    job_location_country = button.data('job_location_country');
+    job_location_city = button.data('city');
+    job_location_county = button.data('county');
+    job_location_country = button.data('country');
     expid = button.data('expid');
      
     var modal = $(this);
@@ -100,9 +100,11 @@ $("#expModal").on('show.bs.modal', function (e) {
     modal.find('.modal-body #edit_job_country').val(job_location_country);
     modal.find('.modal-body #experienceDetails_id').val(expid);
     console.log(expid);
+    console.log(button.data());
 
 });
 
+//when creating job, populates company data when selected from dropdown
 $('#company_id').change(function() {
     $.get('../company-profile/'+this.value, function(data){
         // Code to populate the secondary select element
@@ -120,70 +122,70 @@ $('#company_id').change(function() {
     });
 });
 
-let addEducInput = 2;
-document.getElementById('add-education-details').onclick = function () {
-    let template = `
-    <hr>
-    <div class="row pt-5" >
-        <div class="col-md-6">
-                                <div class="form-group app-label">
-                                    <label class="text-muted">Course</label>
-                                    <input name="educ[${addEducInput}][course]"  type="text" class="form-control resume" placeholder="">
-                                </div>
-                            </div>
+// let addEducInput = 2;
+// document.getElementById('add-education-details').onclick = function () {
+//     let template = `
+//     <hr>
+//     <div class="row pt-5" >
+//         <div class="col-md-6">
+//                                 <div class="form-group app-label">
+//                                     <label class="text-muted">Course</label>
+//                                     <input name="educ[${addEducInput}][course]"  type="text" class="form-control resume" placeholder="">
+//                                 </div>
+//                             </div>
 
-                            <div class="col-md-6">
-                                <div class="form-group app-label">
-                                    <label class="text-muted">Institute</label>
-                                    <input name="educ[${addEducInput}][institute]"  type="text" class="form-control resume"
-                                           placeholder="">
-                                </div>
-                            </div>
+//                             <div class="col-md-6">
+//                                 <div class="form-group app-label">
+//                                     <label class="text-muted">Institute</label>
+//                                     <input name="educ[${addEducInput}][institute]"  type="text" class="form-control resume"
+//                                            placeholder="">
+//                                 </div>
+//                             </div>
 
-                            <div class="col-lg-6">
-                                <div class="form-group app-label">
-                                    <label class="text-muted">Certificate</label>
-                                    <input name="educ[${addEducInput}][certificate]"  type="text" class="form-control resume"
-                                           placeholder="">
-                                </div>
-                            </div>
+//                             <div class="col-lg-6">
+//                                 <div class="form-group app-label">
+//                                     <label class="text-muted">Certificate</label>
+//                                     <input name="educ[${addEducInput}][certificate]"  type="text" class="form-control resume"
+//                                            placeholder="">
+//                                 </div>
+//                             </div>
 
-                            <div class="col-lg-6">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group app-label">
-                                            <label class="text-muted">Date From</label>
-                                            <input name="educ[${addEducInput}][starting-date]"  type="date" class="form-control resume"
-                                                   placeholder="01-Jan-2018">
-                                        </div>
-                                    </div>
+//                             <div class="col-lg-6">
+//                                 <div class="row">
+//                                     <div class="col-md-6">
+//                                         <div class="form-group app-label">
+//                                             <label class="text-muted">Date From</label>
+//                                             <input name="educ[${addEducInput}][starting-date]"  type="date" class="form-control resume"
+//                                                    placeholder="01-Jan-2018">
+//                                         </div>
+//                                     </div>
 
-                                    <div class="col-md-6">
-                                        <div class="form-group app-label">
-                                            <label class="text-muted">Date To</label>
-                                            <input name="educ[${addEducInput}][completion-date]"  type="date" class="form-control resume"
-                                                   placeholder="31-March-2019">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+//                                     <div class="col-md-6">
+//                                         <div class="form-group app-label">
+//                                             <label class="text-muted">Date To</label>
+//                                             <input name="educ[${addEducInput}][completion-date]"  type="date" class="form-control resume"
+//                                                    placeholder="31-March-2019">
+//                                         </div>
+//                                     </div>
+//                                 </div>
+//                             </div>
 
-                            <div class="col-lg-12">
-                                <div class="form-group app-label">
-                                    <label>Additional Information :</label>
-                                    <textarea name="educ[${addEducInput}][addition-details]"  rows="4" class="form-control resume"
-                                              placeholder=""></textarea>
-                                </div>
-                            </div>
-</div>
+//                             <div class="col-lg-12">
+//                                 <div class="form-group app-label">
+//                                     <label>Additional Information :</label>
+//                                     <textarea name="educ[${addEducInput}][addition-details]"  rows="4" class="form-control resume"
+//                                               placeholder=""></textarea>
+//                                 </div>
+//                             </div>
+// </div>
         
-        `;
+//         `;
 
-    let container = document.getElementById('education-container');
-    let div = document.createElement('div.custom-form');
-    div.innerHTML = template;
-    container.appendChild(div);
+//     let container = document.getElementById('education-container');
+//     let div = document.createElement('div.custom-form');
+//     div.innerHTML = template;
+//     container.appendChild(div);
 
-    addEducInput++;
-}
+//     addEducInput++;
+// }
 

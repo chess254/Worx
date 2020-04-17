@@ -220,14 +220,64 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="rowED">
             <div class="col-lg-12 mt-4 pt-2">
-                <h4 class="text-dark">Education :</h4>
+                <div style="display: flex; justify-content: space-between;">
+                    <h4 class="text-dark">Education :</h4>
+                    @if(auth()->check() && ($profile->user_id == auth()->user()->id))
+                        <button class="btn btn-sm btn-info"  data-toggle="modal" data-target="#addEducModal">Add entry</button>
+                    @endif
+                </div>
+                
             </div>
         </div>
+
+        {{-- add education entry modal --}}
+        <div class="modal fade" id="addEducModal" tabindex="-1" role="dialog" aria-labelledby="addEducModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Education Entry</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form action="{{auth()->user()->id}}" method="post">
+                    @csrf
+                  <div class="modal-body">
+                    <div class="form-group">   
+                        <label for="add_institute">Institute</label><br />
+                        <input type="text" class="form-control" name="add_institute" id="add_institute" >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="add_course">Course</label><br />
+                        <input type="text" class="form-control" name="add_course" id="add_course" >
+                       </div>
+                   <div class="form-group"> 
+                       <label for="add_certificate">Certificate</label>
+                   <input type="text" class="form-control" name="add_certificate" id="add_certificate" >
+                   </div>
+                   <div class="form-group">
+                       <label for="add_from_date">From</label><br />
+                       <input type="date" class="form-control" name="add_from_date" id="add_from_date" >
+                   </div>
+                   <div class="form-group"> 
+                       <label for="add_to_date">To:</label><br />
+                       <input type="date" class="form-control" name="add_to_date" id="add_to_date" >
+                   </div>
+                  <div class="modal-footer border-top-0 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success">Add</button>
+                  </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+
         <div class="row">
             @foreach($profile->educationDetails as $education)
-            <div class="col-lg-4 col-md-6 mt-4 pt-5">
+            <div class="col-lg-4 col-md-6 mt-4 pt-5 detailCard">
                 <div class="border rounded candidates-profile-education text-center text-muted">
                     <div class="profile-education-icon border rounded-pill bg-white text-primary">
                         <i class="mdi mdi-36px mdi-school"></i>
@@ -242,13 +292,15 @@
                     
 
                     @if( auth()->check() && ($profile->user_id == auth()->user()->id) ) 
-                        <div class="pt-2 border-top d-flex" style="justify-content: space-around;">
-                        <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal" name="id" data-institute="{{$education->institute}}" data-course="{{$education->course}}" data-fromdate="{{$education->starting_date}}" data-todate="{{$education->completion_date}}"  data-certificate="{{$education->certificate}}" data-educid="{{$education->id}}" > <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
+                        <div id="editEducCard" class="pt-0  d-flex" style="justify-content: space-around;">
+                        {{-- <div  style=""> --}}
+                                <button   class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal" name="id" data-institute="{{$education->institute}}" data-course="{{$education->course}}" data-fromdate="{{$education->starting_date}}" data-todate="{{$education->completion_date}}"  data-certificate="{{$education->certificate}}" data-educid="{{$education->id}}" > <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
                             
                             
                                 <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal">  <i class="mdi mdi-delete" style="color: red;"></i></button>
                         
-                        </div>
+                        {{-- </div> --}}
+                    </div>
                     @endif
 
                     {{-- <p class="pt-3 border-top mb-0">Suspendisse faucibus et pellentesque egestas lacus ante
@@ -260,10 +312,10 @@
 
             <div class="modal fade" id="eduModal" tabindex="-1" role="dialog" aria-labelledby="eduModalLabel" aria-hidden="true">
                         
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-dialog-centered"role="document">
                     <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-light">edit education entry</h4>
+                        <div class="modal-header border-bottom-0">
+                            <h5 class="modal-title">edit education entry</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -273,26 +325,26 @@
                     <form action="{{auth()->user()->id}}" method="post">
                             @csrf
                             <div class="modal-body">
-                                <div class="pb-2"> 
-                                    <label for="edit_certificate">Certificate</label><br />
-                                <input type="text" name="edit_certificate" id="edit_certificate" >
+                                <div class="form-group">   
+                                     <label for="edit_institute">Institute</label><br />
+                                     <input type="text" class="form-control" name="edit_institute" id="edit_institute" >
+                                 </div>
+                                 
+                                 <div class="form-group">
+                                     <label for="edit_course">Course</label><br />
+                                     <input type="text" class="form-control" name="edit_course" id="edit_course" >
+                                    </div>
+                                <div class="form-group"> 
+                                    <label for="edit_certificate">Certificate</label>
+                                <input type="text" class="form-control" name="edit_certificate" id="edit_certificate" >
                                 </div>
-                               <div class="pb-2">   
-                                    <label for="edit_institute">Institute</label><br />
-                                    <input type="text" name="edit_institute" id="edit_institute" >
-                                </div>
-                             
-                                <div class="pb-2">
-                                    <label for="edit_course">Course</label><br />
-                                    <input type="text" name="edit_course" id="edit_course" >
-                                </div>
-                                <div class="pb-2">
+                                <div class="form-group">
                                     <label for="edit_from_date">From</label><br />
-                                    <input type="date" name="edit_from_date" id="edit_from_date" >
+                                    <input type="date" class="form-control" name="edit_from_date" id="edit_from_date" >
                                 </div>
-                                <div class="pb-2"> 
+                                <div class="form-group"> 
                                     <label for="edit_to_date">To:</label><br />
-                                    <input type="date" name="edit_to_date" id="edit_to_date" >
+                                    <input type="date" class="form-control" name="edit_to_date" id="edit_to_date" >
                                 </div>
 
                                 <input type="hidden" name="educationDetails_id" id="educationDetails_id">
@@ -314,11 +366,73 @@
         </div>
 
         
-        <div class="row">
+        <div class="row" id="rowEXP">
             <div class="col-lg-12 mt-4 pt-2">
-                <h4 class="text-dark">Experience :</h4>
+                
+            <div style="display: flex; justify-content: space-between;">
+            <h4 class="text-dark">Experience :</h4>
+            @if(auth()->check() && ($profile->user_id == auth()->user()->id))
+                <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#addExpModal">Add entry</button>
+            @endif
+        </div>
             </div>
         </div>
+
+         {{-- add experience entry modal --}}
+         <div class="modal fade" id="addExpModal" tabindex="-1" role="dialog" aria-labelledby="addExpModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Experience Entry</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form action="{{auth()->user()->id}}" method="post">
+                    @csrf
+                  <div class="modal-body">
+                    <div class="form-group"> 
+                        <label for="add_company">Company</label>
+                    <input type="text" class="form-control"  name="add_company_name" id="add_company_name" >
+                    </div>
+                   <div class="form-group">   
+                        <label for="add_job_title">Job Title</label>
+                        <input type="text" class="form-control"  name="add_job_title" id="add_job_title" >
+                    </div>
+                    <div class="form-group">
+                        <label for="add_job_city">Website</label>
+                        <input type="text" class="form-control"  name="add_website" id="add_website" >
+                    </div>
+                    <div class="form-group">
+                        <label for="add_job_city">City</label>
+                        <input type="text" class="form-control"  name="add_job_city" id="add_job_city" >
+                    </div>
+                    <div class="form-group">
+                        <label for="add_job_county">County</label>
+                        <input type="text" class="form-control"  name="add_job_county" id="add_job_county" >
+                    </div>
+                    <div class="form-group">
+                        <label for="add_job_country">Country</label>
+                        <input type="text" class="form-control"  name="add_job_country" id="add_job_country" >
+                    </div>
+                    <div class="form-group">
+                        <label for="add_start_date">Start Date</label>
+                        <input type="date" class="form-control" name="add_start_date" id="add_start_date" >
+                    </div>
+                    <div class="form-group"> 
+                        <label for="add_end_date">End Date</label>
+                        <input type="date" class="form-control" name="add_end_date" id="add_end_date" >
+                    </div>
+                  <div class="modal-footer border-top-0 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success">Add</button>
+                  </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+
+        
 
         <div class="row">
 
@@ -348,7 +462,7 @@
 
                                 @if( auth()->check() && ($profile->user_id == auth()->user()->id) ) 
                                     <div class="pt-2 border-top d-flex" style="justify-content: space-around;">
-                                    <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#expModal" name="id" data-company_name="{{$experience->company_name}}" data-job_title="{{$experience->job_title}}" data-start_date="{{$experience->start_date}}" data-end_date="{{$experience->end_date}}"  data-website="{{$experience->website}}" ddata-city="{{$experience->job_location_city}}" data-county="{{$experience->job_location_county}}" data-country="{{$experience->job_location_country}}" data-expid="{{$experience->id}}" > <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
+                                    <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#expModal" name="id" data-company_name="{{$experience->company_name}}" data-job_title="{{$experience->job_title}}" data-start_date="{{$experience->start_date}}" data-end_date="{{$experience->end_date}}"  data-website="{{$experience->website}}" data-city="{{$experience->job_location_city}}" data-county="{{$experience->job_location_county}}" data-country="{{$experience->job_location_country}}" data-expid="{{$experience->id}}" > <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
                                         
                                         
                                             <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#expModal">  <i class="mdi mdi-delete" style="color: red;"></i></button>
@@ -365,10 +479,10 @@
 
             <div class="modal fade" id="expModal" tabindex="-1" role="dialog" aria-labelledby="expModalLabel" aria-hidden="true">
                         
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-light">edit experience entry</h4>
+                        <div class="modal-header border-bottom-0">
+                            <h4 class="modal-title">edit experience entry</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -378,37 +492,37 @@
                     <form action="{{auth()->user()->id}}" method="post">
                             @csrf
                             <div class="modal-body">
-                                <div class="pb-2"> 
+                                <div class="form-group"> 
                                     <label for="edit_company">Company</label><br />
-                                <input type="text" name="edit_company_name" id="edit_company_name" >
+                                <input type="text" class="form-control"  name="edit_company_name" id="edit_company_name" >
                                 </div>
-                               <div class="pb-2">   
+                               <div class="form-group">   
                                     <label for="edit_job_title">Job Title</label><br />
-                                    <input type="text" name="edit_job_title" id="edit_job_title" >
+                                    <input type="text" class="form-control"  name="edit_job_title" id="edit_job_title" >
                                 </div>
-                                <div class="pb-2">
+                                <div class="form-group">
                                     <label for="edit_job_city">Website</label><br />
-                                    <input type="text" name="edit_website" id="edit_website" >
+                                    <input type="text" class="form-control"  name="edit_website" id="edit_website" >
                                 </div>
-                                <div class="pb-2">
+                                <div class="form-group">
                                     <label for="edit_job_city">City</label><br />
-                                    <input type="text" name="edit_job_city" id="edit_job_city" >
+                                    <input type="text" class="form-control"  name="edit_job_city" id="edit_job_city" >
                                 </div>
-                                <div class="pb-2">
+                                <div class="form-group">
                                     <label for="edit_job_county">County</label><br />
-                                    <input type="text" name="edit_job_county" id="edit_job_county" >
+                                    <input type="text" class="form-control"  name="edit_job_county" id="edit_job_county" >
                                 </div>
-                                <div class="pb-2">
+                                <div class="form-group">
                                     <label for="edit_job_country">Country</label><br />
-                                    <input type="text" name="edit_job_country" id="edit_job_country" >
+                                    <input type="text" class="form-control"  name="edit_job_country" id="edit_job_country" >
                                 </div>
-                                <div class="pb-2">
+                                <div class="form-group">
                                     <label for="edit_start_date">Start Date</label><br />
-                                    <input type="date" name="edit_start_date" id="edit_start_date" >
+                                    <input type="date" class="form-control" name="edit_start_date" id="edit_start_date" >
                                 </div>
-                                <div class="pb-2"> 
+                                <div class="form-group"> 
                                     <label for="edit_end_date">End Date</label><br />
-                                    <input type="date" name="edit_end_date" id="edit_end_date" >
+                                    <input type="date" class="form-control" name="edit_end_date" id="edit_end_date" >
                                 </div>
 
                                 <input type="hidden" name="experienceDetails_id" id="experienceDetails_id">
@@ -504,7 +618,12 @@
 
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
-                <h4 class="text-dark">Skills :</h4>
+                <div style="display: flex; justify-content: space-between;">
+                    <h4 class="text-dark">Skills :</h4>
+                    @if(auth()->check() && ($profile->user_id == auth()->user()->id))
+                        <button class="btn btn-sm btn-info">Edit</button>
+                    @endif
+                </div>
             </div>
         </div>
 

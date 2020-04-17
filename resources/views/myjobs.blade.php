@@ -340,7 +340,7 @@
                     @endforeach
 
                     
-                        <div class="col-lg-12 mt-4 pt-2">
+                        {{-- <div class="col-lg-12 mt-4 pt-2">
                             <div class="job-list-box border rounded">
                                 <div class="p-3">
                                     <div class="row align-items-center">
@@ -590,7 +590,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="col-lg-12 mt-4 pt-2">
                         <nav aria-label="Page navigation example">

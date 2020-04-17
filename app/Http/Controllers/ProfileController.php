@@ -29,12 +29,31 @@ class ProfileController extends Controller
     }
 
     public function update(Request $request, $user_id){
+
+        // dd($request->all());
+
         $profile = SeekerProfile::where('user_id', $user_id)->first();
 
         if($request->edit_bio){
             $profile->bio = $request->edit_bio;
         }
         $profile->save();
+
+        if(($request->add_institute) && (auth()->user()->id == $profile->user_id)){
+
+            $newEduc = new \App\EducationDetails();
+
+            $newEduc->institute = $request->add_institute;
+            $newEduc->course = $request->add_course;
+            $newEduc->certificate = $request->add_certificate;
+            $newEduc->starting_date = $request->add_from_date;
+            $newEduc->completion_date = $request->add_to_date;
+            $newEducEntry = $profile->educationDetails()->save($newEduc);
+            // dd($newEducEntry);
+            // Url::route('profile.show').'#rowED';
+            return redirect('profile/'.'/#rowED');
+
+        }
 
         if($request->educationDetails_id){
             if(auth()->user()->id == $profile->user_id){
@@ -45,7 +64,28 @@ class ProfileController extends Controller
                 $educationDetails->starting_date = $request->edit_from_date;
                 $educationDetails->completion_date = $request->edit_to_date;
                 $educationDetails->save();
+                return redirect('profile/'.'/#rowED');
             }
+        }
+
+        if(($request->add_company_name) && (auth()->user()->id == $profile->user_id)){
+
+            $newExperience = new \App\ExperienceDetails();
+
+            $newExperience->company_name = $request->add_company_name;
+            $newExperience->job_title = $request->add_job_title;
+            $newExperience->website = $request->add_website;
+            $newExperience->start_date = $request->add_start_date;
+            $newExperience->end_date = $request->add_end_date;
+            $newExperience->job_location_city = $request->add_job_city;
+            $newExperience->job_location_county = $request->add_job_county;
+            $newExperience->job_location_country = $request->add_job_country;
+
+            $newExperienceEntry = $profile->experienceDetails()->save($newExperience);
+            // dd($newEducEntry);
+            // Url::route('profile.show').'#rowED';
+            return redirect('profile/'.'/#rowEXP');
+
         }
 
         if($request->experienceDetails_id){
@@ -63,6 +103,8 @@ class ProfileController extends Controller
                 $experienceDetails->job_location_country = $request->edit_job_country;
                 // dd($experienceDetails);
                 $experienceDetails->save();
+
+                return redirect('profile/'.'/#rowEXP');
             }
         }
 
@@ -99,6 +141,7 @@ class ProfileController extends Controller
 
         $education = New EducationDetails($request->educ[1]);
         $experience = New \App\ExperienceDetails($request->exp[1]);
+        
        
             // dd($experience , $education);
 
@@ -111,9 +154,11 @@ class ProfileController extends Controller
         $user->city = $request->city;
         $user->county_id = $request->county;
         $user->country = $request->country;
+        $user->gender = $request->gender;
         $user->phone = $request->phone;
         $user->website = $request->website;
         $user->address = $request->address;
+        // dd($user->skills);
         $user->save();
 
         // dd($user);
@@ -128,13 +173,17 @@ class ProfileController extends Controller
 // $education->save();
 // $experience->save();
 
+
+        $skills =explode(',', $request->skills);
         
         $profile->educationDetails()->create($education->toArray());
         $profile->experienceDetails()->create($experience->toArray());  
+        $profile->skills = $skills;
+        // dd($profile);
 
         // dd($user->seekerProfile->experienceDetails);
         $profile->save();
 
-        return redirect()->route('/profile/'.$user->id);
+        return redirect('/profile/'.$user->id);
     }
 }

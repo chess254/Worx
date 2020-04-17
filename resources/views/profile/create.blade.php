@@ -134,13 +134,14 @@
                                         <label class="text-muted">City</label><br>
                                         <input type="text" name="city" id="city" class="form-control resume">
                                     </div>
-                                </div><div class="col-md-4">
+                                </div>
+                                {{--  <div class="col-md-4">
                               
-                                <div class="form-group app-label">
+                               <div class="registration-form-box">
                                     <label for="county" class="text-muted">County</label>
                                     <div class="form-button app-label">
                                         
-                                    <select class="nice-select rounded"  name="county" id="county"  data-live-search="true" title="Select County">
+                                    <select class="demo-default"  name="county" id="county"  data-live-search="true" title="Select County">
                                         <option value="1">MOMBASA</option>
                                         <option value="2">KWALE</option>
                                         <option value="3">KILIFI</option>
@@ -191,6 +192,66 @@
 
 
                                     </select></div>
+                                    </div>
+                                </div> --}}
+
+                                <div class="col-lg-4 col-md-4">
+                                    <div class="form-group app-label">
+                                        <label for="county" class="text-muted">County</label>
+                                        <div class="registration-form-box">
+                                            <select id="select-country" class="demo-default"  name="county" data-live-search="">
+                                                {{-- <option data-display="County">County</option>     --}}
+                                                <option value="1">MOMBASA</option>
+                                                    <option value="2">KWALE</option>
+                                                    <option value="3">KILIFI</option>
+                                                    <option value="4">TANA RIVER</option>
+                                                    <option value="5">LAMU</option>
+                                                    <option value="6">TAITA TAVETA</option>
+                                                    <option value="7">GARISSA</option>
+                                                    <option value="8">WAJIR</option>
+                                                    <option value="9">MANDERA</option>
+                                                    <option value="10">MARSABIT</option>
+                                                    <option value="11">ISIOLO</option>
+                                                    <option value="12">MERU</option>
+                                                    <option value="13">THARAKA-NITHI</option>
+                                                    <option value="14">EMBU</option>
+                                                    <option value="15">KITUI</option>
+                                                    <option value="16">MACHAKOS</option>
+                                                    <option value="17">MAKUENI</option>
+                                                    <option value="18">NYANDARUA</option>
+                                                    <option value="19">NYERI</option>
+                                                    <option value="20">KIRINYAGA</option>
+                                                    <option value="21">MURANG'A</option>
+                                                    <option value="22">KIAMBU</option>
+                                                    <option value="23">TURKANA</option>
+                                                    <option value="24">WEST POKOT</option>
+                                                    <option value="25">SAMBURU</option>
+                                                    <option value="26">TRANS NZOIA</option>
+                                                    <option value="27">UASIN GISHU</option>
+                                                    <option value="28">ELGEYO/MARAKWET</option>
+                                                    <option value="29">NANDI</option>
+                                                    <option value="30">BARINGO</option>
+                                                    <option value="31">LAIKIPIA</option>
+                                                    <option value="32">NAKURU</option>
+                                                    <option value="33">NAROK</option>
+                                                    <option value="34">KAJIADO</option>
+                                                    <option value="35">KERICHO</option>
+                                                    <option value="36">BOMET</option>
+                                                    <option value="37">KAKAMEGA</option>
+                                                    <option value="38">VIHIGA</option>
+                                                    <option value="39">BUNGOMA</option>
+                                                    <option value="40">BUSIA</option>
+                                                    <option value="41">SIAYA</option>
+                                                    <option value="42">KISUMU</option>
+                                                    <option value="43">HOMA BAY</option>
+                                                    <option value="44">MIGORI</option>
+                                                    <option value="45">KISII</option>
+                                                    <option value="46">NYAMIRA</option>
+                                                    <option value="47">NAIROBI</option>
+            
+            
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
     
@@ -468,22 +529,25 @@
                             </div>
                 
                             <div class="col-12 mt-3">
+
+                                {{-- <div class="col-md-12">
+                                    <div class="form-group app-label">
+                                        <label class="text-muted">Services<span class="text-danger">*</span> :</label>
+                                        <input id="services" name="services" multiple type="text" class="form-control resume"
+                                               placeholder="Services, comma separated :">
+                                    </div>
+                                </div> --}}
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="form-group app-label">
-                                                    <label class="text-muted">Skills</label>
-                                                    <input id="skills" multiple name="skills[]" type="text" class="form-control resume"
+                                                    {{-- <input id="skills" multiple name="skills[]" type="text" class="form-control resume"
+                                                           placeholder="HTML, CSS, PHP, javascript, ..."> --}}
+                                                           <input id="skills" name="skills" multiple type="text" class=""
                                                            placeholder="HTML, CSS, PHP, javascript, ...">
                                                 </div>
                                             </div>
                 
-                                            <div class="col-lg-12">
-                                                <div class="form-group app-label">
-                                                    <label class="text-muted">Skill proficiency</label>
-                                                    <input id="skill_proficiency" type="text" class="form-control resume"
-                                                           placeholder="75%">
-                                                </div>
-                                            </div>
+                                           
                                             <div class="col-lg-12">
                                                 <div class="form-group app-label text-right">
                                                     <input type="button" class="submitBnt btn btn-primary" value="Add More">

@@ -57,111 +57,118 @@
               </label>
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
               <label for="email">Email</label>
-              <input type="text" class="form-control" name="email" id="email" placeholder="you@yourdomain.com">
+              <input type="text" class="form-control input-group" name="email" id="email" placeholder="you@yourdomain.com">
+            </div> --}}
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <label for="title">Job Title</label>
+                <input type="text" class="form-control" name="title" id="job-title" placeholder="Product Designer">
+              </div>
+              <div class="col-md -6 form-group">
+                <label for="town">Town / City</label>
+                <input type="text" class="form-control" name="town" id="job-location" placeholder="e.g. Nakuru">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="title">Job Title</label>
-              <input type="text" class="form-control" name="title" id="job-title" placeholder="Product Designer">
-            </div>
-            <div class="form-group">
-              <label for="town">Town / City</label>
-              <input type="text" class="form-control" name="town" id="job-location" placeholder="e.g. Nakuru">
-            </div>
-
-            <div class="form-group">
-              <label for="county">County</label>
-              <select class="selectpicker border rounded" name="county" id="county" data-style="btn-black" data-width="100%" data-live-search="true" title="Select County">
-                <option value="1">MOMBASA</option>
-                <option value="2">KWALE</option>
-                <option value="3">KILIFI</option>
-                <option value="4">TANA RIVER</option>
-                <option value="5">LAMU</option>
-                <option value="6">TAITA TAVETA</option>
-                <option value="7">GARISSA</option>
-                <option value="8">WAJIR</option>
-                <option value="9">MANDERA</option>
-                <option value="10">MARSABIT</option>
-                <option value="11">ISIOLO</option>
-                <option value="12">MERU</option>
-                <option value="13">THARAKA-NITHI</option>
-                <option value="14">EMBU</option>
-                <option value="15">KITUI</option>
-                <option value="16">MACHAKOS</option>
-                <option value="17">MAKUENI</option>
-                <option value="18">NYANDARUA</option>
-                <option value="19">NYERI</option>
-                <option value="20">KIRINYAGA</option>
-                <option value="21">MURANG'A</option>
-                <option value="22">KIAMBU</option>
-                <option value="23">TURKANA</option>
-                <option value="24">WEST POKOT</option>
-                <option value="25">SAMBURU</option>
-                <option value="26">TRANS NZOIA</option>
-                <option value="27">UASIN GISHU</option>
-                <option value="28">ELGEYO/MARAKWET</option>
-                <option value="29">NANDI</option>
-                <option value="30">BARINGO</option>
-                <option value="31">LAIKIPIA</option>
-                <option value="32">NAKURU</option>
-                <option value="33">NAROK</option>
-                <option value="34">KAJIADO</option>
-                <option value="35">KERICHO</option>
-                <option value="36">BOMET</option>
-                <option value="37">KAKAMEGA</option>
-                <option value="38">VIHIGA</option>
-                <option value="39">BUNGOMA</option>
-                <option value="40">BUSIA</option>
-                <option value="41">SIAYA</option>
-                <option value="42">KISUMU</option>
-                <option value="43">HOMA BAY</option>
-                <option value="44">MIGORI</option>
-                <option value="45">KISII</option>
-                <option value="46">NYAMIRA</option>
-                <option value="47">NAIROBI</option>
+            <div class="row">
+              <div class="form-group col-md-6 selectize-control">
+                <div>
+                  <label for="county">County</label>
+                </div>
+                <select class="selectize-input" name="county" id="county" data-style="btn-black" data-width="100%" data-live-search="true" title="Select County">
+                  <option value="1">MOMBASA</option>
+                  <option value="2">KWALE</option>
+                  <option value="3">KILIFI</option>
+                  <option value="4">TANA RIVER</option>
+                  <option value="5">LAMU</option>
+                  <option value="6">TAITA TAVETA</option>
+                  <option value="7">GARISSA</option>
+                  <option value="8">WAJIR</option>
+                  <option value="9">MANDERA</option>
+                  <option value="10">MARSABIT</option>
+                  <option value="11">ISIOLO</option>
+                  <option value="12">MERU</option>
+                  <option value="13">THARAKA-NITHI</option>
+                  <option value="14">EMBU</option>
+                  <option value="15">KITUI</option>
+                  <option value="16">MACHAKOS</option>
+                  <option value="17">MAKUENI</option>
+                  <option value="18">NYANDARUA</option>
+                  <option value="19">NYERI</option>
+                  <option value="20">KIRINYAGA</option>
+                  <option value="21">MURANG'A</option>
+                  <option value="22">KIAMBU</option>
+                  <option value="23">TURKANA</option>
+                  <option value="24">WEST POKOT</option>
+                  <option value="25">SAMBURU</option>
+                  <option value="26">TRANS NZOIA</option>
+                  <option value="27">UASIN GISHU</option>
+                  <option value="28">ELGEYO/MARAKWET</option>
+                  <option value="29">NANDI</option>
+                  <option value="30">BARINGO</option>
+                  <option value="31">LAIKIPIA</option>
+                  <option value="32">NAKURU</option>
+                  <option value="33">NAROK</option>
+                  <option value="34">KAJIADO</option>
+                  <option value="35">KERICHO</option>
+                  <option value="36">BOMET</option>
+                  <option value="37">KAKAMEGA</option>
+                  <option value="38">VIHIGA</option>
+                  <option value="39">BUNGOMA</option>
+                  <option value="40">BUSIA</option>
+                  <option value="41">SIAYA</option>
+                  <option value="42">KISUMU</option>
+                  <option value="43">HOMA BAY</option>
+                  <option value="44">MIGORI</option>
+                  <option value="45">KISII</option>
+                  <option value="46">NYAMIRA</option>
+                  <option value="47">NAIROBI</option>
 
 
-              </select>
-            </div>
+                </select>
+              </div>
 
-            <div class="form-group">
-              <label for="job-type">Job Type</label>
-              <select class="selectpicker border rounded" id="type_id" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type" name="type_id">
-                <option value="1">Part Time</option>
-                <option value="2">Full Time</option>
-                <option value="3">Remote</option>
-              </select>
+              <div class="form-group col-md-6">
+                <div class="selectize-control ">
+                <label for="job-type">Job Type</label></div>
+                <select class="selectize-input single demo-default  " id="type_id" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type" name="type_id">
+                  <option value="1">Part Time</option>
+                  <option value="2">Full Time</option>
+                  <option value="3">Remote</option>
+                </select>
+              </div>
             </div>
 
 
             <div class="form-group">
               <label for="description">Job Description</label>
-              <div class="editor" id="editor-1" name="">
+              {{-- <div class="editor" id="editor-1" name="">
                 <p>Write Job Description!</p>
                 
-              </div>
-              <textarea name="description"></textarea>
+              </div> --}}
+              <textarea name="description" class="form-control" ></textarea>
             </div>
 
             <div class="form-group">
               <label for="job-description">Job Requirements</label>
-              <div class="editor" id="editor-3" name="requirements">
+              {{-- <div class="editor" id="editor-3" name="requirements">
                 <p name = "requirements">Write Job Description!</p>
                 
-              </div>
-              <textarea name="requirements"></textarea>
+              </div> --}}
+              <textarea name="requirements" class="form-control"></textarea>
             </div>
 
             <div class="form-group">
               <label for="job-description">Job Responsibilities</label>
-              <div class="editor" id="editor-4" name="responsibilities">
+              {{-- <div class="editor" id="editor-4" name="responsibilities">
                 <p>Write Job Description!</p>
-              </div>
-              <textarea name="responsibilities"></textarea>
+              </div> --}}
+              <textarea name="responsibilities" class="form-control"></textarea>
             </div>
 
-            <div class="form-group">
+            <div class="row">
+            <div class="form-group col-md-4">
               <label for="job-type">Education level</label>
               <select class="selectpicker border rounded" id="type_id" data-style="btn-black" data-width="100%" data-live-search="true" title="Pick One" name="education">
                 <option ="1">High School</option>
@@ -173,12 +180,12 @@
               </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-4">
               <label for="company-website-tw">Number of available positions.</label>
               <input type="text" class="form-control" id="company-website-tw" placeholder="e.g. 3" name="no_of_positions">
             </div>
 
-            <div class="form-group">
+            <div class="form-group col-md-4">
               <label for="company-tagline">Salary Range</label> 
               <select class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="" name="salary_range">
                 <option> 10,000   and   below</option>
@@ -192,6 +199,8 @@
                 <option>undisclosed</option>
               </select>
             </div>
+
+          </div>
 
             
 
