@@ -29,12 +29,31 @@ class ProfileController extends Controller
     }
 
     public function update(Request $request, $user_id){
+
+        // dd($request->all());
+
         $profile = SeekerProfile::where('user_id', $user_id)->first();
 
         if($request->edit_bio){
             $profile->bio = $request->edit_bio;
         }
         $profile->save();
+
+        if(($request->add_institute) && (auth()->user()->id == $profile->user_id)){
+
+            $newEduc = new \App\EducationDetails();
+
+            $newEduc->institute = $request->add_institute;
+            $newEduc->course = $request->add_course;
+            $newEduc->certificate = $request->add_certificate;
+            $newEduc->starting_date = $request->add_from_date;
+            $newEduc->completion_date = $request->add_to_date;
+            $newEducEntry = $profile->educationDetails()->save($newEduc);
+            // dd($newEducEntry);
+            // Url::route('profile.show').'#rowED';
+            return redirect('profile/'.'/#rowED');
+
+        }
 
         if($request->educationDetails_id){
             if(auth()->user()->id == $profile->user_id){
@@ -45,6 +64,7 @@ class ProfileController extends Controller
                 $educationDetails->starting_date = $request->edit_from_date;
                 $educationDetails->completion_date = $request->edit_to_date;
                 $educationDetails->save();
+                return redirect('profile/'.'/#rowED');
             }
         }
 
@@ -63,6 +83,8 @@ class ProfileController extends Controller
                 $experienceDetails->job_location_country = $request->edit_job_country;
                 // dd($experienceDetails);
                 $experienceDetails->save();
+
+                return redirect('profile/'.'/#rowEXP');
             }
         }
 

@@ -220,7 +220,7 @@
             </div>
         </div>
 
-        <div class="row"id="rowED">
+        <div class="row" id="rowED">
             <div class="col-lg-12 mt-4 pt-2">
                 <div style="display: flex; justify-content: space-between;">
                     <h4 class="text-dark">Education :</h4>
@@ -242,7 +242,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <form>
+                <form action="{{auth()->user()->id}}" method="post">
                     @csrf
                   <div class="modal-body">
                     <div class="form-group">   
@@ -277,7 +277,7 @@
 
         <div class="row">
             @foreach($profile->educationDetails as $education)
-            <div class="col-lg-4 col-md-6 mt-4 pt-5">
+            <div class="col-lg-4 col-md-6 mt-4 pt-5 detailCard">
                 <div class="border rounded candidates-profile-education text-center text-muted">
                     <div class="profile-education-icon border rounded-pill bg-white text-primary">
                         <i class="mdi mdi-36px mdi-school"></i>
@@ -292,13 +292,15 @@
                     
 
                     @if( auth()->check() && ($profile->user_id == auth()->user()->id) ) 
-                        <div class="pt-2 border-top d-flex" style="justify-content: space-around;">
-                        <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal" name="id" data-institute="{{$education->institute}}" data-course="{{$education->course}}" data-fromdate="{{$education->starting_date}}" data-todate="{{$education->completion_date}}"  data-certificate="{{$education->certificate}}" data-educid="{{$education->id}}" > <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
+                        <div id="editEducCard" class="pt-2  d-flex" style="justify-content: space-around;">
+                        {{-- <div  style=""> --}}
+                                <button   class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal" name="id" data-institute="{{$education->institute}}" data-course="{{$education->course}}" data-fromdate="{{$education->starting_date}}" data-todate="{{$education->completion_date}}"  data-certificate="{{$education->certificate}}" data-educid="{{$education->id}}" > <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
                             
                             
                                 <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#eduModal">  <i class="mdi mdi-delete" style="color: red;"></i></button>
                         
-                        </div>
+                        {{-- </div> --}}
+                    </div>
                     @endif
 
                     {{-- <p class="pt-3 border-top mb-0">Suspendisse faucibus et pellentesque egestas lacus ante
@@ -364,7 +366,7 @@
         </div>
 
         
-        <div class="row">
+        <div class="row" id="rowEXP">
             <div class="col-lg-12 mt-4 pt-2">
                 
             <div style="display: flex; justify-content: space-between;">

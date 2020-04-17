@@ -2693,4 +2693,16 @@ hr {
   display: none;
 }
 
+html { scroll-behavior: smooth; } 
+
+.detailCard #editEducCard >button{
+  display:none;
+  opacity:0;
+}
+
+.detailCard:hover #editEducCard > button{
+  display:inline;
+ opacity:1;
+}
+
 /*# sourceMappingURL=style.css.map */

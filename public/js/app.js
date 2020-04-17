@@ -84,9 +84,9 @@ $("#expModal").on('show.bs.modal', function (e) {
     website = button.data('website');
     start_date = button.data('start_date');
     end_date = button.data('end_date');
-    job_location_city = button.data('job_location_city');
-    job_location_county = button.data('job_location_county');
-    job_location_country = button.data('job_location_country');
+    job_location_city = button.data('city');
+    job_location_county = button.data('county');
+    job_location_country = button.data('country');
     expid = button.data('expid');
      
     var modal = $(this);
@@ -100,6 +100,7 @@ $("#expModal").on('show.bs.modal', function (e) {
     modal.find('.modal-body #edit_job_country').val(job_location_country);
     modal.find('.modal-body #experienceDetails_id').val(expid);
     console.log(expid);
+    console.log(button.data());
 
 });
 
