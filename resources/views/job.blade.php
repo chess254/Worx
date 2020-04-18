@@ -69,7 +69,7 @@
                     <div class="col-lg-12">
                         <div class="job-detail border rounded mt-2 p-4">
                             <div class="job-detail-desc">
-                                <p class="text-muted mb-3">{{$Job->description}}</p>
+                                <p class="text-muted mb-3">{!!$Job->description!!}</p>
 
                             </div>
 
@@ -98,10 +98,8 @@
                         <div class="job-detail border rounded mt-2 p-4">
                             <div class="job-detail-desc">
                                 <div class="job-details-desc-item">
-                                    <div class="float-left mr-3">
-                                        <i class="mdi mdi-minus text-muted"></i>
-                                    </div>
-                                    <p class="text-muted mb-2">{{$Job->requirements}}</p>
+                                    
+                                    <p class="text-muted mb-2">{!!$Job->requirements!!}</p>
                                 </div>
 
                                 {{-- <div class="job-details-desc-item">
@@ -182,8 +180,8 @@
                     <div class="col-lg-12">
                         <div class="job-detail border rounded mt-2 p-4">
                             <div class="job-detail-desc">
-                                <p class="text-muted mb-3">{{$Job->responsibilities}}</p>
-                                <div class="job-details-desc-item">
+                                <p class="text-muted mb-3">{!!$Job->responsibilities!!}</p>
+                                {{-- <div class="job-details-desc-item">
                                     <div class="float-left mr-3">
                                         <i class="mdi mdi-minus text-muted"></i>
                                     </div>
@@ -229,7 +227,7 @@
                                     </div>
                                     <p class="text-muted mb-0">Donec elit libero, sodales nec volutpat a suscipit non
                                         turpis ullam sagittis.</p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -249,33 +247,21 @@
                                     <div class="float-left mr-3">
                                         <p class="text-muted mb-0">1 )</p>
                                     </div>
-                                    <p class="text-muted mb-3 overflow-hidden d-block">Vestibulum ante ipsum primis in
-                                        faucibus orci luctus et ultrices posuere cubilia Curae In ac dui quis mi
-                                        consectetuer lacinia ed aliquam ultrices mauris nteger ante arcu accumsan
-                                        consectetuer thet a eget posuere ut mauris raesent adipiscing Sed lectus Donec
-                                        mollis hendrerit risus hasellue.</p>
+                                    <p class="text-muted mb-3 overflow-hidden d-block">Your companies website / dedicated link</p>
                                 </div>
 
                                 <div class="job-details-desc-item">
                                     <div class="float-left mr-3">
                                         <p class="text-muted mb-0">2 )</p>
                                     </div>
-                                    <p class="text-muted mb-3 overflow-hidden d-block">In enim justo rhoncus ut
-                                        imperdiet a venenatis vitae justo ullam dictum felis eu pede mollis pretium
-                                        nteger tincidunt enean imperdiet tiam ultricies nisi vel augue urabitur
-                                        ullamcorper ultricies nisi am eget Etiam rhoncus ras dapibus ivamus elementum
-                                        semper nisi.</p>
+                                    <p class="text-muted mb-3 overflow-hidden d-block">E mail submission</p>
                                 </div>
 
                                 <div class="job-details-desc-item">
                                     <div class="float-left mr-3">
                                         <p class="text-muted mb-0">3 )</p>
                                     </div>
-                                    <p class="text-muted mb-0 overflow-hidden d-block">Maecenas nec odio et ante
-                                        tincidunt tempus onec vitae sapien ut libero venenatis faucibus ullam quis ante
-                                        tiam sit Vestibulum purus quam scelerisque ut mollis sed nonummy id metus ullam
-                                        accumsan lorem in dui ras ultricies mi eu turpis hendrerit fringilla amet orci
-                                        eget eros.</p>
+                                    <p class="text-muted mb-0 overflow-hidden d-block">Through our job application platform</p>
                                 </div>
                             </div>
                         </div>

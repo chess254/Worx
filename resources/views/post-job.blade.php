@@ -1,5 +1,19 @@
 @extends('layouts.app')
+@section('scripts')
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    <script>
 
+      tinymce.init({
+          selector: 'textarea',
+          plugins: 'lineheight lists',
+          // menubar: false,
+          branding: false,
+          toolbar: 'lineheightselect numlist bullist' ,
+          lineheight_formats: "8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt", 
+          
+      });
+    </script>
+@endsection
 @section('navbar')
 @include('partials.navbar')
 @endsection
@@ -147,7 +161,7 @@
                 <p>Write Job Description!</p>
                 
               </div> --}}
-              <textarea name="description" class="form-control" ></textarea>
+              <textarea name="description"  ></textarea>
             </div>
 
             <div class="form-group">
@@ -264,7 +278,51 @@
                 Browse File<input type="file" hidden>
               </label>
             </div>
-              <button type="submit" class="btn btn-primary">check</button>
+
+            <div class="row">
+              <div class="col-lg-12">
+                  <h5 class="text-dark mt-4">How To Apply :</h5>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+<select class="nice-select"name="mode_of_application" id="">
+                  <option value="email">email</option>
+                  <option value="worx">Worx</option>
+                  <option value="website">Your site / dedicated link</option>
+                </select>
+              </div>
+            </div>
+          <div class="row">
+              <div class="col-lg-12">
+                
+                  <div class="job-detail border rounded mt-2 p-4">
+                      <div class="job-detail-desc">
+                          <div class="job-details-desc-item">
+                              <div class="float-left mr-3">
+                                  <p class="text-muted mb-0">1 )</p>
+                              </div>
+                              <p class="text-muted mb-3 overflow-hidden d-block">Your companies website / dedicated link</p>
+                          </div>
+
+                          <div class="job-details-desc-item">
+                              <div class="float-left mr-3">
+                                  <p class="text-muted mb-0">2 )</p>
+                              </div>
+                              <p class="text-muted mb-3 overflow-hidden d-block">E mail submission</p>
+                          </div>
+
+                          <div class="job-details-desc-item">
+                              <div class="float-left mr-3">
+                                  <p class="text-muted mb-0">3 )</p>
+                              </div>
+                              <p class="text-muted mb-0 overflow-hidden d-block">Through our job application platform</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div >
+              <button type="submit " class="btn btn-primary mt-4">check</button>
           </form>
         </div>
 

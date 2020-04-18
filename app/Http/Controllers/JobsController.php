@@ -56,6 +56,7 @@ class JobsController extends Controller
     public function store(Request $request)
     { 
         $company = \App\Company::firstOrNew([
+            'id'=>$request->company_id,
             'name' => $request->company_name,
         'description' => $request->company_description,
         'website' => $request->company_website,
@@ -67,7 +68,7 @@ class JobsController extends Controller
 
         // $company->save();
         // dd($request);
-
+            // dd($request->all());
         $data = [
             'title' => $request->title,
             'email'=> $request->email,
@@ -91,7 +92,8 @@ class JobsController extends Controller
         // dd($data);
 
         $job = auth()->user()->job()->create($data); //create job with current user as user_id
-        $job->company()->associate($company);       //add the company_id to the created job
+        $job->company()->associate($company);   
+        // dd($company);    //add the company_id to the created job
         $job->save();
         return redirect('/job/'.$job->id);
     }
