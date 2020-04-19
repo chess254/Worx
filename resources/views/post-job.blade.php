@@ -6,8 +6,9 @@
       tinymce.init({
           selector: 'textarea',
           plugins: 'lineheight lists',
-          // menubar: false,
+          menubar: false,
           branding: false,
+          toolbar: true,
           toolbar: 'lineheightselect numlist bullist' ,
           lineheight_formats: "8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt", 
           
@@ -183,9 +184,8 @@
 
             <div class="row">
             <div class="form-group col-md-4">
-              <label for="job-type">Education level</label>
-              <select class="selectpicker border rounded" id="type_id" data-style="btn-black" data-width="100%" data-live-search="true" title="Pick One" name="education">
-                <option ="1">High School</option>
+              <label for="job-type">Education level</label> <br>
+              <select class="nice-select wide border rounded" id="type_id" data-style="btn-black" data-width="100%" data-live-search="true" title="Pick One" name="education">
                 <option ="2">Certificate</option>
                 <option ="3">Diploma</option>
                 <option ="1">Degree</option>
@@ -195,13 +195,8 @@
             </div>
 
             <div class="form-group col-md-4">
-              <label for="company-website-tw">Number of available positions.</label>
-              <input type="text" class="form-control" id="company-website-tw" placeholder="e.g. 3" name="no_of_positions">
-            </div>
-
-            <div class="form-group col-md-4">
-              <label for="company-tagline">Salary Range</label> 
-              <select class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="" name="salary_range">
+              <label for="company-tagline">Salary Range</label> <br>
+              <select class="nice-select wide border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="" name="salary_range">
                 <option> 10,000   and   below</option>
                 <option> 10,000   -     25,000</option>
                 <option> 25,000   -     50,000</option>
@@ -213,23 +208,28 @@
                 <option>undisclosed</option>
               </select>
             </div>
+            <div class="form-group col-md-4">
+              <label for="company-website-tw">Number of available positions.</label>
+              <input type="text" class="form-control" id="company-website-tw" placeholder="e.g. 3" name="no_of_positions">
+            </div>
+
 
           </div>
 
             
 
             <h3 class="text-black my-5 border-bottom pb-2">Company Details</h3>
-
-            <p>your companies</p>
-            
-            <select id="company_id" name="company_id">
-              <option>Choose company</option>
-              
-              @foreach($user_companies as $company)
-              <option value="{{$company->id}}">{{$company->name}}</option>
-              
-              @endforeach
-          </select>
+            <div class="form-group">
+              <label for="company_id">Your Companies :</label>
+              <select id="company_id" name="company_id">
+                <option>Choose company</option>
+                
+                @foreach($user_companies as $company)
+                <option value="{{$company->id}}">{{$company->name}}</option>
+                
+                @endforeach
+              </select>
+            </div>
 
             <div class="form-group">
               <label for="company_name">Company Name</label>
@@ -245,10 +245,11 @@
 
             <div class="form-group">
               <label for="company_description">Company Description (Optional)</label>
-              {{-- <div class="editor" id="editor-2" name=""> --}}
-                {{-- <p>Description</p>
-              </div> --}}
+              <div class="editor" id="editor-2" name="">
+                <p>Description</p>
+              </div>
               <textarea class="form-control" name="company_description" id="company_description"></textarea>
+              {{-- <input type="text" name="company_decription" id="company_description"> --}}
             </div>
             
             <div class="form-group">

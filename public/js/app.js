@@ -113,11 +113,13 @@ $('#company_id').change(function() {
         console.log(company);
         console.log("company id:" + company.id);
         $('#company_name').val(company.name);
-        $('#company_description').val(company.description);
+        // $('#company_description').val(company.description);
         $('#company_website').val(company.website);
         $('#company_biz_stream').val(company.business_stream.name);
         $('#company_id').val(company.id);
         $('#company_business_stream_id').val(company.business_stream.id);
+        // $('#company_description').html(company.description);
+        $(tinymce.get('company_description').getBody()).html(company.description);
         
     });
 });

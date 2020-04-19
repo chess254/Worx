@@ -15,7 +15,7 @@ class TweakJobsTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->unsignedInteger('id')->unsigned()->autoIncrement();
-            $table->string('title', 100);
+            $table->text('title');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('type_id');
             $table->unsignedInteger('business_stream_id');
@@ -24,15 +24,15 @@ class TweakJobsTable extends Migration
             $table->unsignedInteger('company_name_hidden')->default(0);
             $table->integer('no_of_positions')->default('1');
             $table->date('created_date')->default(today());
-            $table->string('description', 1000);
+            $table->longText('description', 1000);
             $table->unsignedInteger('location_id');
             $table->unsignedInteger('is_active')->default(1);
             $table->string('salary_range', 30)->nullable();
             $table->date('deadline')->default(today());
-            $table->string('responsibilities', 1000);
-            $table->string('requirements', 1000);
-            $table->string('education',1000);
-            $table->string('image')->default('no_image.jpg');
+            $table->longText('responsibilities', 1000);
+            $table->longText('requirements', 1000);
+            $table->longText('education',1000);
+            $table->text('image')->default('no_image.jpg');
             $table->timestamps();
         });
     }

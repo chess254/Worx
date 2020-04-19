@@ -13,6 +13,15 @@
             <div class="col-md-6">
                 <div class="text-center text-white">
 
+                   
+
+                    @if (count($errors))
+                        @foreach ($errors->all() as $error)
+                           <li> {{$error}}</li>
+                        @endforeach
+                        
+                    @endif
+
                     @if (session('status'))
                     <div class="alert alert-success">
                         {{ session('status') }}
@@ -67,41 +76,45 @@
                             </div>
                             <div class="row mt-4">
                                 <div class="col-md-4">
-                                    <div class="form-group app-label">
+                                <div class="form-group app-label {{ $errors->has('name') ? 'form-control-error' : ''}}">
                                         <label class="text-muted">First Name<span class="text-danger">*</span> :</label>
                                         <input id="first_name" type="text" name="name" class="form-control resume"
                                                placeholder="First Name :">
+                                               {!! $errors->first('name', '<p style="color: #e74c3c"><span><small><small>:message</small></small></span></p>') !!}
                                     </div>
                                 </div>
     
                                 <div class="col-md-4">
-                                    <div class="form-group app-label">
+                                    <div class="form-group app-label {{ $errors->has('middle_name') ? 'form-control-error' : ''}}">
                                         <label class="text-muted">Middle Name<span class="text-danger">*</span> :</label>
                                         <input id="middle_name" name="middle_name" type="text" class="form-control resume"
                                                placeholder="Middle Name :">
+                                               {!! $errors->first('middle_name', '<p style="color: #e74c3c"><span><small><small>:message</small></small></span></p>') !!}
                                     </div>
                                 </div>
     
                                 <div class="col-md-4">
-                                    <div class="form-group app-label">
+                                    <div class="form-group app-label {{ $errors->has('second_name') ? 'form-control-error' : ''}}">
                                         <label class="text-muted">Surname<span class="text-danger">*</span> :</label>
                                         <input id="surname-name" name="second_name" type="text" class="form-control resume"
                                                placeholder="Surname :">
+                                               {!! $errors->first('second_name', '<p style="color: #e74c3c"><span><small><small>:message</small></small></span></p>') !!}
                                     </div>
                                 </div>
     
                                 <div class="col-md-4">
-                                    <div class="form-group app-label">
+                                    <div class="form-group app-label {{ $errors->has('date_of_birth') ? 'form-control-error' : ''}}">
                                         <label class="text-muted">Date Of Birth<span class="text-danger">*</span> :</label>
                                         <input id="date-of-birth" type="date" name="date_of_birth" class="form-control resume"
                                                placeholder="13-02-1999">
+                                               {!! $errors->first('date_of_birth', '<p style="color: #e74c3c"><span><small><small>:message</small></small></span></p>') !!}
                                     </div>
                                 </div>
     
                                 <div class="col-md-4">
-                                    <div class="form-group app-label">
+                                    <div class="form-group app-label {{ $errors->has('gender') ? 'form-control-error' : ''}}">
                                         <label class="text-muted">Gender<span class="text-danger">*</span> :</label>
-                                        <div class="form-button">
+                                        <div class="form-button {{ $errors->has('marital_status') ? 'form-control-error' : ''}}">
                                             <select class="nice-select rounded" name="gender">
                                                 <option value="">Choose</option>
                                                 <option value="M">Male</option>
@@ -113,10 +126,10 @@
                                 </div>
     
                                 <div class="col-md-4">
-                                    <div class="form-group app-label">
+                                    <div class="form-group app-label {{ $errors->has('marital_status') ? 'form-control-error' : ''}}">
                                         <label class="text-muted">Marital Status</label>
-                                        <div class="form-button">
-                                            <select class="nice-select rounded" name="marital_status">
+                                        <div class="form-button {{ $errors->has('marital_status') ? 'form-control-error' : ''}}">
+                                            <select class="nice-select {{ $errors->has('marital_status') ? 'form-control-error' : ''}} rounded" name="marital_status">
                                                 <option value="1">Unmarried</option>
                                                 <option value="2">Married</option>
                                             </select>
@@ -130,7 +143,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="form-group app-label">
+                                    <div class="form-group app-label {{ $errors->has('city') ? 'form-control-error' : ''}}">
                                         <label class="text-muted">City</label><br>
                                         <input type="text" name="city" id="city" class="form-control resume">
                                     </div>
@@ -268,7 +281,7 @@
                                 </div>
     
                                 <div class="col-md-4">
-                                    <div class="form-group app-label">
+                                    <div class="form-group app-label {{ $errors->has('phone') ? 'form-control-error' : ''}}">
                                         <label class="text-muted">Phone</label>
                                         <input id="phone" name="phone" type="tel" class="form-control resume"
                                                placeholder="Phone No. :">
@@ -276,7 +289,7 @@
                                 </div>
     
                                 <div class="col-md-4">
-                                    <div class="form-group app-label">
+                                    <div class="form-group app-label {{ $errors->has('email') ? 'form-control-error' : ''}}">
                                         <label class="text-muted">E-mail</label>
                                         <input id="email" type="email" name="email" class="form-control resume"
                                                placeholder="Email ID :">

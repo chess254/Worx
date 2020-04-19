@@ -15,7 +15,7 @@ class CreateCountiesTable extends Migration
     {
         Schema::create('counties', function (Blueprint $table) {
             $table->unsignedInteger('id')->unsigned()->autoIncrement();
-            $table->string('county_name', 100);
+            $table->text('county_name');
             $table->timestamps();
         });
     }

@@ -56,4 +56,8 @@ class User extends Authenticatable
     public function companies(){
         return $this->hasMany(\App\Company::class);
     }
+
+    public function county(){
+        return $this->belongsTo(\App\County::class);
+    }
 }

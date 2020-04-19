@@ -51,3 +51,7 @@ Route::get('/company', 'CompanyController@create');
 Route::post('/company', 'CompanyController@store');
 Route::get('/company-profile/{company}', 'CompanyController@view');
 
+Route::delete('exp/{id}', function ($id) {
+    
+});
+

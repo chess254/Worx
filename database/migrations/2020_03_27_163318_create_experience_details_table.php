@@ -19,13 +19,13 @@ class CreateExperienceDetailsTable extends Migration
             $table->unsignedInteger('is_current_job')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->string('job_title', 100)->nullable();
-            $table->string('company_name', 100)->nullable(); 
-            $table->string('job_location_city', 100)->nullable();
-            $table->string('job_location_county', 50)->nullable();
-            $table->string('job_location_country', 50)->default('Kenya');
-            $table->string('description', 500)->nullable();
-            $table->string('website')->nullable();
+            $table->text('job_title')->nullable();
+            $table->text('company_name')->nullable(); 
+            $table->text('job_location_city')->nullable();
+            $table->text('job_location_county')->nullable();
+            $table->text('job_location_country')->default('Kenya');
+            $table->text('description')->nullable();
+            $table->text('website')->nullable();
             $table->timestamps();
         });
     }

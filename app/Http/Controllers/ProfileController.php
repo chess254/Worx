@@ -41,6 +41,14 @@ class ProfileController extends Controller
 
         if(($request->add_institute) && (auth()->user()->id == $profile->user_id)){
 
+            $data = request()->validate([
+                'add_intitute' => 'required',
+                'add_course' => 'required',
+                'add_certificate' => 'required',
+                'add_from_date' => 'required',
+                'add_to_date' => 'required'
+            ]);
+
             $newEduc = new \App\EducationDetails();
 
             $newEduc->institute = $request->add_institute;
@@ -71,6 +79,11 @@ class ProfileController extends Controller
         if(($request->add_company_name) && (auth()->user()->id == $profile->user_id)){
 
             $newExperience = new \App\ExperienceDetails();
+
+            // $data = request()->validate([
+            //     'add_company_name' => 'required',
+            //     'add_job_title'=>'required'
+            // ]);
 
             $newExperience->company_name = $request->add_company_name;
             $newExperience->job_title = $request->add_job_title;
@@ -139,14 +152,32 @@ class ProfileController extends Controller
             return redirect('/profile/'.$user->id);
         }
 
+        
         $education = New EducationDetails($request->educ[1]);
         $experience = New \App\ExperienceDetails($request->exp[1]);
+        // dd($education);
         
        
             // dd($experience , $education);
 
         // $profile = New SeekerProfile;
         // $profile->title = $request->name;
+        $underAge = date('m-d-Y', strtotime('18 years ago'));
+        $data = request()->validate([
+            'name' => 'required | max:20',
+            'middle_name' => 'required',
+            'second_name'=>'required',
+            'city' => 'required',
+            'county' => 'required',
+            'country' => 'required',
+            'phone' => 'required',
+            // 'website' => 'url',
+            'date_of_birth' => 'date | before:18 years ago',
+            'gender'=>'required',
+            'marital_status'=>'required',
+            'city'=>'required'
+            
+        ]);
         
         $user->name = $request->name;
         $user->middle_name = $request->middle_name;
@@ -176,8 +207,13 @@ class ProfileController extends Controller
 
         $skills =explode(',', $request->skills);
         
+        if($request->educ[1]["institute"] != null){ //refactor to use $request->has('educ')
         $profile->educationDetails()->create($education->toArray());
-        $profile->experienceDetails()->create($experience->toArray());  
+        }
+        if($request->exp[1]["company_name"]!= null){
+            $profile->experienceDetails()->create($experience->toArray());
+            }
+          
         $profile->skills = $skills;
         // dd($profile);
 
@@ -186,4 +222,10 @@ class ProfileController extends Controller
 
         return redirect('/profile/'.$user->id);
     }
+    
+    public function deleteExperience($expId){
+
+    }
 }
+
+
