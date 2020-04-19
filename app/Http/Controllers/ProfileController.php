@@ -34,11 +34,13 @@ class ProfileController extends Controller
 
         $profile = SeekerProfile::where('user_id', $user_id)->first();
 
-        if($request->edit_bio){
+        //refactor to use $request->has
+        if($request->edit_bio){ 
             $profile->bio = $request->edit_bio;
         }
         $profile->save();
 
+        //refactor to use $request->has('add_institute')
         if(($request->add_institute) && (auth()->user()->id == $profile->user_id)){
 
             $data = request()->validate([
@@ -63,6 +65,7 @@ class ProfileController extends Controller
 
         }
 
+        //refactor to use $request->has
         if($request->educationDetails_id){
             if(auth()->user()->id == $profile->user_id){
                 $educationDetails = $profile->educationDetails->find($request->educationDetails_id);
@@ -76,6 +79,7 @@ class ProfileController extends Controller
             }
         }
 
+        //refactor to use $request->has
         if(($request->add_company_name) && (auth()->user()->id == $profile->user_id)){
 
             $newExperience = new \App\ExperienceDetails();
@@ -101,6 +105,8 @@ class ProfileController extends Controller
 
         }
 
+
+        //refactor to use $request->has
         if($request->experienceDetails_id){
 
 
