@@ -242,6 +242,8 @@ $('#services').selectize({
         }
     }
 });
+
+
 // $('#skills').selectize({
 //     delimiter: ','
 //     persist: false,
