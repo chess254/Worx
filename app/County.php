@@ -18,5 +18,9 @@ class County extends Model
         return $this->hasMany(\App\Company::class);
     }
 
+    public function users(){
+        return $this->hasMany(\App\User::class);
+    }
+
     
 }

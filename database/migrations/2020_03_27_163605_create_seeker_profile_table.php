@@ -16,12 +16,12 @@ class CreateSeekerProfileTable extends Migration
         Schema::create('seeker_profile', function (Blueprint $table) {
             $table->unsignedInteger('id')->unsigned()->autoIncrement();
             $table->unsignedInteger('user_id');
-            $table->string('image',200)->nullable();
-            $table->string('title', 500)->nullable();
+            $table->text('image')->nullable();
+            $table->text('title')->nullable();
             $table->json('skills')->nullable();
-            $table->text('bio')->nullable(); 	
-            $table->string('first_name', 100)->nullable();  	
-            $table->string('last_name', 100)->nullable(); 	
+            $table->longText('bio')->nullable(); 	
+            $table->text('first_name', 100)->nullable();  	
+            $table->text('last_name', 100)->nullable(); 	
             $table->integer('current_salary')->nullable(); 	
             $table->unsignedInteger('is_annually_monthly')->default(1)->nullable(); 	
             $table->string('currency', 20)->default('KShs')->nullable(); 

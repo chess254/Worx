@@ -34,6 +34,7 @@
 
     <!-- Custom  Css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"/>
+    @yield('scripts')
 
 
 
@@ -231,7 +232,7 @@ $(document).ready(function(){
 });
 
 
-$('#services','#skills').selectize({
+$('#services').selectize({
     delimiter: ',',
     persist: false,
     create: function(input) {
@@ -241,16 +242,24 @@ $('#services','#skills').selectize({
         }
     }
 });
+
+
 // $('#skills').selectize({
-//     delimiter: ',',
+//     delimiter: ','
 //     persist: false,
 //     create: function(input) {
 //         return {
 //             value: input,
 //             text: input
 //         }
-//     }
+//     },
 // });
+
+
+
+
+
+
 </script>
 
 

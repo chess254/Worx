@@ -22,6 +22,10 @@ class AddFkToJobCounties extends Migration
         Schema::table('company', function (Blueprint $table) {
         $table->foreign('county_id')->references('id')->on('counties')->change();
         });
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->foreign('county_id')->references('id')->on('counties')->change();
+            });
        
     }
 

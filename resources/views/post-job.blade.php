@@ -1,5 +1,20 @@
 @extends('layouts.app')
+@section('scripts')
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    <script>
 
+      tinymce.init({
+          selector: 'textarea',
+          plugins: 'lineheight lists',
+          menubar: false,
+          branding: false,
+          toolbar: true,
+          toolbar: 'lineheightselect numlist bullist' ,
+          lineheight_formats: "8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt", 
+          
+      });
+    </script>
+@endsection
 @section('navbar')
 @include('partials.navbar')
 @endsection
@@ -57,15 +72,15 @@
               </label>
             </div>
 
-            {{-- <div class="form-group">
-              <label for="email">Email</label>
-              <input type="text" class="form-control input-group" name="email" id="email" placeholder="you@yourdomain.com">
-            </div> --}}
-            <div class="row">
-              <div class="col-md-6 form-group">
+            
+            <div class="row"> <div class="col-md-12 form-group">
                 <label for="title">Job Title</label>
                 <input type="text" class="form-control" name="title" id="job-title" placeholder="Product Designer">
-              </div>
+              </div><div class="col-md-6 form-group">
+              <label for="email">Email</label>
+              <input type="text" class="form-control input-group" name="email" id="email" placeholder="you@yourdomain.com">
+            </div>
+             
               <div class="col-md -6 form-group">
                 <label for="town">Town / City</label>
                 <input type="text" class="form-control" name="town" id="job-location" placeholder="e.g. Nakuru">
@@ -147,7 +162,7 @@
                 <p>Write Job Description!</p>
                 
               </div> --}}
-              <textarea name="description" class="form-control" ></textarea>
+              <textarea name="description"  ></textarea>
             </div>
 
             <div class="form-group">
@@ -169,9 +184,8 @@
 
             <div class="row">
             <div class="form-group col-md-4">
-              <label for="job-type">Education level</label>
-              <select class="selectpicker border rounded" id="type_id" data-style="btn-black" data-width="100%" data-live-search="true" title="Pick One" name="education">
-                <option ="1">High School</option>
+              <label for="job-type">Education level</label> <br>
+              <select class="nice-select wide border rounded" id="type_id" data-style="btn-black" data-width="100%" data-live-search="true" title="Pick One" name="education">
                 <option ="2">Certificate</option>
                 <option ="3">Diploma</option>
                 <option ="1">Degree</option>
@@ -181,13 +195,8 @@
             </div>
 
             <div class="form-group col-md-4">
-              <label for="company-website-tw">Number of available positions.</label>
-              <input type="text" class="form-control" id="company-website-tw" placeholder="e.g. 3" name="no_of_positions">
-            </div>
-
-            <div class="form-group col-md-4">
-              <label for="company-tagline">Salary Range</label> 
-              <select class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="" name="salary_range">
+              <label for="company-tagline">Salary Range</label> <br>
+              <select class="nice-select wide border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="" name="salary_range">
                 <option> 10,000   and   below</option>
                 <option> 10,000   -     25,000</option>
                 <option> 25,000   -     50,000</option>
@@ -199,23 +208,28 @@
                 <option>undisclosed</option>
               </select>
             </div>
+            <div class="form-group col-md-4">
+              <label for="company-website-tw">Number of available positions.</label>
+              <input type="text" class="form-control" id="company-website-tw" placeholder="e.g. 3" name="no_of_positions">
+            </div>
+
 
           </div>
 
             
 
             <h3 class="text-black my-5 border-bottom pb-2">Company Details</h3>
-
-            <p>your companies</p>
-            
-            <select id="company_id" name="company_id">
-              <option>Choose company</option>
-              
-              @foreach($user_companies as $company)
-              <option value="{{$company->id}}">{{$company->name}}</option>
-              
-              @endforeach
-          </select>
+            <div class="form-group">
+              <label for="company_id">Your Companies :</label>
+              <select id="company_id" name="company_id">
+                <option>Choose company</option>
+                
+                @foreach($user_companies as $company)
+                <option value="{{$company->id}}">{{$company->name}}</option>
+                
+                @endforeach
+              </select>
+            </div>
 
             <div class="form-group">
               <label for="company_name">Company Name</label>
@@ -234,7 +248,8 @@
               <div class="editor" id="editor-2" name="">
                 <p>Description</p>
               </div>
-              <textarea name="company_description" id="company_description"></textarea>
+              <textarea class="form-control" name="company_description" id="company_description"></textarea>
+              {{-- <input type="text" name="company_decription" id="company_description"> --}}
             </div>
             
             <div class="form-group">
@@ -264,8 +279,103 @@
                 Browse File<input type="file" hidden>
               </label>
             </div>
-              <button type="submit" class="btn btn-primary">check</button>
+
+            
+
+          <h3 class="text-black my-5 border-bottom pb-2">Application Method</h3>
+
+          {{-- <div class="row">
+            <div class="col-12">
+                <select class="nice-select"name="mode_of_application" id="">
+                  <option value="email">email</option>
+                  <option value="worx">Worx</option>
+                  <option value="website">Your site / dedicated link</option>
+                </select>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-12">
+                
+                  <div class="job-detail border rounded mt-2 p-4">
+                      <div class="job-detail-desc">
+                          <div class="job-details-desc-item">
+                              <div class="float-left mr-3">
+                                  <p class="text-muted mb-0">1 )</p>
+                              </div>
+                              <p class="text-muted mb-3 overflow-hidden d-block">Your companies website / dedicated link</p>
+                          </div>
+
+                          <div class="job-details-desc-item">
+                              <div class="float-left mr-3">
+                                  <p class="text-muted mb-0">2 )</p>
+                              </div>
+                              <p class="text-muted mb-3 overflow-hidden d-block">E mail submission</p>
+                          </div>
+
+                          <div class="job-details-desc-item">
+                              <div class="float-left mr-3">
+                                  <p class="text-muted mb-0">3 )</p>
+                              </div>
+                              <p class="text-muted mb-0 overflow-hidden d-block">Through our job application ### platform</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div > --}}
+<div class="form-group" >
+  <nav class="mb-4">
+    <div class="nav nav-pills" style="justify-content: center;" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" onclick="pickEmail();" id="applyViaEmail-tab" data-toggle="tab" href="#applyViaEmail" role="tab" aria-controls="applyViaEmail" aria-selected="true">  Email<input type="radio" id="viaEmail" name="applicationMethod" checked id=""></a>
+      <a class="nav-item nav-link"onclick="pickWebsite();" id="applyViaOwnWebsite-tab" data-toggle="tab" href="#applyViaOwnWebsite" role="tab" aria-controls="applyViaOwnWebsite" aria-selected="false"> Your Website</a><input type="radio" id="viaWebsite" name="applicationMethod" checked id="">
+      <a class="nav-item nav-link"onclick="pickWorx();" id="applyViaWorx-tab" data-toggle="tab" href="#applyViaWorx" role="tab" aria-controls="applyViaWorx" aria-selected="false"> Our Platform</a><input type="radio" id="viaWorx" name="applicationMethod" checked id="">
+    </div>
+  </nav>
+</div>
+<div class="form-group">
+  <div class="">
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="applyViaEmail" role="tabpanel" aria-labelledby="applyViaEmail-tab">
+        <label for="inputPassword5">email</label><input type="radio" id="viaEmail" name="applicationMethod" checked id="">
+        <small id="passwordHelpBlock" class="form-text text-muted">
+           Enter an email below through which applicants should submit their applications. 
+        </small>
+        <input type="text" id="applicationEmail" name="applicationEmail" class="form-control" aria-describedby="passwordHelpBlock">
+    </div>
+    <div class="tab-pane fade" id="applyViaOwnWebsite" role="tabpanel" aria-labelledby="applyViaOwnWebsite-tab">
+      <label for="inputPassword5">website / link</label><input type="radio" id="viaWebsite" name="applicationMethod" checked id="">
+      <small id="passwordHelpBlock" class="form-text text-muted">
+        Enter the website address or link below through which applicants should submit their applications  
+      </small>   
+        <input type="text" id="applicationWebsite" name="applicationWebsite" class="form-control" aria-describedby="passwordHelpBlock">
+    </div>
+    <div class="tab-pane fade" id="applyViaWorx" role="tabpanel" aria-labelledby="applyViaWorx-tab">
+      <label for="inputPassword5">worx</label><input type="radio" id="viaWorx" name="applicationMethod" checked id="">
+      <small id="passwordHelpBlock" class="form-text text-muted">
+        Choose this to enable applicant submit their applications through our platform, you will receive email 
+        notifications for every application and you have a choice of viewing and downloading the applicants 
+        profiles and also accepting or rejecting applications. 
+      </small>   
+        <input type="text" id="applicationWorx" name="applicationWorx" class="form-control" aria-describedby="passwordHelpBlock">
+        <input type="checkbox" name="applicationWorx" id=""> accept our terms and conditions
+    </div>
+  </div>
+  </div>
+</div>
+
+              <button type="submit " class="btn btn-primary mt-4">check</button>
           </form>
+          <script>
+            function pickEmail(){
+              radio = document.getElementById("viaEmail");        radio.checked = true;
+            }
+            function pickWebsite(){
+              radio = document.getElementById("viaWebsite");        radio.checked = true;
+            }
+            function pickWorx(){
+              radio = document.getElementById("viaWorx");        radio.checked = true;
+            }
+
+          </script>
         </div>
 
        

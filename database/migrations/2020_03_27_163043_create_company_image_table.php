@@ -15,7 +15,7 @@ class CreateCompanyImageTable extends Migration
     {
         Schema::create('company_image', function (Blueprint $table) {
             $table->unsignedInteger('id')->unsigned()->autoIncrement();
-            $table->string('company_image',100)->default('no_image.jpg');
+            $table->text('company_image')->default('no_image.jpg');
             $table->timestamps();
         });
     }

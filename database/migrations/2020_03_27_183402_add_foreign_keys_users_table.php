@@ -16,8 +16,9 @@ class AddForeignKeysUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedInteger('user_type_id')->unsigned()->change();
             $table->foreign('user_type_id')
-      ->references('id')->on('user_type')
-      ->onDelete('cascade')->change();
+                ->references('id')->on('user_type')
+                ->onDelete('cascade')->change();
+
         });
     }
 

@@ -14,8 +14,8 @@ class AddTownAndEmailColToJobs extends Migration
     public function up()
     {
         Schema::table('jobs', function (Blueprint $table) {
-            $table->string('email', 100);
-            $table->string('town', 50);
+            $table->text('email');
+            $table->text('town');
         });
     }
 

@@ -16,15 +16,15 @@ class CreateCompanyTable extends Migration
         Schema::create('company', function (Blueprint $table) {
             $table->unsignedInteger('id')->unsigned()->autoIncrement();
             $table->unsignedInteger('user_id');
-            $table->string('email');
-            $table->string('name', 100);
+            $table->text('email');
+            $table->text('name');
             $table->text('description');
             $table->json('services')->nullable();
             $table->unsignedInteger('business_stream_id')->nullable();
-            $table->string('website',200)->nullable();
-            $table->text('city', 100)->nullable();
+            $table->text('website')->nullable();
+            $table->text('city')->nullable();
             $table->unsignedInteger('county_id')->nullable();
-            $table->text('country', 50)->nullable();
+            $table->text('country')->nullable();
             $table->string('mobile', 20)->nullable();
             $table->string('landline', 20)->nullable();
             $table->text('facebook')->nullable();

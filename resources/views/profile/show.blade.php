@@ -163,12 +163,13 @@
                     </div>
                     <ul class="list-inline pt-3 border-top mb-0">
                         <li class="list-inline-item mr-3">
-                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>3659 Peter
-                                king Manhattan, NY 10016</a>
+                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{$profile->user->city}}, {{$profile->user->county->county_name}}, {{$profile->user->country}}</a>
                         </li>
 
                         <li class="list-inline-item mr-3">
-                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-web mr-2"></i>www.{{$profile->user->name}}-{{$profile->user->second_name}}.com</a>
+                            {{-- <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-web mr-2"></i>www.{{$profile->user->name}}-{{$profile->user->second_name}}.com</a> --}}
+                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-web mr-2"></i>{{$profile->user->website}}</a>
+
                         </li>
 
                         <li class="list-inline-item mr-3">
@@ -176,7 +177,7 @@
                         </li>
 
                         <li class="list-inline-item mr-3">
-                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-cellphone-iphone mr-2"></i>{{$profile->user->contact_number}}</a>
+                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-cellphone-iphone mr-2"></i>{{$profile->user->phone}}</a>
                         </li>
                     </ul>
                     @if(auth()->check() && $profile->user_id == auth()->user()->id)
@@ -242,7 +243,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <form action="{{auth()->user()->id}}" method="post">
+                <form action="{{auth()->user()->id ?? ""}}" method="post">
                     @csrf
                   <div class="modal-body">
                     <div class="form-group">   
@@ -275,7 +276,10 @@
             </div>
         </div>
 
+     
+
         <div class="row">
+          {{-- {{dd($profile->educationDetails)}} --}}
             @foreach($profile->educationDetails as $education)
             <div class="col-lg-4 col-md-6 mt-4 pt-5 detailCard">
                 <div class="border rounded candidates-profile-education text-center text-muted">
@@ -379,6 +383,7 @@
         </div>
 
          {{-- add experience entry modal --}}
+         @if(auth()->check())
          <div class="modal fade" id="addExpModal" tabindex="-1" role="dialog" aria-labelledby="addExpModal" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
               <div class="modal-content">
@@ -388,49 +393,94 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <form action="{{auth()->user()->id}}" method="post">
+                <div id="add-expirience-entry-success-msg" class="hide">
+                    <div class="alert alert-info alert-dismissible fade in" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <strong>Success!</strong> Check your mail for login confirmation!!
+                    </div>
+                </div>
+
+                <form  action="{{auth()->user()->id}}"method="post" id="addExperienceEntryForm">
                     @csrf
                   <div class="modal-body">
-                    <div class="form-group"> 
+                    <div class="form-group has-feedback"> 
                         <label for="add_company">Company</label>
-                    <input type="text" class="form-control"  name="add_company_name" id="add_company_name" >
+                        <input value="{{old('add_company_name')}}" type="text" class="form-control"  name="add_company_name" id="add_company_name" required="true" >
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            <span class="text-danger">
+                                <strong id="name-error"></strong>
+                            </span>
                     </div>
-                   <div class="form-group">   
+                   <div class="form-group has-feedback">   
                         <label for="add_job_title">Job Title</label>
-                        <input type="text" class="form-control"  name="add_job_title" id="add_job_title" >
-                    </div>
-                    <div class="form-group">
+                        <input value="{{old('add_job_title')}}" type="text" class="form-control" required="true"  name="add_job_title" id="add_job_title" >
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            <span class="text-danger">
+                                <strong id="name-error"></strong>
+                            </span>
+                        </div>
+                    <div class="form-group has-feedback">
                         <label for="add_job_city">Website</label>
-                        <input type="text" class="form-control"  name="add_website" id="add_website" >
-                    </div>
-                    <div class="form-group">
+                        <input value="{{old('add_website')}}" type="text" class="form-control" required="true"  name="add_website" id="add_website" >
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            <span class="text-danger">
+                                <strong id="name-error"></strong>
+                            </span>
+                        </div>
+                    <div class="form-group has-feedback">
                         <label for="add_job_city">City</label>
-                        <input type="text" class="form-control"  name="add_job_city" id="add_job_city" >
-                    </div>
-                    <div class="form-group">
+                        <input value="{{old('add_job_city')}}" type="text" class="form-control" required="true"  name="add_job_city" id="add_job_city" >
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            <span class="text-danger">
+                                <strong id="name-error"></strong>
+                            </span>
+                        </div>
+                    <div class="form-group has-feedback">
                         <label for="add_job_county">County</label>
-                        <input type="text" class="form-control"  name="add_job_county" id="add_job_county" >
-                    </div>
-                    <div class="form-group">
+                        <input value="{{old('add_job_county')}}" type="text" class="form-control" required="true"  name="add_job_county" id="add_job_county" >
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            <span class="text-danger">
+                                <strong id="name-error"></strong>
+                            </span>
+                        </div>
+                    <div class="form-group has-feedback">
                         <label for="add_job_country">Country</label>
-                        <input type="text" class="form-control"  name="add_job_country" id="add_job_country" >
-                    </div>
-                    <div class="form-group">
+                        <input value="{{old('add_job_country')}}" type="text" class="form-control" required="true"  name="add_job_country"= id="add_job_country" >
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            <span class="text-danger">
+                                <strong id="name-error"></strong>
+                            </span>
+                        </div>
+                    <div class="form-group has-feedback">
                         <label for="add_start_date">Start Date</label>
-                        <input type="date" class="form-control" name="add_start_date" id="add_start_date" >
-                    </div>
-                    <div class="form-group"> 
+                        <input value="{{old('add_start_date')}}" type="date" class="form-control" required="true" name="add_start_date" id="add_start_date" >
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            <span class="text-danger">
+                                <strong id="name-error"></strong>
+                            </span>
+                        </div>
+                    <div class="form-group has-feedback"> 
                         <label for="add_end_date">End Date</label>
-                        <input type="date" class="form-control" name="add_end_date" id="add_end_date" >
-                    </div>
+                        <input value="{{old('add_end_date')}}" type="date" class="form-control" required="true" name="add_end_date" id="add_end_date" >
+                        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                            <span class="text-danger">
+                                <strong id="name-error"></strong>
+                            </span>
+                        </div>
                   <div class="modal-footer border-top-0 d-flex justify-content-center">
                     <button type="submit" class="btn btn-success">Add</button>
+
+                    {{-- <button type="button" id="submitAddExperienceEntry" class="btn btn-success">Add</button> --}}
                   </div>
                   </div>
                 </form>
               </div>
             </div>
         </div>
+        @endif
+        
 
         
 

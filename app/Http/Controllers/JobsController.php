@@ -56,6 +56,7 @@ class JobsController extends Controller
     public function store(Request $request)
     { 
         $company = \App\Company::firstOrNew([
+            'id'=>$request->company_id,
             'name' => $request->company_name,
         'description' => $request->company_description,
         'website' => $request->company_website,
@@ -67,7 +68,7 @@ class JobsController extends Controller
 
         // $company->save();
         // dd($request);
-
+            // dd($request->all());
         $data = [
             'title' => $request->title,
             'email'=> $request->email,
@@ -91,7 +92,8 @@ class JobsController extends Controller
         // dd($data);
 
         $job = auth()->user()->job()->create($data); //create job with current user as user_id
-        $job->company()->associate($company);       //add the company_id to the created job
+        $job->company()->associate($company);   
+        // dd($company);    //add the company_id to the created job
         $job->save();
         return redirect('/job/'.$job->id);
     }
@@ -160,162 +162,6 @@ class JobsController extends Controller
  
 }
 
- function convert(String $county){
 
-    switch ($county) {
-        case "MOMBASA":
-            return 1;    
-            break;
-        case "KWALE":
-            return 2;    
-            break;
-        case "KILIFI":
-            return 3;    
-            break;
-        case "TANA RIVER":
-            return 4;    
-            break;
-        case "LAMU":
-            return 5;    
-            break;
-        case "TAITA TAVETA":
-            return 5;    
-            break;
-        case "GARISSA":
-            return 7;    
-            break;
-        case "WAJIR":
-            return 8;    
-            break;
-        case "MANDERA":
-            return 9;    
-            break;
-        case "MARSABIT":
-            return 10;    
-            break;
-        case "ISIOLO":
-            return 11;    
-            break;
-        case "MERU":
-            return 12;    
-            break;
-        case "THARAKA-NITHI":
-            return 13;    
-            break;
-        case "EMBU":
-            return 14;    
-            break;
-        case "KITUI":
-            return 15;    
-            break;
-        case "MACHAKOS":
-            return 16;    
-            break;
-        case "MAKUENI":
-            return 17;    
-            break;
-        case "NYANDARUA":
-            return 18;    
-            break;
-        case "NYERI":
-            return 19;    
-            break;
-        case "KIRINYAGA":
-            return 20;    
-            break;
-        case "MURANG'A":
-            return 21;    
-            break;
-        case "KIAMBU":
-            return 22;    
-            break;
-        case "TURKANA":
-            return 23;    
-            break;
-        case "WEST POKOT":
-            return 24;    
-            break;
-        case "SAMBURU":
-            return 25;    
-            break;
-        case "TRANS NZOIA":
-            return 26;    
-            break;
-        case "UASIN GISHU":
-            return 27;    
-            break;
-        case "ELGEYO/MARAKWET":
-            return 28;    
-            break;
-        case "NANDI":
-            return 29;    
-            break;
-        case "BARINGO":
-            return 30;    
-            break;
-        case "LAIKIPIA":
-            return 31;    
-            break;
-        case "NAKURU":
-            return 32;    
-            break;
-        case "NAROK":
-            return 33;    
-            break;
-        case "KAJIADO":
-            return 34;    
-            break;
-        case "KERICHO":
-            return 35;    
-            break;
-        case "BOMET":
-            return 36;    
-            break;
-        case "KAKAMEGA":
-            return 37;    
-            break;
-        case "VIHIGA":
-            return 38;    
-            break;
-        case "BUNGOMA":
-            return 39;    
-            break;
-        case "BUSIA":
-            return 40;    
-            break;
-        case "SIAYA":
-            return 41;    
-            break;
-        case "KISUMU":
-            return 42;    
-            break;
-        case "HOMA BAY":
-            return 43;    
-            break;
-        case "MIGORI":
-            return 44;    
-            break;
-        case "KISII":
-            return 45;    
-            break;
-        case "NYAMIRA":
-            return 46;    
-            break;
-        case "NAIROBI":
-            return 47;    
-            break;
-        case "Part Time":
-            return 1;
-        break;
-          case  "Full Time":
-          return 2;
-          break;
-            case "Remote":
-                return 3;
-            break;
-    } 
-    
-
-}
 
 

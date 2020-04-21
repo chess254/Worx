@@ -73,7 +73,7 @@ class CompanyController extends Controller
 
             // $company->toArray();
 
-            $company = auth()->user()->companies()->create($company->toArray());
+            $company = auth()->user()->companies()->save($company);
             return redirect('/company/'.$company->id);
             
     }

@@ -16,7 +16,7 @@ class CreateBusinessStreamTable extends Migration
         Schema::create('business_stream', function (Blueprint $table) {
             $table->unsignedInteger('id')->unsigned()->autoIncrement();
             $table->timestamps();
-            $table->string('name', 100);
+            $table->text('name');
         });
     }
 
