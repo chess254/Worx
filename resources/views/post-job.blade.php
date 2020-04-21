@@ -12,6 +12,7 @@
           toolbar: 'lineheightselect numlist bullist undo redo | styleselect | bold italic | link image' ,
           lineheight_formats: "8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt", 
           statusbar : false,
+          // toolbar_sticky: true,
           
           
           
@@ -329,8 +330,8 @@
   <nav class="mb-4">
     <div class="nav nav-tabs" style="justify-content: space-around;" id="nav-tab" role="tablist">
       <a class="nav-item nav-link active" onclick="pickEmail();" id="applyViaEmail-tab" data-toggle="tab" href="#applyViaEmail" role="tab" aria-controls="applyViaEmail" aria-selected="true">  <input type="radio" value="1" id="viaEmail" name="applicationMethod" checked id="">Email</a>
-      <a class="nav-item nav-link"onclick="pickWebsite();" id="applyViaOwnWebsite-tab" data-toggle="tab" href="#applyViaOwnWebsite" role="tab" aria-controls="applyViaOwnWebsite" aria-selected="false"> <input type="radio" value="2" id="viaWebsite" name="applicationMethod" checked id="">Your Website</a>
-      <a class="nav-item nav-link"onclick="pickWorx();" id="applyViaWorx-tab" data-toggle="tab" href="#applyViaWorx" role="tab" aria-controls="applyViaWorx" aria-selected="false"> <input type="radio" value="3" id="viaWorx" name="applicationMethod" checked id="">Our Platform</a>
+      <a class="nav-item nav-link"onclick="pickWebsite();" id="applyViaOwnWebsite-tab" data-toggle="tab" href="#applyViaOwnWebsite" role="tab" aria-controls="applyViaOwnWebsite" aria-selected="false"> <input type="radio" value="2" id="viaWebsite" name="applicationMethod"  id="">Your Website</a>
+      <a class="nav-item nav-link"onclick="pickWorx();" id="applyViaWorx-tab" data-toggle="tab" href="#applyViaWorx" role="tab" aria-controls="applyViaWorx" aria-selected="false"> <input type="radio" value="3" id="viaWorx" name="applicationMethod"  id="">Our Platform</a>
     </div>
   </nav>
 </div>
