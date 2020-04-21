@@ -324,10 +324,10 @@
           </div > --}}
 <div class="form-group" >
   <nav class="mb-4">
-    <div class="nav nav-pills" style="justify-content: center;" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" onclick="pickEmail();" id="applyViaEmail-tab" data-toggle="tab" href="#applyViaEmail" role="tab" aria-controls="applyViaEmail" aria-selected="true">  Email<input type="radio" id="viaEmail" name="applicationMethod" checked id=""></a>
-      <a class="nav-item nav-link"onclick="pickWebsite();" id="applyViaOwnWebsite-tab" data-toggle="tab" href="#applyViaOwnWebsite" role="tab" aria-controls="applyViaOwnWebsite" aria-selected="false"> Your Website</a><input type="radio" id="viaWebsite" name="applicationMethod" checked id="">
-      <a class="nav-item nav-link"onclick="pickWorx();" id="applyViaWorx-tab" data-toggle="tab" href="#applyViaWorx" role="tab" aria-controls="applyViaWorx" aria-selected="false"> Our Platform</a><input type="radio" id="viaWorx" name="applicationMethod" checked id="">
+    <div class="nav nav-tabs" style="justify-content: space-around;" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" onclick="pickEmail();" id="applyViaEmail-tab" data-toggle="tab" href="#applyViaEmail" role="tab" aria-controls="applyViaEmail" aria-selected="true">  <input type="radio" value="1" id="viaEmail" name="applicationMethod" checked id="">Email</a>
+      <a class="nav-item nav-link"onclick="pickWebsite();" id="applyViaOwnWebsite-tab" data-toggle="tab" href="#applyViaOwnWebsite" role="tab" aria-controls="applyViaOwnWebsite" aria-selected="false"> <input type="radio" value="2" id="viaWebsite" name="applicationMethod" checked id="">Your Website</a>
+      <a class="nav-item nav-link"onclick="pickWorx();" id="applyViaWorx-tab" data-toggle="tab" href="#applyViaWorx" role="tab" aria-controls="applyViaWorx" aria-selected="false"> <input type="radio" value="3" id="viaWorx" name="applicationMethod" checked id="">Our Platform</a>
     </div>
   </nav>
 </div>
@@ -335,28 +335,33 @@
   <div class="">
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="applyViaEmail" role="tabpanel" aria-labelledby="applyViaEmail-tab">
-        <label for="inputPassword5">email</label><input type="radio" id="viaEmail" name="applicationMethod" checked id="">
+        
         <small id="passwordHelpBlock" class="form-text text-muted">
            Enter an email below through which applicants should submit their applications. 
         </small>
-        <input type="text" id="applicationEmail" name="applicationEmail" class="form-control" aria-describedby="passwordHelpBlock">
+        <input type="text" id="applicationEmail" name="applicationEmail" class="form-control" placeholder="application email" aria-describedby="passwordHelpBlock">
     </div>
+
+    
     <div class="tab-pane fade" id="applyViaOwnWebsite" role="tabpanel" aria-labelledby="applyViaOwnWebsite-tab">
-      <label for="inputPassword5">website / link</label><input type="radio" id="viaWebsite" name="applicationMethod" checked id="">
       <small id="passwordHelpBlock" class="form-text text-muted">
         Enter the website address or link below through which applicants should submit their applications  
       </small>   
         <input type="text" id="applicationWebsite" name="applicationWebsite" class="form-control" aria-describedby="passwordHelpBlock">
     </div>
     <div class="tab-pane fade" id="applyViaWorx" role="tabpanel" aria-labelledby="applyViaWorx-tab">
-      <label for="inputPassword5">worx</label><input type="radio" id="viaWorx" name="applicationMethod" checked id="">
       <small id="passwordHelpBlock" class="form-text text-muted">
         Choose this to enable applicant submit their applications through our platform, you will receive email 
         notifications for every application and you have a choice of viewing and downloading the applicants 
         profiles and also accepting or rejecting applications. 
       </small>   
         <input type="text" id="applicationWorx" name="applicationWorx" class="form-control" aria-describedby="passwordHelpBlock">
-        <input type="checkbox" name="applicationWorx" id=""> accept our terms and conditions
+        <input type="checkbox" name="applicationWorx" id=""> accept our <a href=""> terms and conditions</a>
+    </div>
+    <label class="mt-4 form-text text-muted" for="inputPassword5"> <small> Enter additional application instructions below</small></label>
+
+    <div>
+      <textarea name="applicationInstructions" id="applicationInstructions" cols="30" rows="10"></textarea>
     </div>
   </div>
   </div>
