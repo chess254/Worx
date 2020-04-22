@@ -32,6 +32,13 @@ class TweakJobsTable extends Migration
             $table->longText('responsibilities', 1000);
             $table->longText('requirements', 1000);
             $table->longText('education',1000);
+            $table->integer('applicationMethod');
+            $table->text('applicationEmail')->nullable();
+            $table->text('applicationWebsite')->nullable();
+            $table->text('applicationWorx')->nullable();
+            $table->longText('applicationInstructions')->nullable();
+            $table->integer('termsAndConditions')->nullable();    
+            $table->integer('views')->default(0)->nullable();
             $table->text('image')->default('no_image.jpg');
             $table->timestamps();
         });

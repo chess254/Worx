@@ -57,5 +57,9 @@ class Job extends Model
         return $this->belongsTo(\App\BusinessStream::class);
     }
 
+    public function applications(){
+        return $this->hasMany(\App\Application::class);
+    }
+
 
 }
