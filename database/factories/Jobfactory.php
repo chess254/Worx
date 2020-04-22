@@ -33,6 +33,30 @@ $factory->define(Job::class, function (Faker $faker) {
 
         $company_id = $faker->randomElement($compArray);
 
+        //choose application method
+        $applicationMethod = $faker->randomElement([1,2,3]);
+        $applicationEmail = null;
+        $applicationWebsite = null;
+        $applicationWorx =null;
+        // $applicationInstructions = null;
+
+        //if application method is 1, put applicationEmail and applicationDescription for email application
+        if ($applicationMethod == 1) {
+            $applicationEmail = \App\Company::find($company_id)->email;
+            $applicationInstructions = "<p> Send your application via this email </p><n/> Address to hr...<n/> " .$applicationEmail;
+        }
+        //if application method is 2 , put applicationWebsite and link to application in applicationInstructions
+        if ($applicationMethod == 2) {
+            $applicationWebsite = \App\Company::find($company_id)->website;
+            $applicationInstructions = "<p> click here to apply </p><n/> < a href='" .$applicationWebsite."'> apply </a>";
+        }
+        //if application method is 3, applicationInstructions to apply here and button to apply
+        if ($applicationMethod == 3) {
+            $applicationWorx = \App\Company::find($company_id)->website;
+            $applicationInstructions = "<p> click here to apply </p><n/> < a href='worx.co.ke/apply/" .$company_id."'> apply via worx </a>";
+        }
+
+        
 
    
 
@@ -75,6 +99,12 @@ $factory->define(Job::class, function (Faker $faker) {
         'responsibilities' =>$faker->paragraph($nb=2, $nbSentences = 1, $variableNbSentences = true),
         'requirements' =>$faker->paragraph($nb=2, $nbSentences = 1, $variableNbSentences = true),
         'education'  =>$faker->randomElement(['High School','Certificate','Diploma','Degree','Post-Graduate Degree','Masters','Doctorate']),
+        'applicationMethod'=> $applicationMethod,
+        'applicationEmail'=> ($applicationEmail) ? $applicationEmail : null,
+        'applicationWebsite'=>$applicationWebsite ? $applicationWebsite : null,
+        'applicationWorx'=>$applicationWorx ? $applicationWorx : null,
+        'applicationInstructions' => $applicationInstructions,
+        'termsAndConditions' => 1,
         'image' =>'no_image.jpg',
         'email' => $faker->unique()->safeEmail,
         'town' =>$faker->city,

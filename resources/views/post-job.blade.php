@@ -12,6 +12,7 @@
           toolbar: 'lineheightselect numlist bullist undo redo | styleselect | bold italic | link image' ,
           lineheight_formats: "8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt", 
           statusbar : false,
+          // toolbar_sticky: true,
           
           
           
@@ -51,7 +52,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-4">
+        {{-- <div class="col-lg-4">
           <div class="row">
             <div class="col-6">
               <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
@@ -60,7 +61,7 @@
               <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
             </div>
           </div>
-        </div>
+        </div> --}}
       </div>
       <div class="row mb-5">
         <div class="col-lg-12">
@@ -223,8 +224,8 @@
 
             <h3 class="text-black my-5 border-bottom pb-2">Company Details</h3>
             <div class="form-group">
-              <label for="company_id">Your Companies :</label>
-              <select id="company_id" name="company_id">
+              <label for="company_id">Your Companies </label> <br>
+              <select class="nice-select" id="company_id" name="company_id">
                 <option>Choose company</option>
                 
                 @foreach($user_companies as $company)
@@ -232,7 +233,7 @@
                 
                 @endforeach
               </select>
-            </div>
+            </div><br>
 
             <div class="form-group">
               <label for="company_name">Company Name</label>
@@ -329,8 +330,8 @@
   <nav class="mb-4">
     <div class="nav nav-tabs" style="justify-content: space-around;" id="nav-tab" role="tablist">
       <a class="nav-item nav-link active" onclick="pickEmail();" id="applyViaEmail-tab" data-toggle="tab" href="#applyViaEmail" role="tab" aria-controls="applyViaEmail" aria-selected="true">  <input type="radio" value="1" id="viaEmail" name="applicationMethod" checked id="">Email</a>
-      <a class="nav-item nav-link"onclick="pickWebsite();" id="applyViaOwnWebsite-tab" data-toggle="tab" href="#applyViaOwnWebsite" role="tab" aria-controls="applyViaOwnWebsite" aria-selected="false"> <input type="radio" value="2" id="viaWebsite" name="applicationMethod" checked id="">Your Website</a>
-      <a class="nav-item nav-link"onclick="pickWorx();" id="applyViaWorx-tab" data-toggle="tab" href="#applyViaWorx" role="tab" aria-controls="applyViaWorx" aria-selected="false"> <input type="radio" value="3" id="viaWorx" name="applicationMethod" checked id="">Our Platform</a>
+      <a class="nav-item nav-link"onclick="pickWebsite();" id="applyViaOwnWebsite-tab" data-toggle="tab" href="#applyViaOwnWebsite" role="tab" aria-controls="applyViaOwnWebsite" aria-selected="false"> <input type="radio" value="2" id="viaWebsite" name="applicationMethod"  id="">Your Website</a>
+      <a class="nav-item nav-link"onclick="pickWorx();" id="applyViaWorx-tab" data-toggle="tab" href="#applyViaWorx" role="tab" aria-controls="applyViaWorx" aria-selected="false"> <input type="radio" value="3" id="viaWorx" name="applicationMethod"  id="">Our Platform</a>
     </div>
   </nav>
 </div>
@@ -359,18 +360,19 @@
         profiles and also accepting or rejecting applications. 
       </small>   
         <input type="text" id="applicationWorx" name="applicationWorx" class="form-control" aria-describedby="passwordHelpBlock">
-        <input type="checkbox" name="applicationWorx" id=""> accept our <a href=""> terms and conditions</a>
     </div>
     <label class="mt-4 form-text text-muted" for="inputPassword5"> <small> Enter additional application instructions below</small></label>
 
     <div>
       <textarea name="applicationInstructions" id="applicationInstructions" cols="30" rows="10"></textarea>
     </div>
+    <div class="mt-4">        <input type="checkbox" name="termsAndConditions" id="" value="1" onclick="terms_changed(this)" > accept our <a href=""> terms and conditions</a>
+    </div>
   </div>
   </div>
 </div>
 
-              <button type="submit " class="btn btn-primary mt-4">check</button>
+              <button type="submit " disabled  id="submit" class="btn btn-primary mt-4">check</button>
           </form>
           <script>
             function pickEmail(){
@@ -381,6 +383,21 @@
             }
             function pickWorx(){
               radio = document.getElementById("viaWorx");        radio.checked = true;
+            }
+
+
+	
+            //JavaScript function that enables or disables a submit button depending
+            //on whether a checkbox has been ticked or not.
+            function terms_changed(termsCheckBox){
+                //If the checkbox has been checked
+                // if(termsCheckBox.checked){
+                    //Set the disabled property to FALSE and enable the button.
+                    document.getElementById("submit").disabled = !termsCheckBox.checked;
+                // } else{
+                //     //Otherwise, disable the submit button.
+                //     document.getElementById("submit").disabled = true;
+                // }
             }
 
           </script>

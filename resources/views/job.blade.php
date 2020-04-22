@@ -242,6 +242,20 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="job-detail border rounded mt-2 p-4">
+                            @if ($Job->applicationEmail)
+                                {!!$Job->applicationInstructions!!}
+                            @endif
+                            
+                            
+                            @if ($Job->applicationWebsite)
+                            {!!$Job->applicationInstructions!!} <br>
+                                
+                            <a href="http://{{$Job->applicationWebsite}} ">Click to apply</a>                            
+                            @endif
+                            @if ($Job->applicationWorx)  
+                            <button>
+                                <a href="/apply">Click to apply</a> </button>                              
+                            @endif
                             <div class="job-detail-desc">
                                 <div class="job-details-desc-item">
                                     <div class="float-left mr-3">

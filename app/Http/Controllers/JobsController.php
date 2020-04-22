@@ -86,7 +86,12 @@ class JobsController extends Controller
             'responsibilities' => $request->responsibilities,
            'requirements' =>$request->requirements,             
             'education' => $request->education,
-            'business_stream_id'=>$request->company_business_stream_id
+            'business_stream_id'=>$request->company_business_stream_id,
+            'applicationMethod'=>$request->applicationMethod,
+            'applicationEmail'=>$request->applicationEmail,
+            'applicationWebsite'=>$request->applicationWebsite,
+            'applicationWorx'=>$request->applicationWorx,
+            'applicationInstructions'=>$request->applicationInstructions,
         ];
 
         // dd($data);
@@ -110,6 +115,7 @@ class JobsController extends Controller
         $Job = Job::where('id', $job)
         ->with(['location', 'company', 'type','businessStream'])
         ->first();
+        // dd($Job);    
         return view('job', compact('Job'));
     }
 
