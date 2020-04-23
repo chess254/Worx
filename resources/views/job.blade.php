@@ -12,6 +12,45 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="text-center text-white">
+                    {{-- flash message here on successful aplication --}}
+                    @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+
+
+                        {{-- ADD MODAL HERE LATER --}}
+                        {{-- <div id="popupmodal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h3>Notification: Please read</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    {{ Session::get('message') }}
+
+
+                                </p>
+                                <div class='card'>
+                                    <!--   <div class='header'>
+                                        Do you like blue?
+                                    </div> -->
+                                    <div class='content'>
+                                        Think carefully about your feelings towards this color.
+                                    </div>
+                                    <div class='actions'>
+                                        <a class='nah' href='#'>Nah</a>
+                                        <a href='#'>I love it!</a>
+                                    </div>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                            </div>
+                        </div> --}}
+
+
+                @endif
                     <h4 class="text-uppercase title mb-4">{{$Job->title}}</h4>
                     <ul class="page-next d-inline-block mb-0">
                         <li><a href="{{route('home')}}"  class="text-uppercase font-weight-bold">Home</a></li>
@@ -37,6 +76,9 @@
                         <img src="{{ asset('images/featured-job/img-1.png') }}" alt="" class="img-fluid mx-auto d-block">
                     </div>
                     <h4 class="text-dark">{{$Job->title}}</h4>
+
+               
+
                     {{-- {{dd($Job->county->county_name)}} --}}
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item mr-3">
@@ -253,8 +295,11 @@
                             <a href="http://{{$Job->applicationWebsite}} ">Click to apply</a>                            
                             @endif
                             @if ($Job->applicationWorx)  
-                            <button>
-                                <a href="/apply">Click to apply</a> </button>                              
+                            
+                            <form action="/job/{{$Job->id}}/apply" method="post">
+                                @csrf
+                            <input type="hidden">
+                            <button class="btn btn-primary btn-block btn-sm mb-4"type="submit"> <i class="mdi mdi-send mr-2"></i> apply</button> </form>                         
                             @endif
                             <div class="job-detail-desc">
                                 <div class="job-details-desc-item">

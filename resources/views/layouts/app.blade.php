@@ -256,13 +256,20 @@ $('#services').selectize({
 // });
 
 
+//popup modal on redirect after successful jo application via worx
+
+
 
 
 
 
 </script>
 
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#popupmodal').modal();
+    });
+</script>
 
 </body>
 </html>
