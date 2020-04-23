@@ -12,7 +12,7 @@ class ApplicationReceivedEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-
+//when set to public these props can be accessed by viwe automatically without passing them to the ->with() chain of view
     protected $job;
     protected $user;
 
@@ -41,7 +41,7 @@ class ApplicationReceivedEmail extends Mailable
         return $this->from('holla@60four.co.ke', 'Mailtrap')
         ->subject('Job application received')
         ->view('mails.email')->with([
-            'job'=>$this->job, 
+            'job'=>$this->job, //when jon is set as $public we dont have to pass the data here, it can be accessed by view
             // 'user'=> $this->user
             ]);
     }

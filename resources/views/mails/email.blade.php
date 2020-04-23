@@ -7,6 +7,6 @@
     <title>Mail from queue</title>
 </head>
 <body>
-<p>Your job application for {{$job->title}} received</p>
+<p>Application for {{$job->title}} received</p>
 </body>
 </html>
