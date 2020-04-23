@@ -34,8 +34,11 @@ Route::get('/jobs', 'JobsController@index')->name('jobs');
 
 
 Route::get('/job/{job}', 'JobsController@show');
+Route::post('/job/{job}/apply', 'JobsController@apply');  
 
 Route::get('/job','JobsController@create')->name('create-job')->middleware('auth');
+
+Route::get('/sendemail', 'JobsController@enqueue');
 
 Route::post('/job','JobsController@store');
 Route::get('/my-jobs','JobsController@jobsPostedby')->name('myjobs');

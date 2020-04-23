@@ -7,7 +7,9 @@ use App\Job;
 use App\User;
 Use App\County;
 use App\BusinessStream;
+use App\Application;
 use Auth;
+use App\Jobs\SendEmail;
 
 class JobsController extends Controller
 {
@@ -110,6 +112,14 @@ class JobsController extends Controller
      * @return \Illuminate\Http\Response
      */
     // public function show(\App\Job $job)
+
+    public function enqueue(Request $request){
+        $details = ['email'=>auth()->user()->email];
+        SendEmail::dispatch($details);
+
+        dd($details);
+    }
+
     public function show($job)
     {
         $Job = Job::where('id', $job)
@@ -162,6 +172,29 @@ class JobsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function apply(Request $request,Job $Job){
+        if(!Auth::check()){
+            return redirect('login')->with('message', 'Login to apply');
+        }
+        //    count(Application::where('job_id',200)->where('applicant_id',39)->get())
+        
+        if(count(Application::where('job_id', $Job->id)->where('applicant_id',auth()->user()->seekerProfile->id)->get())){
+            return redirect()->back()->with('message', 'You had already applied for this job');
+        }
+        $application = new Application;
+        $application->job_id = $Job->id;
+        $application->applicant_id = auth()->user()->seekerProfile->id;
+        $application->save();
+
+        $details = ['email'=>auth()->user()->email];
+
+        SendEmail::dispatch($request->user(),Job::findOrFail($Job->id));
+        
+        // dd($application);
+
+        return redirect()->back()->with('message', 'Application Submitted');
     }
     
     

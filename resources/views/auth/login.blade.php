@@ -14,7 +14,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-6">
                         @if (session()->has('message'))
-                            <div class="alert alert-info">
+                            <div class="alert alert-warning">
                                 {{ session('message') }}
                             </div>
                         @endif
