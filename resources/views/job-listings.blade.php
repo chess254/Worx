@@ -338,6 +338,7 @@
                             </div>
                         </div>
                     @endforeach
+                    {{ $joblistendsection->links() }}
 
                     
                         <div class="col-lg-12 mt-4 pt-2">

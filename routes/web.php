@@ -58,3 +58,7 @@ Route::delete('exp/{id}', function ($id) {
     
 });
 
+Route::get('/attach', function(){
+    return view('attachfile');
+});
+

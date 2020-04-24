@@ -9,7 +9,7 @@ Use App\County;
 use App\BusinessStream;
 use App\Application;
 use Auth;
-use App\Jobs\SendEmail;
+use App\Jobs\SendEmailQueue;
 
 class JobsController extends Controller
 {
@@ -190,7 +190,7 @@ class JobsController extends Controller
 
         $details = ['email'=>auth()->user()->email];
 
-        SendEmail::dispatch($request->user(),Job::findOrFail($Job->id));
+        SendEmailQueue::dispatch($request->user(),Job::findOrFail($Job->id));
         
         // dd($application);
 

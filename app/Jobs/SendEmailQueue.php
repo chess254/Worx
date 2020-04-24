@@ -11,7 +11,7 @@ use \App\Mail\ApplicationReceivedEmail;
 use Mail;
 use App\Job;
 use App\User;
-class SendEmail implements ShouldQueue
+class SendEmailQueue implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
