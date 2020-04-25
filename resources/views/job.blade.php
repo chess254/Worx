@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('scripts')
+           
+@endsection
+
 @section('navbar')
   @include('partials.navbar')
 @endsection
@@ -295,11 +299,29 @@
                             <a href="http://{{$Job->applicationWebsite}} ">Click to apply</a>                            
                             @endif
                             @if ($Job->applicationWorx)  
+
+                      
                             
-                            <form action="/job/{{$Job->id}}/apply" method="post">
-                                @csrf
-                            <input type="hidden">
-                            <button class="btn btn-primary btn-block btn-sm mb-4"type="submit"> <i class="mdi mdi-send mr-2"></i> apply</button> </form>                         
+                                <form action="/job/{{$Job->id}}/apply" method="post" id="attachFiles">
+
+
+                                    <div class="form-group">
+                                        <label for="document">Documents</label>
+                                        <div class="needsclick dropzone" id="document-dropzone">
+                                
+                                        </div>
+                                    </div>
+
+                                   
+
+                                    
+
+                                    <p>got file attachments? </p> <button>attach files</button>
+
+                                    @csrf
+                                    <input type="hidden">
+                                    <button class="btn btn-primary btn-block btn-sm mb-4"type="submit"> <i class="mdi mdi-send mr-2"></i> apply</button> 
+                                </form>                         
                             @endif
                             <div class="job-detail-desc">
                                 <div class="job-details-desc-item">

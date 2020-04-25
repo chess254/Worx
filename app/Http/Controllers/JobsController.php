@@ -183,10 +183,19 @@ class JobsController extends Controller
         if(count(Application::where('job_id', $Job->id)->where('applicant_id',auth()->user()->seekerProfile->id)->get())){
             return redirect()->back()->with('message', 'You had already applied for this job');
         }
+
+
         $application = new Application;
         $application->job_id = $Job->id;
         $application->applicant_id = auth()->user()->seekerProfile->id;
+        
+
+        
         $application->save();
+
+        foreach ($request->input('document', []) as $file) {
+            $application->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');
+        }
 
         $details = ['email'=>auth()->user()->email];
 
@@ -197,7 +206,25 @@ class JobsController extends Controller
         return redirect()->back()->with('message', 'Application Submitted');
     }
     
-    
+    public function attachFiles(Request $request)
+    {
+        $path = storage_path('tmp/uploads');
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        $file = $request->file('file');
+
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+
+        $file->move($path, $name);
+
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
+    }
  
 }
 

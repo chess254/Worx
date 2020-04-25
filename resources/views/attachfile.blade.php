@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="row mt-4" id="rowEXP">
+<div class="row mt-4    " id="rowEXP">
     <div class="col-lg-12 mt-4 pt-2">
         
     <div style="display: flex; justify-content: space-between;">
@@ -37,10 +37,18 @@
             </div>
         </div>
 
-        <form  action=""method="post" id="addExperienceEntryForm">
+        <form  action="/attach"method="post" enctype="multipart/form-data" id="addExperienceEntryForm">
             @csrf
           <div class="modal-body">
-            <div class="form-group has-feedback"> 
+
+            <p>
+                <label for="photo">
+                    <input type="file" name="photo[]" multiple id="photo">
+                </label>
+            </p>
+            <button>Upload</button>
+            
+            {{-- <div class="form-group has-feedback"> 
                 <label for="add_company">Company</label>
                 <input value="" type="text" class="form-control"  name="add_company_name" id="add_company_name" required="true" >
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -107,8 +115,7 @@
           <div class="modal-footer border-top-0 d-flex justify-content-center">
             <button type="submit" class="btn btn-success">Add</button>
 
-            {{-- <button type="button" id="submitAddExperienceEntry" class="btn btn-success">Add</button> --}}
-          </div>
+          </div> --}}
           </div>
         </form>
       </div>
