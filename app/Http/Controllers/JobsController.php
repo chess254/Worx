@@ -9,7 +9,7 @@ Use App\County;
 use App\BusinessStream;
 use App\Application;
 use Auth;
-use App\Jobs\SendEmail;
+use App\Jobs\SendEmailQueue;
 
 class JobsController extends Controller
 {
@@ -40,12 +40,9 @@ class JobsController extends Controller
 
             session()->flash('message', 'You must login with an employer account to post a job');
             Auth::logout();
-            return redirect('login');
+            return redirect('login');   //alternate redirect back with message, so they can logout themeselves instead of login em out automatically
         }
-
         $user_companies = $user->companies;
-        // dd($user_companies);
-
         return view('post-job',compact('user_companies'));
     }
 
@@ -60,17 +57,11 @@ class JobsController extends Controller
         $company = \App\Company::firstOrNew([
             'id'=>$request->company_id,
             'name' => $request->company_name,
-        'description' => $request->company_description,
-        'website' => $request->company_website,
-        'business_stream_id'=>$request->company_business_stream_id
-
+            'description' => $request->company_description,
+            'website' => $request->company_website,
+            'business_stream_id'=>$request->company_business_stream_id
         ]);
 
-        // dd($company);
-
-        // $company->save();
-        // dd($request);
-            // dd($request->all());
         $data = [
             'title' => $request->title,
             'email'=> $request->email,
@@ -96,11 +87,8 @@ class JobsController extends Controller
             'applicationInstructions'=>$request->applicationInstructions,
         ];
 
-        // dd($data);
-
         $job = auth()->user()->job()->create($data); //create job with current user as user_id
         $job->company()->associate($company);   
-        // dd($company);    //add the company_id to the created job
         $job->save();
         return redirect('/job/'.$job->id);
     }
@@ -111,33 +99,18 @@ class JobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show(\App\Job $job)
-
-    public function enqueue(Request $request){
-        $details = ['email'=>auth()->user()->email];
-        SendEmail::dispatch($details);
-
-        dd($details);
-    }
-
     public function show($job)
     {
         $Job = Job::where('id', $job)
         ->with(['location', 'company', 'type','businessStream'])
         ->first();
-        // dd($Job);    
         return view('job', compact('Job'));
     }
 
     public function jobsPostedBy(){
         $user_id = auth()->user()->id;
         $JobsPostedByUser = Job::where('user_id', $user_id)->get();
-
         return view('myjobs', compact('JobsPostedByUser'));
-
-        // dd($JobsPostedByUser);
-
-
     }
 
     /**
@@ -175,29 +148,53 @@ class JobsController extends Controller
     }
 
     public function apply(Request $request,Job $Job){
+        //check authenticated user
         if(!Auth::check()){
             return redirect('login')->with('message', 'Login to apply');
         }
-        //    count(Application::where('job_id',200)->where('applicant_id',39)->get())
-        
+        //check if user has already applied for this job
         if(count(Application::where('job_id', $Job->id)->where('applicant_id',auth()->user()->seekerProfile->id)->get())){
             return redirect()->back()->with('message', 'You had already applied for this job');
         }
+        
         $application = new Application;
+        $application->employer_id = $Job->user_id;
         $application->job_id = $Job->id;
         $application->applicant_id = auth()->user()->seekerProfile->id;
         $application->save();
 
-        $details = ['email'=>auth()->user()->email];
-
-        SendEmail::dispatch($request->user(),Job::findOrFail($Job->id));
-        
-        // dd($application);
+        foreach ($request->input('document', []) as $file) {
+            //todo: findout how to add media from request(url) instead of path, then save to disk
+            $application->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');//link file in storage to application
+        }
+        //send application sent notice to email queue for user and employer
+        SendEmailQueue::dispatch($request->user(),Job::findOrFail($Job->id));
 
         return redirect()->back()->with('message', 'Application Submitted');
     }
     
-    
+    /**
+     * Copy file attachments submitted with job applcation to storage
+     */
+    public function attachFiles(Request $request)
+    {
+        $path = storage_path('tmp/uploads');
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        $file = $request->file('file');
+
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+
+        $file->move($path, $name);
+
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
+    }
  
 }
 

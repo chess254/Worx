@@ -16,9 +16,11 @@ class CreateApplicationsTable extends Migration
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('job_id');
-            $table->foreign('job_id')->references('id')->on('jobs');
-            $table->integer('views')->default(0)->change();
+            $table->unsignedInteger('employer_id');
             $table->unsignedInteger('applicant_id');
+            $table->integer('views')->default(0)->change();
+            $table->foreign('job_id')->references('id')->on('jobs');
+            $table->foreign('employer_id')->references('id')->on('users');
             $table->foreign('applicant_id')->references('id')->on('seeker_profile');
             $table->timestamps();
         });

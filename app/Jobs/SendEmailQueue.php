@@ -11,12 +11,13 @@ use \App\Mail\ApplicationReceivedEmail;
 use Mail;
 use App\Job;
 use App\User;
-class SendEmail implements ShouldQueue
+class SendEmailQueue implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $user;
     public $Job;
+    protected $employer;
     /**
      * Create a new job instance.
      *
@@ -26,6 +27,8 @@ class SendEmail implements ShouldQueue
     {
         $this->user = $user;
         $this->Job = Job::findOrFail($job->id);
+        $this->employer = User::findOrFail($job->user_id);
+
     }
 
     /**
@@ -36,6 +39,8 @@ class SendEmail implements ShouldQueue
     public function handle()
     {
         // $email = new ApplicationReceivedEmail();
+        // Mail::to([$this->user, $this->employer])->send(new ApplicationReceivedEmail($this->Job));
         Mail::to($this->user)->send(new ApplicationReceivedEmail($this->Job));
+        Mail::to($this->employer)->send(new ApplicationReceivedEmail($this->Job));
     }
 }

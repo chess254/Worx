@@ -34,6 +34,13 @@
 
     <!-- Custom  Css -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}"/>
+
+    <!--dropzone css-->
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('css/basic.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/dropzone.min.css') }}"/> --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+
+
     @yield('scripts')
 
 
@@ -154,114 +161,100 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/home.js') }}"></script>
 
+<!--dropzone-->
+{{-- <script src="{{ asset('js/dropzone.min.js') }}"></script>
+<script src="{{ asset('js/dropzone-amd-module.min.js') }}"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+
+
 
 <script>
 
-$(document).ready(function(){  
-  var form_count = 1, form_count_form, next_form, total_forms;
-  total_forms = $("fieldset").length;  
-  $(".next").click(function(){
-    form_count_form = $(this).parent();
-    next_form = $(this).parent().next();
-    next_form.show();
-    $('html, body').animate({
-        scrollTop: ($('#educ').first().offset().top)
-    },200);
-    form_count_form.hide();
-    setProgressBar(++form_count);
-  });  
-  $(".previous").click(function(){
-    form_count_form = $(this).parent();
-    next_form = $(this).parent().prev();
-    next_form.show();
-    form_count_form.hide();
-    $('html, body').animate({
-        scrollTop: ($('#educ').first().offset().top)
-    },200);
-    setProgressBar(--form_count);
-  });
-  setProgressBar(form_count);  
-  function setProgressBar(curStep){
-    var percent = parseFloat(100 / total_forms) * curStep;
-    percent = percent.toFixed();
-    $(".progress-bar")
-      .css("width",percent+"%")
-      .html(percent+"%");   
-  } 
-  // Handle form submit and validation
-  $( "#user_form" ).submit(function(event) {    
-	// var error_message = '';
-	// if(!$("#email").val()) {
-	// 	error_message+="Please Fill Email Address";
-	// }
-	// if(!$("#password").val()) {
-	// 	error_message+="<br>Please Fill Password";
-	// }
-	// if(!$("#mobile").val()) {
-	// 	error_message+="<br>Please Fill Mobile Number";
-	// }
-	// Display error if any else submit form
-	if(error_message) {
-		$('.alert-success').removeClass('hide').html(error_message);
-		return false;
-	} else {
-		return true;	
-	}    
-  }); 
-  
-  $( "#company_form" ).submit(function(event) {    
-	// var error_message = '';
-	// if(!$("#email").val()) {
-	// 	error_message+="Please Fill Email Address";
-	// }
-	// if(!$("#password").val()) {
-	// 	error_message+="<br>Please Fill Password";
-	// }
-	// if(!$("#mobile").val()) {
-	// 	error_message+="<br>Please Fill Mobile Number";
-	// }
-	// Display error if any else submit form
-	if(error_message) {
-		$('.alert-success').removeClass('hide').html(error_message);
-		return false;
-	} else {
-		return true;	
-	}    
-  }); 
-  
-});
+    $(document).ready(function(){  
+        var form_count = 1, form_count_form, next_form, total_forms;
+        total_forms = $("fieldset").length;  
+        $(".next").click(function(){
+            form_count_form = $(this).parent();
+            next_form = $(this).parent().next();
+            next_form.show();
+            $('html, body').animate({
+                scrollTop: ($('#educ').first().offset().top)
+            },200);
+            form_count_form.hide();
+            setProgressBar(++form_count);
+        });  
+        $(".previous").click(function(){
+            form_count_form = $(this).parent();
+            next_form = $(this).parent().prev();
+            next_form.show();
+            form_count_form.hide();
+            $('html, body').animate({
+                scrollTop: ($('#educ').first().offset().top)
+            },200);
+            setProgressBar(--form_count);
+        });
+        setProgressBar(form_count);  
+        function setProgressBar(curStep){
+            var percent = parseFloat(100 / total_forms) * curStep;
+            percent = percent.toFixed();
+            $(".progress-bar")
+            .css("width",percent+"%")
+            .html(percent+"%");   
+        } 
+        // Handle form submit and validation
+        $( "#user_form" ).submit(function(event) {    
+            // var error_message = '';
+            // if(!$("#email").val()) {
+            // 	error_message+="Please Fill Email Address";
+            // }
+            // if(!$("#password").val()) {
+            // 	error_message+="<br>Please Fill Password";
+            // }
+            // if(!$("#mobile").val()) {
+            // 	error_message+="<br>Please Fill Mobile Number";
+            // }
+            // Display error if any else submit form
+            if(error_message) {
+                $('.alert-success').removeClass('hide').html(error_message);
+                return false;
+            } else {
+                return true;	
+            }    
+        }); 
+        
+        $( "#company_form" ).submit(function(event) {    
+            // var error_message = '';
+            // if(!$("#email").val()) {
+            // 	error_message+="Please Fill Email Address";
+            // }
+            // if(!$("#password").val()) {
+            // 	error_message+="<br>Please Fill Password";
+            // }
+            // if(!$("#mobile").val()) {
+            // 	error_message+="<br>Please Fill Mobile Number";
+            // }
+            // Display error if any else submit form
+            if(error_message) {
+                $('.alert-success').removeClass('hide').html(error_message);
+                return false;
+            } else {
+                return true;	
+            }    
+        }); 
+    
+    });
 
 
-$('#services').selectize({
-    delimiter: ',',
-    persist: false,
-    create: function(input) {
-        return {
-            value: input,
-            text: input
+    $('#services').selectize({
+        delimiter: ',',
+        persist: false,
+        create: function(input) {
+            return {
+                value: input,
+                text: input
+            }
         }
-    }
-});
-
-
-// $('#skills').selectize({
-//     delimiter: ','
-//     persist: false,
-//     create: function(input) {
-//         return {
-//             value: input,
-//             text: input
-//         }
-//     },
-// });
-
-
-//popup modal on redirect after successful jo application via worx
-
-
-
-
-
+    });
 
 </script>
 
@@ -270,6 +263,46 @@ $('#services').selectize({
         $('#popupmodal').modal();
     });
 </script>
+
+
+ {{-- script to submit job file attachments dropzonejs--}}
+<script>
+    var uploadedDocumentMap = {}
+    Dropzone.options.documentDropzone = {
+        url: '{{ route('job.attach') }}',
+        maxFilesize: 2, // MB
+        addRemoveLinks: true,
+        headers: {
+            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+        },
+        success: function (file, response) {
+            $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
+            uploadedDocumentMap[file.name] = response.name
+        },
+        removedfile: function (file) {
+        file.previewElement.remove()
+        var name = ''
+        if (typeof file.file_name !== 'undefined') {
+            name = file.file_name
+        } else {
+            name = uploadedDocumentMap[file.name]
+        }
+        $('form').find('input[name="document[]"][value="' + name + '"]').remove()
+        },
+        init: function () {
+        @if(isset($project) && $project->document)
+            var files = {!! json_encode($project->document) !!}
+            for (var i in files) {
+                var file = files[i]
+                this.options.addedfile.call(this, file)
+                file.previewElement.classList.add('dz-complete')
+                $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
+            }
+        @endif
+        }
+    }
+</script>
+
 
 </body>
 </html>

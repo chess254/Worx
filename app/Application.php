@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Application extends Model
+class Application extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $guarded = [];
 
     public function seekerProfiles(){
@@ -14,5 +18,13 @@ class Application extends Model
 
     public function job(){
         return $this->belongsTo(\App\Job::class);
+    }
+
+    public function employer(){
+        return $this->belongsTo(\App\User::class);
+    }
+
+    public function applicant(){
+        return $this->belongsTo(\App\SeekerProfile::class);
     }
 }

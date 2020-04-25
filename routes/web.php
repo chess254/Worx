@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 
 /*
@@ -34,7 +35,8 @@ Route::get('/jobs', 'JobsController@index')->name('jobs');
 
 
 Route::get('/job/{job}', 'JobsController@show');
-Route::post('/job/{job}/apply', 'JobsController@apply');  
+Route::post('/job/{job}/apply', 'JobsController@apply');
+Route::post('/job/attachfiles', 'JobsController@attachFiles')->name('job.attach');  
 
 Route::get('/job','JobsController@create')->name('create-job')->middleware('auth');
 
@@ -56,5 +58,34 @@ Route::get('/company-profile/{company}', 'CompanyController@view');
 
 Route::delete('exp/{id}', function ($id) {
     
+});
+
+Route::get('/attach', function(){
+    return view('attachfile');
+});
+
+Route::post('/attach', function(Request $request){
+
+    // $validation = $request->validate([
+    //     // 'photo' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+    //     // for multiple file uploads
+    //     // 'photo.*' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+    // ]);
+    // cache the file
+    $file = $request->file('photo');
+
+    // generate a new filename. getClientOriginalExtension() for the file extension
+    $filename = 'attachment-user' . time() . '.' . $file->getClientOriginalExtension();
+
+    // save to storage/app/photos as the new $filename
+    // $path = $file->storeAs('photos', $filename);
+    $paths  = [];
+
+    foreach ($photos as $photo) {
+        $extension = $photo->getClientOriginalExtension();
+        $filename  = 'profile-photo-' . time() . '.' . $extension;
+        $paths[]   = $photo->storeAs('photos', $filename);
+    }
+    dd($path);
 });
 
