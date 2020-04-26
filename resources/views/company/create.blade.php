@@ -18,7 +18,12 @@
                     <div class="alert alert-success">
                         {{ session('status') }}
                     </div>
-                @endif
+                    @endif
+                    @if (session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                    @endif
                 <h1 class="display-3">Company create page form here</h1>
 
                     {{-- <h4 class="text-uppercase title mb-4">Create Resume</h4> --}}

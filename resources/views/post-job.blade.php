@@ -359,7 +359,8 @@
         notifications for every application and you have a choice of viewing and downloading the applicants 
         profiles and also accepting or rejecting applications. 
       </small>   
-        <input type="text" id="applicationWorx" name="applicationWorx" class="form-control" aria-describedby="passwordHelpBlock">
+      
+        <input type="hidden" id="applicationWorx" value="true" name="applicationWorx" class="form-control" aria-describedby="passwordHelpBlock">
     </div>
     <label class="mt-4 form-text text-muted" for="inputPassword5"> <small> Enter additional application instructions below</small></label>
 

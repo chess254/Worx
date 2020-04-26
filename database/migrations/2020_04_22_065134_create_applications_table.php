@@ -18,6 +18,7 @@ class CreateApplicationsTable extends Migration
             $table->unsignedInteger('job_id');
             $table->unsignedInteger('employer_id');
             $table->unsignedInteger('applicant_id');
+            $table->unsignedInteger('user_id');
             $table->integer('views')->default(0)->change();
             $table->foreign('job_id')->references('id')->on('jobs');
             $table->foreign('employer_id')->references('id')->on('users');

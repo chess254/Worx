@@ -300,7 +300,7 @@
                             @endif
                             @if ($Job->applicationWorx)  
 
-                      
+                            {!!$Job->applicationInstructions!!}
                             
                                 <form action="/job/{{$Job->id}}/apply" method="post" id="attachFiles">
 
@@ -311,12 +311,6 @@
                                 
                                         </div>
                                     </div>
-
-                                   
-
-                                    
-
-                                    <p>got file attachments? </p> <button>attach files</button>
 
                                     @csrf
                                     <input type="hidden">

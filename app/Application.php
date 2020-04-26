@@ -21,8 +21,13 @@ class Application extends Model implements HasMedia
     }
 
     public function employer(){
-        return $this->belongsTo(\App\User::class);
+        return $this->belongsTo(\App\User::class, 'employer_id');
     }
+
+    public function user(){
+        return $this->belongsTo(\App\User::class, 'user_id');
+    }
+
 
     public function applicant(){
         return $this->belongsTo(\App\SeekerProfile::class);

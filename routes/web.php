@@ -44,6 +44,8 @@ Route::get('/sendemail', 'JobsController@enqueue');
 
 Route::post('/job','JobsController@store');
 Route::get('/my-jobs','JobsController@jobsPostedby')->name('myjobs');
+Route::get('/applications/{user_id}','JobsController@applications');
+Route::get('/applications-by-job/{job_id}','JobsController@applicationsByJob');
 
 Route::get('/profiles', 'ProfileController@index');
 Route::get('/profile', 'ProfileController@create');
@@ -52,7 +54,7 @@ Route::get('/profile/{user_id}', 'ProfileController@show')->name('profile.show')
 Route::post('/profile/{user_id}', 'ProfileController@update');
 
 Route::get('/company/{company}', 'CompanyController@show');
-Route::get('/company', 'CompanyController@create');
+Route::get('/company', 'CompanyController@create')->name('company.create');
 Route::post('/company', 'CompanyController@store');
 Route::get('/company-profile/{company}', 'CompanyController@view');
 
