@@ -181,7 +181,8 @@ class ProfileController extends Controller
             'date_of_birth' => 'date | before:18 years ago',
             'gender'=>'required',
             'marital_status'=>'required',
-            'city'=>'required'
+            'city'=>'required',
+            'title'=>'required',
             
         ]);
         
@@ -195,6 +196,7 @@ class ProfileController extends Controller
         $user->phone = $request->phone;
         $user->website = $request->website;
         $user->address = $request->address;
+        
         // dd($user->skills);
         $user->save();
 
@@ -221,6 +223,7 @@ class ProfileController extends Controller
             }
           
         $profile->skills = $skills;
+        $profile->title = $request->title;
         // dd($profile);
 
         // dd($user->seekerProfile->experienceDetails);

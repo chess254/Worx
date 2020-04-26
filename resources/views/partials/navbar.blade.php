@@ -73,6 +73,8 @@
                         @if(Auth::user() && (Auth::user()->user_type_id == 2))
                             <li class="pb-1"><a href="/my-jobs">Posted Jobs</a></li>
                             <li class="pb-1"><a href="/job">Post Job</a></li>
+                    <li class="pb-1"><a href="/applications/{{Auth::user()->id}}">Job Applications</a></li>
+
                         @endif
                         {{-- <li><a href="job-grid.html">Job Grid</a></li> --}}
                         {{-- <li><a href="{{route('/job')}}">Job Details</a></li> --}}

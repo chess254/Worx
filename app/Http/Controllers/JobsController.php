@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SeekerProfile;
 use App\Job;
 use App\User;
 Use App\County;
@@ -43,6 +44,10 @@ class JobsController extends Controller
             return redirect('login');   //alternate redirect back with message, so they can logout themeselves instead of login em out automatically
         }
         $user_companies = $user->companies;
+        if($user_companies->toArray() == null){
+            session()->flash('message', 'Create your company profile to post a job');
+            return redirect()->route('company.create');
+        }
         return view('post-job',compact('user_companies'));
     }
 
@@ -86,7 +91,7 @@ class JobsController extends Controller
             'applicationWorx'=>$request->applicationWorx,
             'applicationInstructions'=>$request->applicationInstructions,
         ];
-
+        // dd($data);
         $job = auth()->user()->job()->create($data); //create job with current user as user_id
         $job->company()->associate($company);   
         $job->save();
@@ -152,6 +157,15 @@ class JobsController extends Controller
         if(!Auth::check()){
             return redirect('login')->with('message', 'Login to apply');
         }
+
+        if(auth()->user()->user_type_id != 1){
+            return redirect()->back()->with('message', 'login as job seeker to apply for job');
+        }
+
+        //check if user has created profile, if not redirect to create profile page
+        if(!SeekerProfile::where('user_id', auth()->user()->id)->first()){
+            return redirect()->route('profile.show',auth()->user()->id)->with('message', 'Create your profile first to apply');
+        }
         //check if user has already applied for this job
         if(count(Application::where('job_id', $Job->id)->where('applicant_id',auth()->user()->seekerProfile->id)->get())){
             return redirect()->back()->with('message', 'You had already applied for this job');
@@ -161,6 +175,7 @@ class JobsController extends Controller
         $application->employer_id = $Job->user_id;
         $application->job_id = $Job->id;
         $application->applicant_id = auth()->user()->seekerProfile->id;
+        $application->user_id = auth()->user()->id;
         $application->save();
 
         foreach ($request->input('document', []) as $file) {
@@ -194,6 +209,27 @@ class JobsController extends Controller
             'name'          => $name,
             'original_name' => $file->getClientOriginalName(),
         ]);
+    }
+
+    // returns all applications sent for jobs posted by an employer(all jobs mixed together)
+    public function applications(Request $request, $user_id){
+        $applications = Application::where('employer_id',$user_id)->with(['applicant', 'user', 'employer'])->get(); //return applicatioin with the related applicant
+        return view('applications', compact('applications'));
+        // dd($applications);
+
+        // $joblist = Job::with('location','company','county','businessStream')->orderBy('created_date', 'desc')->paginate(20);
+        // return view('job-listings', compact(['joblist', 'totalJobs','categories','counties']));
+    }
+
+    //returns a list of job applications for a particular job
+    public function applicationsByJob(Request $request, $job_id){
+        // dd($job_id);
+        $applications = Application::where('job_id',$job_id)->with(['applicant', 'user', 'employer'])->get(); //return applicatioin with the related applicant
+        return view('applications', compact('applications'));
+        // dd($applications);
+
+        // $joblist = Job::with('location','company','county','businessStream')->orderBy('created_date', 'desc')->paginate(20);
+        // return view('job-listings', compact(['joblist', 'totalJobs','categories','counties']));
     }
  
 }

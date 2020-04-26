@@ -290,9 +290,9 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label {{ $errors->has('email') ? 'form-control-error' : ''}}">
-                                        <label class="text-muted">E-mail</label>
-                                        <input id="email" type="email" name="email" class="form-control resume"
-                                               placeholder="Email ID :">
+                                        <label class="text-muted">Professional Title</label>
+                                        <input id="title" type="title" name="title" class="form-control resume"
+                                               placeholder="e.g Medical Doctor, Marketing executive">
                                     </div>
                                 </div>
     

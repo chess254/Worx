@@ -321,16 +321,21 @@
                                         <div class="col-lg-3 col-md-3">
                                             <div class="job-list-button-sm text-right">
                                                 @if ( $job->type['job_type'] == "Part Time" )
-                                                <span class="badge badge-secondary">Part Time</span>
+                                                    <span class="badge badge-secondary"><small>Part Time</small></span>
                                                 @elseif( $job->type['job_type'] == "Full Time" )
-                                                <span class="badge badge-success">Full Time</span>
+                                                    <span class="badge badge-success"><small>Full Time</small> </span>
                                                 @else
-                                                <span class="badge badge-warning">Remote</span>
+                                                    <span class="badge badge-warning"><small>Remote</small></span>
                                                 @endif
+
+                                                
 
                                                 {{-- <div class="mt-3">
                                                     <a href="/job/{{$job->id}}" class="btn btn-sm btn-primary">Apply</a>
                                                 </div> --}}
+                                            </div>
+                                            <div class="job-list-button-sm text-right">
+                                            <a class="badge badge-warning"href="../applications-by-job/{{$job->id}}"><small>Applications</small></a>
                                             </div>
                                         </div>
                                     </div>
