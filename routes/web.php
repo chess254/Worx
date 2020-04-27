@@ -53,6 +53,8 @@ Route::post('/profile', 'ProfileController@store');
 Route::get('/profile/{user_id}', 'ProfileController@show')->name('profile.show');
 Route::post('/profile/{user_id}', 'ProfileController@update');
 
+Route::get('/download/{application}', 'DownloadController@download')->name('download');
+
 Route::get('/company/{company}', 'CompanyController@show');
 Route::get('/company', 'CompanyController@create')->name('company.create');
 Route::post('/company', 'CompanyController@store');

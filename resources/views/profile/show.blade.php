@@ -149,6 +149,21 @@
             </div>
         </div> --}}
 
+        <form action="#" method="post" id="attachFiles">
+
+
+            <div class="form-group">
+                <label for="document">Documents</label>
+                <div class="needsclick dropzone" id="document-dropzone" name="pic">
+        
+                </div>
+            </div>
+
+            @csrf
+            <input type="hidden">
+            <button class="btn btn-primary btn-block btn-sm mb-4"type="submit"> <i class="mdi mdi-send mr-2"></i> apply</button> 
+        </form>      
+
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
                 <h4 class="text-dark">Bio :</h4>
