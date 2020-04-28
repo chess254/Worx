@@ -107,7 +107,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h5 class="text-dark mt-4">Job Description :</h5>
+                        <h4 class="text-dark mt-4">Job Description </h4>
                     </div>
                 </div>
 
@@ -135,7 +135,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h4 class="text-dark mt-4">Education & Experience :</h4>
+                        <h4 class="text-dark mt-4">Education & Experience </h4>
                     </div>
                 </div>
 
@@ -218,7 +218,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h5 class="text-dark mt-4">Responsibilities :</h5>
+                        <h4 class="text-dark mt-4">Responsibilities </h4>
                     </div>
                 </div>
 
@@ -281,7 +281,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h5 class="text-dark mt-4">How To Apply :</h5>
+                        <h4 class="text-dark mt-4">How To Apply </h4>
                     </div>
                 </div>
 
@@ -299,8 +299,12 @@
                             <a href="http://{{$Job->applicationWebsite}} ">Click to apply</a>                            
                             @endif
                             @if ($Job->applicationWorx)  
+                                
+                                @if (count($Job->applications->where('user_id', auth()->user()->id)))
+                                <button class="btn btn-success btn-block btn-sm mb-4"type="submit" disabled > <i class="mdi mdi-send mr-2"></i> You have applied for this job </button> 
+                                @else
 
-                            {!!$Job->applicationInstructions!!}
+                                {!!$Job->applicationInstructions!!}
                             
                                 <form action="/job/{{$Job->id}}/apply" method="post" id="attachFiles">
 
@@ -315,9 +319,10 @@
                                     @csrf
                                     <input type="hidden">
                                     <button class="btn btn-primary btn-block btn-sm mb-4"type="submit"> <i class="mdi mdi-send mr-2"></i> apply</button> 
-                                </form>                         
+                                </form>     
+                                @endif                    
                             @endif
-                            <div class="job-detail-desc">
+                            {{-- <div class="job-detail-desc">
                                 <div class="job-details-desc-item">
                                     <div class="float-left mr-3">
                                         <p class="text-muted mb-0">1 )</p>
@@ -338,7 +343,7 @@
                                     </div>
                                     <p class="text-muted mb-0 overflow-hidden d-block">Through our job application platform</p>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

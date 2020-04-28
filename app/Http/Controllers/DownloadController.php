@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\Support\MediaStream;
 use App\Application;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class DownloadController extends Controller
 {
 
-    public function downloadSingle(Media $mediaItem)
+    public function downloadSingle(Media $media)
     {
-       return $mediaItem;
+        //refactor this
+        // $mediaItem = $application->getmedia('document');
+       return Application::find($media)->getMedia('document');
     }
 
     // public function show(Media $mediaItem)

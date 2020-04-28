@@ -64,7 +64,7 @@
                                            <button class="btn btn-info btn-sm badge p-1" disabled>{{ $skill }} </button> 
                                             @endforeach</p>
                                             @foreach($application->getMedia('document') as $media)
-                                            <p>{{$media->getPath()}}</p> 
+                                        <a class="badge badge-sm badge-warning" href="{{route('downloadSingle', $media)}}">{{$media }}</a> 
                                             @endforeach
 
                                         <a class="btn btn-sm btn-success" href="{{route('download', $application)}}" >download</a>

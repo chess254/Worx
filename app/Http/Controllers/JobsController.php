@@ -219,13 +219,13 @@ class JobsController extends Controller
     // returns all applications sent for jobs posted by an employer(all jobs mixed together)
     public function applications(Request $request, $user_id){
 
-        if(auth()->user()->user_type_id == 2){        
+        if(auth()->user() && auth()->user()->user_type_id == 2){        
         $applications = Application::where('employer_id',$user_id)->with(['applicant', 'user', 'employer'])->get(); //return applicatioin with the related applicant
         return view('applications', compact('applications'));
         // dd($applications);
         }
 
-        return redirect()->back()->with('message', 'unauthorized');
+        return redirect()->route('home');
         // $joblist = Job::with('location','company','county','businessStream')->orderBy('created_date', 'desc')->paginate(20);
         // return view('job-listings', compact(['joblist', 'totalJobs','categories','counties']));
     }
