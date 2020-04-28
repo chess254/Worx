@@ -35,10 +35,10 @@ class ProfileController extends Controller
 
             foreach ($request->input('document', []) as $file) {
                 $profile->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('profilepics');
-                $profile->save();
+                // $profile->save();
             }
 
-            dd($profile->getFirstMedia('profilepics')->getPath());
+            // dd($profile->getFirstMedia('profilepics')->getPath());
             
             $profile->save();
         }

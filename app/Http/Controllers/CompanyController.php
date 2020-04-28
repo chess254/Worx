@@ -74,6 +74,9 @@ class CompanyController extends Controller
             // $company->toArray();
 
             $company = auth()->user()->companies()->save($company);
+            if($request->hasFile('logo') && $request->file('logo')->isValid()){
+                $company->addMediaFromRequest('logo')->toMediaCollection('logos');
+            }
             return redirect('/company/'.$company->id);
             
     }
