@@ -87,12 +87,9 @@ class CompanyController extends Controller
     public function show( $company)
     {
        
-        // return view('job', compact('Job'));
-
         $Company = Company::where('id', $company)->with('businessStream')
         ->first();
 
-        // dd($Company);
         if($Company){
             return view('company.view', compact('Company'));
         } else{
