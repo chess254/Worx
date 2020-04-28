@@ -32,8 +32,21 @@ class ProfileController extends Controller
 
         // dd($request->all());
 
+       
+        // dd($request->input('document'));
         $profile = SeekerProfile::where('user_id', $user_id)->first();
+        if($request->input('document')){
+            // $user = User::find($user_id);
+            foreach ($request->input('document', []) as $file) {
+                $profile->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('profilepics');
+                // $profile->image = $profile->getFirstMedia()->getUrl();
+                $profile->save();
+            }
 
+            dd($profile->getFirstMedia('profilepics')->getPath());
+            
+            $profile->save();
+        }
         //refactor to use $request->has
         if($request->edit_bio){ 
             $profile->bio = $request->edit_bio;
@@ -129,6 +142,8 @@ class ProfileController extends Controller
 
         return redirect()->back();    
     }
+
+
 
   
 

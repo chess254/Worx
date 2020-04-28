@@ -104,50 +104,25 @@
         </div>
     </div>
     <div class="container">
-        {{-- <div class="row">
-            <div class="col-lg-12">
-                <h4 class="text-dark">About Us :</h4>
-            </div>
-        </div>
+     
 
-        <div class="row">
-            <div class="col-lg-12 mt-3">
-                <div class="border rounded p-4">
-                    <p class="text-muted">Aliquam erat volutpat Etiam vitae tortor Morbi vestibulum volutpat enim
-                        Aliquam nunc Nunc sed turpis sed mollis eros et ultrices tempus mauris ipsum aliquam libero non
-                        adipiscing dolor urna a orci Nulla porta dolor. Class aptent taciti sociosqu ad litora torquent
-                        per conubia nostra inceptos hymenaeos pellentesque dapibus hendrerit tortor Praesent egestas
-                        tristique nibh sed a libero cras us varius donec vitae orci sed dolor rutrum auctor fusce
-                        egestas elit eget lorem.</p>
+    {{-- only show dropzone add image box if user is viewing their own profile --}}
+        @if(auth()->check() && $profile->user_id == auth()->user()->id)
+        <form action="#" method="post" id="attachFiles">
 
-                    <p class="text-muted">Libero venenatis faucibus ullam quis ante tiam sit amet orci eget eros
-                        faucibus tincidunt ed fringilla mauris sit amet nibh Donec sodales sagittis magna ed consequat
-                        leo eget bibendum sodales augue velit cursus nunc quis gravida magna mi libero usce vulputate
-                        eleifend sapien estibulum purus qua scelerisque ut mollis sed nonummy id metus ullam accumsan
-                        lorem Vivamus elementum semper enean vulputate eleifend tellus enean leo ligula porttitor.</p>
 
-                    <ul class="list-inline pt-3 border-top mb-0">
-                        <li class="list-inline-item mr-3">
-                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>3659 Peter
-                                king Manhattan, NY 10016</a>
-                        </li>
-
-                        <li class="list-inline-item mr-3">
-                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-web mr-2"></i>www.blog.helpyea.com</a>
-                        </li>
-
-                        <li class="list-inline-item mr-3">
-                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-email mr-2"></i>maidathemes@gmail.com</a>
-                        </li>
-
-                        <li class="list-inline-item mr-3">
-                            <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-cellphone-iphone mr-2"></i>123
-                                456 7890</a>
-                        </li>
-                    </ul>
+            <div class="form-group">
+                <label for="document">Documents</label>
+                <div class="needsclick dropzone" id="document-dropzone" name="pic">
+        
                 </div>
             </div>
-        </div> --}}
+
+            @csrf
+            <input type="hidden">
+            <button class="btn btn-primary btn-block btn-sm mb-4"type="submit"> <i class="mdi mdi-send mr-2"></i> apply</button> 
+        </form>      
+        @endif
 
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">

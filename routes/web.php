@@ -15,10 +15,6 @@ use Illuminate\Http\Request;
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
-
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -52,6 +48,9 @@ Route::get('/profile', 'ProfileController@create');
 Route::post('/profile', 'ProfileController@store');
 Route::get('/profile/{user_id}', 'ProfileController@show')->name('profile.show');
 Route::post('/profile/{user_id}', 'ProfileController@update');
+
+Route::get('/download/{application}', 'DownloadController@download')->name('download');
+Route::get('/download-one/{media}', 'DownloadController@downloadSingle')->name('downloadone');
 
 Route::get('/company/{company}', 'CompanyController@show');
 Route::get('/company', 'CompanyController@create')->name('company.create');

@@ -113,9 +113,14 @@ class JobsController extends Controller
     }
 
     public function jobsPostedBy(){
-        $user_id = auth()->user()->id;
-        $JobsPostedByUser = Job::where('user_id', $user_id)->get();
-        return view('myjobs', compact('JobsPostedByUser'));
+        
+        if(auth()->user() && auth()->user()->user_type_id == 2){   
+            $user_id = auth()->user()->id;
+            $JobsPostedByUser = Job::where('user_id', $user_id)->get();
+            return view('myjobs', compact('JobsPostedByUser'));
+        }
+
+        return redirect('home')->with('message', 'unauthorized!');
     }
 
     /**
@@ -213,23 +218,31 @@ class JobsController extends Controller
 
     // returns all applications sent for jobs posted by an employer(all jobs mixed together)
     public function applications(Request $request, $user_id){
-        $applications = Application::where('employer_id',$user_id)->with(['applicant', 'user', 'employer'])->get(); //return applicatioin with the related applicant
-        return view('applications', compact('applications'));
-        // dd($applications);
 
-        // $joblist = Job::with('location','company','county','businessStream')->orderBy('created_date', 'desc')->paginate(20);
-        // return view('job-listings', compact(['joblist', 'totalJobs','categories','counties']));
+        if(auth()->user() && auth()->user()->user_type_id == 2){        
+        $applications = Application::where('employer_id',$user_id)->with(['applicant', 'user', 'employer'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+        return view('applications', compact('applications'));
+        }
+
+        if(auth()->user() && auth()->user()->user_type_id == 1){        
+            $applications = Application::where('user_id',$user_id)->with(['job', 'user', 'employer'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+            return view('applications', compact('applications'));
+            }
+    
+
+        return redirect()->route('home');
     }
 
     //returns a list of job applications for a particular job
     public function applicationsByJob(Request $request, $job_id){
-        // dd($job_id);
-        $applications = Application::where('job_id',$job_id)->with(['applicant', 'user', 'employer'])->get(); //return applicatioin with the related applicant
-        return view('applications', compact('applications'));
-        // dd($applications);
+        
+        if(auth()->user() && auth()->user()->user_type_id == 2){    
+            $applications = Application::where('job_id',$job_id)->with(['applicant', 'user', 'employer'])->orderBy('created_at', 'desc')->get(); 
+            //return application with the related applicant
+            return view('applications', compact('applications'));
+        }
 
-        // $joblist = Job::with('location','company','county','businessStream')->orderBy('created_date', 'desc')->paginate(20);
-        // return view('job-listings', compact(['joblist', 'totalJobs','categories','counties']));
+        return redirect()->back()->with('message', 'unauthorized');
     }
  
 }
