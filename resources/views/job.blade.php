@@ -301,7 +301,7 @@
                             @if ($Job->applicationWorx)  
                                 
                                 @if (count($Job->applications->where('user_id', auth()->user()->id)))
-                                <button class="btn btn-success btn-block btn-sm mb-4"type="submit" disabled > <i class="mdi mdi-send mr-2"></i> You have applied for this job </button> 
+                                <button class="btn btn-success btn-block btn-sm mb-4"type="submit" disabled > <i class="mdi mdi-check mr-2"></i> You have applied for this job </button> 
                                 @else
 
                                 {!!$Job->applicationInstructions!!}

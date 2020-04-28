@@ -10,17 +10,10 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class DownloadController extends Controller
 {
 
-    public function downloadSingle(Media $media)
+    public function downloadSingle( Media $media)
     {
-        //refactor this
-        // $mediaItem = $application->getmedia('document');
-       return Application::find($media)->getMedia('document');
+         return $media;
     }
-
-    // public function show(Media $mediaItem)
-    // {
-    //     return response()->download($mediaItem->getPath(), $mediaItem->file_name);
-    // }
 
     //download multiple files
     public function download(Application $application)
