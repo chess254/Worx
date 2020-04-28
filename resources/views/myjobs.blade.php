@@ -298,7 +298,7 @@
                                     <div class="row align-items-center">
                                         <div class="col-lg-2">
                                             <div class="company-logo-img">
-                                                <img src="images/featured-job/img-1.png" alt=""
+                                                <img src="{{$job->company->getFirstMediaUrl('logos','square')}}" alt={{$job->company->name}}"
                                                     class="img-fluid avatar avatar-small mr-3 rounded">
                                             </div>
                                         </div>

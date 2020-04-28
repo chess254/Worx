@@ -52,11 +52,11 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="candidates-profile-details text-center">
-                <img src="{{$profile->getFirstMediaUrl('profilepics')}}" height="250" alt=""
-                         class="d-block mx-auto shadow rounded-pill mb-4">
-                <h5 class="text-dark mb-2">{{$profile->user->name}} {{$profile->user->second_name}}</h5>
+                <img src="{{$profile->getFirstMediaUrl('profilepics')}}" height="250" alt="{{$profile->user->name}} {{$profile->user->second_name}}"
+                         class="d-block mx-auto shadow rounded-pill mb-2">
+                <h2 class="text-dark display-4 ">{{$profile->user->name}} {{$profile->user->second_name}}</h2>
                     {{-- <p class="text-dark h6 mb-2"><i class="mdi mdi-bank mr-2"></i>Maida Themes Pvt LTD</p> --}}
-                    <p class="text-dark h6 mb-2">{{$profile->title}}</p>
+                    <p class="text-muted h3 mb-2">{{$profile->title}}</p>
                     <ul class="candidates-profile-icons list-inline mb-3">
                         <li class="list-inline-item"><a href="#" class="text-dark"><i class="mdi mdi-star"></i></a>
                         </li>
@@ -126,7 +126,7 @@
 
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
-                <h4 class="text-dark">Bio :</h4>
+                <h2 class="text-dark">Bio </h2>
             </div>
         </div>
 
@@ -199,7 +199,7 @@
         <div class="row" id="rowED">
             <div class="col-lg-12 mt-4 pt-2">
                 <div style="display: flex; justify-content: space-between;">
-                    <h4 class="text-dark">Education :</h4>
+                    <h2 class="text-dark">Education </h2>
                     @if(auth()->check() && ($profile->user_id == auth()->user()->id))
                         <button class="btn btn-sm btn-info"  data-toggle="modal" data-target="#addEducModal">Add entry</button>
                     @endif
@@ -349,7 +349,7 @@
             <div class="col-lg-12 mt-4 pt-2">
                 
             <div style="display: flex; justify-content: space-between;">
-            <h4 class="text-dark">Experience :</h4>
+            <h2 class="text-dark">Experience </h2>
             @if(auth()->check() && ($profile->user_id == auth()->user()->id))
                 <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#addExpModal">Add entry</button>
             @endif
@@ -644,7 +644,7 @@
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
                 <div style="display: flex; justify-content: space-between;">
-                    <h4 class="text-dark">Skills :</h4>
+                    <h2 class="text-dark">Skills </h2>
                     @if(auth()->check() && ($profile->user_id == auth()->user()->id))
                         <button class="btn btn-sm btn-info">Edit</button>
                     @endif
@@ -681,7 +681,7 @@
             </div>
 {{-- 
             <div class="col-md-12 mt-4 pt-2">
-                <h6 class="mb-0 text-uppercase">Coding Expertise :</h6>
+                <h6 class="mb-0 text-uppercase">Coding Expertise </h3>
                 <div class="progress-box mt-4">
                     <h6 class="title text-muted">WordPress</h6>
                     <div class="progress">

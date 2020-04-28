@@ -18,7 +18,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="text-center text-white">
-                        {{-- <h4 class="text-uppercase display-4 title mb-4">job Applications for {{$applications[0]->job->title }}</h4> --}}
+                        <h4 class="text-uppercase display-4 title mb-4">job Applications for {{$applications[0]->job->title }}</h4>
                         <ul class="page-next d-inline-block mb-0">
                             <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
                             <li><a href="#" class="text-uppercase font-weight-bold">Applications</a></li>
@@ -48,7 +48,7 @@
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="float-left mr-4 d-inline:flex">
-                                                <img src="images/employers/img-1.jpg" alt="" class="d-block rounded" height="90">
+                                            <img src="{{$application->applicant->getFirstMediaUrl('profilepics')}}" alt="{{$application->applicant->name}}" class="d-block rounded" height="90">
                                                 
                                             </div>
                                             <div class="candidates-list-desc overflow-hidden job-single-meta  pt-1 pb-1">
