@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-<section class="bg-half page-next-level">
+{{-- <section class="bg-half page-next-level">
     <div class="bg-overlay"></div>
     <div class="container">
         <div class="row justify-content-center">
@@ -23,7 +23,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 <!-- end home -->
 
 <!-- EMPLOYERS DETAILS START -->
@@ -31,9 +31,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="text-sm-center">
-                    <img src="images/featured-job/img-3.png" alt="" class="img-fluid mx-md-auto d-block">
-                    <h4 class="mt-3"><a href="#" class="text-dark">{{$Company->name}}</a></h4>
+                <div class="text-sm-center" style="margin-top: 40px;">
+                    <img src="{{$Company->getFirstMediaUrl('logos','square')}}" alt="{{$Company->name}}" class="img-fluid mx-md-auto d-block">
+                    {{-- {{$Company->getFirstMedia('logos')}} --}}
+                    <h2 class="mt-3"><a href="#" class="text-dark">{{$Company->name}}</a></h2>
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item mr-3">
                             <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{$Company->city}}, {{$Company->country}}</p>
@@ -107,7 +108,7 @@
 
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
-                <h4>Company Overview :</h4>
+                <h4>Company Overview </h4>
                 <div class="rounded border p-4 mt-3 text-muted">
                     {{$Company->description}}
                 </div>
@@ -116,7 +117,7 @@
 
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
-                <h4>Services :</h4>
+                <h4 class="">Services </h4>
                 <div class="rounded border p-4 mt-3">
                     {{-- <p class="text-muted">Aenean tellus metus bibendum sed posuere ac mattis non nunc estibulum --}}
                         {{-- fringilla pede sit amet augue n turpis Pellentesque posuere raesent turpis enean posuere tortor

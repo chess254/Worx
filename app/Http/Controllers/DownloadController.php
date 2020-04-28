@@ -24,7 +24,6 @@ class DownloadController extends Controller
     public function download(Application $application)
     {
 
-        dd($application);
          // Let's get some media.
          if(auth()->check() && auth()->user()->user_type_id == 2){
             $downloads = $application->getMedia('document');

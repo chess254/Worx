@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Company extends Model
+class Company extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $table = 'company';
 
     // protected $fillable = [
@@ -18,6 +23,18 @@ class Company extends Model
 
     protected $guarded = [];
     protected $casts = ['services'=>'array'];
+
+    public function registerMediaConversions (Media $media = null) : void
+    {
+        $this->addMediaConversion('square')
+            ->width(300)
+            ->height(300);
+            
+    }
+
+    public function registermediaCollections(): void {
+        $this -> addMediaCollection('logos')->singleFile();
+    }
 
     public function jobs(){
         return $this->hasMany(\App\Job::class);

@@ -77,9 +77,9 @@
             <div class="col-lg-8 col-md-7">
                 <div class="job-detail text-center job-single border rounded p-4">
                     <div class="job-single-img mb-2">
-                        <img src="{{ asset('images/featured-job/img-1.png') }}" alt="" class="img-fluid mx-auto d-block">
+                    <img src="{{ $Job->company->getFirstMediaUrl('logos','square')}}" alt="{{$Job->company->name}}" class="img-fluid mx-auto d-block">
                     </div>
-                    <h4 class="text-dark">{{$Job->title}}</h4>
+                    <h4 class="text-dark display-4">{{$Job->title}}</h4>
 
                
 
@@ -300,7 +300,7 @@
                             @endif
                             @if ($Job->applicationWorx)  
                                 
-                                @if (count($Job->applications->where('user_id', auth()->user()->id)))
+                                @if (auth()->check() && count($Job->applications->where('user_id', auth()->user()->id)))
                                 <button class="btn btn-success btn-block btn-sm mb-4"type="submit" disabled > <i class="mdi mdi-check mr-2"></i> You have applied for this job </button> 
                                 @else
 
@@ -308,13 +308,15 @@
                             
                                 <form action="/job/{{$Job->id}}/apply" method="post" id="attachFiles">
 
-
-                                    <div class="form-group">
-                                        <label for="document">Documents</label>
-                                        <div class="needsclick dropzone" id="document-dropzone">
-                                
+                                    @if(auth()->check() && auth()->user()->user_type_id == 1)
+                                        
+                                        <div class="form-group">
+                                            <label for="document">Documents</label>
+                                            <div class="needsclick dropzone" id="document-dropzone">
+                                    
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
 
                                     @csrf
                                     <input type="hidden">

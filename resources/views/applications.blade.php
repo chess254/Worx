@@ -18,7 +18,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="text-center text-white">
-                        <h4 class="text-uppercase title mb-4">job Applications</h4>
+                        {{-- <h4 class="text-uppercase display-4 title mb-4">job Applications for {{$applications[0]->job->title }}</h4> --}}
                         <ul class="page-next d-inline-block mb-0">
                             <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
                             <li><a href="#" class="text-uppercase font-weight-bold">Applications</a></li>
@@ -34,11 +34,13 @@
   
     <!-- CANDIDATES LISTING START -->
     <section class="section pt-0">
-        <div class="container">
+        <div class="container"> 
+            {{-- <h3 style="align:center;" class="display-4">"{{$applications[0]->job->title}}"</h3> --}}
             <div class="row">
-                
+               
                 <div class="col-lg-12 col-md-12">
                     @if (auth()->user() && auth()->user()->user_type_id == 2)
+                    
                         @foreach ($applications as $application)
                         
                             <div class="candidates-listing-item ">

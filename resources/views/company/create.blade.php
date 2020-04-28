@@ -63,34 +63,34 @@
                    
                     {{-- <img src="images/employers/img-1.jpg"
                          class="img-fluid avatar avatar-medium d-block mx-auto rounded-pill" alt=""> --}}
-                    <form id="company_form" novalidate action="/company" method="post" >
+                    <form id="company_form" novalidate action="/company" method="post" enctype="multipart/form-data" >
                         @csrf
                         <fieldset>
                             <br><br>
                             
                             <div class="col-lg-12" id="top">
-                                <h5 class="text-dark">General Information :</h5>
+                                <h4 class="text-muted">General Information</h4>
                             </div>
                             <div class="row mt-4">
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Name<span class="text-danger">*</span> :</label>
+                                        <label class="text-muted">Name</label>
                                         <input id="name" type="text" name="name" class="form-control resume"
-                                               placeholder="Company Name :">
+                                               placeholder="Company Name ">
                                     </div>
                                 </div>
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Number of Employees<span class="text-danger">*</span> :</label>
+                                        <label class="text-muted">Number of Employees</label>
                                         <input id="number_of_employees" name="number_of_employees" type="text" class="form-control resume"
-                                               placeholder="Number of employees :">
+                                               placeholder="Number of employees ">
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     {{-- <div class="form-group app-label"> --}}
-                                        <label class="text-muted app-label">Business Stream<span class="text-danger">*</span> :</label>
+                                        <label class="text-muted app-label">Business Stream</label>
                                     
                                     <div class="registration-form-box">
                                         <i class="fa fa-list-alt" style="color: orange;"></i>
@@ -106,7 +106,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Date Of Formation<span class="text-danger">*</span> :</label>
+                                        <label class="text-muted">Date Of Formation</label>
                                         <input id="date-of-formation" type="date" name="date_of_formation" class="form-control resume"
                                                placeholder="13-02-1999">
                                     </div>
@@ -114,16 +114,16 @@
 
                                 <div class="col-md-8">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Services<span class="text-danger">*</span> :</label>
+                                        <label class="text-muted">Services</label>
                                         <input id="services" name="services" multiple type="text" class=" resume"
-                                               placeholder="Services, comma separated :">
+                                               placeholder="Services, comma separated ">
                                     </div>
                                 </div>
                                
                                 
                                 <div class="col-lg-12">
                                     <div class="form-group app-label">
-                                        <label>Description :</label>
+                                        <label>Description</label>
                                         <textarea id="description" name="description" rows="4" class="form-control resume"
                                                   placeholder=""></textarea>
                                     </div>
@@ -136,7 +136,7 @@
 
 <br><br>
                             <div class="col-12" style="padding-top: 10px;">
-                                <h5 class="text-dark">Contact Information :</h5>
+                                <h4 class="text-muted">Contact Information</h4>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
@@ -222,7 +222,7 @@
                                     <div class="form-group app-label">
                                         <label class="text-muted">E-mail</label>
                                         <input id="email" type="email" name="email" class="form-control resume"
-                                               placeholder="Email ID :">
+                                               placeholder="Email ID ">
                                     </div>
                                 </div>
     
@@ -238,7 +238,7 @@
                                     <div class="form-group app-label">
                                         <label class="text-muted">Cell Phone</label>
                                         <input id="mobile" name="mobile" type="tel" class="form-control resume"
-                                               placeholder="Phone No. :">
+                                               placeholder="Phone No. ">
                                     </div>
                                 </div>
     
@@ -246,21 +246,21 @@
                                     <div class="form-group app-label">
                                         <label class="text-muted">Landline 1</label>
                                         <input id="landline" type="tel" name="landline" class="form-control resume"
-                                               placeholder="Email ID :">
+                                               placeholder="Email ID ">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Landline 2</label>
-                                        <input id="" type="url" name="" class="form-control resume"
-                                               placeholder="">
+                                        <label class="text-muted">logo</label>
+                                        <input id="logo" type="file" name="logo" class="form-control-file resume"
+                                               placeholder=""> 
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                     <i class="fab fa-facebook-f" style="color: orange; font-size: 20px;"></i>
                                     <input id="facebook" type="url" name="facebook" class="form-control resume"
-                                    placeholder="facebook :">
+                                    placeholder="facebook ">
                                     
 
                                     </div>
@@ -270,7 +270,7 @@
                                     <div class="form-group">
                                         <i class="fab fa-linkedin" style="color: orange; font-size: 20px;"></i>
                                         <input id="linkedin" type="url" name="linked_in" class="form-control resume"
-                                        placeholder="linkedIn :">
+                                        placeholder="linkedIn ">
                                         
                                        </div>
                                 
@@ -319,7 +319,7 @@
                     <i class="mdi mdi-bell-outline text-primary"></i>
                     <span class="badge badge-pill badge-danger">1</span>
                 </div>
-                <h5 class="mt-2 mb-0">Subscribe To Job Notification</h5>
+                <h4 class="mt-2 mb-0">Subscribe To Job Notification</h4>
             </div>
             <div class="col-lg-8 col-md-7 mt-4 mt-sm-0">
                 <form>

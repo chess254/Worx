@@ -52,7 +52,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="candidates-profile-details text-center">
-                    <img src="images/employers/img-1.jpg" height="150" alt=""
+                <img src="{{$profile->getFirstMediaUrl('profilepics')}}" height="250" alt=""
                          class="d-block mx-auto shadow rounded-pill mb-4">
                 <h5 class="text-dark mb-2">{{$profile->user->name}} {{$profile->user->second_name}}</h5>
                     {{-- <p class="text-dark h6 mb-2"><i class="mdi mdi-bank mr-2"></i>Maida Themes Pvt LTD</p> --}}
