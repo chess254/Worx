@@ -19,7 +19,6 @@ class ProfileController extends Controller
     public function show($user_id){
 
         $profile = SeekerProfile::where('user_id', $user_id)->first();
-        // dd($profile);
         if($profile)
        {
         return view('profile.show', compact('profile'));
@@ -30,16 +29,12 @@ class ProfileController extends Controller
 
     public function update(Request $request, $user_id){
 
-        // dd($request->all());
-
-       
-        // dd($request->input('document'));
         $profile = SeekerProfile::where('user_id', $user_id)->first();
+
         if($request->input('document')){
-            // $user = User::find($user_id);
+
             foreach ($request->input('document', []) as $file) {
                 $profile->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('profilepics');
-                // $profile->image = $profile->getFirstMedia()->getUrl();
                 $profile->save();
             }
 
@@ -72,8 +67,7 @@ class ProfileController extends Controller
             $newEduc->starting_date = $request->add_from_date;
             $newEduc->completion_date = $request->add_to_date;
             $newEducEntry = $profile->educationDetails()->save($newEduc);
-            // dd($newEducEntry);
-            // Url::route('profile.show').'#rowED';
+        
             return redirect('profile/'.'/#rowED');
 
         }
@@ -97,11 +91,6 @@ class ProfileController extends Controller
 
             $newExperience = new \App\ExperienceDetails();
 
-            // $data = request()->validate([
-            //     'add_company_name' => 'required',
-            //     'add_job_title'=>'required'
-            // ]);
-
             $newExperience->company_name = $request->add_company_name;
             $newExperience->job_title = $request->add_job_title;
             $newExperience->website = $request->add_website;
@@ -112,12 +101,10 @@ class ProfileController extends Controller
             $newExperience->job_location_country = $request->add_job_country;
 
             $newExperienceEntry = $profile->experienceDetails()->save($newExperience);
-            // dd($newEducEntry);
-            // Url::route('profile.show').'#rowED';
+
             return redirect('profile/'.'/#rowEXP');
 
         }
-
 
         //refactor to use $request->has
         if($request->experienceDetails_id){
@@ -133,7 +120,7 @@ class ProfileController extends Controller
                 $experienceDetails->job_location_city = $request->edit_job_city;
                 $experienceDetails->job_location_county = $request->edit_job_county;
                 $experienceDetails->job_location_country = $request->edit_job_country;
-                // dd($experienceDetails);
+
                 $experienceDetails->save();
 
                 return redirect('profile/'.'/#rowEXP');
@@ -147,8 +134,7 @@ class ProfileController extends Controller
 
   
 
-    public function create(Request $request){
-        // $userprofile = $request->session()->get('userprofile');
+    public function create(Request $request){    
         if(Auth::guest()){
             return redirect('register');
         }
@@ -160,11 +146,8 @@ class ProfileController extends Controller
 
 
     public function store(Request $request){
-        // dd($request->all());
-        // dd($request->educ[1]);
-        
-        // if(!auth()){
-            if(Auth::guest()){
+       
+        if(Auth::guest()){
             return redirect('register');
         }
 
@@ -173,16 +156,9 @@ class ProfileController extends Controller
             return redirect('/profile/'.$user->id);
         }
 
-        
         $education = New EducationDetails($request->educ[1]);
         $experience = New \App\ExperienceDetails($request->exp[1]);
-        // dd($education);
-        
-       
-            // dd($experience , $education);
-
-        // $profile = New SeekerProfile;
-        // $profile->title = $request->name;
+  
         $underAge = date('m-d-Y', strtotime('18 years ago'));
         $data = request()->validate([
             'name' => 'required | max:20',
@@ -212,36 +188,21 @@ class ProfileController extends Controller
         $user->website = $request->website;
         $user->address = $request->address;
         
-        // dd($user->skills);
         $user->save();
-
-        // dd($user);
-
-
-
-        // $job = auth()->user()->job()->create($data); //create job with current user as user_id
         $profile = auth()->user()->seekerProfile()->create();
-        // dd($profile->user_id);
-// $education->seeker_profile_id = $profile->id;
-// $experience->seeker_profile_id = $profile->id; 
-// $education->save();
-// $experience->save();
-
-
         $skills =explode(',', $request->skills);
         
-        if($request->educ[1]["institute"] != null){ //refactor to use $request->has('educ')
+        if($request->educ[1]["institute"] != null){ 
+        //refactor to use $request->has('educ')
         $profile->educationDetails()->create($education->toArray());
         }
+
         if($request->exp[1]["company_name"]!= null){
             $profile->experienceDetails()->create($experience->toArray());
             }
           
         $profile->skills = $skills;
         $profile->title = $request->title;
-        // dd($profile);
-
-        // dd($user->seekerProfile->experienceDetails);
         $profile->save();
 
         return redirect('/profile/'.$user->id);
