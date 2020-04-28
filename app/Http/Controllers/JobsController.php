@@ -116,7 +116,7 @@ class JobsController extends Controller
         
         if(auth()->user() && auth()->user()->user_type_id == 2){   
             $user_id = auth()->user()->id;
-            $JobsPostedByUser = Job::where('user_id', $user_id)->get();
+            $JobsPostedByUser = Job::where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
             return view('myjobs', compact('JobsPostedByUser'));
         }
 
