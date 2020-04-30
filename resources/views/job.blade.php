@@ -17,11 +17,7 @@
             <div class="col-md-6">
                 <div class="text-center text-white">
                     {{-- flash message here on successful aplication --}}
-                    @if(session()->has('message'))
-                        <div class="alert alert-success">
-                            {{ session()->get('message') }}
-                    </div>
-                    @endif
+                    
                     {{-- <h4 class="text-uppercase title mb-4">{{$Job->title}}</h4>
                     <ul class="page-next d-inline-block mb-0">
                         <li><a href="{{route('home')}}"  class="text-uppercase font-weight-bold">Home</a></li>
@@ -40,6 +36,11 @@
 <!-- JOB SINGLE START -->
 <section class="section">
     <div class="container" >
+        @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                    </div>
+                    @endif
         <div class="row" style="display: flex; justify-content:space-between;">
             <div class="col-lg-8 col-md-7">
                 <div class="job-detail text-center job-single border rounded p-4">

@@ -79,32 +79,29 @@
           <form class="p-4 p-md-5 border rounded" action="/job" method="post">
             @csrf
             <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
-            
-            <div class="form-group">
-              <label for="company-website-tw d-block">Upload Featured Image</label> <br>
-              <label class="btn btn-primary btn-md btn-file">
-                Browse File<input type="file" hidden>
-              </label>
-            </div>
 
             
-            <div class="row"> <div class="col-md-12 form-group">
-                <label for="title">Job Title</label>
+            <div class="row"> 
+              <div class="col-md-6 form-group">
+                <p for="title">Job Title</p>
                 <input type="text" class="form-control" name="title" id="job-title" placeholder="Product Designer">
-              </div><div class="col-md-6 form-group">
-              <label for="email">Email</label>
-              <input type="text" class="form-control input-group" name="email" id="email" placeholder="you@yourdomain.com">
-            </div>
+              </div>
+              
              
-              <div class="col-md -6 form-group">
-                <label for="town">Town / City</label>
+              <div class="col-md-3 form-group">
+                <p for="town">Town / City</p>
                 <input type="text" class="form-control" name="town" id="job-location" placeholder="e.g. Nakuru">
+              </div>
+
+              <div class="col-md -3 form-group">
+                <p for="town">Application Deadline</p>
+                <input type="date" class="form-control" name="deadline" id="job-deadline">
               </div>
             </div>
             <div class="row">
               <div class="form-group col-md-6 selectize-control">
                 <div>
-                  <label for="county">County</label>
+                  <p for="county">County</p>
                 </div>
                 <select class="selectize-input" name="county" id="county" data-style="btn-black" data-width="100%" data-live-search="true" title="Select County">
                   <option value="1">MOMBASA</option>
@@ -161,7 +158,7 @@
 
               <div class="form-group col-md-6">
                 <div class="selectize-control ">
-                <label for="job-type">Job Type</label></div>
+                <p for="job-type">Job Type</p></div>
                 <select class="selectize-input single demo-default  " id="type_id" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type" name="type_id">
                   <option value="1">Part Time</option>
                   <option value="2">Full Time</option>
@@ -172,7 +169,7 @@
 
 
             <div class="form-group">
-              <label for="description">Job Description</label>
+              <p for="description">Job Description</p>
               {{-- <div class="editor" id="editor-1" name="">
                 <p>Write Job Description!</p>
                 
@@ -181,7 +178,7 @@
             </div>
 
             <div class="form-group">
-              <label for="job-description">Job Requirements</label>
+              <p for="job-description">Job Requirements</p>
               {{-- <div class="editor" id="editor-3" name="requirements">
                 <p name = "requirements">Write Job Description!</p>
                 
@@ -190,7 +187,7 @@
             </div>
 
             <div class="form-group">
-              <label for="job-description">Job Responsibilities</label>
+              <p for="job-description">Job Responsibilities</p>
               {{-- <div class="editor" id="editor-4" name="responsibilities">
                 <p>Write Job Description!</p>
               </div> --}}
@@ -199,7 +196,7 @@
 
             <div class="row">
             <div class="form-group col-md-4">
-              <label for="job-type">Education level</label> <br>
+              <p>Education level</p>
               <select class="nice-select wide border rounded" id="type_id" data-style="btn-black" data-width="100%" data-live-search="true" title="Pick One" name="education">
                 <option ="2">Certificate</option>
                 <option ="3">Diploma</option>
@@ -210,7 +207,7 @@
             </div>
 
             <div class="form-group col-md-4">
-              <label for="company-tagline">Salary Range</label> <br>
+              <p>Salary Range</p> 
               <select class="nice-select wide border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="" name="salary_range">
                 <option> 10,000   and   below</option>
                 <option> 10,000   -     25,000</option>
@@ -224,7 +221,7 @@
               </select>
             </div>
             <div class="form-group col-md-4">
-              <label for="company-website-tw">Number of available positions.</label>
+              <p for="company-website-tw">Number of available positions.</p>
               <input type="text" class="form-control" id="company-website-tw" placeholder="e.g. 3" name="no_of_positions">
             </div>
 
@@ -233,9 +230,8 @@
 
             
 
-            <h3 class="text-black my-5 border-bottom pb-2">Company Details</h3>
-            <div class="form-group">
-              <label for="company_id">Your Companies </label> <br>
+            <h3 class="text-black my-5 border-bottom pb-4">Company Details</h3>
+            <div class="form-group pb-4">
               <select class="nice-select" id="company_id" name="company_id">
                 <option>Choose company</option>
                 
@@ -247,53 +243,50 @@
             </div><br>
 
             <div class="form-group">
-              <label for="company_name">Company Name</label>
-              <input type="text" class="form-control" id="company_name" placeholder="" name="company_name">
+              <input disabled type="hidden" class="form-control" id="company_name" placeholder="" name="company_name">
             </div>
 
            
 
             {{-- <div class="form-group">
-              <label for="company-tagline">Tagline (Optional)</label>
+              <p for="company-tagline">Tagline</p>
               <input type="text" class="form-control" id="company-tagline" placeholder=" ">
             </div> --}}
 
             <div class="form-group">
-              <label for="company_description">Company Description (Optional)</label>
+              {{-- <p for="company_description">Company Description</p> --}}
               <div class="editor" id="editor-2" name="">
-                <p>Description</p>
+                <p>Company Description</p>
               </div>
               <textarea class="form-control" name="company_description" id="company_description"></textarea>
               {{-- <input type="text" name="company_decription" id="company_description"> --}}
             </div>
+            <div class="row">
+
+            <div class="form-group col-md-6">
+              <p>Email</p>
+              <input disabled type="text" class="form-control input-group" name="company_email" id="company_email" placeholder="you@yourdomain.com" disabled>
+            </div>
             
-            <div class="form-group">
-              <label for="company_website">Website (Optional)</label>
-              <input type="text" class="form-control" id="company_website" placeholder="https://" name="company_website">
+            <div class="form-group col-md-6">
+              <p for="company_website">Website</p>
+              <input disabled type="text" class="form-control" id="company_website" placeholder="https://" name="company_website">
             </div>
 
-            <div class="form-group">
-              <label for="company_biz_stream">Business stream (Optional)</label>
-              <input type="text" class="form-control" id="company_biz_stream" placeholder="" name="company_biz_stream">
+            <div class="form-group col-md-6">
+              <p for="company_biz_stream">Business stream</p>
+              <input disabled type="text" class="form-control" id="company_biz_stream" placeholder="" name="company_biz_stream">
             </div>
 
-            <div class="form-group">
-              <label for="company-website-tw">Twitter Username (Optional)</label>
-              <input type="text" class="form-control" id="company-website-tw" placeholder="@companyname" name="company_twitter">
+            <div class="form-group col-md-6">
+              <p for="company_twitter">  Twitter Username</p>
+              <input disabled type="text" class="form-control" id="company_twitter" placeholder="@companyname" name="company_twitter">
             </div>
-            {{-- <input type="text" name="company_id" id="company_id"> --}}
-            <input type="text" name="company_business_stream_id" id="company_business_stream_id">
-            {{-- <div class="form-group">
-              <label for="company-website-tw">Linkedin Username (Optional)</label>
-              <input type="text" class="form-control" id="company-website-tw" placeholder="companyname">
-            </div> --}}
 
-            <div class="form-group">
-              <label for="company-website-tw d-block">Upload Logo</label> <br>
-              <label class="btn btn-primary btn-md btn-file">
-                Browse File<input type="file" hidden>
-              </label>
-            </div>
+          </div>
+            <input type="hidden" name="company_business_stream_id" id="company_business_stream_id">
+           
+
 
             
 

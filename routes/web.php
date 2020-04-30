@@ -40,7 +40,7 @@ Route::get('/sendemail', 'JobsController@enqueue');
 
 Route::post('/job','JobsController@store');
 Route::get('/my-jobs','JobsController@jobsPostedby')->name('myjobs');
-Route::get('/applications/{user_id}','JobsController@applications');
+Route::get('/applications','JobsController@applications')->name('applications');
 Route::get('/applications-by-job/{job_id}','JobsController@applicationsByJob');
 
 Route::get('/profiles', 'ProfileController@index');

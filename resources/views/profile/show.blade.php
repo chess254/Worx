@@ -117,10 +117,10 @@
         
                 </div>
             </div>
-
+            
             @csrf
             <input type="hidden">
-            <button class="btn btn-primary btn-block btn-sm mb-4"type="submit"> <i class="mdi mdi-send mr-2"></i> apply</button> 
+            <button class="btn btn-primary btn-block btn-sm mb-4"type="submit"> <i class="mdi mdi-send mr-2"style="color:white;"></i> submit pic</button> 
         </form>      
         @endif
 
@@ -471,8 +471,8 @@
                             </div>
                         </div> --}}
 
-                        <div class="col-lg-12">
-                            <div class="job-list-desc candidates-profile-exp-desc">
+                        <div class="col-lg-12 detailCard">
+                            <div class="job-list-desc candidates-profile-exp-desc ">
                                 <h5 class="f-19 mb-2"><a href="#" class="text-dark">{{$experience->company_name}}</a></h5>
                                 <p class="text-muted mb-0 f-16">{{$experience->job_title}}</p>
                                 <p class="text-muted mb-0 f-16">{{$experience->start_date}} - {{$experience->end_date}}</p>
@@ -486,7 +486,7 @@
                                 {{-- <br> {{$experience->id}} --}}
 
                                 @if( auth()->check() && ($profile->user_id == auth()->user()->id) ) 
-                                    <div class="pt-2 border-top d-flex" style="justify-content: space-around;">
+                                    <div id="editExpCard" class="pt-0 d-flex" style="justify-content: space-around;">
                                     <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#expModal" name="id" data-company_name="{{$experience->company_name}}" data-job_title="{{$experience->job_title}}" data-start_date="{{$experience->start_date}}" data-end_date="{{$experience->end_date}}"  data-website="{{$experience->website}}" data-city="{{$experience->job_location_city}}" data-county="{{$experience->job_location_county}}" data-country="{{$experience->job_location_country}}" data-expid="{{$experience->id}}" > <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
                                         
                                         

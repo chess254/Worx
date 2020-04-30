@@ -59,6 +59,8 @@ class JobsController extends Controller
      */
     public function store(Request $request)
     { 
+
+        // dd($request->all());
         $company = \App\Company::firstOrNew([
             'id'=>$request->company_id,
             'name' => $request->company_name,
@@ -69,7 +71,7 @@ class JobsController extends Controller
 
         $data = [
             'title' => $request->title,
-            'email'=> $request->email,
+            'email'=> $request->company_email,
             'town' => $request->town,
             'user_id' => $user = Auth::user()->id,
             'type_id' => intval($request->type_id),
@@ -78,11 +80,12 @@ class JobsController extends Controller
             'company_name_hidden' => 1,
             'no_of_positions' => $request->no_of_positions,
             'description' => $request->description, 
+            'deadline'=>$request->deadline,
             'location_id' => 1,           
             'is_active' => 1,
             'salary_range' => $request->salary_range,
             'responsibilities' => $request->responsibilities,
-           'requirements' =>$request->requirements,             
+            'requirements' =>$request->requirements,             
             'education' => $request->education,
             'business_stream_id'=>$request->company_business_stream_id,
             'applicationMethod'=>$request->applicationMethod,
@@ -217,15 +220,31 @@ class JobsController extends Controller
     }
 
     // returns all applications sent for jobs posted by an employer(all jobs mixed together)
-    public function applications(Request $request, $user_id){
+    // public function applications(Request $request, $user_id){
+
+    //     if(auth()->user() && auth()->user()->user_type_id == 2){        
+    //     $applications = Application::where('employer_id',$user_id)->with(['applicant', 'user', 'employer'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+    //     return view('applications', compact('applications'));
+    //     }
+
+    //     if(auth()->user() && auth()->user()->user_type_id == 1){        
+    //         $applications = Application::where('user_id',$user_id)->with(['job', 'user', 'employer'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+    //         return view('applications', compact('applications'));
+    //         }
+    
+
+    //     return redirect()->route('home');
+    // }
+
+    public function applications(Request $request){
 
         if(auth()->user() && auth()->user()->user_type_id == 2){        
-        $applications = Application::where('employer_id',$user_id)->with(['applicant', 'user', 'employer'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+        $applications = Application::where('employer_id',auth()->user()->id)->with(['applicant', 'user', 'employer'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
         return view('applications', compact('applications'));
         }
 
         if(auth()->user() && auth()->user()->user_type_id == 1){        
-            $applications = Application::where('user_id',$user_id)->with(['job', 'user', 'employer'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+            $applications = Application::where('user_id',auth()->user()->id)->with(['job', 'user', 'employer'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
             return view('applications', compact('applications'));
             }
     
