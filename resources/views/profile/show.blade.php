@@ -112,7 +112,7 @@
 
 
             <div class="form-group">
-                <label for="document">Documents</label>
+                <label for="document">Picture</label>
                 <div class="needsclick dropzone" id="document-dropzone" name="pic">
         
                 </div>
@@ -125,7 +125,7 @@
         @endif
 
         <div class="row">
-            <div class="col-lg-12 mt-4 pt-2">
+            <div class="col-lg-12 mt-4 pt-2 d-flex" style="justify-content: center;">
                 <h2 class="text-dark">Bio </h2>
             </div>
         </div>
@@ -136,7 +136,7 @@
                     <div class="job-detail-desc" id="bio">
                         <p class="text-muted f-14 mb-3">{{$profile->bio}}</p>
                     </div>
-                    <ul class="list-inline pt-3 border-top mb-0">
+                    <ul class="list-inline pt-3 border-top mb-0 d-flex" style="justify-content:center;">
                         <li class="list-inline-item mr-3">
                             <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{$profile->user->city}}, {{$profile->user->county->county_name}}, {{$profile->user->country}}</a>
                         </li>
@@ -253,7 +253,7 @@
 
      
 
-        <div class="row">
+        <div class="row d-flex" style="justify-content:center;">
           {{-- {{dd($profile->educationDetails)}} --}}
             @foreach($profile->educationDetails as $education)
             <div class="col-lg-4 col-md-6 mt-4 pt-5 detailCard">
@@ -459,7 +459,7 @@
 
         
 
-        <div class="row">
+        <div class="row d-flex" style="justify-content:center;">
 
             @foreach($profile->experienceDetails as $experience)
             <div class="col-md-6 mt-3 mt-md-0 pt-3">

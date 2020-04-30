@@ -4,12 +4,12 @@
 @endsection
 
 @section('content')
-{{-- <section class="bg-half page-next-level">
+<section class="bg-quarter page-next-level">
     <div class="bg-overlay"></div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="text-center text-white">
+                {{-- <div class="text-center text-white">
                     <h4 class="text-uppercase title mb-4">{{$Company->name}}</h4>
                     <ul class="page-next d-inline-block mb-0">
                         <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
@@ -19,11 +19,11 @@
                             <span class="text-uppercase text-white font-weight-bold">{{$Company->name}}</span>
                         </li>
                     </ul>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
-</section> --}}
+</section>
 <!-- end home -->
 
 <!-- EMPLOYERS DETAILS START -->
@@ -119,33 +119,13 @@
             <div class="col-lg-12 mt-4 pt-2">
                 <h4 class="">Services </h4>
                 <div class="rounded border p-4 mt-3">
-                    {{-- <p class="text-muted">Aenean tellus metus bibendum sed posuere ac mattis non nunc estibulum --}}
-                        {{-- fringilla pede sit amet augue n turpis Pellentesque posuere raesent turpis enean posuere tortor
-                        sed cursus feugiat nunc augue blandit nunc sollicitudin at dolor sagittis lacus estibulum ante
-                        ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae Sed aliquam nisi quis
-                        porttitor congue elit erat euismod orci ac placerat dolor lectus quis orci repellendus at enime
-                        pellentesque eu pretium quis sem Phasellus viverra nulla hasellus consectetuer vestibulum
-                        elit.</p> --}}
+                   
 
                         @foreach($Company->services as $service)
-                        <p class="text-muted"><i class="mdi mdi-check text-success"></i>{{$service}}</p>
+                        <p class="text-muted"><i class="mdi mdi-check text-success mr-4"></i>{{$service}}</p>
                         @endforeach
 
-                    {{-- <h6 class="text-dark">Details :</h6>
-                    <p class="text-muted"><i class="mdi mdi-check text-success"></i> Morbi mattis ullamcorper velit
-                        hasellus gravida semper nisi nullam vel sem.</p>
-                    <p class="text-muted"><i class="mdi mdi-check text-success"></i> Phasellus viverra nulla ut metus
-                        varius laoreet uisque rutrum enean imperdiet.</p>
-                    <p class="text-muted"><i class="mdi mdi-check text-success"></i> Etiam ultricies nisi vel augue
-                        Curabitur ullamcorper ultricies nisi am eget dui tiam rhoncus.</p>
-                    <p class="text-muted"><i class="mdi mdi-check text-success"></i> Donec mollis hendrerit risus
-                        hasellus nec sem in justo pellentesque facilisis.</p>
-                    <p class="text-muted"><i class="mdi mdi-check text-success"></i> Praesent congue erat at massa Sed
-                        cursus turpis vitae tortor onec posuere vulputate arcu.</p>
-                    <p class="text-muted"><i class="mdi mdi-check text-success"></i> Donec elit libero, sodales nec
-                        volutpat a suscipit non turpis ullam sagittis.</p>
-                    <p class="text-muted mb-0"><i class="mdi mdi-check text-success"></i> Aenean tellus metus bibendum
-                        sed posuere ac mattis non nunc estibulum fringilla.</p> --}}
+                    
                 </div>
             </div>
         </div>

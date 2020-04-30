@@ -1,6 +1,6 @@
 /*
 Template Name: Joba - Responsive Job Listing Template
-Author: Maidathemes
+Author: chess254
 File: main stylesheet
 */
 /**********************
@@ -22,6 +22,19 @@ File: main stylesheet
 **********************/
 @import url('https://fonts.googleapis.com/css?family=Jaldi&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+:root{
+--theme-color: #9c5021ab;
+--theme-color-dark: #381b09de;
+}
+
+/* to use color: var(--theme-orange) */
+
+body i{
+  
+color: var(--theme-color);
+}
+
 .bg-primary {
   background-color: #7d94e0 !important;
 }
@@ -80,7 +93,9 @@ File: main stylesheet
 }
 
 .text-dark {
-  color: #3c4858 !important;
+  /* color: #3c4858 !important; */
+  color: var(--theme-color-dark) !important;
+
 }
 
 .text-light {
@@ -756,6 +771,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: 'Jaldi', sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  color: var(--theme-color-dark);
 }
 
 ::-moz-selection {
@@ -1637,17 +1653,20 @@ p {
 
 .bg-half {
   padding: 280px 0px 180px 0px;
-  background-image: url("../images/bg-page-header.jpg");
+  /* background-image: url("../images/bg-page-header.jpg"); */
+  background-image: url("../images/bg-counters.jpg");
   background-size: cover;
+  background-attachment: fixed;
   position: relative;
   background-position: center center;
 }
 
 .bg-quarter {
-  padding: 20px 0px 20px 0px;
-  background-image: url("../images/bg-page-header.jpg");
+  padding: 37px 0px 37px 0px;
+  background-image: url("../images/bg-counters.jpg");
   /* height:100px; */
   background-size: cover;
+  background-attachment: fixed;
   position: relative;
   background-position: center center;
 }

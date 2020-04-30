@@ -25,33 +25,44 @@
 
 @section('content')
 <!-- HOME -->
-  <section class="section-hero overlay inner-page bg-image" style="background-image: url('images/hero_1.jpg');" id="home-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-7">
-          <h1 class="text-white font-weight-bold">Post A Job</h1>
-          <div class="custom-breadcrumbs">
-            <a href="#">Home</a> <span class="mx-2 slash">/</span>
-            <a href="#">Job</a> <span class="mx-2 slash">/</span>
-            <span class="text-white"><strong>Post a Job</strong></span>
+<section class="bg-quarter page-next-level">
+  <div class="bg-overlay"></div>
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-6">
+              <div class="text-center text-white">
+                  {{-- flash message here on successful aplication --}}
+                  @if(session()->has('message'))
+                      <div class="alert alert-success">
+                          {{ session()->get('message') }}
+                  </div>
+                  @endif
+                  {{-- <h4 class="text-uppercase title mb-4">{{$Job->title}}</h4>
+                  <ul class="page-next d-inline-block mb-0">
+                      <li><a href="{{route('home')}}"  class="text-uppercase font-weight-bold">Home</a></li>
+                      <li><a href="{{ route('jobs') }}" class="text-uppercase font-weight-bold">Jobs</a></li>
+                      <li>
+                          <span class="text-uppercase text-white font-weight-bold">{{$Job->title}}</span>
+                      </li>
+                  </ul> --}}
+              </div>
           </div>
-        </div>
       </div>
-    </div>
-  </section>
+  </div>
+</section>
 
   
   <section class="site-section">
-    <div class="container">
+    <div class="container mt-100">
 
-      <div class="row align-items-center mb-5">
-        <div class="col-lg-8 mb-4 mb-lg-0">
-          <div class="d-flex align-items-center">
+       <div class="row align-items-center mb-5">
+        <div class="col-lg-12 mb-4 mb-lg-0">
+          <div class="d-flex " style=" justify-content: space-around;">
             <div>
               <h2>Post A Job</h2>
             </div>
           </div>
-        </div>
+        </div> 
         {{-- <div class="col-lg-4">
           <div class="row">
             <div class="col-6">
@@ -62,7 +73,7 @@
             </div>
           </div>
         </div> --}}
-      </div>
+      </div> 
       <div class="row mb-5">
         <div class="col-lg-12">
           <form class="p-4 p-md-5 border rounded" action="/job" method="post">

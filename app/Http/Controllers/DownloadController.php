@@ -12,10 +12,13 @@ class DownloadController extends Controller
 {
 
     public function downloadSingle( Media $media)
-    {
+    {   //convert profile to pdf..  
+
         // dd($media);
         if(auth()->check() && auth()->user()->user_type_id == 2){
-         return $media;
+            // this also works, can be used to download a zip with multiple files
+        //  return MediaStream::create('single.zip')->addmedia($media,$media);
+        return $media;
         }
         return redirect()->route('home');
     }
