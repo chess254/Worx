@@ -14,16 +14,7 @@
             <div class="col-md-6">
                 <div class="text-center text-white">
 
-                    @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-                    @if (session('message'))
-                    <div class="alert alert-success">
-                        {{ session('message') }}
-                    </div>
-                    @endif
+                    
                 <h1 class="display-3">Company create page form here</h1>
 
                     {{-- <h4 class="text-uppercase title mb-4">Create Resume</h4> --}}
@@ -47,34 +38,33 @@
 <!-- CREATE RESUME START -->
 <section class="section pt-1 mt-100" id="educ">
     
-        
-
-
         <div class="container mt-4"  >
-            {{-- <div class="progress mt-4">
-                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
                 </div>
-            </div> --}}
-            {{-- <div class="alert alert-success hide"></div>    --}}
+            @endif
+            @if (session('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
             
-            <div class="col-12 mt-4">
-                
-                <div class="custom-form p-4 border rounded" >
-                   
+            <div class="col-12 mt-4">      
+                <div class="custom-form p-4 border rounded" >  
                     {{-- <img src="images/employers/img-1.jpg"
                          class="img-fluid avatar avatar-medium d-block mx-auto rounded-pill" alt=""> --}}
                     <form id="company_form" novalidate action="/company" method="post" enctype="multipart/form-data" >
                         @csrf
                         <fieldset>
-                            <br><br>
                             
-                            <div class="col-lg-12" id="top">
-                                <h4 class="text-muted">General Information</h4>
+                            <div class="col-lg-12 mt-4" id="top">
+                                <h4 class="text-dark mb-60" style="text-align: center;">General Information</h4>
                             </div>
                             <div class="row mt-4">
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Name</label>
+                                        <p class="text-dark">Name</p>
                                         <input id="name" type="text" name="name" class="form-control resume"
                                                placeholder="Company Name ">
                                     </div>
@@ -82,7 +72,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Number of Employees</label>
+                                        <p class="text-dark">Number of Employees</p>
                                         <input id="number_of_employees" name="number_of_employees" type="text" class="form-control resume"
                                                placeholder="Number of employees ">
                                     </div>
@@ -90,10 +80,10 @@
 
                                 <div class="col-md-4">
                                     {{-- <div class="form-group app-label"> --}}
-                                        <label class="text-muted app-label">Business Stream</label>
+                                        <p class="text-dark">Business Stream</p>
                                     
                                     <div class="registration-form-box">
-                                        <i class="fa fa-list-alt" style="color: orange;"></i>
+                                        <i class="fa fa-list-alt" style="color: var(--theme-color);"></i>
                                         <select id="select-category" class="demo-default" name="business_stream_id">
                                           <option value="">Business stream...</option>
                                           @foreach ($business_stream as $biz_stream)
@@ -106,24 +96,24 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Date Of Formation</label>
-                                        <input id="date-of-formation" type="date" name="date_of_formation" class="form-control resume"
+                                        <p class="text-dark">Date Of Formation</p>
+                                        <input id="date-of-formation" type="date" name="date_of_formation" class="form-control "
                                                placeholder="13-02-1999">
                                     </div>
                                 </div>   
 
                                 <div class="col-md-8">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Services</label>
-                                        <input id="services" name="services" multiple type="text" class=" resume"
-                                               placeholder="Services, comma separated ">
+                                        <p class="text-dark">Services</p>
+                                        <input id="services" name="services" multiple type="text" class="form-control "
+                                               placeholder="eg. Marketing, Finance, Transportation, ... ">
                                     </div>
                                 </div>
                                
                                 
                                 <div class="col-lg-12">
                                     <div class="form-group app-label">
-                                        <label>Description</label>
+                                        <p class="text-dark">Description</p>
                                         <textarea id="description" name="description" rows="4" class="form-control resume"
                                                   placeholder=""></textarea>
                                     </div>
@@ -136,18 +126,18 @@
 
 <br><br>
                             <div class="col-12" style="padding-top: 10px;">
-                                <h4 class="text-muted">Contact Information</h4>
+                                <h4 class="text-dark mb-60" style="text-align: center;">Contact Information</h4>
                             </div>
-                            <div class="row">
+                            <div class="row mb-60">
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">City</label><br>
+                                        <p class="text-dark">City</p>
                                         <input type="text" name="city" id="city" class="form-control resume">
                                     </div>
                                 </div><div class="col-md-4">
                               
                                 <div class="form-group app-label">
-                                    <label for="county" class="text-muted">County</label>
+                                    <p class="text-dark">County</p>
                                     <div class="form-button app-label">
                                         
                                     <select class="nice-select rounded"  name="county_id" id="county"  data-live-search="true" title="Select County">
@@ -206,7 +196,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Country</label>
+                                        <p class="text-dark">Country</p>
                                         <div class="form-button">
                                             <select class="nice-select rounded" id="country" name="country" data-live-search="">
                                                 <option data-display="Country">Country</option>
@@ -220,7 +210,7 @@
     
                                 <div class="col-md-6">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">E-mail</label>
+                                        <p class="text-dark">E-mail</p>
                                         <input id="email" type="email" name="email" class="form-control resume"
                                                placeholder="Email ID ">
                                     </div>
@@ -228,7 +218,7 @@
     
                                 <div class="col-md-6">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Website</label>
+                                        <p class="text-dark">Website</p>
                                         <input id="website" type="url" name="website" class="form-control resume"
                                                placeholder="www.example.com">
                                     </div>
@@ -236,7 +226,7 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Cell Phone</label>
+                                        <p class="text-dark">Cell Phone</p>
                                         <input id="mobile" name="mobile" type="tel" class="form-control resume"
                                                placeholder="Phone No. ">
                                     </div>
@@ -244,21 +234,21 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Landline 1</label>
+                                        <p class="text-dark">Landline 1</p>
                                         <input id="landline" type="tel" name="landline" class="form-control resume"
-                                               placeholder="Email ID ">
+                                               placeholder="0202063092">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">logo</label>
+                                        <p class="text-dark">logo</p>
                                         <input id="logo" type="file" name="logo" class="form-control-file resume"
                                                placeholder=""> 
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                    <i class="fab fa-facebook-f" style="color: orange; font-size: 20px;"></i>
+                                    <i class="fab fa-facebook-f" style="color: var(--theme-color); font-size: 20px;"></i>
                                     <input id="facebook" type="url" name="facebook" class="form-control resume"
                                     placeholder="facebook ">
                                     
@@ -268,7 +258,7 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <i class="fab fa-linkedin" style="color: orange; font-size: 20px;"></i>
+                                        <i class="fab fa-linkedin" style="color: var(--theme-color); font-size: 20px;"></i>
                                         <input id="linkedin" type="url" name="linked_in" class="form-control resume"
                                         placeholder="linkedIn ">
                                         
@@ -278,7 +268,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <i class="fab fa-twitter-square"style="color: orange; font-size: 20px;"></i>
+                                        <i class="fab fa-twitter-square"style="color: var(--theme-color); font-size: 20px;"></i>
                                         <input id="twitter" type="url" name="twitter" class="form-control resume"
                                         placeholder="twitter">
                                         
@@ -297,8 +287,10 @@
                             
                          
                             
-                            <input type="button" name="previous" class="previous btn btn-default" value="preview" />
-                            <input type="submit" name="submit" class="submit btn btn-success" value="Submit" />
+                            {{-- <input type="button" name="previous" class="previous btn btn-default" value="preview" /> --}}
+ <input type="submit" name="submit" class="submit btn btn-success  mb-40 float-right" value="Submit" />
+                            <input type="reset" name="reset" class="submit btn btn-warning mr-2 mb-40 float-right" value="reset" />
+                           
                         </fieldset>
                  
                     </form>

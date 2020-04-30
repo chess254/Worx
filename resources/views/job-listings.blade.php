@@ -298,7 +298,7 @@
                                     <div class="row align-items-center">
                                         <div class="col-lg-2">
                                             <div class="company-logo-img">
-                                                <img src="images/featured-job/img-1.png" alt=""
+                                                <img src="{{$job->company->getFirstMediaUrl('logos','square')}}" alt=""
                                                     class="img-fluid avatar avatar-small mr-3 rounded">
                                             </div>
                                         </div>
@@ -311,9 +311,9 @@
                                                         <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{$job->town}}, {{$job->county['county_name']}}, {{$job->location['country']}}</p>
                                                     </li>
 
-                                                    <li class="list-inline-item">
-                                                        <p class="text-muted mb-0"><i
-                                                                class="mdi mdi-clock-outline mr-2"></i>{{ $job->created_date }}</p>
+                                                    <li class="">
+                                                        <p class="text-muted mb-0"><small><i
+                                                                class="mdi mdi-clock-outline mr-2"></i>{{ $job->created_at->diffForHumans(null,true)." ago" }}</small></p>
                                                     </li>
                                                 </ul>
                                             </div>

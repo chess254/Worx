@@ -52,11 +52,11 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="candidates-profile-details text-center">
-                <img src="{{$profile->getFirstMediaUrl('profilepics')}}" height="250" alt=""
-                         class="d-block mx-auto shadow rounded-pill mb-4">
-                <h5 class="text-dark mb-2">{{$profile->user->name}} {{$profile->user->second_name}}</h5>
+                <img src="{{$profile->getFirstMediaUrl('profilepics')}}" height="250" alt="{{$profile->user->name}} {{$profile->user->second_name}}"
+                         class="d-block mx-auto shadow rounded-pill mb-2">
+                <h2 class="text-dark display-4 ">{{$profile->user->name}} {{$profile->user->second_name}}</h2>
                     {{-- <p class="text-dark h6 mb-2"><i class="mdi mdi-bank mr-2"></i>Maida Themes Pvt LTD</p> --}}
-                    <p class="text-dark h6 mb-2">{{$profile->title}}</p>
+                    <p class="text-muted h3 mb-2">{{$profile->title}}</p>
                     <ul class="candidates-profile-icons list-inline mb-3">
                         <li class="list-inline-item"><a href="#" class="text-dark"><i class="mdi mdi-star"></i></a>
                         </li>
@@ -112,21 +112,21 @@
 
 
             <div class="form-group">
-                <label for="document">Documents</label>
+                <label for="document">Picture</label>
                 <div class="needsclick dropzone" id="document-dropzone" name="pic">
         
                 </div>
             </div>
-
+            
             @csrf
             <input type="hidden">
-            <button class="btn btn-primary btn-block btn-sm mb-4"type="submit"> <i class="mdi mdi-send mr-2"></i> apply</button> 
+            <button class="btn btn-primary btn-block btn-sm mb-4"type="submit"> <i class="mdi mdi-send mr-2"style="color:white;"></i> submit pic</button> 
         </form>      
         @endif
 
         <div class="row">
-            <div class="col-lg-12 mt-4 pt-2">
-                <h4 class="text-dark">Bio :</h4>
+            <div class="col-lg-12 mt-4 pt-2 d-flex" style="justify-content: center;">
+                <h2 class="text-dark">Bio </h2>
             </div>
         </div>
 
@@ -136,7 +136,7 @@
                     <div class="job-detail-desc" id="bio">
                         <p class="text-muted f-14 mb-3">{{$profile->bio}}</p>
                     </div>
-                    <ul class="list-inline pt-3 border-top mb-0">
+                    <ul class="list-inline pt-3 border-top mb-0 d-flex" style="justify-content:center;">
                         <li class="list-inline-item mr-3">
                             <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{$profile->user->city}}, {{$profile->user->county->county_name}}, {{$profile->user->country}}</a>
                         </li>
@@ -199,7 +199,7 @@
         <div class="row" id="rowED">
             <div class="col-lg-12 mt-4 pt-2">
                 <div style="display: flex; justify-content: space-between;">
-                    <h4 class="text-dark">Education :</h4>
+                    <h2 class="text-dark">Education </h2>
                     @if(auth()->check() && ($profile->user_id == auth()->user()->id))
                         <button class="btn btn-sm btn-info"  data-toggle="modal" data-target="#addEducModal">Add entry</button>
                     @endif
@@ -253,7 +253,7 @@
 
      
 
-        <div class="row">
+        <div class="row d-flex" style="justify-content:center;">
           {{-- {{dd($profile->educationDetails)}} --}}
             @foreach($profile->educationDetails as $education)
             <div class="col-lg-4 col-md-6 mt-4 pt-5 detailCard">
@@ -349,7 +349,7 @@
             <div class="col-lg-12 mt-4 pt-2">
                 
             <div style="display: flex; justify-content: space-between;">
-            <h4 class="text-dark">Experience :</h4>
+            <h2 class="text-dark">Experience </h2>
             @if(auth()->check() && ($profile->user_id == auth()->user()->id))
                 <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#addExpModal">Add entry</button>
             @endif
@@ -459,7 +459,7 @@
 
         
 
-        <div class="row">
+        <div class="row d-flex" style="justify-content:center;">
 
             @foreach($profile->experienceDetails as $experience)
             <div class="col-md-6 mt-3 mt-md-0 pt-3">
@@ -471,8 +471,8 @@
                             </div>
                         </div> --}}
 
-                        <div class="col-lg-12">
-                            <div class="job-list-desc candidates-profile-exp-desc">
+                        <div class="col-lg-12 detailCard">
+                            <div class="job-list-desc candidates-profile-exp-desc ">
                                 <h5 class="f-19 mb-2"><a href="#" class="text-dark">{{$experience->company_name}}</a></h5>
                                 <p class="text-muted mb-0 f-16">{{$experience->job_title}}</p>
                                 <p class="text-muted mb-0 f-16">{{$experience->start_date}} - {{$experience->end_date}}</p>
@@ -486,7 +486,7 @@
                                 {{-- <br> {{$experience->id}} --}}
 
                                 @if( auth()->check() && ($profile->user_id == auth()->user()->id) ) 
-                                    <div class="pt-2 border-top d-flex" style="justify-content: space-around;">
+                                    <div id="editExpCard" class="pt-0 d-flex" style="justify-content: space-around;">
                                     <button  class="btn btn-light-outline btn-sm" data-toggle="modal" data-target="#expModal" name="id" data-company_name="{{$experience->company_name}}" data-job_title="{{$experience->job_title}}" data-start_date="{{$experience->start_date}}" data-end_date="{{$experience->end_date}}"  data-website="{{$experience->website}}" data-city="{{$experience->job_location_city}}" data-county="{{$experience->job_location_county}}" data-country="{{$experience->job_location_country}}" data-expid="{{$experience->id}}" > <i class="mdi mdi-pencil" style="color: orange;"></i> </button>
                                         
                                         
@@ -644,7 +644,7 @@
         <div class="row">
             <div class="col-lg-12 mt-4 pt-2">
                 <div style="display: flex; justify-content: space-between;">
-                    <h4 class="text-dark">Skills :</h4>
+                    <h2 class="text-dark">Skills </h2>
                     @if(auth()->check() && ($profile->user_id == auth()->user()->id))
                         <button class="btn btn-sm btn-info">Edit</button>
                     @endif
@@ -681,7 +681,7 @@
             </div>
 {{-- 
             <div class="col-md-12 mt-4 pt-2">
-                <h6 class="mb-0 text-uppercase">Coding Expertise :</h6>
+                <h6 class="mb-0 text-uppercase">Coding Expertise </h3>
                 <div class="progress-box mt-4">
                     <h6 class="title text-muted">WordPress</h6>
                     <div class="progress">

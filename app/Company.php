@@ -32,7 +32,7 @@ class Company extends Model implements HasMedia
             
     }
 
-    public function registermediaCollections(): void {
+    public function registerMediaCollections(): void {
         $this -> addMediaCollection('logos')->singleFile();
     }
 

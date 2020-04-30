@@ -298,7 +298,7 @@
                                     <div class="row align-items-center">
                                         <div class="col-lg-2">
                                             <div class="company-logo-img">
-                                                <img src="images/featured-job/img-1.png" alt=""
+                                                <img src="{{$job->company->getFirstMediaUrl('logos','square')}}" alt={{$job->company->name}}"
                                                     class="img-fluid avatar avatar-small mr-3 rounded">
                                             </div>
                                         </div>
@@ -307,13 +307,13 @@
                                                 <h6 class="mb-2"><a href="/job/{{$job->id}}" class="text-dark" style="font-size: 20px;">{{$job->title}}</a></h6>
                                                 <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>{{$job->company['name']}}</p>
                                                 <ul class="list-inline mb-0">
-                                                    <li class="list-inline-item mr-3">
+                                                    <li class=" mr-3">
                                                         <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{$job->town}}, {{$job->county['county_name']}}, {{$job->location['country']}}</p>
                                                     </li>
 
-                                                    <li class="list-inline-item">
+                                                    <li class="">
                                                         <p class="text-muted mb-0"><i
-                                                                class="mdi mdi-clock-outline mr-2"></i>{{ $job->created_date }}</p>
+                                                        class="mdi mdi-clock-outline mr-2"></i><small> {{date_format($job->created_at,'D d-M-Y')}} | {{date_format($job->created_at,'h:ia')}} </small></p>
                                                     </li>
                                                 </ul>
                                             </div>

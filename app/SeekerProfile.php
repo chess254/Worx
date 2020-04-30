@@ -25,7 +25,7 @@ class SeekerProfile extends Model implements HasMedia
             
     }
 
-    public function registermediaCollections(): void {
+    public function registerMediaCollections(): void {
         $this -> addMediaCollection('profilepics')->singleFile();
     }
 

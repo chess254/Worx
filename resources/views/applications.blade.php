@@ -48,8 +48,8 @@
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="float-left mr-4 d-inline:flex">
-                                                <img src="images/employers/img-1.jpg" alt="" class="d-block rounded" height="90">
-                                                
+                                                <img src="{{$application->applicant->getFirstMediaUrl('profilepics')}}" alt="{{$application->applicant->name}}" class="d-block rounded" height="90">
+                                                <div class="mt-2"><small class="text-muted"><i class="mdi mdi-clock-outline"></i>{{ $application->created_at->diffForHumans(null, true, true) }}</small></div>
                                             </div>
                                             <div class="candidates-list-desc overflow-hidden job-single-meta  pt-1 pb-1">
                                                 <h5 class="mb-2"><a href="{{route('profile.show',$application->applicant->user_id )}}" class="text-dark">{{$application->user->name}} {{$application->user->second_name}}</a></h5>
@@ -102,8 +102,8 @@
                                     <div class="row align-items-center">
                                         <div class="col-lg-2">
                                             <div class="company-logo-img">
-                                                <img src="images/featured-job/img-1.png" alt=""
-                                                    class="img-fluid avatar avatar-small mr-3 rounded">
+                                            <img src="{{$application->job->company->getFirstMediaUrl('logos', 'square')}}" alt="{{$application->job->company->name}}"
+                                                    class="img-fluid  avatar-small mr-3 rounded">
                                             </div>
                                         </div>
                                         <div class="col-lg-7 col-md-9">
@@ -114,11 +114,11 @@
                                                     <li class="list-inline-item mr-3">
                                                         <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{$application->job->town}}, {{$application->job->county['county_name']}}, {{$application->job->location['country']}}</p>
                                                     </li>
-
+{{-- 
                                                     <li class="list-inline-item">
                                                         <p class="text-muted mb-0"><i
-                                                                class="mdi mdi-clock-outline mr-2"></i>{{ $application->job->created_date }}</p>
-                                                    </li>
+                                                                class="mdi mdi-clock-outline mr-2"></i>{{ $application->created_at->diffForHumans(null, true, true)." ago" }}</p>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
@@ -131,7 +131,13 @@
                                                 @else
                                                 <span class="badge badge-warning">Remote</span>
                                                 @endif
+                                                {{-- <p class="text-muted mb-0"><i
+                                                    class="mdi mdi-clock-outline mr-2"></i>{{ $application->created_at->diffForHumans(null, true, true)." ago" }}</p> --}}
+                                        
                                             </div>
+                                           <small><p class="text-muted mb-0 my-2 text-right"><i
+                                                class="mdi mdi-clock-outline mr-3"></i>{{ $application->created_at->diffForHumans(null, true, true)." ago" }}</p>
+                                            </small> 
                                         </div>
                                     </div>
                                 </div>

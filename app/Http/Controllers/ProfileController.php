@@ -30,7 +30,7 @@ class ProfileController extends Controller
     public function update(Request $request, $user_id){
 
         $profile = SeekerProfile::where('user_id', $user_id)->first();
-
+   
         if($request->input('document')){
 
             foreach ($request->input('document', []) as $file) {
@@ -49,10 +49,12 @@ class ProfileController extends Controller
         $profile->save();
 
         //refactor to use $request->has('add_institute')
-        if(($request->add_institute) && (auth()->user()->id == $profile->user_id)){
+        if(($request->has('add_institute')) && (auth()->user()->id == $profile->user_id)){
+
+            
 
             $data = request()->validate([
-                'add_intitute' => 'required',
+                'add_institute' => 'required',
                 'add_course' => 'required',
                 'add_certificate' => 'required',
                 'add_from_date' => 'required',
