@@ -72,12 +72,12 @@
                         <fieldset>
                             
                             <div class="col-lg-12" id="top">
-                                <h5 class="text-dark">General Information :</h5>
+                                <h5 class="text-dark mt-5">General Information </h5>
                             </div>
                             <div class="row mt-4">
                                 <div class="col-md-4">
                                 <div class="form-group app-label {{ $errors->has('name') ? 'form-control-error' : ''}}">
-                                        <label class="text-muted">First Name<span class="text-danger">*</span> :</label>
+                                        <p class="text-dark">First Name<span class="text-danger">*</span> </p>
                                         <input id="first_name" type="text" name="name" class="form-control resume"
                                                placeholder="First Name :">
                                                {!! $errors->first('name', '<p style="color: #e74c3c"><span><small><small>:message</small></small></span></p>') !!}
@@ -86,7 +86,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label {{ $errors->has('middle_name') ? 'form-control-error' : ''}}">
-                                        <label class="text-muted">Middle Name<span class="text-danger">*</span> :</label>
+                                        <p class="text-dark">Middle Name<span class="text-danger">*</span> </p>
                                         <input id="middle_name" name="middle_name" type="text" class="form-control resume"
                                                placeholder="Middle Name :">
                                                {!! $errors->first('middle_name', '<p style="color: #e74c3c"><span><small><small>:message</small></small></span></p>') !!}
@@ -95,7 +95,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label {{ $errors->has('second_name') ? 'form-control-error' : ''}}">
-                                        <label class="text-muted">Surname<span class="text-danger">*</span> :</label>
+                                        <p class="text-dark">Surname<span class="text-danger">*</span> </p>
                                         <input id="surname-name" name="second_name" type="text" class="form-control resume"
                                                placeholder="Surname :">
                                                {!! $errors->first('second_name', '<p style="color: #e74c3c"><span><small><small>:message</small></small></span></p>') !!}
@@ -104,7 +104,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label {{ $errors->has('date_of_birth') ? 'form-control-error' : ''}}">
-                                        <label class="text-muted">Date Of Birth<span class="text-danger">*</span> :</label>
+                                        <p class="text-dark">Date Of Birth<span class="text-danger">*</span> </p>
                                         <input id="date-of-birth" type="date" name="date_of_birth" class="form-control resume"
                                                placeholder="13-02-1999">
                                                {!! $errors->first('date_of_birth', '<p style="color: #e74c3c"><span><small><small>:message</small></small></span></p>') !!}
@@ -113,7 +113,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label {{ $errors->has('gender') ? 'form-control-error' : ''}}">
-                                        <label class="text-muted">Gender<span class="text-danger">*</span> :</label>
+                                        <p class="text-dark">Gender<span class="text-danger">*</span> </p>
                                         <div class="form-button {{ $errors->has('marital_status') ? 'form-control-error' : ''}}">
                                             <select class="nice-select rounded" name="gender">
                                                 <option value="">Choose</option>
@@ -127,7 +127,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label {{ $errors->has('marital_status') ? 'form-control-error' : ''}}">
-                                        <label class="text-muted">Marital Status</label>
+                                        <p class="text-dark">Marital Status</p>
                                         <div class="form-button {{ $errors->has('marital_status') ? 'form-control-error' : ''}}">
                                             <select class="nice-select {{ $errors->has('marital_status') ? 'form-control-error' : ''}} rounded" name="marital_status">
                                                 <option value="1">Unmarried</option>
@@ -139,19 +139,19 @@
                             </div>
 
                             <div class="col-12">
-                                <h5 class="text-dark">Contact Information :</h5>
+                                <h5 class="text-dark">Contact Information </h5>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group app-label {{ $errors->has('city') ? 'form-control-error' : ''}}">
-                                        <label class="text-muted">City</label><br>
+                                        <p class="text-dark">City</p>
                                         <input type="text" name="city" id="city" class="form-control resume">
                                     </div>
                                 </div>
                                 {{--  <div class="col-md-4">
                               
                                <div class="registration-form-box">
-                                    <label for="county" class="text-muted">County</label>
+                                    <label for="county" class="text-muted">County</p>
                                     <div class="form-button app-label">
                                         
                                     <select class="demo-default"  name="county" id="county"  data-live-search="true" title="Select County">
@@ -210,7 +210,7 @@
 
                                 <div class="col-lg-4 col-md-4">
                                     <div class="form-group app-label">
-                                        <label for="county" class="text-muted">County</label>
+                                        <p class="text-dark">County</p>
                                         <div class="registration-form-box">
                                             <select id="select-country" class="demo-default"  name="county" data-live-search="">
                                                 {{-- <option data-display="County">County</option>     --}}
@@ -270,7 +270,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Country</label>
+                                        <p class="text-dark">Country</p>
                                         <div class="form-button">
                                             <select class="nice-select rounded" id="country" name="country" data-live-search="">
                                                 <option data-display="Country">Country</option>
@@ -282,7 +282,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label {{ $errors->has('phone') ? 'form-control-error' : ''}}">
-                                        <label class="text-muted">Phone</label>
+                                        <p class="text-dark">Phone</p>
                                         <input id="phone" name="phone" type="tel" class="form-control resume"
                                                placeholder="Phone No. :">
                                     </div>
@@ -290,7 +290,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label {{ $errors->has('email') ? 'form-control-error' : ''}}">
-                                        <label class="text-muted">Professional Title</label>
+                                        <p class="text-dark">Professional Title</p>
                                         <input id="title" type="title" name="title" class="form-control resume"
                                                placeholder="e.g Medical Doctor, Marketing executive">
                                     </div>
@@ -298,7 +298,7 @@
     
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Website</label>
+                                        <p class="text-dark">Website</p>
                                         <input id="website" type="url" name="website" class="form-control resume"
                                                placeholder="www.example.com">
                                     </div>
@@ -306,7 +306,7 @@
     
                                 <div class="col-lg-12">
                                     <div class="form-group app-label">
-                                        <label>Address :</label>
+                                        <p class="text-dark">Address </p>
                                         <textarea id="address" name="address" rows="4" class="form-control resume"
                                                   placeholder=""></textarea>
                                     </div>
@@ -319,39 +319,39 @@
                             
                             
                             <div class="col-lg-12" >
-                                    <h5 class="text-dark mt-5">Education Details : <small> <small>Fill in details for one institution, you will have a chance to update more later</small> </small></h5>
+                                    <h5 class="text-dark mt-5 mr-1">Education Details.  <small> <small>Fill in details for one institution, you will have a chance to update more later</small> </small></h5>
                             </div>
                     
                             <div class="col-12 mt-3" >
                                         <div class="row" >
-                                            <div class="col-md-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group app-label">
-                                                        <label class="text-muted">Course</label>
+                                                        <p class="text-dark">Course</p>
                                                         <input name="educ[1][course]" id="course" type="text" class="form-control resume" placeholder="">
                                                     </div>
                                                 </div>
                     
                                                 <div class="col-md-6">
                                                     <div class="form-group app-label">
-                                                        <label class="text-muted">Institute</label>
+                                                        <p class="text-dark">Institute</p>
                                                         <input name="educ[1][institute]" id="institute" type="text" class="form-control resume"
                                                                placeholder="">
                                                     </div>
                                                 </div>
                     
-                                                <div class="col-lg-6">
+                                                <div class="col-md-6">
                                                     <div class="form-group app-label">
-                                                        <label class="text-muted">Certificate</label>
+                                                        <p class="text-dark">Certificate</p>
                                                         <input name="educ[1][certificate]" id="certificate" type="text" class="form-control resume"
                                                                placeholder="">
                                                     </div>
                                                 </div>
                     
-                                                <div class="col-lg-6">
+                                                <div class="col-md-6">
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group app-label">
-                                                                <label class="text-muted">Date From</label>
+                                                                <p class="text-dark">Date From</p>
                                                                 <input name="educ[1][starting_date]" id="starting-date" type="date" class="form-control resume"
                                                                        placeholder="01-Jan-2018">
                                                             </div>
@@ -359,19 +359,34 @@
                     
                                                         <div class="col-md-6">
                                                             <div class="form-group app-label">
-                                                                <label class="text-muted">Date To</label>
+                                                                <p class="text-dark">Date To</p>
                                                                 <input name="educ[1][completion_date]" id="completion-date" type="date" class="form-control resume"
                                                                        placeholder="31-March-2019">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group app-label">
+                                                        <p class="text-dark">Highest qualification</p>
+                                                        <select class="nice-select" name="highest_qualification" id="highest_qualification">
+                                                            <option value="High School">High School</option>
+                                                            <option value="Certificate">Certificate</option>
+                                                            <option value="Diploma">Diploma</option>
+                                                            <option value="Degree">Degree</option>
+                                                            <option value="Post Graduate Diploma">Post Graduate Diploma</option>
+                                                            <option value="Masters">Masters</option>
+                                                            <option value="PhD">PhD</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
                     
                                                 
                                         </div>
                                         
-                                            <div class="form-group app-label">
-                                                    <label>Additional Information :</label>
+                                            <div class="form-group app-label mt-4">
+                                                    <p class="text-dark">Additional Information </p>
                                                     <textarea name="educ[1][description]" id="description" rows="4" class="form-control resume"
                                                                   placeholder=""></textarea>
                                             </div>
@@ -393,21 +408,21 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group app-label">
-                                                        <label class="text-muted">Company Name</label>
+                                                        <p class="text-dark">Company Name</p>
                                                         <input id="company-name" name="exp[1][company_name]" type="text" class="form-control resume" placeholder="">
                                                     </div>
                                                 </div>
                     
                                                 <div class="col-md-6">
                                                     <div class="form-group app-label">
-                                                        <label class="text-muted">Job Position</label>
+                                                        <p class="text-dark">Job Position</p>
                                                         <input id="job-position" name="exp[1][job_title]" type="text" class="form-control resume" placeholder="">
                                                     </div>
                                                 </div>
                     
                                                 <div class="col-md-6">
                                                     <div class="form-group app-label">
-                                                        <label class="text-muted">Company website</label>
+                                                        <p class="text-dark">Company website</p>
                                                         <input type="text" name="exp[1][website]" id="company-website" class="form-control resume">
                                                     </div>
                                                 </div>
@@ -416,7 +431,7 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-group app-label">
-                                                                <label class="text-muted">Date From</label>
+                                                                <p class="text-dark">Date From</p>
                                                                 <input id="date-from" type="date" name="exp[1][start_date]" class="form-control resume"
                                                                        placeholder="01-Jan-2018">
                                                             </div>
@@ -424,7 +439,7 @@
                     
                                                         <div class="col-md-6">
                                                             <div class="form-group app-label">
-                                                                <label class="text-muted">Date To</label>
+                                                                <p class="text-dark">Date To</p>
                                                                 <input id="date-to" type="date" name="exp[1][end_date]" class="form-control resume"
                                                                        placeholder="31-March-2019">
                                                             </div>
@@ -435,14 +450,14 @@
                                                 
                                                     <div class="col-md-4">
                                                         <div class="form-group app-label">
-                                                            <label class="text-muted">City</label><br>
+                                                            <p class="text-dark">City</p>
                                                             <input type="text" name="exp[1][job_location_city]" id="city" class="form-control resume">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                   
                                                         <div class="form-group app-label">
-                                                            <label for="county" class="text-muted">County</label>
+                                                            <p class="text-dark">County</p>
                                                             <div class="form-button app-label">
                                                                 
                                                                 <select class="nice-select rounded"  name="exp[1][job_location_county]" id="county"  data-live-search="true" title="Select County">
@@ -502,7 +517,7 @@
                         
                                                     <div class="col-md-4">
                                                         <div class="form-group app-label">
-                                                            <label class="text-muted">Country</label>
+                                                            <p class="text-dark">Country</p>
                                                             <div class="form-button">
                                                                 <select class="nice-select rounded" id="country" name="exp[1][job_location_country]">
                                                                     <option data-display="Country">Country</option>
@@ -515,7 +530,7 @@
                     
                                                 <div class="col-lg-12 pb-5">
                                                     <div class="form-group app-label">
-                                                        <label>Additional Information :</label>
+                                                        <p class="text-dark">Additional Information </p>
                                                         <textarea id="addition-information-1" rows="4" name="exp[1][description]" class="form-control resume"
                                                                   placeholder=""></textarea>
                                                     </div>
@@ -538,14 +553,14 @@
                            
 
                             <div class="col-12 mt-5">
-                                <h5 class="text-dark">Skills :</h5>
+                                <h5 class="text-dark">Skills </h5>
                             </div>
                 
                             <div class="col-12 mt-3">
 
                                 {{-- <div class="col-md-12">
                                     <div class="form-group app-label">
-                                        <label class="text-muted">Services<span class="text-danger">*</span> :</label>
+                                        <p class="text-dark">Services<span class="text-danger">*</span> </p>
                                         <input id="services" name="services" multiple type="text" class="form-control resume"
                                                placeholder="Services, comma separated :">
                                     </div>

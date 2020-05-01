@@ -49,7 +49,7 @@
                                         <div class="col-md-9">
                                             <div class="float-left mr-4 d-inline:flex">
                                                 <img src="{{$application->applicant->getFirstMediaUrl('profilepics')}}" alt="{{$application->applicant->name}}" class="d-block rounded" height="90">
-                                                <div class="mt-2"><small class="text-muted"><i class="mdi mdi-clock-outline"></i>{{ $application->created_at->diffForHumans(null, true, true) }}</small></div>
+                                                <div class="mt-2"><small class="text-muted"><i class="mdi mdi-clock-outline mr-1"></i>{{ $application->created_at->diffForHumans(null, true, true). " ago." }}</small></div>
                                             </div>
                                             <div class="candidates-list-desc overflow-hidden job-single-meta  pt-1 pb-1">
                                                 <h5 class="mb-2"><a href="{{route('profile.show',$application->applicant->user_id )}}" class="text-dark">{{$application->user->name}} {{$application->user->second_name}}</a></h5>
@@ -66,12 +66,15 @@
                                                         <button class="btn btn-info btn-sm badge p-1" disabled><small>{{ $skill }}</small> </button> 
                                                     @endforeach
                                                 </p>
-                                                <div class="">
+                                                @if (count($application->getMedia('document') ) > 0)
+                                                    <div class="">
                                                     @foreach($application->getMedia('document') as $media)
-                                                        <a class="badge badge-sm badge-warning" href="{{route('downloadone', $media)}}"><small>{{$media->id }}</small></a> 
+                                                        <a class="badge badge-sm badge-warning" href="{{route('downloadone', $media)}}"><i class="mdi mdi-paperclip" style="color:white"></i><small>{{$media->id }}</small></a> 
                                                     @endforeach
-                                                    <a class="badge badge-sm badge-success ml-4" href="{{route('download', $application)}}" > <small>Download all attachments</small> </a>
+                                                    <a class="badge badge-sm badge-success ml-4" href="{{route('download', $application)}}" ><i class="mdi mdi-paperclip" style="color:white"></i> <small>Download all attachments</small> </a>
                                                 </div>
+                                                @endif
+                                                
                                             </div>
                                         </div>
 

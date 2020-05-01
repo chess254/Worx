@@ -7,6 +7,7 @@ use App\User;
 use App\SeekerProfile;
 use App\EducationDetails;
 use Auth;
+use PDF;
 
 class ProfileController extends Controller
 {
@@ -212,6 +213,23 @@ class ProfileController extends Controller
     
     public function deleteExperience($expId){
 
+    }
+
+    public function download($user_id){
+        // dd($user_id);
+        $profile = SeekerProfile::where('user_id', $user_id)->first();
+        // dd($profile);
+        if($profile)
+        
+        {
+            // return view('profile.resume-pdf', compact('profile'));
+            $pdf = PDF::loadView('profile.resume-pdf', compact('profile'))->setPaper('a3', 'portrait');;
+        //     // dd($pdf);
+         return $pdf->download('resume.pdf');
+        }else{
+            return redirect('home')->with('status', 'not found');;
+        }
+        
     }
 }
 
