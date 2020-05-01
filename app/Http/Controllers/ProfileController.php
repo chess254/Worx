@@ -49,6 +49,11 @@ class ProfileController extends Controller
         }
         $profile->save();
 
+        if($request->has('highest_qualification') && (auth()->user()->id == $profile->user_id)){
+            $profile->highest_qualification = $request->highest_qualification;
+            $profile->save();
+        }
+
         //refactor to use $request->has('add_institute')
         if(($request->has('add_institute')) && (auth()->user()->id == $profile->user_id)){
 

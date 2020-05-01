@@ -28,6 +28,7 @@
 
                                 {{-- @foreach($profile->skills as $skill) --}}
                                 <h6 class="f-19 mb-2">@foreach($profile->skills as $skill)<span class="badge badge-success" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>
+                            <p class="text-dark">{{$profile->highest_qualification}}</p>
                                 {{-- @endforeach --}}
                                 {{-- <p class="text-muted mb-0 f-16">PHP Developer</p>
                                 <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>
@@ -56,9 +57,9 @@
                          class="d-block mx-auto shadow rounded-pill mb-2">
                 <h2 class="text-dark display-4 ">{{$profile->user->name}} {{$profile->user->second_name}}</h2>
                     {{-- <p class="text-dark h6 mb-2"><i class="mdi mdi-bank mr-2"></i>Maida Themes Pvt LTD</p> --}}
-                    <p class="text-muted h3 mb-2">{{$profile->title}}</p>
-                    <ul class="candidates-profile-icons list-inline mb-3">
-                        <li class="list-inline-item"><a href="#" class="text-dark"><i class="mdi mdi-star"></i></a>
+                    <p class="text-muted h3 mb-1">{{$profile->title}}</p>
+                    <ul class="candidates-profile-icons list-inline mb-1">
+                        <small><li class="list-inline-item"><a href="#" class="text-dark"><i class="mdi mdi-star"></i></a>
                         </li>
                         <li class="list-inline-item"><a href="#" class="text-dark"><i class="mdi mdi-star"></i></a>
                         </li>
@@ -67,24 +68,76 @@
                         <li class="list-inline-item"><a href="#" class="text-dark"><i class="mdi mdi-star"></i></a>
                         </li>
                         <li class="list-inline-item"><a href="#" class="text-dark"><i class="mdi mdi-star"></i></a>
-                        </li>
+                        </li></small>
                     </ul>
+                    <label class="text-dark"> <span><i class="mdi mdi-school mr-1"></i></span> {{$profile->highest_qualification}}
+
+                    
+                    </label>@if(auth()->check() && $profile->user_id == auth()->user()->id)
+                        <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#highestQualificationModal"> <i class="mdi mdi-pencil" style="color:orange;"></i> </button>
+                    
+                @endif
+
+                                <!-- Modals edit highest qualification -->
+                                @if(auth()->check())
+                                <div class="modal fade" id="highestQualificationModal" tabindex="-1" role="dialog" aria-labelledby="highestQualificationModal" aria-hidden="true">
+                                        
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header text-center">
+                                                <h4 class="modal-title w-100 font-weight-light">Edit Highest Qualification</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        <form action="{{auth()->user()->id}}" method="post">
+                                                @csrf
+                                                <div class="modal-body d-flex" style="justify-content: space-around;">
+                                                   
+                                                    
+                                                    
+                                                           
+                                                        <table style="">
+                                                            <tr>
+                                                                <td><input type="radio" name="highest_qualification" value="High School"></td><td class="ml-4" style="float:left;"> High School</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input type="radio" name="highest_qualification" value="Certificate"></td><td class="ml-4" style="float:left;"> Certificate</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input type="radio" name="highest_qualification" value="Diploma"></td><td class="ml-4" style="float:left;"> Diploma</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input type="radio" name="highest_qualification" value="Degree"></td><td class="ml-4" style="float:left;"> Degree</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input type="radio" name="highest_qualification" value="Post Graduate Diploma"></td><td class="ml-4" style="float:left;"> Post-graduate Diploma</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input type="radio" name="highest_qualification" value="Masters"></td><td class="ml-4" style="float:left;"> masters</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><input type="radio" name="highest_qualification" value="PhD"></td><td class="ml-4" style="float:left;"> PhD</td>
+                                                            </tr>
+                                                        </table>
+                                                       
+                                                    
+                
+                                                </div>
+                                                <div class="modal-footer d-flex justify-content-center">
+                                                    <button class="btn btn-success-outline btn-sm" type="submit" id="update_highest_qualification ">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endif
 
                     <div class="row">
                         <div class="col-lg-12">
                           
                             <div class="job-list-desc candidates-profile-exp-desc">
-
-                                {{-- @foreach($profile->skills as $skill) --}}
-                                <h6 class="f-19 mb-2">@foreach($profile->skills as $skill)<span class="badge badge-success" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>
-                                {{-- @endforeach --}}
-                                {{-- <p class="text-muted mb-0 f-16">PHP Developer</p>
-                                <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>
-                                <p class="text-muted mb-0 f-16">Salary : $950</p>
-                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i>www.blog.helpyea.com
-                                </p>
-                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i>1919 Ward Road
-                                    West Nyack, NY 10994</p> --}}
+                                <h6 class="f-19 mb-1">@foreach($profile->skills as $skill)<span class="badge badge-success badge-sm" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>                              
                             </div>
                         </div>
                     </div>
@@ -99,6 +152,9 @@
                         <li class="list-inline-item"><a href="#" class="rounded"><i class="mdi mdi-google-plus"></i></a>
                         </li>
                     </ul>
+
+                    
+
                 </div>
             </div>
         </div>
@@ -162,6 +218,36 @@
                     @endif
                 </div>
 
+                                <!-- Modals -->
+                @if(auth()->check())
+                <div class="modal fade" id="bioModal" tabindex="-1" role="dialog" aria-labelledby="bioModalLabel" aria-hidden="true">
+                        
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-center">
+                                <h4 class="modal-title w-100 font-weight-light">edit bio</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        <form action="{{auth()->user()->id}}" method="post">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="md-form">
+                                    {{-- <i class="fas fa-lock prefix grey-text"></i> --}}
+                                    <textarea name="edit_bio" id="edit_bio" class="form-control validate">{{$profile->bio}}</textarea>
+                                    {{-- <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label> --}}
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button class="btn btn-success-outline btn-sm" type="submit" id="update_bio ">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                @endif
 
                 <!-- Modals -->
                 @if(auth()->check())
@@ -261,10 +347,10 @@
                     <div class="profile-education-icon border rounded-pill bg-white text-primary">
                         <i class="mdi mdi-36px mdi-school"></i>
                     </div>
-                    <h6 class="text-uppercase f-17"><a href="#" class="text-muted">{{$education->institute}}</a></h6>
-                    <p class="f-14 mb-1">{{$education->starting_date}} - {{$education->completion_date}}</p>
+                    <h6 class="text-uppercase f-17"><a href="#" class="text-dark">{{$education->institute}}</a></h6>
+                    <p class="f-14 mb-1"><small>{{$education->starting_date}} - {{$education->completion_date}}</small></p>
                     <p class="pb-3 mb-0">{{$education->certificate}}</p>
-                    <p class="pb-3 mb-0">{{$education->course}}</p>
+                    <p class="pb-3 mb-0 text-dark">{{$education->course}}</p>
                     {{-- {{$education->id}} --}}
 
 
@@ -368,14 +454,7 @@
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div id="add-expirience-entry-success-msg" class="hide">
-                    <div class="alert alert-info alert-dismissible fade in" role="alert">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                      </button>
-                      <strong>Success!</strong> Check your mail for login confirmation!!
-                    </div>
-                </div>
+                
 
                 <form  action="{{auth()->user()->id}}"method="post" id="addExperienceEntryForm">
                     @csrf
@@ -474,13 +553,13 @@
                         <div class="col-lg-12 detailCard">
                             <div class="job-list-desc candidates-profile-exp-desc ">
                                 <h5 class="f-19 mb-2"><a href="#" class="text-dark">{{$experience->company_name}}</a></h5>
-                                <p class="text-muted mb-0 f-16">{{$experience->job_title}}</p>
-                                <p class="text-muted mb-0 f-16">{{$experience->start_date}} - {{$experience->end_date}}</p>
+                                <p class="text-dark mb-0 f-16">{{$experience->job_title}}</p>
+                                <p class="text-muted mb-0 f-16" style=""><small>{{date_format($experience->start_date,'M Y')}} - {{date_format($experience->end_date,'M Y')}}</small></p>
                                 <br>
                                 {{-- <p class="text-muted mb-0 f-16">Salary : $950</p> --}}
-                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i>{{$experience->website}}
+                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i><small>{{$experience->website}}</small>
                                 </p>
-                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i>{{$experience->job_location_city}}, {{$experience->job_location_county}}, {{$experience->job_location_country}}
+                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i><small>{{$experience->job_location_city}}, {{$experience->job_location_county}}, {{$experience->job_location_country}}</small>
                             
                                 </p> 
                                 {{-- <br> {{$experience->id}} --}}
