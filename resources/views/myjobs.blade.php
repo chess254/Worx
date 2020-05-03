@@ -275,7 +275,7 @@
                     <div class="col-lg-12">
                         <div class="show-results">
                             <div class="float-left">
-                                <h5 class="text-dark mb-0 pt-2 f-18">You have posted {{$JobsPostedByUser->count()}}</h5>
+                                <h5 class="text-dark mb-0 pt-2 f-18">You have posted {{$JobsPostedByUser->total()}}</h5>
                             </div>
                             <div class="sort-button float-right">
                                 <select class="nice-select rounded">
@@ -338,9 +338,18 @@
                                                     <a href="/job/{{$job->id}}" class="btn btn-sm btn-primary">Apply</a>
                                                 </div> --}}
                                             </div>
+
+                                            @if ($job->applications->count() > 0)
                                             <div class="job-list-button-sm text-left">
-                                                <a class="badge badge-dark"href="../applications-by-job/{{$job->id}}"><small><span class="mr-1">{{$job->applications->count()}}</span>Applications</small></a>
+                                                <a class="badge badge-dark"href="../applications-by-job/{{$job->id}}"><small><span class="mr-1">{{$job->applications->count()}}
+                                                    @if ($job->applications->count() == 1)
+                                                        </span>Application</small></a>
+                                                    @else
+                                                </span>Applications</small></a>
+                                                @endif
                                             </div>
+                                                
+                                            @endif
 
                                             <div class="job-list-button-sm text-left">
                                                 <p class="text-muted mb-0"><i
@@ -351,7 +360,8 @@
                                 </div>
                             </div>
                         </div>
-                            @endforeach
+
+                        @endforeach
 
                     
                         {{-- <div class="col-lg-12 mt-4 pt-2">
@@ -605,6 +615,9 @@
                             </div>
                         </div>
                     </div> --}}
+
+                    {{ $JobsPostedByUser->onEachSide(1)->links('vendor.pagination.custom') }}
+
 
                     <div class="col-lg-12 mt-4 pt-2">
                         <nav aria-label="Page navigation example">

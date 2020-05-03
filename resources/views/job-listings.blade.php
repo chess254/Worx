@@ -275,7 +275,7 @@
                     <div class="col-lg-12">
                         <div class="show-results">
                             <div class="float-left">
-                                <h5 class="text-dark mb-0 pt-2 f-18">{{$totalJobs}} Jobs Listed</h5>
+                                <h5 class="text-dark mb-0 pt-2 f-18">{{$joblist->total()}} Jobs Listed</h5>
                             </div>
                             <div class="sort-button float-right">
                                 <select class="nice-select rounded">
@@ -296,13 +296,13 @@
                             <div class="job-list-box border rounded">
                                 <div class="p-3">
                                     <div class="row align-items-center">
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-2 col-md-2">
                                             <div class="company-logo-img">
                                                 <img src="{{$job->company->getFirstMediaUrl('logos','square')}}" alt=""
                                                     class="img-fluid avatar avatar-small mr-3 rounded">
                                             </div>
                                         </div>
-                                        <div class="col-lg-7 col-md-9">
+                                        <div class="col-lg-8 col-md-8">
                                             <div class="job-list-desc">
                                                 <h6 class="mb-2"><a href="/job/{{$job->id}}" class="text-dark" style="font-size: 20px;">{{$job->title}}</a></h6>
                                                 <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>{{$job->company['name']}}</p>
@@ -318,8 +318,8 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-3">
-                                            <div class="job-list-button-sm text-right">
+                                        <div class="col-lg-2 col-md-2">
+                                            <div class="job-list-button-sm text-left">
                                                 @if ( $job->type['job_type'] == "Part Time" )
                                                 <span class="badge badge-secondary">Part Time</span>
                                                 @elseif( $job->type['job_type'] == "Full Time" )
@@ -332,13 +332,21 @@
                                                     <a href="/job/{{$job->id}}" class="btn btn-sm btn-primary">Apply</a>
                                                 </div> --}}
                                             </div>
+                                            <div class="job-list-button-sm text-left">
+                                                <p class="text-muted mb-0"><i
+                                                    class="mdi mdi-eye-outline mr-1"></i><small> {{$job->views}} </small></p>
+
+                                                {{-- <div class="mt-3">
+                                                    <a href="/job/{{$job->id}}" class="btn btn-sm btn-primary">Apply</a>
+                                                </div> --}}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     @endforeach
-                    {{ $joblist->links() }}
+                    {{ $joblist->onEachSide(1)->links('vendor.pagination.custom') }}
 
                     
                         <div class="col-lg-12 mt-4 pt-2">
@@ -594,7 +602,7 @@
                     </div>
 
                     <div class="col-lg-12 mt-4 pt-2">
-                        <nav aria-label="Page navigation example">
+                        <nav aria-label="Page navigation example pagination">
                             <ul class="pagination job-pagination mb-0 justify-content-center">
                                 <li class="page-item disabled">
                                     <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
