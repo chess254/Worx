@@ -2,11 +2,11 @@
 <!-- Loader -->
 @section('content')
 <div class="back-to-home rounded d-none d-sm-block">
-    <a href="{{route('home')}}" class="text-white rounded d-inline-block text-center"><i class="mdi mdi-home"></i></a>
+    <a href="{{route('home')}}" class="text-white rounded d-inline-block text-center"><i class="mdi mdi-home" style="color:white;"></i></a>
 </div>
 
 <!-- Hero Start -->
-<section class="vh-100" style="background: url('images/user.jpg') center center;">
+<section class="vh-100" style="background: url('images/cta-bg.jpg') center center;">
 
     <div class="home-center">
         <div class="home-desc-center">
@@ -27,7 +27,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group position-relative">
-                                            <label for="email">{{ __('E-Mail Address') }}<span class="text-danger">*</span></label>
+                                            <label class="text-dark" for="email">{{ __('E-Mail Address') }}</label>
                                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email"value="{{ old('email') }}" required autocomplete="email" autofocus>
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -39,7 +39,7 @@
 
                                     <div class="col-lg-12">
                                         <div class="form-group position-relative">
-                                            <label for="password">{{ __('Password') }} <span class="text-danger">*</span></label>
+                                            <label class="text-dark" for="password">{{ __('Password') }} </label>
                                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password"required autocomplete="current-password">
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
                                         <div class="form-group">
                                             <div class="custom-control m-0 custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                                <label class="custom-control-label" for="remember">{{ __('Remember Me') }}</label>
+                                                <label class="custom-control-label" for="remember"><small>{{ __('Remember Me') }}</small></label>
                                             </div>
                                         </div>
                                     </div>
