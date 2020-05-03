@@ -315,6 +315,10 @@
                                                         <p class="text-muted mb-0"><i
                                                         class="mdi mdi-clock-outline mr-2"></i><small> {{date_format($job->created_at,'D d-M-Y')}} | {{date_format($job->created_at,'h:ia')}} </small></p>
                                                     </li>
+                                                    <li class="">
+                                                        <p class="text-muted mb-0"><i
+                                                        class="mdi mdi-eye-outline mr-2"></i><small> {{$job->views}} </small></p>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -335,7 +339,7 @@
                                                 </div> --}}
                                             </div>
                                             <div class="job-list-button-sm text-right">
-                                            <a class="badge badge-warning"href="../applications-by-job/{{$job->id}}"><small>Applications</small></a>
+                                            <a class="badge badge-warning"href="../applications-by-job/{{$job->id}}"><small><span class="mr-1">{{$job->applications->count()}}</span>Applications</small></a>
                                             </div>
                                         </div>
                                     </div>

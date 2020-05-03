@@ -26,6 +26,7 @@ class CreateSeekerProfileTable extends Migration
             $table->integer('current_salary')->nullable(); 	
             $table->unsignedInteger('is_annually_monthly')->default(1)->nullable(); 	
             $table->string('currency', 20)->default('KShs')->nullable(); 
+            $table->unsignedInteger('views')->default('0');
             $table->timestamps();
         });
     }

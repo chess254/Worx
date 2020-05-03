@@ -38,8 +38,9 @@ class TweakJobsTable extends Migration
             $table->text('applicationWorx')->nullable();
             $table->longText('applicationInstructions')->nullable();
             $table->integer('termsAndConditions')->nullable();    
-            $table->integer('views')->default(0)->nullable();
+            // $table->integer('views')->default(0)->nullable();
             $table->text('image')->default('no_image.jpg');
+            $table->unsignedInteger('views')->default(0);
             $table->timestamps();
         });
     }

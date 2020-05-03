@@ -71,7 +71,7 @@ class JobsController extends Controller
 
         $data = [
             'title' => $request->title,
-            'email'=> $request->company_email,
+            'email'=> "",
             'town' => $request->town,
             'user_id' => $user = Auth::user()->id,
             'type_id' => intval($request->type_id),
@@ -112,6 +112,7 @@ class JobsController extends Controller
         $Job = Job::where('id', $job)
         ->with(['location', 'company', 'type','businessStream'])
         ->first();
+        $Job->increment('views');
         return view('job', compact('Job'));
     }
 
@@ -119,7 +120,7 @@ class JobsController extends Controller
         
         if(auth()->user() && auth()->user()->user_type_id == 2){   
             $user_id = auth()->user()->id;
-            $JobsPostedByUser = Job::where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
+            $JobsPostedByUser = Job::where('user_id', $user_id)->orderBy('created_at', 'desc')->with('applications')->get();
             return view('myjobs', compact('JobsPostedByUser'));
         }
 

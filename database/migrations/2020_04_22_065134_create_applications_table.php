@@ -23,6 +23,7 @@ class CreateApplicationsTable extends Migration
             $table->foreign('job_id')->references('id')->on('jobs');
             $table->foreign('employer_id')->references('id')->on('users');
             $table->foreign('applicant_id')->references('id')->on('seeker_profile');
+            $table->unsignedInteger('status')->default(0);
             $table->timestamps();
         });
     }
