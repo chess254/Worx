@@ -10,32 +10,19 @@
 
 
     <!-- Start home -->
-    <section class="bg-half page-next-level">
+    <section class="bg-quarter page-next-level">
         <div class="bg-overlay"></div>
-        <div class="container">
-
-            {{-- {{dd($applications)}} --}}
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="text-center text-white">
-                        {{-- <h4 class="text-uppercase display-4 title mb-4">job Applications for {{$applications[0]->job->title }}</h4> --}}
-                        <ul class="page-next d-inline-block mb-0">
-                            <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
-                            <li><a href="#" class="text-uppercase font-weight-bold">Applications</a></li>
-                            <li>
-                                <span class="text-uppercase text-white font-weight-bold">Candidates List</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+           </section>
   
     <!-- CANDIDATES LISTING START -->
     <section class="section pt-0">
         <div class="container"> 
-            {{-- <h3 style="align:center;" class="display-4">"{{$applications[0]->job->title}}"</h3> --}}
+            @if (auth()->user() && auth()->user()->user_type_id == 2)
+                <h4 style="text-align:center;" class="mt-100"> <small> Applications for</small> <span class="test-dark">{{$applications[0]->job->title}}</span> <small> job.</small></h4>
+            @elseif(auth()->user() && auth()->user()->user_type_id == 1)
+                <h4 style="text-align:center;" class="mt-100"> Applications Submitted</h4>
+            @endif
+
             <div class="row">
                
                 <div class="col-lg-12 col-md-12">
@@ -55,6 +42,7 @@
                                                 <h5 class="mb-2"><a href="{{route('profile.show',$application->applicant->user_id )}}" class="text-dark">{{$application->user->name}} {{$application->user->second_name}}</a></h5>
                                                 <ul class="list-unstyled">
                                                     <li class="text-muted"><i class="mdi mdi-account mr-1"></i>{{$application->applicant->title}}</li>
+                                                    <li class="text-muted"><i class="mdi mdi-school mr-1"></i><small>{{$application->applicant->highest_qualification}}</small></li>
                                                     <li class="text-muted"><a href="#" class="text-muted"><i
                                                             class="mdi mdi-map-marker mr-1"></i><small>{{$application->user->city}}. {{$application->user->county->county_name}}, {{$application->user->country}}</small></a></li>
                                                     
@@ -84,7 +72,7 @@
                                                     <i class="mdi mdi-heart"></i>
                                                 </div>
                                                 <div class="candidates-listing-btn mt-4">
-                                                <a href="{{route('profile.show',$application->applicant->user_id )}}" class="btn btn-primary-outline btn-sm">View Profile</a>
+                                                <a href="{{route('profile.show',$application->applicant->user_id )}}" class="btn btn-secondary btn-sm">View Profile</a>
                                                 </div>
                                             </div>
                                         </div>

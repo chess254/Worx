@@ -83,7 +83,7 @@
                                         <p class="text-dark">Business Stream</p>
                                     
                                     <div class="registration-form-box">
-                                        <i class="fa fa-list-alt" style="color: var(--theme-color);"></i>
+                                        {{-- <i class="fa fa-list-alt" style="color: var(--theme-color);"></i> --}}
                                         <select id="select-category" class="demo-default" name="business_stream_id">
                                           <option value="">Business stream...</option>
                                           @foreach ($business_stream as $biz_stream)
@@ -138,9 +138,10 @@
                               
                                 <div class="form-group app-label">
                                     <p class="text-dark">County</p>
-                                    <div class="form-button app-label">
+                                    <div class="registration-form-box ">
                                         
-                                    <select class="nice-select rounded"  name="county_id" id="county"  data-live-search="true" title="Select County">
+                                    <select class="demo-default"  name="county_id" id="select-country"  data-live-search="true" title="Select County">
+                                        <option value="">select</option>
                                         <option value="1">MOMBASA</option>
                                         <option value="2">KWALE</option>
                                         <option value="3">KILIFI</option>
@@ -197,10 +198,10 @@
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
                                         <p class="text-dark">Country</p>
-                                        <div class="form-button">
-                                            <select class="nice-select rounded" id="country" name="country" data-live-search="">
-                                                <option data-display="Country">Country</option>
-                                                <option value="Kenya">Kenya</option>
+                                        <div class="registration-form-box">
+                                            <select class="demo-default rounded" id="select-country" name="country" data-live-search="">
+                                                
+                                                <option value="Kenya">KENYA</option>
                                             </select>
                                         </div>
                                     </div>

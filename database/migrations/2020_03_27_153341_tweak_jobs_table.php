@@ -19,6 +19,7 @@ class TweakJobsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('type_id');
             $table->unsignedInteger('business_stream_id');
+            $table->unsignedInteger('job_function_id');
             $table->unsignedInteger('county_id');
             $table->unsignedInteger('company_id');
             $table->unsignedInteger('company_name_hidden')->default(0);

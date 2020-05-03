@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CountiesTableSeeder::class);
         $this->call(JobTypeSeeder::class);
         $this->call(BusinessStreamSeeder::class);
+        $this->call(JobFunctionSeeder::class);
         $this->call(UsersSeeder::class);
         $this->call(CompanySeeder::class);
         $this->call(LocationSeeder::class);

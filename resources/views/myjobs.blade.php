@@ -10,22 +10,7 @@
 <!-- Start home -->
 <section class="bg-quarter page-next-level">
     <div class="bg-overlay"></div>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="text-center text-white">
-                    <h4 class="text-uppercase title mb-4"></h4>
-                    {{-- <ul class="page-next d-inline-block mb-0">
-                        <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
-                        <li><a href="#" class="text-uppercase font-weight-bold">Jobs</a></li>
-                        <li>
-                            <span class="text-uppercase text-white font-weight-bold">Job Listing</span>
-                        </li>
-                    </ul> --}}
-                </div>
-            </div>
-        </div>
-    </div>
+  
 </section>
 <!-- end home -->
 
@@ -313,7 +298,7 @@
 
                                                     <li class="">
                                                         <p class="text-muted mb-0"><i
-                                                        class="mdi mdi-clock-outline mr-2"></i><small> {{date_format($job->created_at,'D d-M-Y')}} | {{date_format($job->created_at,'h:ia')}} </small></p>
+                                                        class="mdi mdi-clock-outline mr-2"></i><small> {{date_format($job->created_at,'D d-M-Y')}} <span class="mr-2 ml-1">|</span>{{date_format($job->created_at,'h:ia')}} </small></p>
                                                     </li>
                                                     {{-- <li class="">
                                                         <p class="text-muted mb-0"><i

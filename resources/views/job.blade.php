@@ -48,6 +48,8 @@
                     <img src="{{ $Job->company->getFirstMediaUrl('logos','square')}}" alt="{{$Job->company->name}}" class="img-fluid mx-auto d-block">
                     </div>
                     <h2 class="text-dark ">{{$Job->title}}</h2>
+                    {{-- {{dd($Job)}} --}}
+                    <h5>{{$Job->jobFunction->name}}</h5>
 
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item mr-3">

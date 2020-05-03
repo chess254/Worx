@@ -52,6 +52,7 @@ class ProfileController extends Controller
         if($request->has('highest_qualification') && (auth()->user()->id == $profile->user_id)){
             $profile->highest_qualification = $request->highest_qualification;
             $profile->save();
+            return redirect('profile/'.'#summary');
         }
 
         //refactor to use $request->has('add_institute')
@@ -176,6 +177,7 @@ class ProfileController extends Controller
             'county' => 'required',
             'country' => 'required',
             'phone' => 'required',
+            
             // 'website' => 'url',
             'date_of_birth' => 'date | before:18 years ago',
             'gender'=>'required',
@@ -210,6 +212,7 @@ class ProfileController extends Controller
             }
           
         $profile->skills = $skills;
+        $profile->highest_qualification = $request->highest_qualification;
         $profile->title = $request->title;
         $profile->save();
 

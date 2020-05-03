@@ -48,9 +48,9 @@
 <!-- end home -->
 
 <!-- CANDIDATES PROFILE START -->
-<section class="section">
+<section class="section" id="summary">
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center" >
             <div class="col-md-6">
                 <div class="candidates-profile-details text-center">
                 <img src="{{$profile->getFirstMediaUrl('profilepics')}}" height="250" alt="{{$profile->user->name}} {{$profile->user->second_name}}"
