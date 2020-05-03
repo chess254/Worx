@@ -290,19 +290,19 @@
                 </div>
 
                 <div class="row list-image-adjust">
-
+                    
                     @foreach ($JobsPostedByUser as $job)
                         <div class="col-lg-12 mt-4 pt-2">
                             <div class="job-list-box border rounded">
                                 <div class="p-3">
                                     <div class="row align-items-center">
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-3 col-md-3">
                                             <div class="company-logo-img">
                                                 <img src="{{$job->company->getFirstMediaUrl('logos','square')}}" alt={{$job->company->name}}"
                                                     class="img-fluid avatar avatar-small mr-3 rounded">
                                             </div>
                                         </div>
-                                        <div class="col-lg-7 col-md-9">
+                                        <div class="col-lg-7 col-md-7">
                                             <div class="job-list-desc">
                                                 <h6 class="mb-2"><a href="/job/{{$job->id}}" class="text-dark" style="font-size: 20px;">{{$job->title}}</a></h6>
                                                 <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>{{$job->company['name']}}</p>
@@ -315,15 +315,15 @@
                                                         <p class="text-muted mb-0"><i
                                                         class="mdi mdi-clock-outline mr-2"></i><small> {{date_format($job->created_at,'D d-M-Y')}} | {{date_format($job->created_at,'h:ia')}} </small></p>
                                                     </li>
-                                                    <li class="">
+                                                    {{-- <li class="">
                                                         <p class="text-muted mb-0"><i
                                                         class="mdi mdi-eye-outline mr-2"></i><small> {{$job->views}} </small></p>
-                                                    </li>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-3">
-                                            <div class="job-list-button-sm text-right">
+                                        <div class="col-lg-2 col-md-2">
+                                            <div class="job-list-button-sm text-left">
                                                 @if ( $job->type['job_type'] == "Part Time" )
                                                     <span class="badge badge-secondary"><small>Part Time</small></span>
                                                 @elseif( $job->type['job_type'] == "Full Time" )
@@ -338,15 +338,20 @@
                                                     <a href="/job/{{$job->id}}" class="btn btn-sm btn-primary">Apply</a>
                                                 </div> --}}
                                             </div>
-                                            <div class="job-list-button-sm text-right">
-                                            <a class="badge badge-warning"href="../applications-by-job/{{$job->id}}"><small><span class="mr-1">{{$job->applications->count()}}</span>Applications</small></a>
+                                            <div class="job-list-button-sm text-left">
+                                                <a class="badge badge-dark"href="../applications-by-job/{{$job->id}}"><small><span class="mr-1">{{$job->applications->count()}}</span>Applications</small></a>
+                                            </div>
+
+                                            <div class="job-list-button-sm text-left">
+                                                <p class="text-muted mb-0"><i
+                                                    class="mdi mdi-eye-outline mr-1"></i><small> {{$job->views}} </small></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                            @endforeach
 
                     
                         {{-- <div class="col-lg-12 mt-4 pt-2">
