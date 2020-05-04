@@ -16,12 +16,15 @@ class SeekerProfile extends Model implements HasMedia
     protected $table = 'seeker_profile';
     protected $guarded = [];
     protected $casts = ['skills' => 'array'];
+   
 
 
+    //return no image placeholder if user has not uploaded profile pic
     public function getProfilePic(){
         return $this->getFirstMediaUrl('profilepics') ? $this->getFirstMediaUrl('profilepics') :  url('storage/no_profile_pic.png');
     }
 
+    //from spatie
     public function registerMediaConversions (Media $media = null) : void
     {
         $this->addMediaConversion('thumb')
@@ -39,10 +42,10 @@ class SeekerProfile extends Model implements HasMedia
     }
 
     public function educationDetails(){
-        return $this->hasMany(\App\EducationDetails::class);
+        return $this->hasMany(\App\EducationDetails::class)->orderBy('completion_date','DESC');
     }
 
     public function experienceDetails(){
-        return $this->hasMany(\App\ExperienceDetails::class);
+        return $this->hasMany(\App\ExperienceDetails::class)->orderBy('end_date', 'DESC');
     }
 }

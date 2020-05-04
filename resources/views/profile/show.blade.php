@@ -348,7 +348,7 @@
                         <i class="mdi mdi-36px mdi-school"></i>
                     </div>
                     <h6 class="text-uppercase f-17"><a href="#" class="text-dark">{{$education->institute}}</a></h6>
-                    <p class="f-14 mb-1"><small>{{$education->starting_date}} - {{$education->completion_date}}</small></p>
+                    <p class="f-14 mb-1"><small>{{date_format($education->starting_date, 'M Y')}} - {{ date_format($education->completion_date,'M Y')}} </small></p>
                     <p class="pb-3 mb-0">{{$education->certificate}}</p>
                     <p class="pb-3 mb-0 text-dark">{{$education->course}}</p>
                     {{-- {{$education->id}} --}}
@@ -741,9 +741,9 @@
                             <div class="job-list-desc candidates-profile-exp-desc">
 
                                 {{-- @foreach($profile->skills as $skill) --}}
-                                <div class="f-19 mb-2">
+                                <div class="f-19 mb-2 d-flex"  style="justify-content: center;">
                                     @foreach($profile->skills as $skill)
-                                        <button class="btn btn-primary-outline rounded-pill btn-sm" style="margin:3px;">{{$skill}}</button>
+                                        <button class="btn btn-secondary-outline rounded-pill btn-sm" style="margin:3px;">{{$skill}}</button>
                                     @endforeach</div>
                                 {{-- @endforeach --}}
                                 {{-- <p class="text-muted mb-0 f-16">PHP Developer</p>

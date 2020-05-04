@@ -161,11 +161,13 @@ class CompanyController extends Controller
 
                 if($request->hasFile('logo') && $request->file('logo')->isValid()){
                     $company->addMediaFromRequest('logo')->toMediaCollection('logos');
+                    sleep ( 2 ); //short delay to allow queue to process image
                 }
 
                 $company->update(array_merge($data,['services'=>explode(',', $request->services)]));
 
                 // dd($company);
+                
                 return redirect('/company/'.$company->id);
         } else{
             return redirect()->back()->with('message', 'unauthorized');
