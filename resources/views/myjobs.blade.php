@@ -10,22 +10,7 @@
 <!-- Start home -->
 <section class="bg-quarter page-next-level">
     <div class="bg-overlay"></div>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="text-center text-white">
-                    <h4 class="text-uppercase title mb-4"></h4>
-                    {{-- <ul class="page-next d-inline-block mb-0">
-                        <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
-                        <li><a href="#" class="text-uppercase font-weight-bold">Jobs</a></li>
-                        <li>
-                            <span class="text-uppercase text-white font-weight-bold">Job Listing</span>
-                        </li>
-                    </ul> --}}
-                </div>
-            </div>
-        </div>
-    </div>
+  
 </section>
 <!-- end home -->
 
@@ -275,7 +260,7 @@
                     <div class="col-lg-12">
                         <div class="show-results">
                             <div class="float-left">
-                                <h5 class="text-dark mb-0 pt-2 f-18">You have posted {{$JobsPostedByUser->count()}}</h5>
+                                <h5 class="text-dark mb-0 pt-2 f-18">You have posted {{$JobsPostedByUser->total()}}</h5>
                             </div>
                             <div class="sort-button float-right">
                                 <select class="nice-select rounded">
@@ -290,19 +275,19 @@
                 </div>
 
                 <div class="row list-image-adjust">
-
+                    
                     @foreach ($JobsPostedByUser as $job)
                         <div class="col-lg-12 mt-4 pt-2">
                             <div class="job-list-box border rounded">
                                 <div class="p-3">
                                     <div class="row align-items-center">
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-3 col-md-3">
                                             <div class="company-logo-img">
-                                                <img src="{{$job->company->getFirstMediaUrl('logos','square')}}" alt={{$job->company->name}}"
+                                                <img src="{{$job->company->getLogo()}}" alt={{$job->company->name}}"
                                                     class="img-fluid avatar avatar-small mr-3 rounded">
                                             </div>
                                         </div>
-                                        <div class="col-lg-7 col-md-9">
+                                        <div class="col-lg-7 col-md-7">
                                             <div class="job-list-desc">
                                                 <h6 class="mb-2"><a href="/job/{{$job->id}}" class="text-dark" style="font-size: 20px;">{{$job->title}}</a></h6>
                                                 <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>{{$job->company['name']}}</p>
@@ -313,13 +298,17 @@
 
                                                     <li class="">
                                                         <p class="text-muted mb-0"><i
-                                                        class="mdi mdi-clock-outline mr-2"></i><small> {{date_format($job->created_at,'D d-M-Y')}} | {{date_format($job->created_at,'h:ia')}} </small></p>
+                                                        class="mdi mdi-clock-outline mr-2"></i><small> {{date_format($job->created_at,'D d-M-Y')}} <span class="mr-2 ml-1">|</span>{{date_format($job->created_at,'h:ia')}} </small></p>
                                                     </li>
+                                                    {{-- <li class="">
+                                                        <p class="text-muted mb-0"><i
+                                                        class="mdi mdi-eye-outline mr-2"></i><small> {{$job->views}} </small></p>
+                                                    </li> --}}
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-3">
-                                            <div class="job-list-button-sm text-right">
+                                        <div class="col-lg-2 col-md-2">
+                                            <div class="job-list-button-sm text-left">
                                                 @if ( $job->type['job_type'] == "Part Time" )
                                                     <span class="badge badge-secondary"><small>Part Time</small></span>
                                                 @elseif( $job->type['job_type'] == "Full Time" )
@@ -334,15 +323,30 @@
                                                     <a href="/job/{{$job->id}}" class="btn btn-sm btn-primary">Apply</a>
                                                 </div> --}}
                                             </div>
-                                            <div class="job-list-button-sm text-right">
-                                            <a class="badge badge-warning"href="../applications-by-job/{{$job->id}}"><small>Applications</small></a>
+
+                                            @if ($job->applications->count() > 0)
+                                            <div class="job-list-button-sm text-left">
+                                                <a class="badge badge-dark"href="../applications-by-job/{{$job->id}}"><small><span class="mr-1">{{$job->applications->count()}}
+                                                    @if ($job->applications->count() == 1)
+                                                        </span>Application</small></a>
+                                                    @else
+                                                </span>Applications</small></a>
+                                                @endif
+                                            </div>
+                                                
+                                            @endif
+
+                                            <div class="job-list-button-sm text-left">
+                                                <p class="text-muted mb-0"><i
+                                                    class="mdi mdi-eye-outline mr-1"></i><small> {{$job->views}} </small></p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+
+                        @endforeach
 
                     
                         {{-- <div class="col-lg-12 mt-4 pt-2">
@@ -596,6 +600,9 @@
                             </div>
                         </div>
                     </div> --}}
+
+                    {{ $JobsPostedByUser->onEachSide(1)->links('vendor.pagination.custom') }}
+
 
                     <div class="col-lg-12 mt-4 pt-2">
                         <nav aria-label="Page navigation example">

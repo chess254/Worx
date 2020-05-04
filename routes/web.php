@@ -56,7 +56,7 @@ Route::get('/company/{company}', 'CompanyController@show');
 Route::get('/company', 'CompanyController@create')->name('company.create');
 Route::post('/company', 'CompanyController@store');
 Route::get('/company-profile/{company}', 'CompanyController@view');
-
+Route::get('/resume/{user_id}','ProfileController@download');
 Route::delete('exp/{id}', function ($id) {
     
 });

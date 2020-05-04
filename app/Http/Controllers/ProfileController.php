@@ -7,6 +7,7 @@ use App\User;
 use App\SeekerProfile;
 use App\EducationDetails;
 use Auth;
+use PDF;
 
 class ProfileController extends Controller
 {
@@ -47,6 +48,12 @@ class ProfileController extends Controller
             $profile->bio = $request->edit_bio;
         }
         $profile->save();
+
+        if($request->has('highest_qualification') && (auth()->user()->id == $profile->user_id)){
+            $profile->highest_qualification = $request->highest_qualification;
+            $profile->save();
+            return redirect('profile/'.'#summary');
+        }
 
         //refactor to use $request->has('add_institute')
         if(($request->has('add_institute')) && (auth()->user()->id == $profile->user_id)){
@@ -170,6 +177,7 @@ class ProfileController extends Controller
             'county' => 'required',
             'country' => 'required',
             'phone' => 'required',
+            
             // 'website' => 'url',
             'date_of_birth' => 'date | before:18 years ago',
             'gender'=>'required',
@@ -204,6 +212,7 @@ class ProfileController extends Controller
             }
           
         $profile->skills = $skills;
+        $profile->highest_qualification = $request->highest_qualification;
         $profile->title = $request->title;
         $profile->save();
 
@@ -212,6 +221,23 @@ class ProfileController extends Controller
     
     public function deleteExperience($expId){
 
+    }
+
+    public function download($user_id){
+        // dd($user_id);
+        $profile = SeekerProfile::where('user_id', $user_id)->first();
+        // dd($profile);
+        if($profile)
+        
+        {
+            // return view('profile.resume-pdf', compact('profile'));
+            $pdf = PDF::loadView('profile.resume-pdf', compact('profile'))->setPaper('a3', 'portrait');;
+        //     // dd($pdf);
+         return $pdf->download('resume.pdf');
+        }else{
+            return redirect('home')->with('status', 'not found');;
+        }
+        
     }
 }
 

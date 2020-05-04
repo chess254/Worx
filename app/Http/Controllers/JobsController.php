@@ -9,6 +9,7 @@ use App\User;
 Use App\County;
 use App\BusinessStream;
 use App\Application;
+use App\JobFunction;
 use Auth;
 use App\Jobs\SendEmailQueue;
 
@@ -37,6 +38,7 @@ class JobsController extends Controller
     public function create()
     {   
         $user = User::where('id', auth()->user()->id)->with('type')->first();
+        $job_functions = JobFunction::all();
         if ($user->type['name'] != "Employer"){
 
             session()->flash('message', 'You must login with an employer account to post a job');
@@ -48,7 +50,7 @@ class JobsController extends Controller
             session()->flash('message', 'Create your company profile to post a job');
             return redirect()->route('company.create');
         }
-        return view('post-job',compact('user_companies'));
+        return view('post-job',compact('user_companies', 'job_functions'));
     }
 
     /**
@@ -69,9 +71,11 @@ class JobsController extends Controller
             'business_stream_id'=>$request->company_business_stream_id
         ]);
 
+        // dd($request->all());
+
         $data = [
             'title' => $request->title,
-            'email'=> $request->company_email,
+            'email'=> "",
             'town' => $request->town,
             'user_id' => $user = Auth::user()->id,
             'type_id' => intval($request->type_id),
@@ -79,6 +83,7 @@ class JobsController extends Controller
             'company_id'=>$request->company_id,
             'company_name_hidden' => 1,
             'no_of_positions' => $request->no_of_positions,
+            'job_function_id' => $request->job_function_id,
             'description' => $request->description, 
             'deadline'=>$request->deadline,
             'location_id' => 1,           
@@ -110,8 +115,9 @@ class JobsController extends Controller
     public function show($job)
     {
         $Job = Job::where('id', $job)
-        ->with(['location', 'company', 'type','businessStream'])
+        ->with(['location', 'company', 'type','businessStream','jobFunction'])
         ->first();
+        $Job->increment('views');
         return view('job', compact('Job'));
     }
 
@@ -119,7 +125,7 @@ class JobsController extends Controller
         
         if(auth()->user() && auth()->user()->user_type_id == 2){   
             $user_id = auth()->user()->id;
-            $JobsPostedByUser = Job::where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
+            $JobsPostedByUser = Job::where('user_id', $user_id)->orderBy('created_at', 'desc')->with('applications')->paginate(10);
             return view('myjobs', compact('JobsPostedByUser'));
         }
 

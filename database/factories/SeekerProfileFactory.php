@@ -91,6 +91,7 @@ $factory->define(SeekerProfile::class, function (Faker $faker) {
             'Chief Technology Officer (CTO)',
             'Chief Information Officer (CIO)'
         ]),
+        'highest_qualification'=>$faker->randomElement(['High School', 'Certificate', 'Diploma', 'Degree', 'Post Graduate Diploma', 'Masters', 'PhD']),
         'bio'=>$faker->paragraphs($nb = 3, $asText = true),
     ];
 });

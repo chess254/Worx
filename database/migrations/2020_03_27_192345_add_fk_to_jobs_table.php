@@ -23,6 +23,8 @@ class AddFkToJobsTable extends Migration
         $table->foreign('business_stream_id')
         ->references('id')->on('business_stream');
         
+        $table->foreign('job_function_id')
+        ->references('id')->on('job_function');
 
         $table->foreign('type_id')
         ->references('id')->on('job_type')

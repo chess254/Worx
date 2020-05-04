@@ -1694,7 +1694,7 @@ p {
 
 .registration-form-box .selectize-input {
   line-height: 2.4;
-  padding: 6px 6px 6px 45px;
+  padding: 5px 5px 5px 15px;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
