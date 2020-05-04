@@ -52,7 +52,9 @@ Route::post('/profile/{user_id}', 'ProfileController@update');
 Route::get('/download/{application}', 'DownloadController@download')->name('download');
 Route::get('/download-one/{media}', 'DownloadController@downloadSingle')->name('downloadone');
 
+Route::patch('/company/{company}', 'CompanyController@update')->name('company.update');
 Route::get('/company/{company}', 'CompanyController@show');
+Route::get('/company/{company}/edit', 'CompanyController@edit')->name('company.edit');
 Route::get('/company', 'CompanyController@create')->name('company.create');
 Route::post('/company', 'CompanyController@store');
 Route::get('/company-profile/{company}', 'CompanyController@view');
