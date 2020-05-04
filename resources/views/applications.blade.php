@@ -35,7 +35,7 @@
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="float-left mr-4 d-inline:flex">
-                                                <img src="{{$application->applicant->getFirstMediaUrl('profilepics')}}" alt="{{$application->applicant->name}}" class="d-block rounded" height="90">
+                                                <img src="{{$application->applicant->getProfilePic()}}" alt="{{$application->applicant->name}}" class="d-block rounded" width="100">
                                                 <div class="mt-2"><small class="text-muted"><i class="mdi mdi-clock-outline mr-1"></i>{{ $application->created_at->diffForHumans(null, true, true). " ago." }}</small></div>
                                             </div>
                                             <div class="candidates-list-desc overflow-hidden job-single-meta  pt-1 pb-1">
@@ -93,7 +93,7 @@
                                     <div class="row align-items-center">
                                         <div class="col-lg-2">
                                             <div class="company-logo-img">
-                                            <img src="{{$application->job->company->getFirstMediaUrl('logos', 'square')}}" alt="{{$application->job->company->name}}"
+                                            <img src="{{$application->job->company->getLogo()}}" alt="{{$application->job->company->name}}"
                                                     class="img-fluid  avatar-small mr-3 rounded">
                                             </div>
                                         </div>

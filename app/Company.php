@@ -24,6 +24,11 @@ class Company extends Model implements HasMedia
     protected $guarded = [];
     protected $casts = ['services'=>'array'];
 
+
+    public function getLogo(){
+        return $this->getFirstMediaUrl('logos','square') ? $this->getFirstMediaUrl('logos','square') :  url('storage/no_logo.png');
+    }
+
     public function registerMediaConversions (Media $media = null) : void
     {
         $this->addMediaConversion('square')

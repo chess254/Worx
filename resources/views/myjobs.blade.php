@@ -283,7 +283,7 @@
                                     <div class="row align-items-center">
                                         <div class="col-lg-3 col-md-3">
                                             <div class="company-logo-img">
-                                                <img src="{{$job->company->getFirstMediaUrl('logos','square')}}" alt={{$job->company->name}}"
+                                                <img src="{{$job->company->getLogo()}}" alt={{$job->company->name}}"
                                                     class="img-fluid avatar avatar-small mr-3 rounded">
                                             </div>
                                         </div>

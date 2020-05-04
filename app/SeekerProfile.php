@@ -17,6 +17,11 @@ class SeekerProfile extends Model implements HasMedia
     protected $guarded = [];
     protected $casts = ['skills' => 'array'];
 
+
+    public function getProfilePic(){
+        return $this->getFirstMediaUrl('profilepics') ? $this->getFirstMediaUrl('profilepics') :  url('storage/no_profile_pic.png');
+    }
+
     public function registerMediaConversions (Media $media = null) : void
     {
         $this->addMediaConversion('thumb')

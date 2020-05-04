@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="text-sm-center" style="margin-top: 40px;">
-                    <img src="{{$Company->getFirstMediaUrl('logos','square')}}" alt="{{$Company->name}}" class="img-fluid mx-md-auto d-block">
+                    <img src="{{$Company->getLogo()}}" alt="{{$Company->name}}" class="img-fluid mx-md-auto d-block">
                     {{-- {{$Company->getFirstMedia('logos')}} --}}
                     <h2 class="mt-3"><a href="#" class="text-dark">{{$Company->name}}</a></h2>
                     <ul class="list-inline mb-0">
