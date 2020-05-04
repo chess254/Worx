@@ -30,6 +30,10 @@
 <section class="section">
     <div class="container">
         <div class="row">
+            @if (auth()->user() && auth()->user()->id == $Company->user_id)
+            <div class="col-lg-12"> <a href="{{route('company.edit', $Company->id)}}" style="float:right;"> <button class="btn btn-sm btn-secondary-outline" class="text-dark"> <i class="mdi mdi-pencil" style="color: black;"></i> Edit </button></a></div>                
+            @endif
+            
             <div class="col-lg-12">
                 <div class="text-sm-center" style="margin-top: 40px;">
                     <img src="{{$Company->getLogo()}}" alt="{{$Company->name}}" class="img-fluid mx-md-auto d-block">

@@ -115,10 +115,15 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+    public function edit( \App\Company $company){
+        if(auth()->user() && auth()->user()->id == $company->user_id){
+        
+        $business_stream = \App\BusinessStream::all();
+        return view('company.edit' , compact('company', 'business_stream') );
+        } else {
+            return redirect('home')->with('message', 'you can only edit your company');
+        }
+	}
 
     /**
      * Update the specified resource in storage.
@@ -127,9 +132,44 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request,Company $company)
+    {  
+         if(auth()->user() && auth()->user()->id == $company->user_id){
+                $data = request()->validate(
+                    [
+                        'email'=>"",
+                        'name' => "" ,
+                        'description' => "" ,
+                        'services'=> "",
+                        'business_stream_id'=> "",
+                        'website' => "" ,
+                        'city'=> "",
+                        'county_id'=> "",
+                        'country'=> "",
+                        'mobile'=> "",
+                        'landline'=> "",
+                        'facebook'=> "",
+                        'twitter'=> "",
+                        'linked_in'=> "",
+                        'number_of_employees'=> "",
+                        'date_of_formation'=> "",
+                    
+                    ]
+                );
+
+                //  dd($data, $company, $request->all());
+
+                if($request->hasFile('logo') && $request->file('logo')->isValid()){
+                    $company->addMediaFromRequest('logo')->toMediaCollection('logos');
+                }
+
+                $company->update(array_merge($data,['services'=>explode(',', $request->services)]));
+
+                // dd($company);
+                return redirect('/company/'.$company->id);
+        } else{
+            return redirect()->back()->with('message', 'unauthorized');
+        }
     }
 
     /**
