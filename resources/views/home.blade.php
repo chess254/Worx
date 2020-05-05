@@ -9,7 +9,7 @@
 @section('content')
 
 <!-- Start Home -->
-<section class="bg-home" style="background: url('images/bg1-home.jpg') no-repeat center/109% ;">
+<section class="bg-home" style="no-repeat center/109% ;">
   <div class="bg-overlay"></div>
   <div class="home-center">
       <div class="home-desc-center">

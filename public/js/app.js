@@ -60,8 +60,8 @@ $("#eduModal").on('show.bs.modal', function (e) {
     institute = button.data('institute');
     certificate = button.data('certificate');
     course = button.data('course');
-    fromdate = button.data('fromdate');
-    todate = button.data('todate');
+    fromdate = button.data('fromdate').split(' ')[0];
+    todate = button.data('todate').split(' ')[0];
     educid = button.data('educid');
      
     var modal = $(this);
@@ -82,8 +82,8 @@ $("#expModal").on('show.bs.modal', function (e) {
     company_name = button.data('company_name');
     job_title = button.data('job_title');
     website = button.data('website');
-    start_date = button.data('start_date');
-    end_date = button.data('end_date');
+    start_date = button.data('start_date').split(' ')[0];
+    end_date = button.data('end_date').split(' ')[0];
     job_location_city = button.data('city');
     job_location_county = button.data('county');
     job_location_country = button.data('country');
@@ -100,6 +100,7 @@ $("#expModal").on('show.bs.modal', function (e) {
     modal.find('.modal-body #edit_job_country').val(job_location_country);
     modal.find('.modal-body #experienceDetails_id').val(expid);
     console.log(expid);
+    console.log(start_date);
     console.log(button.data());
 
 });

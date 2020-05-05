@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Url\Url;
+
 
 class SeekerProfile extends Model implements HasMedia
 {
@@ -21,7 +23,8 @@ class SeekerProfile extends Model implements HasMedia
 
     //return no image placeholder if user has not uploaded profile pic
     public function getProfilePic(){
-        return $this->getFirstMediaUrl('profilepics') ? $this->getFirstMediaUrl('profilepics') :  url('storage/no_profile_pic.png');
+        $urlstring = Url::fromString($this->getFirstMediaUrl('profilepics'))->getPath();
+        return $this->getFirstMediaUrl('profilepics') ? url($urlstring) :  url('storage/no_profile_pic.png');
     }
 
     //from spatie

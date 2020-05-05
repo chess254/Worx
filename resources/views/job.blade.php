@@ -45,7 +45,7 @@
             <div class="col-lg-8 col-md-7">
                 <div class="job-detail text-center job-single border rounded p-4">
                     <div class="job-single-img mb-2">
-                    <img src="{{ $Job->company->getFirstMediaUrl('logos','square')}}" alt="{{$Job->company->name}}" class="img-fluid mx-auto d-block">
+                    <img src="{{ $Job->company->getLogo()}}" alt="{{$Job->company->name}}" class="img-fluid mx-auto d-block rounded">
                     </div>
                     <h2 class="text-dark ">{{$Job->title}}</h2>
                     {{-- {{dd($Job)}} --}}
