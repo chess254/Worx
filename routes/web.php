@@ -28,10 +28,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', 'AboutController@index') ->name('about');
 
 Route::get('/jobs', 'JobsController@index')->name('jobs');
+Route::get('/jobs-by-category/{category}', 'JobsController@category')->name('job.category');
 
 
 Route::get('/job/{job}', 'JobsController@show');
 Route::post('/job/{job}/apply', 'JobsController@apply');
+
 Route::post('/job/attachfiles', 'JobsController@attachFiles')->name('job.attach');  
 
 Route::get('/job','JobsController@create')->name('create-job')->middleware('auth');

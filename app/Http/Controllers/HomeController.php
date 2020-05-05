@@ -7,6 +7,7 @@ use App\User;
 use App\BusinessStream;
 use App\County;
 use App\Job;
+use App\JobFunction;
 class HomeController extends Controller
 {
     /**
@@ -31,6 +32,8 @@ class HomeController extends Controller
     {
         $counties = County::all();
         $categories = BusinessStream::all()->toArray(); 
+        $summary = JobFunction::orderByRaw('RAND()')->take(8)->with('jobs')->get();
+
        
                 
                 // $jobs = Job::with('businessStream','county')->where('title','like','%web%')->whereHas('businessStream', function($q){
@@ -41,7 +44,7 @@ class HomeController extends Controller
                 // dd($jobs[0]->businessStream->name);
                 // dd($jobs);
 
-                return view('home', compact(['categories','counties']));
+                return view('home', compact(['categories','counties','summary']));
              
     }
 

@@ -30,6 +30,18 @@ class JobsController extends Controller
         return view('job-listings', compact(['joblist', 'totalJobs','categories','counties']));
     }
 
+    public function category(JobFunction $category)
+    {
+        $categoryName=JobFunction::find($category)->first()->name;
+        // dd($category);
+        $counties = County::all();
+        $categories = BusinessStream::all()->toArray();
+        $totalJobs = Job::where('job_function_id', $category->id)->with('location','company','county','businessStream')->count();  
+        $joblist = Job::where('job_function_id', $category->id)->with('location','company','county','businessStream')->orderBy('created_at', 'desc')->paginate(20);
+        // $joblist = JobFunction::find($category)('location','company','county','businessStream')->orderBy('created_at', 'desc')->paginate(20);
+        return view('job-category', compact(['joblist', 'totalJobs','categories','counties','categoryName']));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
