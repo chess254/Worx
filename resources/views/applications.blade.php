@@ -94,7 +94,7 @@
                                         <div class="col-lg-2">
                                             <div class="company-logo-img">
                                             <img src="{{$application->job->company->getLogo()}}" alt="{{$application->job->company->name}}"
-                                                    class="img-fluid  avatar-small mr-3 rounded">
+                                                    class="img-fluid  avatar-small mr-3 rounded"style="height: 100px;">
                                             </div>
                                         </div>
                                         <div class="col-lg-7 col-md-9">

@@ -1637,6 +1637,14 @@ p {
   background-size: cover;
   position: relative;
   background-position: center center;
+
+  /* padding: 37px 0px 37px 0px; */
+  background-image: url("../images/bg1-home.jpg");
+  /* height:100px; */
+  /* background-size: cover; */
+  background-attachment: fixed;
+  /* position: relative; */
+  /* background-position: center center; */
 }
 
 
