@@ -11,7 +11,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="text-center text-white">
-                <h4 class="text-uppercase title mb-4">You have {{$query->count()}} search results!</h4>
+                <h4 class="text-uppercase title mb-4">You have {{$query->total()}} search results!</h4>
                     <ul class="page-next d-inline-block mb-0">
                         <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
                         <li><a href="#" class="text-uppercase font-weight-bold">Jobs</a></li>
@@ -31,7 +31,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="home-registration-form job-list-reg-form bg-light shadow p-4 mb-3">
-                    <form class="registration-form" action="{{ url('search')}}" method="POST">
+                    <form class="registration-form" action="{{ route('search')}}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-lg-3 col-md-6">
@@ -39,7 +39,7 @@
                                     <i class="fa fa-briefcase"></i>
                                     <input type="text" id="exampleInputName1" name="job_title"
                                            class="form-control rounded registration-input-box"
-                                           placeholder="Job keywords...">
+                                placeholder="Job keywords..." value="{{old('job_title')}}">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6">
@@ -272,7 +272,7 @@
                     <div class="col-lg-12">
                         <div class="show-results">
                             <div class="float-left">
-                                <h5 class="text-dark mb-0 pt-2 f-18">{{$query->count()}} results</h5>
+                                <h5 class="text-dark mb-0 pt-2 f-18">{{$query->total()}} results</h5>
                             </div>
                             <div class="sort-button float-right">
                                 <select class="nice-select rounded">
@@ -295,8 +295,8 @@
                                     <div class="row align-items-center">
                                         <div class="col-lg-2">
                                             <div class="company-logo-img">
-                                                <img src="images/featured-job/img-1.png" alt=""
-                                                    class="img-fluid avatar avatar-small mr-3 rounded">
+                                            <img src="{{$job->company->getLogo()}}" alt="{{$job->company->name}}"
+                                                    class="img-fluid avatar avatar-medium mr-3 rounded">
                                             </div>
                                         </div>
                                         <div class="col-lg-7 col-md-9">
@@ -335,28 +335,8 @@
                             </div>
                         </div>
                     @endforeach
+                    {{ $query->onEachSide(1)->links('vendor.pagination.custom') }}
 
-
-                    <div class="col-lg-12 mt-4 pt-2">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination job-pagination mb-0 justify-content-center">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                                        <i class="mdi mdi-chevron-double-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="mdi mdi-chevron-double-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
                 </div>
             </div>
         </div>

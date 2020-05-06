@@ -236,7 +236,7 @@
                             </div>
                         </div>
                         <!-- collapse one end -->
-                        <div class="card rounded mt-4">
+                        {{-- <div class="card rounded mt-4">
                             <a data-toggle="collapse" href="#collapsefour" class="job-list" aria-expanded="true"
                                aria-controls="collapsefour">
                                 <div class="card-header" id="headingfour">
@@ -264,7 +264,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- collapse one end -->
                     </div>
                 </div>

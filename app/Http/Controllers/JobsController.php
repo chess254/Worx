@@ -24,7 +24,8 @@ class JobsController extends Controller
     {
 
         $counties = County::all();
-        $categories = BusinessStream::all()->toArray();  
+        $categories = JobFunction::all()->toArray();  
+        // dd($categories);
         $totalJobs = Job::all()->count();
         $joblist = Job::with('location','company','county','businessStream')->orderBy('created_at', 'desc')->paginate(20);
         return view('job-listings', compact(['joblist', 'totalJobs','categories','counties']));

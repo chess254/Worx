@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function index()
     {
         $counties = County::all();
-        $categories = BusinessStream::all()->toArray(); 
+        $categories = JobFunction::all()->toArray(); 
         $summary = JobFunction::orderByRaw('RAND()')->take(8)->with('jobs')->get();
 
        
@@ -53,29 +53,103 @@ class HomeController extends Controller
     {
             // dd($request->all());
         $counties = County::all();
-        $categories = BusinessStream::all()->toArray(); 
+        $categories = JobFunction::all()->toArray(); 
 
         $data=$request->all();
         $title=$data['job_title'];
         $county = $data['county'];
         $category = $data['category'];
 
-        $data = Job::with('businessStream','county')->where('title','like','%{$title}%')->whereHas('businessStream', function($q){
-            $q->where('id', '8');
-            })->whereHas('county',function($c){$c->where('id', '36');})->get();
+        // dd($data);
+        
+        //all 3 fields filled
+        if(!$title &&!$county&&!$category){
+            // $query =  Job::with('jobFunction','county')->whereHas('jobFunction', function($q){
+            //          $q->where('id',$this->request->category);
+            //      })
+            //      ->whereHas('county',function($c){
+            //          $c->where('id','=',$this->request->county);
+            //      })
+            //      ->where('title','like','%'.$title.'%')->get();
+                 
+             
+             return redirect()->route('jobs') ;
+         }
 
-           $query =  Job::with('businessStream','county')->whereHas('businessStream', function($q){
-                $q->where('id',$this->request->category);
-                })->whereHas('county',function($c){$c->where('id','=',$this->request->county);})->where('title','like','%'.$title.'%')->get();
+        if($title &&$county&&$category){
+           $query =  Job::with('jobFunction','county')->whereHas('jobFunction', function($q){
+                    $q->where('id',$this->request->category);
+                })
+                ->whereHas('county',function($c){
+                    $c->where('id','=',$this->request->county);
+                })
+                ->where('title','like','%'.$title.'%')->get();
                 
-
-        // $data = Job::select("title")->where("title","LIKE","%{$request->input('query')}%")
-
-        // ->get();
-            // dd($query);
-            // echo($request);
+            
+            return view('search', compact(['query','categories','counties']));
+        }
+        // only title filled
+        if($title&&!$county&&!$category){
+            $query = Job::with('jobFunction','county')->where('title', 'like','%'.$title.'%')->orderBy('created_at', 'desc')->paginate(20);
 
             return view('search', compact(['query','categories','counties']));
+        }
+        // only county filled
+        if(!$title&&$county&&!$category){
+            $query = Job::with('jobFunction','county')->where('county_id', $county)->orderBy('created_at', 'desc')->paginate(20);
+
+            return view('search', compact(['query','categories','counties']));
+        }
+        //only category filled
+        if(!$title&&!$county&&$category){
+            $query = Job::with('jobFunction','county')->where('job_function_id', $category)->orderBy('created_at', 'desc')->paginate(20);
+
+            return view('search', compact(['query','categories','counties']));
+        }
+        //title and county only
+        if( $title && $county && !$category){
+            $query =  Job::with('jobFunction','county')
+                ->whereHas('county',function($c){
+                    $c->where('id','=',$this->request->county);
+                })
+                ->where('title','like','%'.$title.'%')->orderBy('created_at', 'desc')->paginate(20);
+            return view('search', compact(['query','categories','counties']));
+        }
+        //title and category only
+        if($title&&!$county&&$category){
+            $query =  Job::with('jobFunction','county')->whereHas('jobFunction', function($q){
+                $q->where('id',$this->request->category);
+            })
+            ->where('title','like','%'.$title.'%')->orderBy('created_at', 'desc')->paginate(20);
+            
+        
+        return view('search', compact(['query','categories','counties']));        }
+        //county and category only
+        if(!$title&&$county&&$category){
+            $query =  Job::with('jobFunction','county')->whereHas('jobFunction', function($q){
+                $q->where('id',$this->request->category);
+            })
+            ->whereHas('county',function($c){
+                $c->where('id','=',$this->request->county);
+            })->orderBy('created_at', 'desc')->paginate(20);
+            
+        
+        return view('search', compact(['query','categories','counties']));        
+        }
+
+        if(!$title&&!$county&&!$category){
+            $query =  Job::with('jobFunction','county')->whereHas('jobFunction', function($q){
+                $q->where('id',$this->request->category);
+            })
+            ->whereHas('county',function($c){
+                $c->where('id','=',$this->request->county);
+            })->orderBy('created_at', 'desc')->paginate(20);
+            
+        
+        return view('search', compact(['query','categories','counties']));        
+        }
+
+        
 
         // return response()->json($data);
 
