@@ -27,7 +27,7 @@
                   <div class="row">
                       <div class="col-lg-12">
                           <div class="home-registration-form p-4 mb-3">
-                          <form class="registration-form" action="{{ url('search')}}" method="POST">
+                          <form class="registration-form" action="{{ route('search')}}" method="POST">
                             @csrf
                                   <div class="row">
                                       <div class="col-lg-3 col-md-6">

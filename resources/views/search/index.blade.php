@@ -1,17 +1,20 @@
 @extends('layouts.app')
+
+
 @section('navbar')
-    @include('partials.navbar')
+  @include('partials.navbar')
 @endsection
 
 @section('content')
 
+<!-- Start home -->
 <section class="bg-half page-next-level">
     <div class="bg-overlay"></div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="text-center text-white">
-                <h4 class="text-uppercase title mb-4">You have {{$query->total()}} search results!</h4>
+                    <h4 class="text-uppercase title mb-4">Job List view</h4>
                     <ul class="page-next d-inline-block mb-0">
                         <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
                         <li><a href="#" class="text-uppercase font-weight-bold">Jobs</a></li>
@@ -31,7 +34,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="home-registration-form job-list-reg-form bg-light shadow p-4 mb-3">
-                    <form class="registration-form" action="{{ url('/search')}}" method="POST">
+                    <form class="registration-form" action="#" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-lg-3 col-md-6">
@@ -39,7 +42,7 @@
                                     <i class="fa fa-briefcase"></i>
                                     <input type="text" id="exampleInputName1" name="job_title"
                                            class="form-control rounded registration-input-box"
-                                placeholder="Job keywords..." value="{{old('job_title')}}">
+                                           placeholder="Job keywords...">
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-6">
@@ -197,7 +200,7 @@
                             <a data-toggle="collapse" href="#collapsethree" class="job-list" aria-expanded="true"
                                aria-controls="collapsethree">
                                 <div class="card-header" id="headingthree">
-                                    <h6 class="mb-0 text-dark f-18">Experience</h6>
+                                    <h6 class="mb-0 text-dark f-18">Experince</h6>
                                 </div>
                             </a>
                             <div id="collapsethree" class="collapse show" aria-labelledby="headingthree">
@@ -272,7 +275,9 @@
                     <div class="col-lg-12">
                         <div class="show-results">
                             <div class="float-left">
-                                <h5 class="text-dark mb-0 pt-2 f-18">{{$query->total()}} results</h5>
+                                
+                                <h5 class="text-dark mb-0 pt   -2 f-18">{{$joblist->total()}} Jobs Listed</h5>
+                                
                             </div>
                             <div class="sort-button float-right">
                                 <select class="nice-select rounded">
@@ -288,27 +293,35 @@
 
                 <div class="row list-image-adjust">
 
-                    @foreach ($query as $job)
+                    @foreach ($joblist ?? '' as $job)
                         <div class="col-lg-12 mt-4 pt-2">
                             <div class="job-list-box border rounded">
                                 <div class="p-3">
                                     <div class="row align-items-center">
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-2 col-md-2">
                                             <div class="company-logo-img">
-                                            <img src="{{$job->company->getLogo()}}" alt="{{$job->company->name}}"
-                                                    class="img-fluid avatar avatar-medium mr-3 rounded">
+                                                <img src="{{$job->company->getLogo()}}" alt=""
+                                                    class="img-fluid avatar avatar-small mr-3 rounded">
                                             </div>
                                         </div>
-                                        <div class="col-lg-7 col-md-9">
+                                        <div class="col-lg-8 col-md-8">
                                             <div class="job-list-desc">
                                                 <h6 class="mb-2"><a href="/job/{{$job->id}}" class="text-dark" style="font-size: 20px;">{{$job->title}}</a></h6>
                                                 <p class="text-muted mb-0"><i class="mdi mdi-bank mr-2"></i>{{$job->company['name']}}</p>
-                                                <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{$job->town}}, {{$job->county['county_name']}}, {{$job->location['country']}}</p>
-                                                <p class="text-muted mb-0"><i class="mdi mdi-clock-outline mr-2"></i>{{ $job->created_at->diffForHumans(null,true)." ago" }}</p>
+                                                <ul class="list-inline mb-0">
+                                                    <li class="list-inline-item mr-3">
+                                                        <p class="text-muted mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{$job->town}}, {{$job->county['county_name']}}, {{$job->location['country']}}</p>
+                                                    </li>
+
+                                                    <li class="">
+                                                        <p class="text-muted mb-0"><small><i
+                                                                class="mdi mdi-clock-outline mr-2"></i>{{ $job->created_at->diffForHumans(null,true)." ago" }}</small></p>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
-                                        <div class="col-lg-3 col-md-3">
-                                            <div class="job-list-button-sm text-right">
+                                        <div class="col-lg-2 col-md-2">
+                                            <div class="job-list-button-sm text-left">
                                                 @if ( $job->type['job_type'] == "Part Time" )
                                                 <span class="badge badge-secondary">Part Time</span>
                                                 @elseif( $job->type['job_type'] == "Full Time" )
@@ -317,9 +330,17 @@
                                                 <span class="badge badge-warning">Remote</span>
                                                 @endif
 
-                                                <div class="mt-3">
-                                                    <a href="/job/{{$job->id}}" class="badge badge-dark">Apply</a>
-                                                </div>
+                                                {{-- <div class="mt-3">
+                                                    <a href="/job/{{$job->id}}" class="btn btn-sm btn-primary">Apply</a>
+                                                </div> --}}
+                                            </div>
+                                            <div class="job-list-button-sm text-left">
+                                                <p class="text-muted mb-0"><i
+                                                    class="mdi mdi-eye-outline mr-1"></i><small> {{$job->views}} </small></p>
+
+                                                {{-- <div class="mt-3">
+                                                    <a href="/job/{{$job->id}}" class="btn btn-sm btn-primary">Apply</a>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -327,7 +348,7 @@
                             </div>
                         </div>
                     @endforeach
-                    {{ $query->onEachSide(1)->links('vendor.pagination.custom') }}
+                    {{ $joblist ?? ''->onEachSide(1)->links('vendor.pagination.custom') }}
 
                 </div>
             </div>
@@ -368,3 +389,5 @@
 <!-- subscribe end -->
 
 @endsection
+
+

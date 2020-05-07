@@ -28,7 +28,9 @@ class JobsController extends Controller
         // dd($categories);
         $totalJobs = Job::all()->count();
         $joblist = Job::with('location','company','county','businessStream')->orderBy('created_at', 'desc')->paginate(20);
-        return view('job-listings', compact(['joblist', 'totalJobs','categories','counties']));
+        return view('search.index', compact(['joblist', 'totalJobs','categories','counties']));
+        // return view('search.index');
+
     }
 
     public function category(JobFunction $category)
@@ -281,6 +283,13 @@ class JobsController extends Controller
         }
 
         return redirect()->back()->with('message', 'unauthorized');
+    }
+
+    public function worxJobs(){
+        $counties = County::all();
+        $categories = JobFunction::all()->toArray(); 
+        $query = Job::with('jobFunction', 'county')->where('applicationMethod', 3)->orderBy('created_at','desc')->paginate(20);
+        return view ('search',compact(['query','categories','counties']));
     }
  
 }

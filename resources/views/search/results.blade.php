@@ -327,7 +327,9 @@
                             </div>
                         </div>
                     @endforeach
-                    {{ $query->onEachSide(1)->links('vendor.pagination.custom') }}
+
+                    {{-- {{dd(Request::except('_token'))}} --}}
+                    {{ $query->appends(Request::except('_token'))->onEachSide(1)->links('vendor.pagination.custom') }}
 
                 </div>
             </div>

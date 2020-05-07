@@ -9,17 +9,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                {{-- <div class="text-center text-white">
-                    <h4 class="text-uppercase title mb-4">{{$Company->name}}</h4>
-                    <ul class="page-next d-inline-block mb-0">
-                        <li><a href="index.html" class="text-uppercase font-weight-bold">Home</a></li>
-                        <li><a href="#" class="text-uppercase font-weight-bold">Pages</a></li>
-                        <li><a href="#" class="text-uppercase font-weight-bold">Employer</a></li>
-                        <li>
-                            <span class="text-uppercase text-white font-weight-bold">{{$Company->name}}</span>
-                        </li>
-                    </ul>
-                </div> --}}
+
             </div>
         </div>
     </div>
@@ -36,7 +26,7 @@
             
             <div class="col-lg-12">
                 <div class="text-sm-center" style="margin-top: 40px;">
-                    <img src="{{$Company->getLogo()}}" alt="{{$Company->name}}"  class="img-fluid d-block mx-auto rounded">
+                    <img src="{{$Company->getLogo()}}" alt="{{$Company->name}}logo"  class="img-fluid d-block mx-auto rounded">
                     {{-- {{$Company->getFirstMedia('logos')}} --}}
                     <h2 class="mt-3"><a href="#" class="text-dark">{{$Company->name}}</a></h2>
                     <ul class="list-inline mb-0">
@@ -88,7 +78,7 @@
                         <div class="col-lg-2 col-md-3 col-6">
                             <div class="text-sm-center m-14">
                                 <h5 class="text-dark mb-2">Experience</h5>
-                                <p class="text-muted mb-0">10 Years + Exp.</p>
+                            <p class="text-muted mb-0">{{$Company->date_of_formation->diffForHumans(null, true)}} +</p>
                             </div>
                         </div>
 
@@ -114,7 +104,7 @@
             <div class="col-lg-12 mt-4 pt-2">
                 <h4>Company Overview </h4>
                 <div class="rounded border p-4 mt-3 text-muted">
-                    {{$Company->description}}
+                    {!!$Company->description!!}
                 </div>
             </div>
         </div>
