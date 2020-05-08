@@ -8,6 +8,9 @@ use App\BusinessStream;
 use App\County;
 use App\Job;
 use App\JobFunction;
+use App\Application;
+use App\Company;
+
 class HomeController extends Controller
 {
     /**
@@ -30,10 +33,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $counties = County::all();
-        $categories = JobFunction::all()->toArray(); 
+       $companies= Company::count();
+        $applications =Application::count();
+        $jobs =Job::count();
+        $users =User::count();
+        // $counties = County::all();
+        // $categories = JobFunction::all()->toArray(); 
         $summary = JobFunction::orderByRaw('RAND()')->take(8)->with('jobs')->get();
-        return view('home', compact(['categories','counties','summary']));
+        return view('home', compact(['summary','jobs','companies','applications','users']));
              
     }
 

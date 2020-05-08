@@ -23,12 +23,12 @@ class JobsController extends Controller
     public function index()
     {
 
-        $counties = County::all();
-        $categories = JobFunction::all()->toArray();  
+        // $counties = County::all();
+        // $categories = JobFunction::all()->toArray();  
         // dd($categories);
         $totalJobs = Job::all()->count();
         $joblist = Job::with('location','company','county','businessStream')->orderBy('created_at', 'desc')->paginate(20);
-        return view('search.index', compact(['joblist', 'totalJobs','categories','counties']));
+        return view('search.index', compact(['joblist', 'totalJobs']));
         // return view('search.index');
 
     }
@@ -37,12 +37,12 @@ class JobsController extends Controller
     {
         $categoryName=JobFunction::find($category)->first()->name;
         // dd($category);
-        $counties = County::all();
-        $categories = BusinessStream::all()->toArray();
+        // $counties = County::all();
+        // $categories = BusinessStream::all()->toArray();
         $totalJobs = Job::where('job_function_id', $category->id)->with('location','company','county','businessStream')->count();  
         $joblist = Job::where('job_function_id', $category->id)->with('location','company','county','businessStream')->orderBy('created_at', 'desc')->paginate(20);
         // $joblist = JobFunction::find($category)('location','company','county','businessStream')->orderBy('created_at', 'desc')->paginate(20);
-        return view('job-category', compact(['joblist', 'totalJobs','categories','counties','categoryName']));
+        return view('job-category', compact(['joblist', 'totalJobs','categoryName']));
     }
 
     /**
