@@ -1418,7 +1418,7 @@
                       <p class="counter-name text-white text-uppercase mb-0">Applications</p>
                   </div>
               </div>
-          </div>    
+          </div>       
 
           <div class="col-md-3 col-6">
               <div class="home-counter pt-4 pb-4">
