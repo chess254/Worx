@@ -109,7 +109,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
                                         <p class="text-dark">Date Of Formation</p>
-                                        <input id="date-of-formation" type="date" value="{{old('') ?? $company->date_of_formation}}" name="date_of_formation" class="form-control "
+                                        <input id="date-of-formation" type="date" value="{{old('') ??date('Y-m-d', strtotime($company->date_of_formation))}}" name="date_of_formation" class="form-control "
                                                placeholder="13-02-1999">
                                     </div>
                                 </div>   

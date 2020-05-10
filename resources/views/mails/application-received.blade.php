@@ -8,5 +8,6 @@
 </head>
 <body>
 <p>Application for {{$job->title}} received</p>
+{{-- <p> <a href="url('/job/{{$job->id}}')"></a> click here to view the job listing</p> --}}
 </body>
 </html>

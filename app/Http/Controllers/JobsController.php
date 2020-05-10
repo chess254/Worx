@@ -153,9 +153,30 @@ class JobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Job $job)
     {
-        //
+        
+        if(auth()->user() && auth()->user()->id == $job->user_id){
+            
+                    $user = User::where('id', auth()->user()->id)->with('type')->first();
+                    $job_functions = JobFunction::all();
+                    if ($user->type['name'] != "Employer"){
+            
+                        session()->flash('message', 'You must login with an employer account to post a job');
+                        Auth::logout();
+                        return redirect('login');   //alternate redirect back with message, so they can logout themeselves instead of login em out automatically
+                    }
+                    $user_companies = $user->companies;
+                    if($user_companies->toArray() == null){
+                        session()->flash('message', 'Create your company profile to post a job');
+                        return redirect()->route('company.create');
+                    }
+                    return view('job.edit',compact('user_companies', 'job_functions','job'));
+
+        }else {
+            return redirect('home')->with('message', 'you can only edit a job you posted');
+        }
+
     }
 
     /**
@@ -165,9 +186,11 @@ class JobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Job $job)
     {
-        //
+        // dd($request->all());
+        $job->update($request->all());
+        return redirect()->route('job.show',$job->id);
     }
 
     /**

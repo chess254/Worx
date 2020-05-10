@@ -37,16 +37,18 @@ Route::get('/jobs-by-category/{category}', 'JobsController@category')->name('job
 Route::get('worx-jobs', 'JobsController@worxJobs')->name('jobs.worx');
 
 
-Route::get('/job/{job}', 'JobsController@show');
+Route::get('/job/{job}', 'JobsController@show')->name('job.show');
 Route::post('/job/{job}/apply', 'JobsController@apply');
 
 Route::post('/job/attachfiles', 'JobsController@attachFiles')->name('job.attach');  
 
-Route::get('/ ','JobsController@create')->name('create-job')->middleware('auth');
+Route::get('/job','JobsController@create')->name('create-job')->middleware('auth');
 
-Route::get('/sendemail', 'JobsController@enqueue');
+// Route::get('/sendemail', 'JobsController@enqueue');
 
 Route::post('/job','JobsController@store');
+Route::get('/job/{job}/edit', 'JobsController@edit')->name('job.edit');
+Route::patch('/job/{job}', 'JobsController@update')->name('job.update');
 Route::get('/my-jobs','JobsController@jobsPostedby')->name('myjobs');
 Route::get('/applications','JobsController@applications')->name('applications');
 Route::get('/applications-by-job/{job_id}','JobsController@applicationsByJob');
@@ -75,6 +77,11 @@ Route::get('/attach', function(){
     return view('attachfile');
 });
 
+
+/**
+ *move this into a controller    
+ * 
+ ********************************/
 Route::post('/attach', function(Request $request){
 
     // $validation = $request->validate([
