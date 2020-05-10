@@ -189,8 +189,12 @@ class JobsController extends Controller
     public function update(Request $request, Job $job)
     {
         // dd($request->all());
-        $job->update($request->all());
-        return redirect()->route('job.show',$job->id);
+        if(auth()->user() && auth()->user()->id == $job->user_id){
+            $job->update($request->all());
+            return redirect()->route('job.show',$job->id);
+        }else{
+            return redirect('home')->with('message', 'you can only update a job you posted');
+        }
     }
 
     /**

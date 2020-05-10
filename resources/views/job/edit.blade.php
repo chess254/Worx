@@ -390,7 +390,7 @@
         <small id="passwordHelpBlock" class="form-text text-muted">
            Enter an email below through which applicants should submit their applications. 
         </small>
-        <input type="text" id="applicationEmail" name="applicationEmail" class="form-control" placeholder="application email" aria-describedby="passwordHelpBlock">
+    <input type="text" id="applicationEmail" name="applicationEmail" class="form-control" placeholder="application email" value="{{$job->applicationEmail}}" aria-describedby="passwordHelpBlock">
     </div>
 
     
@@ -398,7 +398,7 @@
       <small id="passwordHelpBlock" class="form-text text-muted">
         Enter the website address or link below through which applicants should submit their applications  
       </small>   
-        <input type="text" id="applicationWebsite" name="applicationWebsite" class="form-control" aria-describedby="passwordHelpBlock">
+        <input type="text" id="applicationWebsite" name="applicationWebsite" class="form-control" value="{{$job->applicationWebsite}}" aria-describedby="passwordHelpBlock">
     </div>
     <div class="tab-pane fade {{$job->applicationMethod == 3 ? 'show active' : ''}}" id="applyViaWorx" role="tabpanel" aria-labelledby="applyViaWorx-tab">
       <small id="passwordHelpBlock" class="form-text text-muted">
@@ -424,7 +424,10 @@
           </form>
           <script>
             function pickEmail(){
-              radio = document.getElementById("viaEmail");        radio.checked = true;
+              radio = document.getElementById("viaEmail");        
+              radio.checked = true;
+            //   document.getElementById("applicationWebsite")->value("");
+            //   document.getElementById("applicationWorx")->value("");
             }
             function pickWebsite(){
               radio = document.getElementById("viaWebsite");        radio.checked = true;
