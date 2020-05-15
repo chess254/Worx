@@ -1,5 +1,26 @@
 @extends('layouts.app')
 
+@section('scripts')
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    <script>
+
+      tinymce.init({
+          selector: 'textarea',
+          plugins: 'lineheight lists',
+          menubar: false,
+          branding: false,
+          toolbar: true,
+          toolbar: 'lineheightselect numlist bullist undo redo | styleselect | bold italic | link image' ,
+          lineheight_formats: "8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt", 
+          statusbar : false,
+          // toolbar_sticky: true,
+          
+          
+          
+      });
+    </script>
+@endsection
+
 @section('navbar')
     @include('partials.navbar')
 @endsection
@@ -190,9 +211,9 @@
             <div class="col-lg-12 mt-3">
                 <div class="border rounded p-4">
                     <div class="job-detail-desc" id="bio">
-                        <p class="text-muted f-14 mb-3">{{$profile->bio}}</p>
+                        <p class="text-muted f-14 mb-3" style="padding-top: 8px; margin-bottom:40px;">{!!$profile->bio!!}</p>
                     </div>
-                    <ul class="list-inline pt-3 border-top mb-0 d-flex" style="justify-content:center;">
+                    <ul class="list-inline pt-4 border-top mb-0 text-center " style="">
                         <li class="list-inline-item mr-3">
                             <a href="#" class="text-muted f-15 mb-0"><i class="mdi mdi-map-marker mr-2"></i>{{$profile->user->city}}, {{$profile->user->county->county_name}}, {{$profile->user->country}}</a>
                         </li>
@@ -235,7 +256,7 @@
                                 <div class="modal-body">
                                     <div class="md-form">
                                     {{-- <i class="fas fa-lock prefix grey-text"></i> --}}
-                                    <textarea name="edit_bio" id="edit_bio" class="form-control validate">{{$profile->bio}}</textarea>
+                                    <textarea name="edit_bio" id="edit_bio" class="form-control validate" cols="100" rows="10" >{{$profile->bio}}</textarea>
                                     {{-- <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label> --}}
                                     </div>
 
@@ -249,7 +270,7 @@
                 </div>
                 @endif
 
-                <!-- Modals -->
+                <!-- edit Bio Modal -->
                 @if(auth()->check())
                 <div class="modal fade" id="bioModal" tabindex="-1" role="dialog" aria-labelledby="bioModalLabel" aria-hidden="true">
                         

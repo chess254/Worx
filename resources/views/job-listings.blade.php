@@ -34,7 +34,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="home-registration-form job-list-reg-form bg-light shadow p-4 mb-3">
-                    <form class="registration-form" action="{{ url('search')}}" method="POST">
+                    <form class="registration-form" action="{{ route('search')}}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-lg-3 col-md-6">

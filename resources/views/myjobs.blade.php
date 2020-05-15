@@ -333,6 +333,13 @@
                                                 </span>Applications</small></a>
                                                 @endif
                                             </div>
+
+                                            <div class="job-list-button-sm text-left">
+                                                <a class="badge badge-dark"href="{{route('job.edit', $job->id)}}"><small><span class="mr-1">
+                                                   
+                                                </span>Edit</small></a>
+                                                
+                                            </div>
                                                 
                                             @endif
 

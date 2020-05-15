@@ -37,10 +37,13 @@
 <section class="section">
     <div class="container" >
         @if(session()->has('message'))
-                        <div class="alert alert-success">
-                            {{ session()->get('message') }}
-                    </div>
-                    @endif
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+        @if (auth()->user() && auth()->user()->id == $Job->user_id)
+            <div class="row"><div class="col-12 mb-2 mt-2"> <a href="{{route('job.edit', $Job->id)}}" style="float:right;"> <button class="btn btn-sm btn-secondary-outline" class="text-dark"> <i class="mdi mdi-pencil" style="color: black;"></i> Edit </button></a></div></div>                
+        @endif
         <div class="row" style="display: flex; justify-content:space-between;">
             <div class="col-lg-8 col-md-7">
                 <div class="job-detail text-center job-single border rounded p-4">
@@ -61,7 +64,7 @@
                         </li>
 
                         <li class="list-inline-item mr-3" >
-                            <p class="text-muted mb-0"><i  class="mdi mdi-cash-multiple mr-1"></i>{{ $Job->salary_range }}/month</p>
+                            <p class="text-muted mb-0"><i  class="mdi mdi-cash-multiple mr-1"></i>{{ $Job->salary_range }} <small>/ month</small></p>
                         </li>
                     </ul>
                    
@@ -146,17 +149,19 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="job-detail border rounded mt-2 p-4">
-                            @if ($Job->applicationEmail)
+                            @if ($Job->applicationMethod == 1)
                                 {!!$Job->applicationInstructions!!}
+
+                               Application email: {{$Job->applicationEmail}}
                             @endif
                             
                             
-                            @if ($Job->applicationWebsite)
+                            @if ($Job->applicationMethod == 2)
                             {!!$Job->applicationInstructions!!} <br>
                                 
-                            <a href="http://{{$Job->applicationWebsite}} ">Click to apply</a>                            
+                            <a href="http://{{$Job->applicationWebsite}} "> <button class="btn btn-primary btn-block btn-sm mb-4"> Click to apply</button></a>                            
                             @endif
-                            @if ($Job->applicationWorx)  
+                            @if ($Job->applicationMethod == 3)  
                                 
                                 @if (auth()->check() && count($Job->applications->where('user_id', auth()->user()->id)))
                                 <button class="btn btn-success btn-block btn-sm mb-4"type="submit" disabled > <i class="mdi mdi-check mr-2"></i> You have applied for this job </button> 
@@ -226,9 +231,9 @@
 
                             <div class="job-details-desc-item">
                                 <div class="float-left mr-2">
-                                    <i class="mdi mdi-currency-usd text-muted"></i>
+                                    <i class="mdi mdi-cash-multiple text-muted"></i>
                                 </div>
-                                <p class="text-muted mb-2">KShs {{$Job->salary_range}}/month</p>
+                                <p class="text-muted mb-2">KShs {{$Job->salary_range}} <small>/ month</small></p>
                             </div>
 
                             <div class="job-details-desc-item">
@@ -257,9 +262,10 @@
 
                     
 
-                    <div class="job-detail border rounded mt-4">
+                    {{-- <div class="job-detail border rounded mt-4">
+                        
                         <a href="#" class="btn btn-primary btn-block">Apply For Job</a>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="row">

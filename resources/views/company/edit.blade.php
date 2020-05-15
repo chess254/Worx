@@ -1,4 +1,24 @@
 @extends('layouts.app')
+@section('scripts')
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    <script>
+
+      tinymce.init({
+          selector: 'textarea',
+          plugins: 'lineheight lists',
+          menubar: false,
+          branding: false,
+          toolbar: true,
+          toolbar: 'lineheightselect numlist bullist undo redo | styleselect | bold italic | link image' ,
+          lineheight_formats: "8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt", 
+          statusbar : false,
+          // toolbar_sticky: true,
+          
+          
+          
+      });
+    </script>
+@endsection
 @section('navbar')
   @include('partials.navbar')
 @endsection
@@ -89,7 +109,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group app-label">
                                         <p class="text-dark">Date Of Formation</p>
-                                        <input id="date-of-formation" type="date" value="{{old('') ?? $company->date_of_formation}}" name="date_of_formation" class="form-control "
+                                        <input id="date-of-formation" type="date" value="{{old('') ??date('Y-m-d', strtotime($company->date_of_formation))}}" name="date_of_formation" class="form-control "
                                                placeholder="13-02-1999">
                                     </div>
                                 </div>   

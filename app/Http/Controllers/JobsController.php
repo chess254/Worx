@@ -23,11 +23,26 @@ class JobsController extends Controller
     public function index()
     {
 
-        $counties = County::all();
-        $categories = BusinessStream::all()->toArray();  
+        // $counties = County::all();
+        // $categories = JobFunction::all()->toArray();  
+        // dd($categories);
         $totalJobs = Job::all()->count();
         $joblist = Job::with('location','company','county','businessStream')->orderBy('created_at', 'desc')->paginate(20);
-        return view('job-listings', compact(['joblist', 'totalJobs','categories','counties']));
+        return view('search.index', compact(['joblist', 'totalJobs']));
+        // return view('search.index');
+
+    }
+
+    public function category(JobFunction $category)
+    {
+        $categoryName=JobFunction::find($category)->first()->name;
+        // dd($category);
+        // $counties = County::all();
+        // $categories = BusinessStream::all()->toArray();
+        $totalJobs = Job::where('job_function_id', $category->id)->with('location','company','county','businessStream')->count();  
+        $joblist = Job::where('job_function_id', $category->id)->with('location','company','county','businessStream')->orderBy('created_at', 'desc')->paginate(20);
+        // $joblist = JobFunction::find($category)('location','company','county','businessStream')->orderBy('created_at', 'desc')->paginate(20);
+        return view('job-category', compact(['joblist', 'totalJobs','categoryName']));
     }
 
     /**
@@ -138,9 +153,30 @@ class JobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Job $job)
     {
-        //
+        
+        if(auth()->user() && auth()->user()->id == $job->user_id){
+            
+                    $user = User::where('id', auth()->user()->id)->with('type')->first();
+                    $job_functions = JobFunction::all();
+                    if ($user->type['name'] != "Employer"){
+            
+                        session()->flash('message', 'You must login with an employer account to post a job');
+                        Auth::logout();
+                        return redirect('login');   //alternate redirect back with message, so they can logout themeselves instead of login em out automatically
+                    }
+                    $user_companies = $user->companies;
+                    if($user_companies->toArray() == null){
+                        session()->flash('message', 'Create your company profile to post a job');
+                        return redirect()->route('company.create');
+                    }
+                    return view('job.edit',compact('user_companies', 'job_functions','job'));
+
+        }else {
+            return redirect('home')->with('message', 'you can only edit a job you posted');
+        }
+
     }
 
     /**
@@ -150,9 +186,15 @@ class JobsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Job $job)
     {
-        //
+        // dd($request->all());
+        if(auth()->user() && auth()->user()->id == $job->user_id){
+            $job->update($request->all());
+            return redirect()->route('job.show',$job->id);
+        }else{
+            return redirect('home')->with('message', 'you can only update a job you posted');
+        }
     }
 
     /**
@@ -268,6 +310,13 @@ class JobsController extends Controller
         }
 
         return redirect()->back()->with('message', 'unauthorized');
+    }
+
+    public function worxJobs(){
+        $counties = County::all();
+        $categories = JobFunction::all()->toArray(); 
+        $query = Job::with('jobFunction', 'county')->where('applicationMethod', 3)->orderBy('created_at','desc')->paginate(20);
+        return view ('search',compact(['query','categories','counties']));
     }
  
 }

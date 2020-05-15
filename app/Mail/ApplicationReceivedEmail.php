@@ -39,8 +39,8 @@ class ApplicationReceivedEmail extends Mailable
     {
         // return $this->view('view.name');
         return $this->from('holla@60four.co.ke', 'Mailtrap')
-        ->subject('Job application received')
-        ->view('mails.email')->with([
+        ->subject('Job application for'.$this->job->title .'received')
+        ->view('mails.application-received')->with([
             'job'=>$this->job, //when jon is set as $public we dont have to pass the data here, it can be accessed by view
             // 'user'=> $this->user
             ]);

@@ -124,6 +124,25 @@ $('#company_id').change(function() {
         
     });
 });
+    //same as above but in job edit
+$('#companyId').change(function() {
+    $.get('../../../company-profile/'+this.value, function(data){
+        // Code to populate the secondary select element
+
+        var company = data;
+        console.log(company);
+        console.log("company id:" + company.id);
+        $('#company_name').val(company.name);
+        $('#company_email').val(company.email);
+        $('#company_website').val(company.website);
+        $('#company_biz_stream').val(company.business_stream.name);
+        $('#company_id').val(company.id);
+        $('#company_business_stream_id').val(company.business_stream.id);
+        $('#company_twitter').val(company.twitter);
+        $(tinymce.get('company_description').getBody()).html(company.description);
+        
+    });
+});
 
 // let addEducInput = 2;
 // document.getElementById('add-education-details').onclick = function () {

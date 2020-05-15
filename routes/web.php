@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
 
-/*
-|--------------------------------------------------------------------------
+/**************************************************************************
+|___________________________________________________________________________
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -19,8 +19,13 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('search', 'JobsController@index')->name('search');
-Route::post('search', 'HomeController@search')->name('search');
+// Route::get('/search', 'JobsController@index')->name('search');
+Route::get('/search', 'SearchController@search')->name('search');
+
+// Route::get('search', 'HomeController@index')->name('search');
+
+// Route::post('/search', 'HomeController@search')->name('search');
+Route::post('/search', 'SearchController@search')->name('search');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -28,17 +33,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/about', 'AboutController@index') ->name('about');
 
 Route::get('/jobs', 'JobsController@index')->name('jobs');
+Route::get('/jobs-by-category/{category}', 'JobsController@category')->name('job.category');
+Route::get('worx-jobs', 'JobsController@worxJobs')->name('jobs.worx');
 
 
-Route::get('/job/{job}', 'JobsController@show');
+Route::get('/job/{job}', 'JobsController@show')->name('job.show');
 Route::post('/job/{job}/apply', 'JobsController@apply');
+
 Route::post('/job/attachfiles', 'JobsController@attachFiles')->name('job.attach');  
 
 Route::get('/job','JobsController@create')->name('create-job')->middleware('auth');
 
-Route::get('/sendemail', 'JobsController@enqueue');
+// Route::get('/sendemail', 'JobsController@enqueue');
 
 Route::post('/job','JobsController@store');
+Route::get('/job/{job}/edit', 'JobsController@edit')->name('job.edit');
+Route::patch('/job/{job}', 'JobsController@update')->name('job.update');
 Route::get('/my-jobs','JobsController@jobsPostedby')->name('myjobs');
 Route::get('/applications','JobsController@applications')->name('applications');
 Route::get('/applications-by-job/{job_id}','JobsController@applicationsByJob');
@@ -67,6 +77,11 @@ Route::get('/attach', function(){
     return view('attachfile');
 });
 
+
+/**
+ *move this into a controller    
+ * 
+ ********************************/
 Route::post('/attach', function(Request $request){
 
     // $validation = $request->validate([

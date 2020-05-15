@@ -1,4 +1,25 @@
 @extends('layouts.app')
+
+@section('scripts')
+    <script src="{{ asset('js/tinymce/tinymce.min.js') }}"></script>
+    <script>
+
+      tinymce.init({
+          selector: 'textarea',
+          plugins: 'lineheight lists',
+          menubar: false,
+          branding: false,
+          toolbar: true,
+          toolbar: 'lineheightselect numlist bullist undo redo | styleselect | bold italic | link image' ,
+          lineheight_formats: "8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt", 
+          statusbar : false,
+          // toolbar_sticky: true,
+          
+          
+          
+      });
+    </script>
+@endsection
 @section('navbar')
   @include('partials.navbar')
 @endsection
