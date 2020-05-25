@@ -32,24 +32,24 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/about', 'AboutController@index') ->name('about');
 
-Route::get('/jobs', 'JobsController@index')->name('jobs');
-Route::get('/jobs-by-category/{category}', 'JobsController@category')->name('job.category');
-Route::get('worx-jobs', 'JobsController@worxJobs')->name('jobs.worx');
+Route::get(     '/jobs',                            'JobsController@index')->name('jobs');
+Route::get(     '/jobs-by-category/{category}',     'JobsController@category')->name('job.category');
+Route::get(     'worx-jobs',                        'JobsController@worxJobs')->name('jobs.worx');
+Route::get(     '/job/{job}',                       'JobsController@show')->name('job.show');
+Route::post(    '/job/{job}/apply',                 'JobsController@apply');
+Route::post(    '/job/attachfiles',                 'JobsController@attachFiles')->name('job.attach');  
+Route::get(     '/job',                             'JobsController@create')->name('create-job')->middleware('auth');
+Route::get(     '/my-jobs',                         'JobsController@jobsPostedby')->name('myjobs');
+Route::get(     '/job/{job}/edit',                  'JobsController@edit')->name('job.edit');
+Route::post(    '/job',                             'JobsController@store');
+Route::patch(   '/job/{job}',                       'JobsController@update')->name('job.update');
 
 
-Route::get('/job/{job}', 'JobsController@show')->name('job.show');
-Route::post('/job/{job}/apply', 'JobsController@apply');
 
-Route::post('/job/attachfiles', 'JobsController@attachFiles')->name('job.attach');  
 
-Route::get('/job','JobsController@create')->name('create-job')->middleware('auth');
 
 // Route::get('/sendemail', 'JobsController@enqueue');
 
-Route::post('/job','JobsController@store');
-Route::get('/job/{job}/edit', 'JobsController@edit')->name('job.edit');
-Route::patch('/job/{job}', 'JobsController@update')->name('job.update');
-Route::get('/my-jobs','JobsController@jobsPostedby')->name('myjobs');
 Route::get('/applications','JobsController@applications')->name('applications');
 Route::get('/applications-by-job/{job_id}','JobsController@applicationsByJob');
 
