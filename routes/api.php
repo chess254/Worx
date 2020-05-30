@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\County;
+use App\User;
+use App\SeekerProfile;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +29,17 @@ Route::group(['namespace' => 'Api'], function () {  //adds '\Api' before each co
     Route::apiResource('companies', 'CompanyController');
 });
 
+Route::middleware('auth:sanctum')->get('/init', 'HomeController@getJobFunctionsCertificateBizStreamLists');
+
 Route::get('/counties', function(){
   return response()->json(County::all(), 200);
 });
+
+Route::get('users/{id}', 'Api\UserController@show');
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//   return $request->user();
+// });
 
 Route::post('/register', 'RegisterController@register');
 Route::post('/login', 'LoginController@login');

@@ -31,6 +31,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     public function getJobFunctionsCertificateBizStreamLists(){
+         $job_functions = JobFunction::all();
+         $biz_streams = BusinessStream::all();
+         $education = ['High school','Certificate','Diploma','Degree','Post-graduate Diploma','Masters','Doctorate'];
+         return response(compact(['job_functions','biz_streams','education']));
+     }
+
     public function index()
     {
        $companies= Company::count();

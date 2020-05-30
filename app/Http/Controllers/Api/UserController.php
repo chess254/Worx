@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Company;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CompanyController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,38 +32,34 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Company  $company
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($company)
+    public function show($user)
     {
-        $Company = Company::where('id', $company)->with('businessStream','jobs')
-        ->first();
-
-        return $Company;
+        return User::where('id', $user)->with('SeekerProfile','companies')->get();
+        // dd($u);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Company  $company
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, User $user)
     {
-        
-       $company->update($request->data['company']);
-        return $request->data['company'];
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Company  $company
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy(User $user)
     {
         //
     }
