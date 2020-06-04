@@ -36,7 +36,8 @@ class HomeController extends Controller
          $job_functions = JobFunction::all();
          $biz_streams = BusinessStream::all();
          $education = ['High school','Certificate','Diploma','Degree','Post-graduate Diploma','Masters','Doctorate'];
-         return response(compact(['job_functions','biz_streams','education']));
+         $companies = auth()->user()->companies()->get();
+         return response(compact(['job_functions','biz_streams','education','companies']));
      }
 
     public function index()

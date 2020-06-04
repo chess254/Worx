@@ -10,6 +10,7 @@ use App\BusinessStream;
 use App\Application;
 use App\JobFunction;
 use Illuminate\Http\Request;
+use Auth;
 
 class JobController extends Controller
 {
@@ -36,7 +37,54 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        // return response()->json($request);
+        //get user
+        $user =  Auth::user();
+        //company
+        $company = \App\Company::find($request->company['id']);
+        //  return response()->json([$company, $user]);
+        //get job data
+        $Job = [
+
+            'title' => $request->job['title'],
+            'email'=> "",
+            'town' => $request->job['town'],
+            'user_id' => Auth::user()->id,
+            'type_id' => intval($request->job['type_id']),
+            'county_id'=>intval($request->job['county']),
+            'company_id'=>$company->id,
+            'company_name_hidden' => 1,
+            'no_of_positions' => $request->job['no_of_positions'],
+            'job_function_id' => $request->job['job_function_id'],
+            'description' => $request->job['description'], 
+            'deadline'=>$request->job['deadline'],
+            'location_id' => 1,           
+            'is_active' => 1,
+            'salary_range' => $request->job['salary_range'],
+            'responsibilities' => $request->job['responsibilities'],
+            'requirements' =>$request->job['requirements'],             
+            'education' => $request->job['certificate'],
+            'business_stream_id'=>$request->job['biz_stream'],
+            'applicationMethod'=>$request->job['applicationMethod'],
+            // 'applicationMethod'=>2, //this sets application for every job to worx, to be sorted
+            'applicationEmail'=>$request->job['applicationEmail'],
+            'applicationWebsite'=>$request->job['applicationWebsite'],
+            'applicationWorx'=>$request->job['applicationMethod'] == 3 ? 'true' : null,
+            'applicationInstructions'=>$request->job['applicationInstructions'],
+        ];
+
+
+        //create job with current user as user_id
+        $job = auth()->user()->job()->create($Job); //create job with current user as user_id
+        //associate job with company
+        $job->company()->associate($company);   
+        return response()->json($job);
+
+        //save job
+        $job->save();
+        return response($job->id, 200);
+        //return job data
     }
 
     /**
