@@ -61,6 +61,12 @@ class ProfileController extends Controller
 
             $profile = SeekerProfile::where('user_id', auth()->user()->id)->first();
 
+            if($request->has('bio') || $request->has('title')){
+                $profile->title = $request['title'] ? $request['title'] : $profile->title;
+                $profile->bio = $request['bio'] ? $request['bio'] : $profile->bio;   
+                 $profile->save() ;             
+            }
+
             if ($request->has('education')){
 
                 // $data = request()->validate([
@@ -131,14 +137,15 @@ class ProfileController extends Controller
                 $user->save();
 
                 // return response()->json(auth()->user()->with('seekerProfile')->get());
-                return response()->json(User::where('id',auth()->user()->id)->with('seekerProfile')->first());
-
-        // return \response()->json($user, 200);
-        // $profile = auth()->user()->seekerProfile()->create();
-        // $skills =explode(',', $request->skills);
-
-        // return redirect('/profile/'.$user->id);
-             }
+                
+                // return \response()->json($user, 200);
+                // $profile = auth()->user()->seekerProfile()->create();
+                // $skills =explode(',', $request->skills);
+                
+                // return redirect('/profile/'.$user->id);
+            }
+            return response()->json(User::where('id',auth()->user()->id)->with('seekerProfile')->first());
+            // return $request['bio'];
     }
 
     public function storeExperience(Request $request){
@@ -155,6 +162,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
+        return response()->json(SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails')->first());
 
     }
 
