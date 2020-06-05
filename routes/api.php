@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\County;
+use App\User;
+use App\SeekerProfile;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +20,33 @@ use App\County;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+  $user =User::where('id',auth()->user()->id);
+    return $user->with('seekerProfile')->first();
+    // $seekerProfile = $user->seekerProfile();
+    // return $seekerProfile->with('experienceDetails', 'educationDetails')->first();
+
+  });
 
 Route::group(['namespace' => 'Api'], function () {  //adds '\Api' before each controller in group
     
     Route::apiResource('jobs', 'JobController');
     Route::apiResource('companies', 'CompanyController');
+    Route::apiResource('profiles', 'ProfileController');
 });
+
+Route::middleware('auth:sanctum')->get('/init', 'HomeController@getJobFunctionsCertificateBizStreamLists');
 
 Route::get('/counties', function(){
   return response()->json(County::all(), 200);
 });
+
+Route::get('users/{id}', 'Api\UserController@show');
+
+Route::get('/profile', 'Api\ProfileController@profile');
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//   return $request->user();
+// });
 
 Route::post('/register', 'RegisterController@register');
 Route::post('/login', 'LoginController@login');
