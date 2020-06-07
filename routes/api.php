@@ -44,6 +44,8 @@ Route::get('users/{id}', 'Api\UserController@show');
 
 Route::get('/profile', 'Api\ProfileController@profile');
 
+Route::get('/search', 'Api\SearchController@search');
+
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //   return $request->user();
 // });
