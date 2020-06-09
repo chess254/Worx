@@ -162,12 +162,16 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        return response()->json(SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails')->first());
+        // return response()->json(SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails')->first());
+        $profile = SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails')->first();
+        $profile->image = $profile->getProfilePic();
+        return response()->json($profile);
 
     }
 
     public function profile(Request $request){
         // $profile = SeekerProfile::where('user_id', auth()->user()->id)->get();
+
         return response()->json(SeekerProfile::where('user_id', auth()->user()->id)->with('educationDetails','experienceDetails')->first()); 
 
     }

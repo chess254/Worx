@@ -7,6 +7,7 @@ use App\User;
 use App\SeekerProfile;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\JobController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,9 @@ Route::get('users/{id}', 'Api\UserController@show');
 Route::get('/profile', 'Api\ProfileController@profile');
 
 Route::get('/search', 'Api\SearchController@search');
+
+Route::post('jobs/{job}/apply', 'Api\JobController@apply');
+Route::get('applications', 'Api\JobController@applications');  
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //   return $request->user();

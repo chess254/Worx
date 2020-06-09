@@ -63,4 +63,8 @@ class Company extends Model implements HasMedia
     public function user(){
         return $this->belongsTo(\App\User::class);
     }
+
+    public function applications(){
+        return $this->hasMany(\App\Application::class);
+    }
 }

@@ -7,9 +7,11 @@ use App\Job;
 use App\User;
 Use App\County;
 use App\BusinessStream;
+use App\SeekerProfile;
 use App\Application;
 use App\JobFunction;
 use Illuminate\Http\Request;
+use App\Jobs\SendEmailQueue;
 use Auth;
 
 class JobController extends Controller
@@ -124,5 +126,66 @@ class JobController extends Controller
     public function destroy(Job $job)
     {
         //
+    }
+
+    public function apply(Request $request,Job $Job){
+        //check authenticated user
+        if(!Auth::check()){
+            // return redirect('login')->with('message', 'Login to apply');
+            return \response()->json(['message'=>'not logged in']);
+        }
+
+        if(auth()->user()->user_type_id != 1){
+            // return redirect()->back()->with('message', 'login as job seeker to apply for job');
+            return response()->json(['message'=> 'login as candidate to apply']);
+        }
+
+        //check if user has created profile, if not redirect to create profile page
+        if(!SeekerProfile::where('user_id', auth()->user()->id)->first()){
+            // return redirect()->route('profile.show',auth()->user()->id)->with('message', 'Create your profile first to apply');
+            return response()->json(['message'=> 'create profile to apply']);
+        }
+        //check if user has already applied for this job
+        if(count(Application::where('job_id', $Job->id)->where('applicant_id',auth()->user()->seekerProfile->id)->get())){
+            // return redirect()->back()->with('message', 'You had already applied for this job');
+            return response()->json(['message'=> 'you have already applied for this job']);
+        }
+        
+        $application = new Application;
+        $application->employer_id = $Job->user_id;
+        $application->job_id = $Job->id;
+        $application->company_id = $Job->company->id;
+        $application->applicant_id = auth()->user()->seekerProfile->id;
+        $application->user_id = auth()->user()->id;
+        $application->save();
+
+        foreach ($request->input('document', []) as $file) {
+            //todo: findout how to add media from request(url) instead of path, then save to disk
+            $application->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');//link file in storage to application
+        }
+        //send application sent notice to email queue for user and employer
+        SendEmailQueue::dispatch($request->user(),Job::findOrFail($Job->id));
+
+        // return redirect()->back()->with('message', 'Application Submitted');
+        return response()->json(['message'=> 'Application Submitted']);
+    }
+    
+
+    // fetch applications, for both seeker and employer
+    public function applications(Request $request){
+
+        if(auth()->user() && auth()->user()->user_type_id == 2){        
+        $applications = Application::where('employer_id',auth()->user()->id)->with(['applicant', 'user', 'employer'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+        // return view('applications', compact('applications'));
+        }
+
+        if(auth()->user() && auth()->user()->user_type_id == 1){        
+            $applications = Application::where('user_id',auth()->user()->id)->with(['job', 'user', 'employer', 'company'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+            // return view('applications', compact('applications'));
+            return response()->json($applications);
+            }
+    
+
+        return redirect()->route('home');
     }
 }
