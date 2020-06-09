@@ -32,4 +32,8 @@ class Application extends Model implements HasMedia
     public function applicant(){
         return $this->belongsTo(\App\SeekerProfile::class);
     }
+
+    public function company(){
+        return $this->belongsTo(\App\Company::class);
+    }
 }

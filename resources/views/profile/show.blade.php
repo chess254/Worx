@@ -158,7 +158,7 @@
                         <div class="col-lg-12">
                           
                             <div class="job-list-desc candidates-profile-exp-desc">
-                                <h6 class="f-19 mb-1">@foreach($profile->skills as $skill)<span class="badge badge-success badge-sm" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>                              
+                                {{-- <h6 class="f-19 mb-1">@foreach($profile->skills as $skill)<span class="badge badge-success badge-sm" style="padding: 10px; margin: 5px;">{{$skill}}</span>@endforeach</h6>                               --}}
                             </div>
                         </div>
                     </div>
@@ -761,19 +761,12 @@
                           
                             <div class="job-list-desc candidates-profile-exp-desc">
 
-                                {{-- @foreach($profile->skills as $skill) --}}
-                                <div class="f-19 mb-2 d-flex"  style="justify-content: center;">
-                                    @foreach($profile->skills as $skill)
-                                        <button class="btn btn-secondary-outline rounded-pill btn-sm" style="margin:3px;">{{$skill}}</button>
-                                    @endforeach</div>
-                                {{-- @endforeach --}}
-                                {{-- <p class="text-muted mb-0 f-16">PHP Developer</p>
-                                <p class="text-muted mb-0 f-16">Jan 2016 - Dec 2017</p>
-                                <p class="text-muted mb-0 f-16">Salary : $950</p>
-                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-bank mr-2"></i>www.blog.helpyea.com
-                                </p>
-                                <p class="text-muted mb-0 f-16"><i class="mdi mdi-map-marker mr-2"></i>1919 Ward Road
-                                    West Nyack, NY 10994</p> --}}
+                                    <div class="f-19 mb-2 d-flex"  style="justify-content: center;">
+                                        @foreach($profile->skills as $skill)
+                                            <button class="btn btn-secondary-outline rounded-pill btn-sm" style="margin:3px;">{{$skill}}</button>
+                                        @endforeach</div> 
+                                
+                              
                             </div>
                         </div>
                     </div>
