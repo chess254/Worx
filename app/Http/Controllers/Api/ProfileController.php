@@ -10,6 +10,13 @@ use App\EducationDetails;
 use App\ExperienceDetails;
 class ProfileController extends Controller
 {
+
+    //something was wrong with csrf, find out what happened here
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:sanctum')->only(['update']);
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -183,9 +190,18 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function avatar(Request $request)
     {
-        //
+        $profile = SeekerProfile::where('user_id', $request->id)->first();
+        
+        if($request->hasFile('image')){
+            // return response()->json([$request->hasFile('image'), $request->image->getClientOriginalName(), $request->id ]);
+            $profile->addMedia(storage_path($request->file('image')))->toMediaCollection('profilepics');
+            $profile->fresh();
+            $profile->image = $profile->getProfilePic();
+            $profile->save();
+            return response()->json($profile, 200);
+        }
     }
 
     /**

@@ -54,6 +54,8 @@ Route::get('applications', 'Api\JobController@applications');
 //   return $request->user();
 // });
 
+Route::post('/avatar', 'Api\ProfileController@avatar');
+
 Route::post('/register', 'RegisterController@register');
 Route::post('/login', 'LoginController@login');
 Route::post('/logout', 'LoginController@logout');
