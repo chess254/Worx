@@ -196,7 +196,7 @@ class ProfileController extends Controller
         
         if($request->hasFile('image')){
             // return response()->json([$request->hasFile('image'), $request->image->getClientOriginalName(), $request->id ]);
-            $profile->addMedia(storage_path($request->file('image')))->toMediaCollection('profilepics');
+            $profile->addMedia($request->file('image'))->toMediaCollection('profilepics');
             $profile->fresh();
             $profile->image = $profile->getProfilePic();
             $profile->save();
