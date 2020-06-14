@@ -42,6 +42,8 @@ class TweakJobsTable extends Migration
             // $table->integer('views')->default(0)->nullable();
             $table->text('image')->default('no_image.jpg');
             $table->unsignedInteger('views')->default(0);
+            $table->unsignedInteger('career_level')->default(1)->nullable();
+            $table->unsignedInteger('experience')->default(1)->nullable();
             $table->timestamps();
         });
     }

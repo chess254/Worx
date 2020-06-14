@@ -8,8 +8,16 @@ use App\User;
 use App\SeekerProfile;
 use App\EducationDetails;
 use App\ExperienceDetails;
+use Illuminate\Support\Arr;
 class ProfileController extends Controller
 {
+
+    //something was wrong with csrf, find out what happened here
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:sanctum')->only(['update']);
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -163,7 +171,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         // return response()->json(SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails')->first());
-        $profile = SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails')->first();
+        $profile = SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails','favourite_jobs')->first();
         $profile->image = $profile->getProfilePic();
         return response()->json($profile);
 
@@ -172,7 +180,7 @@ class ProfileController extends Controller
     public function profile(Request $request){
         // $profile = SeekerProfile::where('user_id', auth()->user()->id)->get();
 
-        return response()->json(SeekerProfile::where('user_id', auth()->user()->id)->with('educationDetails','experienceDetails')->first()); 
+        return response()->json(SeekerProfile::where('user_id', auth()->user()->id)->with('educationDetails','experienceDetails','favourite_jobs')->first()); 
 
     }
 
@@ -183,9 +191,20 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function avatar(Request $request)
     {
-        //
+        $profile = SeekerProfile::where('user_id', $request->id)->with('user','educationDetails','experienceDetails','favourite_jobs')->first();
+        // $profile = SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails')->first();
+        // $profile->image = $profile->getProfilePic();
+        
+        if($request->hasFile('image')){
+            // return response()->json([$request->hasFile('image'), $request->image->getClientOriginalName(), $request->id ]);
+            $profile->addMedia($request->file('image'))->toMediaCollection('profilepics');
+            $profile->fresh();
+            $profile->image = $profile->getProfilePic();
+            $profile->save();
+            return response()->json($profile, 200);
+        }
     }
 
     /**
@@ -198,4 +217,5 @@ class ProfileController extends Controller
     {
         //
     }
+
 }

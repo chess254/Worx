@@ -15,7 +15,7 @@ class LoginController extends Controller
         ]);
 
         if(Auth::attempt($request->only('email', 'password'))){
-            return response()->json(Auth::user(), 200);
+            return response()->json(Auth::user()->seekerProfile()->with('educationDetails','experienceDetails','favourite_jobs')->first(), 200);
         }
 
         throw ValidationException::withMessages([

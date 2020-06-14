@@ -51,4 +51,9 @@ class SeekerProfile extends Model implements HasMedia
     public function experienceDetails(){
         return $this->hasMany(\App\ExperienceDetails::class)->orderBy('end_date', 'DESC');
     }
+
+    public function favourite_jobs()
+    {
+        return $this->belongsToMany(Job::class, 'favourites')->withTimeStamps();
+    }
 }

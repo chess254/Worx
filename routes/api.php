@@ -50,9 +50,13 @@ Route::get('/search', 'Api\SearchController@search');
 Route::post('jobs/{job}/apply', 'Api\JobController@apply');
 Route::get('applications', 'Api\JobController@applications');  
 
+Route::post('/toggle-fav-job/{id}', 'Api\JobController@favouriteJob');
+
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //   return $request->user();
 // });
+
+Route::post('/avatar', 'Api\ProfileController@avatar');
 
 Route::post('/register', 'RegisterController@register');
 Route::post('/login', 'LoginController@login');
