@@ -188,4 +188,21 @@ class JobController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function favouriteJob($job_id)
+    {
+        // return Auth::user()->seekerProfile;
+        if ($job = Job::find($job_id)){
+            Auth::user()->seekerProfile()->first()->favourite_jobs()->attach(Job::find($job_id));
+        }
+        return Auth::user()->seekerProfile()->first()->favourite_jobs->pluck('id');
+    }
+
+    public function unFavouriteJob($job_id)
+    {
+        Auth::user()->seekerProfile()->first()->favourite_jobs()->detach(Job::find($job_id));
+
+        return Auth::user()->seekerProfile()->first()->favourite_jobs->pluck('id');
+    }
 }
+

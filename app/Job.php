@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Favourite;
 
 class Job extends Model
 {
@@ -66,5 +67,20 @@ class Job extends Model
         return $this->hasMany(\App\Application::class);
     }
 
+    public function favourited_by()
+    {
+        return $this->belongsToMany(SeekerProfile::class, 'favourites')->withTimeStamps();
+    }
 
+        /**
+     * Determine whether a job has been marked as favorite by a seeker.
+     *
+     * @return boolean
+     */
+    public function favorited()
+    {
+        return (bool) Favorite::where('seeker_id', Auth::user()->seekerProfile()->id)
+                            ->where('job_id', $this->id)
+                            ->first();
+    }
 }

@@ -8,6 +8,7 @@ use App\User;
 use App\SeekerProfile;
 use App\EducationDetails;
 use App\ExperienceDetails;
+use Illuminate\Support\Arr;
 class ProfileController extends Controller
 {
 
@@ -170,7 +171,7 @@ class ProfileController extends Controller
     public function show($id)
     {
         // return response()->json(SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails')->first());
-        $profile = SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails')->first();
+        $profile = SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails','favourite_jobs')->first();
         $profile->image = $profile->getProfilePic();
         return response()->json($profile);
 
@@ -179,7 +180,7 @@ class ProfileController extends Controller
     public function profile(Request $request){
         // $profile = SeekerProfile::where('user_id', auth()->user()->id)->get();
 
-        return response()->json(SeekerProfile::where('user_id', auth()->user()->id)->with('educationDetails','experienceDetails')->first()); 
+        return response()->json(SeekerProfile::where('user_id', auth()->user()->id)->with('educationDetails','experienceDetails','favourite_jobs')->first()); 
 
     }
 
@@ -192,7 +193,9 @@ class ProfileController extends Controller
      */
     public function avatar(Request $request)
     {
-        $profile = SeekerProfile::where('user_id', $request->id)->first();
+        $profile = SeekerProfile::where('user_id', $request->id)->with('user','educationDetails','experienceDetails','favourite_jobs')->first();
+        // $profile = SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails')->first();
+        // $profile->image = $profile->getProfilePic();
         
         if($request->hasFile('image')){
             // return response()->json([$request->hasFile('image'), $request->image->getClientOriginalName(), $request->id ]);
@@ -214,4 +217,5 @@ class ProfileController extends Controller
     {
         //
     }
+
 }
