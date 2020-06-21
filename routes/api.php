@@ -26,6 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     // $seekerProfile = $user->seekerProfile();
 
     
+
+    
     // return $seekerProfile->with('experienceDetails', 'educationDetails')->first();
 
   });
