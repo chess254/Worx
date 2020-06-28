@@ -16,6 +16,11 @@ use Auth;
 
 class JobController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:sanctum')->only(['favouriteJobs']);
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -191,18 +196,15 @@ class JobController extends Controller
 
     public function favouriteJob($job_id)
     {
-        // return Auth::user()->seekerProfile;
-        if ($job = Job::find($job_id)){
-            Auth::user()->seekerProfile()->first()->favourite_jobs()->attach(Job::find($job_id));
-        }
-        return Auth::user()->seekerProfile()->first()->favourite_jobs->pluck('id');
+        $profile = Auth::user()->seekerProfile()->first();
+        $profile->favourite_jobs()->toggle($job_id);
+        return $profile->fresh()->favourite_jobs;
     }
 
-    public function unFavouriteJob($job_id)
-    {
-        Auth::user()->seekerProfile()->first()->favourite_jobs()->detach(Job::find($job_id));
-
-        return Auth::user()->seekerProfile()->first()->favourite_jobs->pluck('id');
+    public function favouriteJobs(){
+        $profile = Auth::user()->seekerProfile()->first();
+        $favourites  =  $profile->favourite_jobs->pluck('id');
+        return  response()->json($favourites);
     }
 }
 
