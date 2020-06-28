@@ -126,7 +126,7 @@ class ProfileController extends Controller
              if($request->has('user_details')){       
                     $user = auth()->user();
                     // $user =User::where('id',auth()->user()->id);
-
+                    // $profile->marital_status = $request->user_details['marital_status'] ;
                     $user->name =  $request->user_details['name'] ? $request->user_details['name'] : $user->name ;
                     $user->middle_name = $request->user_details['middle_name'] ? $request->user_details['middle_name'] : $user->middle_name;
                     $user->second_name = $request->user_details['surname'] ? $request->user_details['surname'] : $user->second_name;
@@ -179,7 +179,7 @@ class ProfileController extends Controller
 
     public function profile(Request $request){
         // $profile = SeekerProfile::where('user_id', auth()->user()->id)->get();
-
+        
         return response()->json(SeekerProfile::where('user_id', auth()->user()->id)->with('educationDetails','experienceDetails','favourite_jobs')->first()); 
 
     }

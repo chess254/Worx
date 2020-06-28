@@ -49,12 +49,18 @@ Route::get('users/{id}', 'Api\UserController@show');
 
 Route::get('/profile', 'Api\ProfileController@profile');
 
+Route::post('edit-experience/{id}', 'Api\ExperienceDetailsController@update');
+Route::post('edit-education/{id}', 'Api\EducationDetailsController@update');
+Route::delete('education/{id}', 'Api\EducationDetailsController@destroy');
+Route::delete('experience/{id}', 'Api\ExperienceDetailsController@destroy');
+
 Route::get('/search', 'Api\SearchController@search');
 
 Route::post('jobs/{job}/apply', 'Api\JobController@apply');
 Route::get('applications', 'Api\JobController@applications');  
 
 Route::post('/toggle-fav-job/{id}', 'Api\JobController@favouriteJob');
+Route::get('/favourite-jobs', 'Api\JobController@favouriteJobs');
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //   return $request->user();
