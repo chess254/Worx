@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Api;
 use App\EducationDetails;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 use Auth;
 
 class EducationDetailsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of resource
      *
      * @return \Illuminate\Http\Response
      */
