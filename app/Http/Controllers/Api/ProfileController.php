@@ -125,6 +125,7 @@ class ProfileController extends Controller
             // $profile->experienceDetails()->create($request->experience);
              if($request->has('user_details')){       
                     $user = auth()->user();
+                    
                     // $user =User::where('id',auth()->user()->id);
                     // $profile->marital_status = $request->user_details['marital_status'] ;
                     $user->name =  $request->user_details['name'] ? $request->user_details['name'] : $user->name ;
@@ -133,6 +134,7 @@ class ProfileController extends Controller
                     $user->city = $request->user_details['city'] ? $request->user_details['city'] : $user->city;
                     $user->county_id = $request->user_details['county_id'] ? $request->user_details['county_id'] : $user->county_id;
                     $user->country = $request->user_details['country'] ? $request->user_details['country'] : $user->country;
+                    $profile->marital_status = $request->user_details['marital_status'] ? $request->user_details['marital_status'] : $profile->marital_status;    
                     $user->date_of_birth = $request->user_details['date_of_birth'] ? $request->user_details['date_of_birth'] : $user->date_of_birth;
                     $user->gender = $request->user_details['gender'] ? $request->user_details['gender'] : $user->gender;
                     $user->phone = $request->user_details['phone'] ? $request->user_details['phone'] : $user->phone;

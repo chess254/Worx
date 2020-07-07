@@ -203,7 +203,7 @@ class JobController extends Controller
 
     public function favouriteJobs(){
         $profile = Auth::user()->seekerProfile()->first();
-        $favourites  =  $profile->favourite_jobs->pluck('id');
+        $favourites  =  $profile->favourite_jobs()->with(['company', 'county'])->get();
         return  response()->json($favourites);
     }
 }
