@@ -26,7 +26,11 @@ class SeekerProfile extends Model implements HasMedia
         $urlstring = Url::fromString($this->getFirstMediaUrl('profilepics'))->getPath();
         return $this->getFirstMediaUrl('profilepics') ? url($urlstring) :  url('storage/no_profile_pic.png');
     }
+    public function getImageAttribute()
+    {           $urlstring = Url::fromString($this->getFirstMediaUrl('profilepics'))->getPath();
 
+        return $this->getFirstMediaUrl('profilepics') ? url($urlstring) :  url('/storage/no_profile_pic.png');
+    }
     //from spatie
     public function registerMediaConversions (Media $media = null) : void
     {
