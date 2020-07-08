@@ -26,7 +26,7 @@ class Company extends Model implements HasMedia
     protected $casts = ['services'=>'array'];
     protected $dates = ['date_of_formation'];
 
-        // think about removing this method in favour of the one below
+        // think about removing this method in favour of the one below 
     public function getLogo(){
 
         // $url = Url::fromString('https://spatie.be:8000/opensource/12324/232131321/123213213/231-123123.jpg');
