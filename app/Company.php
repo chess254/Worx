@@ -26,13 +26,19 @@ class Company extends Model implements HasMedia
     protected $casts = ['services'=>'array'];
     protected $dates = ['date_of_formation'];
 
-
+        // think about removing this method in favour of the one below 
     public function getLogo(){
 
         // $url = Url::fromString('https://spatie.be:8000/opensource/12324/232131321/123213213/231-123123.jpg');
 
         $urlstring = Url::fromString($this->getFirstMediaUrl('logos','square'))->getPath();
         // dd($url->getPath(), $urlstring);
+        return $this->getFirstMediaUrl('logos','square') ? url($urlstring) :  url('/storage/no_logo.png');
+    }
+
+    public function getCompanyLogoAttribute()
+    {           $urlstring = Url::fromString($this->getFirstMediaUrl('logos','square'))->getPath();
+
         return $this->getFirstMediaUrl('logos','square') ? url($urlstring) :  url('/storage/no_logo.png');
     }
 

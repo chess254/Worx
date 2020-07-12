@@ -29,7 +29,7 @@ class JobController extends Controller
     public function index()
     {
         $totalJobs = Job::all()->count();
-        $jobList = Job::with('location','company','county','businessStream','type','jobFunction')->orderBy('created_at', 'desc')->paginate(10);
+        $jobList = Job::with('location','company','company.media','county','businessStream','type','jobFunction')->orderBy('created_at', 'desc')->paginate(5);
         // return $jobList;
     
         //  dd($jobList->links());
@@ -203,7 +203,7 @@ class JobController extends Controller
 
     public function favouriteJobs(){
         $profile = Auth::user()->seekerProfile()->first();
-        $favourites  =  $profile->favourite_jobs->pluck('id');
+        $favourites  =  $profile->favourite_jobs()->with(['company', 'county'])->get();
         return  response()->json($favourites);
     }
 }
