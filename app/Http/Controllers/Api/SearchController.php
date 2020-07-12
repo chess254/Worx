@@ -27,7 +27,7 @@ class SearchController extends Controller
            public $county; 
            public $category; 
 
-    public $paginate_value = 10;
+    public $paginate_value = 5;
 
     public function __construct(Request $request){
     //  $this->counties = County::all();
@@ -50,7 +50,7 @@ class SearchController extends Controller
         $categories = JobFunction::all()->toArray();  
         // dd($categories);
         $totalJobs = Job::all()->count();
-        $joblist = Job::with('location','company','county','businessStream','type','jobFunction')->orderBy('created_at', 'desc')->paginate(20);
+        $joblist = Job::with('location','company','county','businessStream','type','jobFunction')->orderBy('created_at', 'desc')->paginate(5);
         // return view('search.index', compact(['joblist', 'totalJobs','categories','counties']));
         return view('search.index',compact(['categories','counties','joblist']));
     }

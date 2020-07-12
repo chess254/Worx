@@ -205,6 +205,7 @@ class ProfileController extends Controller
             $profile->fresh();
             $profile->image = $profile->getProfilePic();
             $profile->save();
+            $profile->fresh();
             return response()->json($profile, 200);
         }
     }

@@ -29,7 +29,7 @@ class JobController extends Controller
     public function index()
     {
         $totalJobs = Job::all()->count();
-        $jobList = Job::with('location','company','company.media','county','businessStream','type','jobFunction')->orderBy('created_at', 'desc')->paginate(10);
+        $jobList = Job::with('location','company','company.media','county','businessStream','type','jobFunction')->orderBy('created_at', 'desc')->paginate(5);
         // return $jobList;
     
         //  dd($jobList->links());
