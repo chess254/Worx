@@ -52,6 +52,8 @@ class CompanyController extends Controller
                 'linked_in'=>$request->company['linked_in'],
                 'number_of_employees'=>$request->company['no_of_employees'],
                 'date_of_formation'=>$request->company['date_of_formation'],
+
+                
             
             ]
         );
