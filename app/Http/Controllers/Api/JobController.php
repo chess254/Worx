@@ -17,6 +17,7 @@ use Auth;
 class JobController extends Controller
 {
 
+    public $paginate_value = 5;
     // public function __construct()
     // {
     //     $this->middleware('auth:sanctum')->only(['favouriteJobs']);
@@ -29,7 +30,7 @@ class JobController extends Controller
     public function index()
     {
         $totalJobs = Job::all()->count();
-        $jobList = Job::with('location','company','company.media','county','businessStream','type','jobFunction')->orderBy('created_at', 'desc')->paginate(5);
+        $jobList = Job::with('location','company','company.media','county','businessStream','type','jobFunction')->orderBy('created_at', 'desc')->paginate($this->paginate_value);
         // return $jobList;
     
         //  dd($jobList->links());

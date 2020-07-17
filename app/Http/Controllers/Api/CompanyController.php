@@ -30,6 +30,11 @@ class CompanyController extends Controller
         if(Auth::guest()){
             return response()->json('unauthorized');
         }
+        $request->validate([
+            'email'=>['required', 'email'],
+            'name'=>['required'],
+            'description'=>['required']
+        ]);
         $company = \App\Company::firstOrNew(
             [
                 'email'=>$request->email,
@@ -60,10 +65,14 @@ class CompanyController extends Controller
 
         $company = auth()->user()->companies()->save($company);
         $company->fresh();
-            if($request->hasFile('logo') && $request->file('logo')->isValid()){
-                $company->addMediaFromRequest('logo')->toMediaCollection('logos');
-            }
-            return response()->json(Company::where('id',$company->id)->with('businessStream', 'jobs')->get());
+        if($request->hasFile('logo') && $request->file('logo')->isValid()){
+            $company->addMediaFromRequest('logo')->toMediaCollection('logos');
+        }
+        return response()->json(Company::where('id',$company->id)->with('businessStream', 'jobs')->get());
+        throw ValidationException::withMessages([
+            'email.required' => ['Invalid Credentials...']
+
+        ]);
     }
 
     /**
@@ -74,7 +83,7 @@ class CompanyController extends Controller
      */
     public function show($company)
     {
-        $Company = Company::where('id', $company)->with('businessStream','jobs')
+        $Company = Company::where('id', $company)->with('businessStream','jobs', 'jobs.county', 'jobs.jobFunction')
         ->first();
 
         return $Company;

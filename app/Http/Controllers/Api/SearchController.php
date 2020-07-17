@@ -50,7 +50,7 @@ class SearchController extends Controller
         $categories = JobFunction::all()->toArray();  
         // dd($categories);
         $totalJobs = Job::all()->count();
-        $joblist = Job::with('location','company','county','businessStream','type','jobFunction')->orderBy('created_at', 'desc')->paginate(5);
+        $joblist = Job::with('location','company','county','businessStream','type','jobFunction')->orderBy('created_at', 'desc')->paginate($paginate_value);
         // return view('search.index', compact(['joblist', 'totalJobs','categories','counties']));
         return view('search.index',compact(['categories','counties','joblist']));
     }
