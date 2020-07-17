@@ -23,6 +23,7 @@ class Company extends Model implements HasMedia
     // ];
 
     protected $guarded = [];
+    // protected $casts = ['services'=>'array'];
     protected $casts = ['services'=>'array'];
     protected $dates = ['date_of_formation'];
 

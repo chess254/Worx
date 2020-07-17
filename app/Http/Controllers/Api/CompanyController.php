@@ -30,11 +30,6 @@ class CompanyController extends Controller
         if(Auth::guest()){
             return response()->json('unauthorized');
         }
-        //  if($request->hasFile('logo')){
-        //     return $request->file('logo');
-        //  }
-
-        //  return "no file";
         $company = \App\Company::firstOrNew(
             [
                 'email'=>$request->email,
@@ -42,8 +37,8 @@ class CompanyController extends Controller
             ],
             [
                 'description' => $request->description,
-                'services'=>$request->services,
-                // 'services'=>['services','render','all', 'lists,
+                // 'services'=>$request->services, this works for the laravel frontend
+                'services'=>explode(",", $request->services),
                 'business_stream_id'=>$request->business_stream_id,
                 'website' => $request->website,
                 'city'=>$request->city,
