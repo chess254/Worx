@@ -67,6 +67,7 @@ Route::get('/favourite-jobs', 'Api\JobController@favouriteJobs');
 // });
 
 Route::post('/avatar', 'Api\ProfileController@avatar');
+Route::post('/logo/{company_id}', 'Api\CompanyController@avatar');
 
 Route::post('/register', 'RegisterController@register');
 Route::post('/login', 'LoginController@login');
