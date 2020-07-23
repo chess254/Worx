@@ -183,6 +183,7 @@ class JobController extends Controller
         if(auth()->user() && auth()->user()->user_type_id == 2){        
         $applications = Application::where('employer_id',auth()->user()->id)->with(['applicant', 'user', 'employer'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
         // return view('applications', compact('applications'));
+        return response()->json($applications);
         }
 
         if(auth()->user() && auth()->user()->user_type_id == 1){        
@@ -192,7 +193,7 @@ class JobController extends Controller
             }
     
 
-        return redirect()->route('home');
+        return response()->json(auth()->user());
     }
 
     public function favouriteJob($job_id)
