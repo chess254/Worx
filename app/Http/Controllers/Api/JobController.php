@@ -181,7 +181,7 @@ class JobController extends Controller
     public function applications(Request $request){
 
         if(auth()->user() && auth()->user()->user_type_id == 2){        
-        $applications = Application::where('employer_id',auth()->user()->id)->with(['applicant', 'user', 'employer'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+        $applications = Application::where('employer_id',auth()->user()->id)->with(['applicant', 'user', 'employer','job', 'company'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
         // return view('applications', compact('applications'));
         return response()->json($applications);
         }
@@ -207,6 +207,18 @@ class JobController extends Controller
         $profile = Auth::user()->seekerProfile()->first();
         $favourites  =  $profile->favourite_jobs()->with(['company', 'county'])->get();
         return  response()->json($favourites);
+    }
+
+    public function myJobPosts(){
+        
+        if(auth()->user() && auth()->user()->user_type_id == 2){   
+            $user_id = auth()->user()->id;
+            $JobsPostedByUser = Job::where('user_id', $user_id)->orderBy('created_at', 'desc')->with('applications','type','company','county')->get();
+            // return view('myjobs', compact('JobsPostedByUser'));
+            return response()->json($JobsPostedByUser);
+        }
+
+        return response()->json('unauthorized');
     }
 }
 
