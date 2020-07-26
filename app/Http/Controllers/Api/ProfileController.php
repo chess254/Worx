@@ -68,11 +68,12 @@ class ProfileController extends Controller
         // ]);
 
             $profile = SeekerProfile::where('user_id', auth()->user()->id)->first();
+            
 
             if($request->has('bio') || $request->has('title')){
                 $profile->title = $request['title'] ? $request['title'] : $profile->title;
                 $profile->bio = $request['bio'] ? $request['bio'] : $profile->bio;   
-                 $profile->save() ;             
+                $profile->save() ;             
             }
 
             if ($request->has('education')){
@@ -83,10 +84,7 @@ class ProfileController extends Controller
                 //     'add_certificate' => 'required',
                 //     'add_from_date' => 'required',
                 //     'add_to_date' => 'required'
-                // ]);
-
-
-                $newEduc = new \App\EducationDetails();
+                // ]);$newEduc = new \App\EducationDetails();
 
                 $newEduc->institute = $request->education['institute'];
                 $newEduc->course = $request->education['course'];
@@ -95,10 +93,9 @@ class ProfileController extends Controller
                 $newEduc->completion_date = $request->education['completion_date'];
                 $newEduc->grade = $request->education['grade'];
                 $newEduc->description = $request->education['description'];
-                // $profile = SeekerProfile::where('user_id', auth()->user()->id)->first();
-                $newEducEntry = $profile->educationDetails()->save($newEduc);
 
-                    // $newExperienceEntry = $profile->educationDetails()->save($newExperience);
+                $newEducEntry = $profile->educationDetails()->save($newEduc);
+                
                 return response()->json($profile->educationDetails);
             }
 
@@ -116,46 +113,41 @@ class ProfileController extends Controller
                 $newExperience->job_location_country = $request->experience['job_location_country'];
                 $newExperience->is_current_job = $request->experience['is_current_job'];
 
-                // $profile = SeekerProfile::where('user_id', auth()->user()->id)->first();
                 $newExperienceEntry = $profile->experienceDetails()->save($newExperience);
                 return response()->json($profile->experienceDetails);
             }
 
+            if($request->has('user_details')){       
+                $user = auth()->user();
 
-            // $profile->experienceDetails()->create($request->experience);
-             if($request->has('user_details')){       
-                    $user = auth()->user();
-                    
-                    // $user =User::where('id',auth()->user()->id);
-                    // $profile->marital_status = $request->user_details['marital_status'] ;
-                    $user->name =  $request->user_details['name'] ? $request->user_details['name'] : $user->name ;
-                    $user->middle_name = $request->user_details['middle_name'] ? $request->user_details['middle_name'] : $user->middle_name;
-                    $user->second_name = $request->user_details['surname'] ? $request->user_details['surname'] : $user->second_name;
-                    $user->city = $request->user_details['city'] ? $request->user_details['city'] : $user->city;
-                    $user->county_id = $request->user_details['county_id'] ? $request->user_details['county_id'] : $user->county_id;
-                    $user->country = $request->user_details['country'] ? $request->user_details['country'] : $user->country;
-                    $profile->marital_status = $request->user_details['marital_status'] ? $request->user_details['marital_status'] : $profile->marital_status;    
-                    $user->date_of_birth = $request->user_details['date_of_birth'] ? $request->user_details['date_of_birth'] : $user->date_of_birth;
-                    $user->gender = $request->user_details['gender'] ? $request->user_details['gender'] : $user->gender;
-                    $user->phone = $request->user_details['phone'] ? $request->user_details['phone'] : $user->phone;
-                    $user->website = $request->user_details['website'] ? $request->user_details['website'] : $user->website;
-                    $user->address = $request->user_details['address'] ? $request->user_details['address'] : $user->address;
-                    
-                    // return "no data";
+                $user->name =  $request->name ? $request->name : $user->name ;
+                $user->middle_name = $request->middle_name ? $request->middle_name : $user->middle_name;
+                $user->second_name = $request->surname ? $request->surname : $user->second_name;
+                $user->city = $request->city ? $request->city : $user->city;
+                $user->county_id = $request->county_id ? $request->county_id : $user->county_id;
+                $user->country = $request->country ? $request->country : $user->country;
+                $profile->marital_status = $request->marital_status ? $request->marital_status : $profile->marital_status;    
+                $user->date_of_birth = $request->date_of_birth ? $request->date_of_birth : $user->date_of_birth;
+                $user->gender = $request->gender ? $request->gender : $user->gender;
+                $user->phone = $request->phone ? $request->phone : $user->phone;
+                $user->website = $request->website ? $request->website : $user->website;
+                $user->address = $request->address ? $request->address : $user->address;
 
-
+                $profile->save();
                 $user->save();
-
-                // return response()->json(auth()->user()->with('seekerProfile')->get());
-                
-                // return \response()->json($user, 200);
-                // $profile = auth()->user()->seekerProfile()->create();
-                // $skills =explode(',', $request->skills);
-                
-                // return redirect('/profile/'.$user->id);
             }
+            if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
+
+                $profile->addMedia($request->file('avatar'))->toMediaCollection('profilepics');
+                $profile->fresh();
+                $profile->image = $profile->getProfilePic();
+                $profile->save();
+                // $profile->fresh();
+                // return response()->json($profile, 200);
+                
+            }
+
             return response()->json(User::where('id',auth()->user()->id)->with('seekerProfile')->first());
-            // return $request['bio'];
     }
 
     public function storeExperience(Request $request){

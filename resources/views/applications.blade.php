@@ -50,14 +50,14 @@
                                                 
                                                 
                                                 <p class="">
-                                                    @foreach($application->applicant->skills as $skill)
+                                                    {{-- @foreach($application->applicant->skills as $skill)
                                                         <button class="btn btn-dark btn-sm badge p-2 mb-1" style="" disabled><small>{{ $skill }}</small> </button> 
-                                                    @endforeach
+                                                    @endforeach --}}
                                                 </p>
                                                 @if (count($application->getMedia('document') ) > 0)
                                                     <div class="" style="">
                                                     @foreach($application->getMedia('document') as $media)
-                                                        <a class="badge badge-sm badge-warning" href="{{route('downloadone', $media)}}"><i class="mdi mdi-paperclip" style="color:white"></i><small>{{$media->id }}</small></a> 
+                                                        <a class="badge badge-sm badge-warning" href="{{route('downloadone', $media)}}"><i class="mdi mdi-paperclip" style="color:white"></i><small>{{$media->name }}</small></a> 
                                                     @endforeach
                                                     <a class="badge badge-sm badge-success ml-4" href="{{route('download', $application)}}" ><i class="mdi mdi-paperclip" style="color:white"></i> <small>Download all attachments</small> </a>
                                                 </div>
