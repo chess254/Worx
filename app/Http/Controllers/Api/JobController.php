@@ -165,15 +165,28 @@ class JobController extends Controller
         $application->user_id = auth()->user()->id;
         $application->save();
 
-        foreach ($request->input('document', []) as $file) {
-            //todo: findout how to add media from request(url) instead of path, then save to disk
-            $application->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');//link file in storage to application
+        if ($request->hasFile('cv')) {
+            $application->addMediaFromRequest('cv')->setName('resume')->toMediaCollection('cv');
+            // same as
+            // $application->addMedia($request->file('cv'))->toMediaCollection('document');
         }
+
+        if ($request->hasFile('coverLetter')) {
+            $application->addMedia($request->file('coverLetter'))->setName('cover_letter')->toMediaCollection('cover_letter');
+        }
+
+        
+        // foreach ($request->input('document', []) as $file) {
+        //     //todo: findout how to add media from request(url) instead of path, then save to disk
+        //     $application->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('document');//link file in storage to application
+        // }
+        
         //send application sent notice to email queue for user and employer
-        SendEmailQueue::dispatch($request->user(),Job::findOrFail($Job->id));
+        // SendEmailQueue::dispatch($request->user(),Job::findOrFail($Job->id));
 
         // return redirect()->back()->with('message', 'Application Submitted');
         return response()->json(['message'=> 'Application Submitted']);
+        // return response()->json(['message'=>'nocv', $request->all()]);
     }
     
 
@@ -181,13 +194,20 @@ class JobController extends Controller
     public function applications(Request $request){
 
         if(auth()->user() && auth()->user()->user_type_id == 2){        
-        $applications = Application::where('employer_id',auth()->user()->id)->with(['applicant', 'user', 'employer','job', 'company'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+        $applications = Application::where('employer_id',auth()->user()->id)->with(['applicant', 'user', 'employer','job', 'company','media'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
         // return view('applications', compact('applications'));
+        $applicationWithCv = [];
+        foreach($applications as $application){
+            $application->cv = $application->getCv();
+            $application->coverLetter = $application->getCoverLetter();
+            // $applicationWithCv.push($application);
+            array_push($applicationWithCv, $application);
+        }
         return response()->json($applications);
         }
 
         if(auth()->user() && auth()->user()->user_type_id == 1){        
-            $applications = Application::where('user_id',auth()->user()->id)->with(['job', 'user', 'employer', 'company'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+            $applications = Application::where('user_id',auth()->user()->id)->with(['job', 'user', 'employer', 'company','media'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
             // return view('applications', compact('applications'));
             return response()->json($applications);
             }

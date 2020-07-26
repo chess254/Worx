@@ -5,12 +5,30 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Url\Url;
 
 class Application extends Model implements HasMedia
 {
     use InteractsWithMedia;
 
     protected $guarded = [];
+
+    public function getCv(){
+        $cvUrl = Url::fromString($this->getFirstMediaUrl('cv'))->getPath();
+        return $this->getFirstMediaUrl('cv') ? url($cvUrl) : url('storage/no_profile_pic.png');
+    }
+
+    public function getCoverLetter(){
+        $coverLetterUrl = Url::fromString($this->getFirstMediaUrl('cover_letter'))->getPath();
+        return $this->getFirstMediaUrl('cover_letter') ? url($coverLetterUrl) : url('storage/no_profile_pic.png');
+    }
+
+
+    // public function getCvAttribute(){
+    //     $cvUrl = Url::fromString($this->getFirstMediaUrl('cv'))->getPath();
+    //     return $this->getFirstMediaUrl('cv') ? url($cvUrl) : url('storage/no_profile_pic.png');
+    // }
 
     public function seekerProfiles(){
         return $this->hasMany(\App\SeekerProfile::class);
@@ -36,4 +54,14 @@ class Application extends Model implements HasMedia
     public function company(){
         return $this->belongsTo(\App\Company::class);
     }
+
+    //spatie media
+    public function registerMediaCollections(): void {
+        $this -> addMediaCollection('documents');
+    
+        $this -> addMediaCollection('cv');
+   
+        $this -> addMediaCollection('cover_letter');
+    }
+
 }
