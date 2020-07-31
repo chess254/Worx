@@ -33,6 +33,8 @@ class CreateCompanyTable extends Migration
             $table->string('number_of_employees')->nullable();
             $table->date('date_of_formation')->nullable();
             $table->text('company_logo')->default('no_logo.png')->nullable();
+            $table->unsignedInteger('views')->default(0);
+            $table->text('address')->nullable();
             $table->timestamps();
             
         });

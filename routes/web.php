@@ -16,7 +16,15 @@ use Illuminate\Http\Request;
 */
 
 Auth::routes();
+//DocumentViewer Library
+Route::any('ViewerJS/{all?}', function(){
 
+    return View::make('ViewerJS.index');
+});
+// Route::get('/ViewerJS', function(){
+//      return "viewerjs";
+//         // return View::make('ViewerJS.index');
+// });
 Route::get('/', 'HomeController@index')->name('home');
 
 // Route::get('/search', 'JobsController@index')->name('search');
@@ -106,4 +114,7 @@ Route::post('/attach', function(Request $request){
     }
     dd($path);
 });
+
+
+
 
