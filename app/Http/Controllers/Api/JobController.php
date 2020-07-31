@@ -192,9 +192,12 @@ class JobController extends Controller
 
     // fetch applications, for both seeker and employer
     public function applications(Request $request){
-
+        
         if(auth()->user() && auth()->user()->user_type_id == 2){        
+           
         $applications = Application::where('employer_id',auth()->user()->id)->with(['applicant', 'user', 'employer','job', 'company','media'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+
+       
         // return view('applications', compact('applications'));
         $applicationWithCv = [];
         foreach($applications as $application){
@@ -215,6 +218,40 @@ class JobController extends Controller
 
         return response()->json(auth()->user());
     }
+    
+    public function applicationsByJob(Request $request, $id){
+        
+        if(auth()->user() && auth()->user()->user_type_id == 2){        
+           
+        $applications = Application::where('employer_id',auth()->user()->id)->where('job_id', $id)->with(['applicant', 'user', 'employer','job', 'company','media'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+
+       
+        // return view('applications', compact('applications'));
+        $applicationWithCv = [];
+        foreach($applications as $application){
+            $application->cv = $application->getCv();
+            $application->coverLetter = $application->getCoverLetter();
+            // $applicationWithCv.push($application);
+            array_push($applicationWithCv, $application);
+        }
+        if(count($applications) != 0){
+            return response()->json($applications);
+        }else{
+            return response()->json(["message"=>"no applications for this job"]);
+        }
+
+        }
+
+        if(auth()->user() && auth()->user()->user_type_id == 1){        
+            $applications = Application::where('user_id',auth()->user()->id)->with(['job', 'user', 'employer', 'company','media'])->orderBy('created_at', 'desc')->get(); //return applicatioin with the related applicant
+            // return view('applications', compact('applications'));
+            return response()->json($applications);
+            }
+    
+
+        return response()->json(auth()->user());
+    }
+
 
     public function favouriteJob($job_id)
     {

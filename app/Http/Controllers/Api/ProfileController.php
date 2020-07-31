@@ -84,7 +84,8 @@ class ProfileController extends Controller
                 //     'add_certificate' => 'required',
                 //     'add_from_date' => 'required',
                 //     'add_to_date' => 'required'
-                // ]);$newEduc = new \App\EducationDetails();
+                // ]);
+                $newEduc = new \App\EducationDetails();
 
                 $newEduc->institute = $request->education['institute'];
                 $newEduc->course = $request->education['course'];

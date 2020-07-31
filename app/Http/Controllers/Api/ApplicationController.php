@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Application;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class ApplicationController extends Controller
 {
@@ -81,5 +83,23 @@ class ApplicationController extends Controller
     public function destroy(Application $application)
     {
         //
+    }
+
+    /**
+     * Shortlist an applicants application
+     * @param \App\Application $application
+     * @return \Illuminate\Http\Response
+     */
+    public function shortlist( $id){
+        $user = auth()->user();
+        $application = Application::find($id);
+        if($application->employer_id == $user->id){
+            $application->shortlisted = !$application->shortlisted;
+            $application->save();
+            $application->fresh();
+            return response()->json(["message"=>$application->shortlisted ? "Shortlisted" : "Removed from Shortlist", "application"=>$application]);
+        }
+
+        return \response()->json(["message"=>"error shortlisting candidate"]);
     }
 }

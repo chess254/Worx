@@ -57,7 +57,9 @@ Route::delete('experience/{id}', 'Api\ExperienceDetailsController@destroy');
 Route::get('/search', 'Api\SearchController@search');
 
 Route::post('jobs/{job}/apply', 'Api\JobController@apply');
-Route::get('applications', 'Api\JobController@applications');  
+Route::get('applications', 'Api\JobController@applications');  //{job?} an optional parameter
+Route::get('applications/{id}', 'Api\JobController@applicationsByJob');
+Route::post('shortlist/{id}', 'Api\ApplicationController@shortlist');
 
 Route::post('/toggle-fav-job/{id}', 'Api\JobController@favouriteJob');
 Route::get('/favourite-jobs', 'Api\JobController@favouriteJobs');
