@@ -26,7 +26,7 @@ class CreateApplicationsTable extends Migration
             $table->foreign('employer_id')->references('id')->on('users');
             $table->foreign('applicant_id')->references('id')->on('seeker_profile');
             $table->foreign('company_id')->references('id')->on('company');
-            $table->unsignedInteger('status')->default(0);
+            $table->string('status', 50)->nullable();
             $table->boolean('shortlisted')->nullable();
             $table->timestamps();
         });

@@ -102,4 +102,17 @@ class ApplicationController extends Controller
 
         return \response()->json(["message"=>"error shortlisting candidate"]);
     }
+
+    public function status(Request $request, $id){
+        $user = auth()->user();
+        $application = Application::find($id);
+        if($application->employer_id == $user->id){
+            $application->status = $request->status;
+            $application->save();
+            $application->fresh();
+            return response()->json(["message"=>$application->status]);
+        }
+
+        return \response()->json(["message"=>"error setting application status"]);
+    }
 }
