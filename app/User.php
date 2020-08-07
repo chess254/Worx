@@ -64,4 +64,8 @@ class User extends Authenticatable
     public function county(){
         return $this->belongsTo(\App\County::class);
     }
+
+    public function user_type_id(){
+        return $this->user_type_id;
+    }
 }
