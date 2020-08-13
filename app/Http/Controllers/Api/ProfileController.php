@@ -174,8 +174,11 @@ class ProfileController extends Controller
 
     public function profile(Request $request){
         // $profile = SeekerProfile::where('user_id', auth()->user()->id)->get();
-        
-        return response()->json(SeekerProfile::where('user_id', auth()->user()->id)->with('educationDetails','experienceDetails','favourite_jobs')->first()); 
+        $profile = SeekerProfile::where('user_id', auth()->user()->id)->with('educationDetails','experienceDetails','favourite_jobs')->first();
+        $userRole = $profile->user->user_type_id;
+        $userRole = $userRole == 1 ? 'candidate' : $userRole == 2 ? 'employer' : 'guest';
+        $profile->userRole = $userRole;
+        return response()->json($profile); 
 
     }
 

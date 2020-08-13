@@ -22,7 +22,12 @@ use App\Http\Controllers\Api\JobController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   $user =User::where('id',auth()->user()->id);
+  // $userRole = $user->user_type_id->get();
+  // dd($user);
+  // $user->user_type_id = $user->user_type_id == 1 ? 'candidate' : $user->user_type_id == 2 ? 'employer' : 'guest';
+  // $user->userRole = $userRole;
     return $user->with('seekerProfile')->first();
+    // return response()->json($user->user_type_id);
     // $seekerProfile = $user->seekerProfile();
 
     
