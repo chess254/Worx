@@ -175,6 +175,8 @@ class JobController extends Controller
             $application->addMedia($request->file('coverLetter'))->setName('cover_letter')->toMediaCollection('cover_letter');
         }
 
+        SendEmailQueue::dispatch($request->user(),Job::findOrFail($Job->id));
+
         
         // foreach ($request->input('document', []) as $file) {
         //     //todo: findout how to add media from request(url) instead of path, then save to disk
