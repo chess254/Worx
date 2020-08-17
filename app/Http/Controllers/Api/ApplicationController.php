@@ -124,7 +124,7 @@ class ApplicationController extends Controller
         $applicant_user_ids = Job::find($job)->applications()->where('status','shortlisted')->pluck('user_id');
         $users_shortlisted = User::findMany($applicant_user_ids);
         $company = Job::find($job)->company;
-// dd($company);
+    // dd($company);
         foreach ($users_shortlisted as $recipient) {
             Mail::to($recipient)->queue(new GroupEmail($company, Job::find($job)));
         }
@@ -142,9 +142,11 @@ class ApplicationController extends Controller
         $send_to = User::findMany($applicant_user_ids);
         $company = Job::find($job)->company;
         $subject = $request->subject;
-        $message = $request->message;
-// dd($company);
+        $content = $request->message;
+        // dd($company);
         foreach ($send_to as $recipient) {
-            Mail::to($recipient)->queue(new GroupEmail($company, Job::find($job), $subject, $message));
+            Mail::to($recipient)->queue(new GroupEmail($company, Job::find($job), $subject, $content));
         }
+        return response()->json($request->all());
+    }
 }
