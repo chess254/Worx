@@ -68,6 +68,8 @@ Route::post('shortlist/{id}', 'Api\ApplicationController@shortlist');
 Route::post('application/{id}/status', 'Api\ApplicationController@status');
 Route::get('groupemail/{job}', 'Api\ApplicationController@sendShortlistEmail');
 
+Route::post('groupemail', 'Api\ApplicationController@sendGroupEmail');
+
 Route::post('/toggle-fav-job/{id}', 'Api\JobController@favouriteJob');
 Route::get('/favourite-jobs', 'Api\JobController@favouriteJobs');
 Route::get('/my-jobposts', 'Api\JobController@myJobPosts');

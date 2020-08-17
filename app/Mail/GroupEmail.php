@@ -15,16 +15,20 @@ class GroupEmail extends Mailable
 
     protected $company;
     public $job;
+    public $subject;
+    public $message;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Company $company, Job $job)
+    public function __construct(Company $company, Job $job, $subject, $message)
     {
         $this->company = $company;
         $this->job = $job;
+        $this->subject = $subject;
+        $this->message = $message;
     }
 
     /**
@@ -38,8 +42,9 @@ class GroupEmail extends Mailable
         // return $this->view('view.name');
         // dd($company);
         return $this->from( $this->company->email, 'Mailtrap')
-        ->subject('youve been shortlisted  for'.$this->job->title )
-        ->view('mails.shortlisted')->with([
+        // ->subject('youve been shortlisted  for'.$this->job->title )
+        ->subject($subject )
+        ->view('mails.groupmail')->with([
             'job'=>$this->job, //when jon is set as $public we dont have to pass the data here, it can be accessed by view
             // 'user'=> $this->user
             ]);

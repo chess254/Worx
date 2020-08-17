@@ -134,4 +134,17 @@ class ApplicationController extends Controller
     // ->bcc($evenMoreUsers)
     // ->queue(new OrderShipped($order));
     }
+
+    public function sendGroupEmail(Request $request){
+        $job = $request->job_id;
+        $status = $request->recepients;
+        $applicant_user_ids = Job::find($job)->applications()->where('status',$status)->pluck('user_id');
+        $send_to = User::findMany($applicant_user_ids);
+        $company = Job::find($job)->company;
+        $subject = $request->subject;
+        $message = $request->message;
+// dd($company);
+        foreach ($send_to as $recipient) {
+            Mail::to($recipient)->queue(new GroupEmail($company, Job::find($job), $subject, $message));
+        }
 }
