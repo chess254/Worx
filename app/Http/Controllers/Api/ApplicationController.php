@@ -141,6 +141,7 @@ class ApplicationController extends Controller
         $applicant_user_ids = Job::find($job)->applications()->where('status',$status)->pluck('user_id');
         $send_to = User::findMany($applicant_user_ids);
         $company = Job::find($job)->company;
+        
         $subject = $request->subject;
         $content = $request->message;
         // dd($company);
