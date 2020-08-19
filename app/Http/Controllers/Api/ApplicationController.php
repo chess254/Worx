@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Application;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Mail;
+use App\Job;
+use App\Mail\GroupEmail;
+use App\User;
 
 
 class ApplicationController extends Controller
@@ -114,5 +118,36 @@ class ApplicationController extends Controller
         }
 
         return \response()->json(["message"=>"error setting application status"]);
+    }
+
+    public function sendShortlistEmail($job){
+        $applicant_user_ids = Job::find($job)->applications()->where('status','shortlisted')->pluck('user_id');
+        $users_shortlisted = User::findMany($applicant_user_ids);
+        $company = Job::find($job)->company;
+    // dd($company);
+        foreach ($users_shortlisted as $recipient) {
+            Mail::to($recipient)->queue(new GroupEmail($company, Job::find($job)));
+        }
+
+    //     Mail::to($request->user())
+    // ->cc($moreUsers)
+    // ->bcc($evenMoreUsers)
+    // ->queue(new OrderShipped($order));
+    }
+
+    public function sendGroupEmail(Request $request){
+        $job = $request->job_id;
+        $status = $request->recepients;
+        $applicant_user_ids = Job::find($job)->applications()->where('status',$status)->pluck('user_id');
+        $send_to = User::findMany($applicant_user_ids);
+        $company = Job::find($job)->company;
+        
+        $subject = $request->subject;
+        $content = $request->message;
+        // dd($company);
+        foreach ($send_to as $recipient) {
+            Mail::to($recipient)->queue(new GroupEmail($company, Job::find($job), $subject, $content));
+        }
+        return response()->json($request->all());
     }
 }

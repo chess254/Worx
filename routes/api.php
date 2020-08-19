@@ -66,6 +66,9 @@ Route::get('applications', 'Api\JobController@applications');  //{job?} an optio
 Route::get('applications/{id}', 'Api\JobController@applicationsByJob');
 Route::post('shortlist/{id}', 'Api\ApplicationController@shortlist');
 Route::post('application/{id}/status', 'Api\ApplicationController@status');
+Route::get('groupemail/{job}', 'Api\ApplicationController@sendShortlistEmail');
+
+Route::post('send-group-email', 'Api\ApplicationController@sendGroupEmail');
 
 Route::post('/toggle-fav-job/{id}', 'Api\JobController@favouriteJob');
 Route::get('/favourite-jobs', 'Api\JobController@favouriteJobs');
