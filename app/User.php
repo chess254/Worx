@@ -5,11 +5,13 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Lexx\ChatMessenger\Traits\Messagable;
 
 
 class User extends Authenticatable   
 {
     use Notifiable;
+    use Messagable;
     
 
     protected $table = 'users';
@@ -25,6 +27,8 @@ class User extends Authenticatable
     //     'sms_notification_active','user_image'
     // ];
 
+
+    
     protected $guarded = [];
 
     /**

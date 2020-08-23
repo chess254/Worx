@@ -1,0 +1,7 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+esri.com	TRUE	/	FALSE	1999999999	AKA_A2	A
+www.esri.com	TRUE	/	FALSE	1999999999	AWSALB	Oe1MBBhF8kEGkD/YFS9LK2zn1ePOEq0OMzuo9MskSKwfr93t9KEinQ+RVbtl4yFkVV7QPel2yePldsz0hEO5NR/NNtYlb6IHzmT4C084AqfWjthp8pWcpJbuPgCE
+www.esri.com	TRUE	/	FALSE	1999999999	AWSALBCORS	Oe1MBBhF8kEGkD/YFS9LK2zn1ePOEq0OMzuo9MskSKwfr93t9KEinQ+RVbtl4yFkVV7QPel2yePldsz0hEO5NR/NNtYlb6IHzmT4C084AqfWjthp8pWcpJbuPgCE
+www.esri.com	TRUE	/	FALSE	1999999999	SameSite	None
+
