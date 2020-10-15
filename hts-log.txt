@@ -1,0 +1,13 @@
+HTTrack3.49-2 launched on Thu, 20 Aug 2020 20:42:37 at https://www.esri.com/en-us/home /home/chess/Esri/
+(httrack https://www.esri.com/en-us/home /home/chess/Esri/ )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+20:50:48	Error: 	Exit requested by shell or user
+20:50:48	Warning: 	File not added due to mirror cancel: https://www.esri.com/en-us/about/events/esri-midwest-uc/agenda/preconference-seminars
+
+HTTrack Website Copier/3.49-2 mirror complete in 8 minutes 19 seconds : 366 links scanned, 365 files written (16355357 bytes overall) [3238643 bytes received at 6490 bytes/sec], 16356211 bytes transferred using HTTP compression in 365 files, ratio 17%, 51.0 requests per connection
+(1 errors, 1 warnings, 0 messages)
