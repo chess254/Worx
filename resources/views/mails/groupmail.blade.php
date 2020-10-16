@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>{!!$subject!!}</h1>
-<h2> {{$job->title}} </h2>
+<h2>Application for {{$job->title}} at {{$company->name}} </h2>
     {!!$content!!}
 {{-- <p> <a href="url('/job/{{$job->id}}')"></a> click here to view the job listing</p> --}}
 </body>
