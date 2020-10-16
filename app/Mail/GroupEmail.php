@@ -45,7 +45,8 @@ class GroupEmail extends Mailable
         // ->subject('youve been shortlisted  for'.$this->job->title )
         ->subject($this->subject )
         ->view('mails.groupmail')->with([
-            'job'=>$this->job, //when jon is set as $public we dont have to pass the data here, it can be accessed by view
+            'job'=>$this->job,
+            'company'=>$this->company //when jon is set as $public we dont have to pass the data here, it can be accessed by view
             // 'user'=> $this->user
             ]);
     }

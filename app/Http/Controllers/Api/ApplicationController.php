@@ -138,16 +138,19 @@ class ApplicationController extends Controller
     public function sendGroupEmail(Request $request){
         $job = $request->job_id;
         $status = $request->recepients;
-        $applicant_user_ids = Job::find($job)->applications()->where('status',$status)->pluck('user_id');
-        $send_to = User::findMany($applicant_user_ids);
+        $applicant_user_ids = ($status == "all") ? Job::find($job)->applications()->pluck('user_id') : Job::find($job)->applications()->where('status',$status)->pluck('user_id');
         $company = Job::find($job)->company;
-        
+        $send_to = User::findMany($applicant_user_ids);
         $subject = $request->subject;
         $content = $request->message;
-        // dd($company);
-        foreach ($send_to as $recipient) {
-            Mail::to($recipient)->queue(new GroupEmail($company, Job::find($job), $subject, $content));
+        if($applicant_user_ids && $company && $send_to && $subject && $content){
+            // dd($company);
+            foreach ($send_to as $recipient) {
+                Mail::to($recipient)->queue(new GroupEmail($company, Job::find($job), $subject, $content));
+            }
+            return response()->json(["message"=>"Group messages sent."]);
         }
-        return response()->json($request->all());
+
+        return response()->json(["error"=>"Error sending group message, fill all required fields."]);
     }
 }
