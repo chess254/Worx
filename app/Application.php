@@ -59,7 +59,7 @@ class Application extends Model implements HasMedia
         return $this->belongsTo(\App\Company::class);
     }
 
-    //spatie media
+    //spatie media ..
     public function registerMediaCollections(): void {
         $this -> addMediaCollection('documents');
     
