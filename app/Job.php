@@ -72,6 +72,10 @@ class Job extends Model
         return $this->belongsToMany(SeekerProfile::class, 'favourites')->withTimeStamps();
     }
 
+    public function interview(){
+        return $this->belongsTo(\App\Interview::class);
+    }
+
         /**
      * Determine whether a job has been marked as favorite by a seeker.
      *

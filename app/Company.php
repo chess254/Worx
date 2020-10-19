@@ -74,4 +74,8 @@ class Company extends Model implements HasMedia
     public function applications(){
         return $this->hasMany(\App\Application::class);
     }
+
+    public function interviews(){
+        return $this->hasMany(\App\Interview::class);
+    }
 }

@@ -34,6 +34,10 @@ class Application extends Model implements HasMedia
         return $this->hasMany(\App\SeekerProfile::class);
     }
 
+    public function interviews(){
+        return $this->hasMany(\App\Interview::class);
+    }
+
     public function job(){
         return $this->belongsTo(\App\Job::class);
     }

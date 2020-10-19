@@ -137,6 +137,17 @@ class ProfileController extends Controller
                 $profile->save();
                 $user->save();
             }
+
+            if($request->has('skills')){
+                // $user = auth()->user();
+                // $profile = SeekerProfile::where('user_id', $user->id);
+                $skills = explode(",",$request->skills); 
+                $profile->skills = $skills;
+                $profile->save();
+                // return response()->json($request);
+
+            }
+
             if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
 
                 $profile->addMedia($request->file('avatar'))->toMediaCollection('profilepics');

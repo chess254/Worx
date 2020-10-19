@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'register', 'logout', '*'],
+    'paths' => ['api/*', 'api/csrf-cookie', 'api/register','register', '/login','login', 'logout', '*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*','localhost:8080'],
+    'allowed_origins' => ['*','localhost:8080', '192.168.43.72:8080', '192.168.43.72'],
 
     'allowed_origins_patterns' => [],
 
