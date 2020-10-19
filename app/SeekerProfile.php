@@ -60,4 +60,8 @@ class SeekerProfile extends Model implements HasMedia
     {
         return $this->belongsToMany(Job::class, 'favourites')->withTimeStamps();
     }
+
+    public function interviews(){
+        return $this->belongsToMany(\App\Interview::class);
+    }
 }
