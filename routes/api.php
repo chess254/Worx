@@ -37,7 +37,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
   });
 
-Route::group(['namespace' => 'Api'], function () {  //adds '\Api' before each controller in group
+Route::group(['namespace' => 'Api'], function () {  //adds '\Api' before  controller in groupeach
     
     Route::apiResource('jobs', 'JobController');
     Route::apiResource('companies', 'CompanyController');

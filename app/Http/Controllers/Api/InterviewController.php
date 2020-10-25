@@ -6,6 +6,7 @@ use App\EducationDetails;
 use App\Interview;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use \DateTime;
 
 class InterviewController extends Controller
 {
@@ -26,15 +27,7 @@ class InterviewController extends Controller
      */
     public function create(Request $request)
     {
-        if($request->application_id){
-            $application = Application::find($request->application_id)->first();
-            $interview = new Interview();
-            $interview->job_id = $application->job_id;
-            $interview->application_id = $application->id;
-            $interview->company_id = $application->company_id;
-            $interview->save();
-            $interview->seeker_profiles()->attach($application->applicant_id,['start_time'=> new DateTime('now') , 'end_time'=> new DateTime('now') , 'status'=> 'shortlisted'])
-        }
+        //
     }
 
     // public static function makeFromApplication(Application $application): self
@@ -101,5 +94,9 @@ class InterviewController extends Controller
     public function destroy(EducationDetails $educationDetails)
     {
         //
+    }
+
+    public function generateTimeSlots(DateTime $period_start, DateTime $period_end, DateInterval $interval, $occupied_slots){
+
     }
 }
