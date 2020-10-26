@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "371acdcab6f6918c8a220d0e6cae6cd4",
+    "content-hash": "fea6f58186b94b1ada00bfa1e9916347",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3075,6 +3075,54 @@
                 "spatie"
             ],
             "time": "2017-09-18T09:51:20+00:00"
+        },
+        {
+            "name": "spatie/period",
+            "version": "1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/period.git",
+                "reference": "14e56b619fb430b9bcfb7e79ebdbec86310648e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/period/zipball/14e56b619fb430b9bcfb7e79ebdbec86310648e3",
+                "reference": "14e56b619fb430b9bcfb7e79ebdbec86310648e3",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1"
+            },
+            "require-dev": {
+                "larapack/dd": "^1.0",
+                "nesbot/carbon": "^2.6",
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Period\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brent Roose",
+                    "email": "brent@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Complex period comparisons",
+            "homepage": "https://github.com/spatie/period",
+            "keywords": [
+                "period",
+                "spatie"
+            ],
+            "time": "2020-10-21T09:17:33+00:00"
         },
         {
             "name": "spatie/temporary-directory",
