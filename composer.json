@@ -22,6 +22,7 @@
         "lexxyungcarter/chatmessenger": "^1.3",
         "shvetsgroup/laravel-email-database-log": "^1.4",
         "spatie/laravel-medialibrary": "^8.0.0",
+        "spatie/period": "^1.5",
         "spatie/url": "^1.3"
     },
     "require-dev": {

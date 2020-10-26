@@ -197,7 +197,7 @@ class InterviewController extends Controller
 
         //generate available slots
         $testslots = new generateTimeSlots($opening_date, $closing_date, $interview_duration, $unavailable_slots);
-        return response()->json($unavailable_slots);
+        return response()->json($testslots);
 
         //assign each available slot to an application
 
