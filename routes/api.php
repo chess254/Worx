@@ -84,3 +84,5 @@ Route::post('/logo/{company_id}', 'Api\CompanyController@avatar');
 Route::post('/register', 'RegisterController@register');
 Route::post('login', 'LoginController@login');
 Route::post('/logout', 'LoginController@logout');
+
+Route::post('interview-details', 'Api\InterviewController@scheduleInterview');
