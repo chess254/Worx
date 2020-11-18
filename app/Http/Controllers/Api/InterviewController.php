@@ -8,7 +8,9 @@ use App\Interview;
 use App\Application;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+// use \App\DateTime\DateTime;
 use \DateTime;
+use App\Carbon;
 
 class InterviewController extends Controller
 {
@@ -187,24 +189,37 @@ class InterviewController extends Controller
     public function scheduleInterview(Request $request){
         $unavailable_slots = $request->unavailable_slots ? json_decode($request->unavailable_slots, true) : [];
         //find a way to make sure there are always applications to schedule, or provide feedback to user that there are no applications in selected for scheduling
-        $applications = $request->applications ? $request->applications : [];
+        $applications = $request->applications ? explode(",", $request->applications) : [];
         $interview_duration = $request->duration;
         $closing_date = $request->closing_date;
         $opening_date = $request->opening_date;
         $opening_hour = $request->opening_hour;
         $closing_hour = $request->closing_hour;
         $job_id = $request->job_id;
+        $available_slots = $request->available_slots ? json_decode($request->input('available_slots'), true) : [];
+
+        $index=0;
+        foreach($applications as $application){
+            if($available_slots[$index]){
+                Interview::createFromApplication(Application::find($application), new DateTime($available_slots[$index]['start']),  new DateTime($available_slots[$index]['end']));
+                $index++;
+            }
+        }
 
         //generate available slots
-        $testslots = new generateTimeSlots($opening_date, $closing_date, $interview_duration, $unavailable_slots);
-        return response()->json($testslots);
+        // $testslots = new generateTimeSlots($opening_date, $closing_date, $interview_duration, $unavailable_slots);
+        // return response()->json($testslots);
 
+        //if available slots< applicants selected for interview, return with error slots not enough? allocate more days/time for interview
         //assign each available slot to an application
+        
 
         //send feedback, with slots assigned optionally send group email to applicants scheduled for interview with details of the interview
 
         // $status = $request->recepients;
         // $applicant_user_ids = ($status == "all") ? Job::find($job)->applications()->pluck('user_id') : Job::find($job)->applications()->where('status',$status)->pluck('user_id');
+
+        return $available_slots[0]['start'];
 
     }
 }
