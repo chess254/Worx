@@ -35,16 +35,6 @@ class InterviewController extends Controller
         //
     }
 
-    // public static function makeFromApplication(Application $application): self
-    // {
-    //     // $application = Application::find($request->application_id)->first();
-    //     return self::make([
-    //         'job_id' => $applicatio->job_id,
-    //         'application_id' => $application->id,
-    //         'company_id' => $application->company_id,
-    //     ]);
-    // }
-
     /**
      * Store a newly created resource in storage.
      *
