@@ -103,11 +103,6 @@ class InterviewController extends Controller
             return response()->json(['message'=> 'login as candidate to apply']);
         }
 
-        // $job_id = $request->job_id;
-        // if(Job::find($job_id)->user_id != auth()->user()->id){
-            
-        // }
-
         if(auth()->user()->id == Job::find($job_id)->user_id){
 
             $unavailable_slots = $request->unavailable_slots ? json_decode($request->unavailable_slots, true) : [];
