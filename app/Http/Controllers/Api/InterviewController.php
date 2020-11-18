@@ -12,6 +12,7 @@ use App\Job;
 // use \App\DateTime\DateTime;
 use \DateTime;
 use App\Carbon;
+use Auth;
 
 class InterviewController extends Controller
 {
@@ -103,7 +104,7 @@ class InterviewController extends Controller
             return response()->json(['message'=> 'login as candidate to apply']);
         }
 
-        if(auth()->user()->id == Job::find($job_id)->user_id){
+        if(auth()->user()->id == Job::find($request->job_id)->user_id){
 
             $unavailable_slots = $request->unavailable_slots ? json_decode($request->unavailable_slots, true) : [];
             //find a way to make sure there are always applications to schedule, or provide feedback to user that there are no applications in selected for scheduling
