@@ -63,6 +63,7 @@ Route::get('/search', 'Api\SearchController@search');
 
 Route::post('jobs/{job}/apply', 'Api\JobController@apply');
 Route::get('applications', 'Api\JobController@applications');  //{job?} an optional parameter
+Route::get('candidate_interviews', 'Api\JobController@candidateInterviews');
 Route::get('applications/{id}', 'Api\JobController@applicationsByJob');
 Route::post('shortlist/{id}', 'Api\ApplicationController@shortlist');
 Route::post('application/{id}/status', 'Api\ApplicationController@status');

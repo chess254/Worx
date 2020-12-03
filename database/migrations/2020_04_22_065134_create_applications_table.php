@@ -14,7 +14,7 @@ class CreateApplicationsTable extends Migration
     public function up()
     {
         Schema::create('applications', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedInteger('id')->autoIncrement();
             $table->unsignedInteger('job_id');
             $table->unsignedInteger('employer_id');
             $table->unsignedInteger('applicant_id');
