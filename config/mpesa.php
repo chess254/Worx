@@ -80,5 +80,6 @@ return [
     |B2C results url
     |------------------------------------------
     'b2c_result' => 'https://b2d7e6a4.ngrok.io/api/validate?key=ertyuiowwws'
+    */
 
 ];
