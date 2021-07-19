@@ -44,7 +44,7 @@ class generateTimeSlots{
         self::generateOccupiedSlots($occupied_slots);
 
         //set unoccupied
-        self::generateUnOccupiedSlots($this->occupied);
+        self::generateUnOccupiedSlots($this->occupied); 
 
     //   $this->games = $occupied_slots.map($slot=> [new DateTimeImmutable($slot[0]) );
     

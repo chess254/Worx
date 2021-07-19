@@ -35,12 +35,14 @@ class Interview extends Model
         ]);
     }
 
-        /**
-     * Make a new BlogPost object from the given User object and save it to the database.
+    /**
+     * Make a new Interview object from the given Application object and save it to the database.
      */
     public static function createFromApplication(Application $application, \DateTime $start_time, \DateTime $end_time)
     {
         tap(self::makeFromApplication($application))->save()->seeker_profiles()->attach($application->applicant_id,['start_time'=> $start_time , 'end_time'=> $end_time , 'status'=> $application->status]);
+        // return self;
     }
 
 }
+

@@ -286,5 +286,15 @@ class JobController extends Controller
 
         return response()->json('unauthorized');
     }
+
+    public function candidateInterviews(){
+        if(auth()->user() && auth()->user()->user_type_id == 1){
+            $user_id = auth()->user()->id;
+            $candidate_interviews = auth()->user()->seekerProfile->interviews()->with(['company','job','application'])->get();
+
+            return response()->json($candidate_interviews);
+
+        }
+    }
 }
 

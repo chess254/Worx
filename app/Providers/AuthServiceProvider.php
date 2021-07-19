@@ -25,6 +25,23 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+         /* define a employer role */
+         Gate::define('isEmployer', function($user) {
+            return $user->user_type_id == 2;
+         });
+        
+         /* define a job seeker user role */
+         Gate::define('isCandidate', function($user) {
+             return $user->user_type_id == 1;
+         });
+
+         Gate::define('update_education_details', function ($user, $seeker_profile, $education_details) {
+            return ($seeker_profile->id == $education_details->seeker_profile_id);
+          });
+       
+         /* define a user role */
+        //  Gate::define('isUser', function($user) {
+        //      return $user->role == 'user';
+        //  });
     }
 }

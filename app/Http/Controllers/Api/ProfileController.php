@@ -179,6 +179,15 @@ class ProfileController extends Controller
         // return response()->json(SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails')->first());
         $profile = SeekerProfile::where('user_id', $id)->with('user','educationDetails','experienceDetails','favourite_jobs')->first();
         $profile->image = $profile->getProfilePic();
+        
+        // increment views
+        if(auth()->user() && (auth()->user()->id != $profile->user_id)){
+            $profile->views = $profile->views + 1;
+            $profile->save();
+        }elseif(!auth()->user()){
+            $profile->views = $profile->views + 1;
+            $profile->save();
+        }
         return response()->json($profile);
 
     }
@@ -188,6 +197,7 @@ class ProfileController extends Controller
         $profile = SeekerProfile::where('user_id', auth()->user()->id)->with('educationDetails','experienceDetails','favourite_jobs')->first();
         $userRole = $profile->user->user_type_id;
         $userRole = $userRole == 1 ? 'candidate' : $userRole == 2 ? 'employer' : 'guest';
+        $profile->views = $profile->views + 1;
         $profile->userRole = $userRole;
         return response()->json($profile); 
 

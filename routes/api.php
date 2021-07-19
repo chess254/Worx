@@ -63,6 +63,7 @@ Route::get('/search', 'Api\SearchController@search');
 
 Route::post('jobs/{job}/apply', 'Api\JobController@apply');
 Route::get('applications', 'Api\JobController@applications');  //{job?} an optional parameter
+Route::get('candidate_interviews', 'Api\JobController@candidateInterviews');
 Route::get('applications/{id}', 'Api\JobController@applicationsByJob');
 Route::post('shortlist/{id}', 'Api\ApplicationController@shortlist');
 Route::post('application/{id}/status', 'Api\ApplicationController@status');
@@ -73,6 +74,10 @@ Route::post('send-group-email', 'Api\ApplicationController@sendGroupEmail');
 Route::post('/toggle-fav-job/{id}', 'Api\JobController@favouriteJob');
 Route::get('/favourite-jobs', 'Api\JobController@favouriteJobs');
 Route::get('/my-jobposts', 'Api\JobController@myJobPosts');
+Route::get('/featured-candidates', function(){
+  $featured_candidates = SeekerProfile::with('user','educationDetails','experienceDetails','favourite_jobs')->orderBy('views','desc')->take(10)->get();
+  return response()->json($featured_candidates, 200);
+});
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //   return $request->user();

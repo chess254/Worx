@@ -62,6 +62,8 @@ class SeekerProfile extends Model implements HasMedia
     }
 
     public function interviews(){
-        return $this->belongsToMany(\App\Interview::class);
+        return $this->belongsToMany(\App\Interview::class)
+            ->withPivot('start_time', 'end_time', 'status')
+            ->withTimestamps();
     }
 }
