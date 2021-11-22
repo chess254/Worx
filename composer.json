@@ -71,6 +71,8 @@
             "@php artisan key:generate --ansi"
         ],
         "post-install-cmd": [
+        "php artisan migrate:fresh --seed",
+        "php artisan key:generate",
             "php artisan clear-compiled",
             "chmod -R 777 public/"
         ]
