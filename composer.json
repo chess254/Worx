@@ -73,6 +73,7 @@
         "post-install-cmd": [
         "php artisan migrate:fresh --seed",
         "php artisan key:generate",
+       "composer dump-autoload"
             "php artisan clear-compiled",
             "chmod -R 777 public/"
         ]
