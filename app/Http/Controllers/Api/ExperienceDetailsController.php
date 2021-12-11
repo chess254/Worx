@@ -73,13 +73,8 @@ class ExperienceDetailsController extends Controller
     {
         if(Auth::user() && ExperienceDetails::find($id)->seekerProfile == Auth::user()->seekerprofile){
             $profile = Auth::user()->seekerprofile;
-            // return response($request);
             $experience = ExperienceDetails::findOrFail($id);
-            
-
             $experience->update($request->toArray());
-            // $experience->fresh();
-
             $profile->fresh();
             return response()->json($profile->experienceDetails);
         }

@@ -74,13 +74,8 @@ class EducationDetailsController extends Controller
     {
         if(Auth::user() && EducationDetails::find($id)->seekerProfile == Auth::user()->seekerprofile){
             $profile = Auth::user()->seekerprofile;
-            // return response($request);
             $education = EducationDetails::findOrFail($id);
-            
-
             $education->update($request->toArray());
-            // $education->fresh();
-
             $profile->fresh();
             return response()->json($profile->educationDetails);
         }
