@@ -37,7 +37,6 @@ class ApplicationReceivedEmail extends Mailable
      */
     public function build()
     {
-        // return $this->view('view.name');
         return $this->from('holla@60four.co.ke', 'Mailtrap')
         ->subject('Job application for'.$this->job->title .'received')
         ->view('mails.application-received')->with([

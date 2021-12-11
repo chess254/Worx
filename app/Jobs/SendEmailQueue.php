@@ -39,20 +39,10 @@ class SendEmailQueue implements ShouldQueue
      */
     public function handle()
     {
-        // $email = new ApplicationReceivedEmail();
-        // Mail::to([$this->user, $this->employer])->send(new ApplicationReceivedEmail($this->Job));
         Mail::to($this->user)
-        // ->cc($exampleUser)
-        //or to collection,
-        // ->to('postmaster@domain.com')
-        // ->bcc(User::all())
         
         ->send(new ApplicationReceivedEmail($this->Job));
         Mail::to($this->employer)
-        // ->cc($exampleUser)
-        //or to collection,
-        // ->to('postmaster@domain.com')
-        // ->bcc(User::all())
         
         ->send(new ApplicationReceivedEmail($this->Job));
     }
