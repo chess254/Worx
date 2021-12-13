@@ -20,7 +20,7 @@ class SearchController extends Controller
     //         $county = $data['county'];
     //         $category = $data['category'];
 
-            public $counties;
+           public $counties;
            public $categories; 
            public $data;
            public $title;
@@ -59,11 +59,6 @@ class SearchController extends Controller
 
     {
          $this->request =$request;
-        
-        //no search field  filled
-        // if(!$title && !$county && !$category){
-        //     return redirect()->route('jobs') ;
-        // }      
         //all 3 search fields  filled
         if($this->title && $this->county && $this->category){
            $query =  Job::with('location','company','county','businessStream','type','jobFunction')->whereHas('jobFunction', function($q){
