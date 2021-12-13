@@ -25,7 +25,6 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -235,7 +234,6 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 
 }
