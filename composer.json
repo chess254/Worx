@@ -6,7 +6,7 @@
         "framework",
         "laravel"
     ],
-    
+
     "license": "MIT",
     "require": {
         "php": "7.4.0",
@@ -78,5 +78,5 @@
             "chmod -R 777 public/"
         ]
     }
-    
+
 }
